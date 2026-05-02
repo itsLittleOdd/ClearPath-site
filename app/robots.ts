@@ -16,6 +16,7 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: `${SITE.url}/sitemap.xml`,
-    host: SITE.url,
+    // No `host` directive — that's a Yandex-specific convention; Google
+    // Search Console actively recommends omitting it. Per Reviewer 1.
   };
 }

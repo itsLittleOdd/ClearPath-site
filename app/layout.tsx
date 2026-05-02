@@ -5,6 +5,7 @@ import "./globals.css";
 import { BRAND, SITE } from "@/lib/site";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { JsonLdProfessionalService } from "@/components/JsonLdProfessionalService";
 
 const fontSans = Inter({
   variable: "--font-sans",
@@ -71,6 +72,7 @@ export default function RootLayout({
           Operator picked Vercel Analytics over Plausible for Phase 1.
         */}
         <Analytics />
+        <JsonLdProfessionalService />
       </body>
     </html>
   );

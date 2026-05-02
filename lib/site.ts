@@ -43,15 +43,15 @@ export const SITE = {
 
   email: "JWhalen@ClearPathWV.com",
 
-  // Cal.com booking links (operator-confirmed Sprint 3). Two key names per URL —
-  // bookingUrl/reviewBookingUrl per Coord 1's B1-W3 spec (already consumed by
-  // pricing/page.tsx, Hero, CTASection); bookingDiscoveryUrl/bookingReviewUrl
-  // mirror SHARED_COPY.contact in content/copy.ts (Builder 5's B5-W3) so
-  // either consumer style resolves to the same URL.
+  // Public Cal.com discovery-call link. Two key names point at the same URL —
+  // bookingUrl is consumed by pricing/page.tsx, Hero, CTASection (Coord 1's
+  // B1-W3 spec); bookingDiscoveryUrl mirrors SHARED_COPY.contact in
+  // content/copy.ts (Builder 5's B5-W3). Either consumer style works.
+  //
+  // The 45-min POST-AUDIT review call URL was moved to lib/internal.ts in
+  // Sprint 5 Tier 1.4 — public components must not surface it.
   bookingUrl: "https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call",
   bookingDiscoveryUrl: "https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call",
-  reviewBookingUrl: "[REDACTED-INTERNAL-URL]",
-  bookingReviewUrl: "[REDACTED-INTERNAL-URL]",
 
   // OG image — Next 16 file-convention asset at app/opengraph-image.tsx.
   ogImage: "/opengraph-image",

@@ -275,15 +275,15 @@ export const CONTACT_COPY = {
  */
 export const SHARED_COPY = {
   primaryCta: "Book a 45-min discovery call",
-  // Canonical contact data. Builder 1 mirrors these into lib/site.ts in B1-W3
-  // so non-string consumers (metadata, JSON-LD, server-only imports) stay in
-  // sync. Booking is on cal.com, not Calendly.
+  // Canonical PUBLIC contact data. Mirrored into lib/site.ts for non-string
+  // consumers (metadata, JSON-LD, server-only imports). Booking is on cal.com,
+  // not Calendly. The internal-only post-audit review URL is intentionally
+  // NOT in this module — see lib/internal.ts → INTERNAL_LINKS.reviewBookingUrl
+  // for that. Public components must never import it.
   contact: {
     email: "JWhalen@ClearPathWV.com",
     bookingDiscoveryUrl:
       "https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call",
-    bookingReviewUrl:
-      "[REDACTED-INTERNAL-URL]",
   },
   footer: {
     tagline: "Practical AI for small businesses in Olean and Western New York.",

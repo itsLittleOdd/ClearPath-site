@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { Logo } from "@/components/Logo"
 import { NAV_LINKS } from "@/lib/nav"
+import { SITE } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 const FOOTER_TAGLINE = "Practical AI that actually saves small businesses time."
@@ -58,9 +59,12 @@ export function Footer({ className }: FooterProps) {
             <ul className="flex flex-col gap-2 font-sans text-sm">
               <li>
                 <span className="text-graphite-500">Email: </span>
-                <span className="text-navy-700" aria-label="Email coming soon">
-                  TBD
-                </span>
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="text-navy-700 hover:text-sage-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500/60 rounded-sm"
+                >
+                  {SITE.email}
+                </a>
               </li>
               <li>
                 <span className="text-graphite-500">Book a call: </span>

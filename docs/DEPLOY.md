@@ -2,13 +2,15 @@
 
 Target live: 2026-05-16. Owner of execution: Justin (or Coord 2 once Justin has handed off Vercel + domain credentials).
 
+> **Stack notes from Scout 1 (Next 16 edition):** see `docs/STACK_NOTES.md` for the full breakdown. Deploy-relevant points are folded into the checklists below.
+
 ## Prerequisites
 
 - [ ] GitHub repo created and pushed (no remote exists yet — operator must confirm GitHub org/repo name).
 - [ ] Vercel account with billing on a paid plan if a custom domain is required.
 - [ ] Domain registered (TBD — Justin to name the production domain before Sprint 5).
 - [ ] Tally.so account + lead-intake form built. Embed ID copied for the contact page.
-- [ ] Resend account (only if Tally fallback path is enabled). API key generated, sender domain verified.
+- [ ] **Start Resend domain verification NOW** — DNS propagation can take up to 24 hours. Even though Phase 1 ships Tally.so as the primary intake, doing this in advance keeps the React Hook Form + Resend fallback "one PR away." Don't wait until the day of launch.
 - [ ] Plausible account (only if Plausible chosen over Vercel Analytics). Domain set up; site key copied.
 
 ## One-time Vercel setup
@@ -16,9 +18,10 @@ Target live: 2026-05-16. Owner of execution: Justin (or Coord 2 once Justin has 
 - [ ] In Vercel dashboard → New Project → Import the GitHub repo `clearpath_site`.
 - [ ] Framework preset: Next.js (auto-detected).
 - [ ] Root directory: `clearpath_site` (only if the GitHub repo is a monorepo). If the repo IS the site, leave blank.
-- [ ] Build command: default `next build` — no override needed.
+- [ ] Build command: default `next build` — no override needed. Next 16 uses Turbopack for `next build` by default; CI builds are noticeably faster than v15. No opt-in flag required.
 - [ ] Output directory: default `.next` — no override needed.
 - [ ] Node version: 22.x (matches local dev).
+- [ ] **Do NOT enable the `cacheComponents` flag** in `next.config.ts`. Stay on the Previous Model caching for Phase 1 — opting in is a behavior change that will surprise builders mid-sprint.
 - [ ] Click Deploy. First deploy will fail if env vars aren't set — that's expected; continue to env-var step.
 
 ## Environment variables (production)
@@ -51,7 +54,7 @@ After variables are set, redeploy from the Deployments tab.
 
 Pick one (Coord 1 has flagged this as TBD):
 
-- **Vercel Analytics** — flip the toggle in Project → Analytics. No code change required. Free tier is generous.
+- **Vercel Analytics** — flip the toggle in Project → Analytics. No code change required. Hobby tier pauses (does not bill overage) at ~2,500 events/month — fine for a marketing site at launch, but the cap will hit if Justin runs a paid campaign. Plan to upgrade or switch to Plausible if traffic grows.
 - **Plausible** — set `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` and add the Plausible script tag in `app/layout.tsx` (Builder owning that file does this).
 
 ## Pre-launch QA
@@ -63,7 +66,8 @@ Pick one (Coord 1 has flagged this as TBD):
   - "This is AI-assisted analysis + Justin's human review and customization." — audit-page footer disclaimer.
 - [ ] No banned words anywhere on the site (`leverage`, `synergy`, `unlock`, `transform`, `revolutionize`, `cutting-edge`, `game-changer`).
 - [ ] Tally form submits and Justin gets the test email.
-- [ ] Lighthouse 90+ on Performance / Accessibility / SEO / Best Practices on production.
+- [ ] **Tally embed is lazy-mounted** — eager iframe injection tanks Lighthouse on the contact page. The Builder owning `app/contact/page.tsx` should defer the iframe until intersection / interaction. Verify in production that the page-load doesn't pull the Tally iframe immediately.
+- [ ] **Lighthouse mobile ≥ 90** on Performance / Accessibility / SEO / Best Practices on production. **This gates merge to `main`** — if a PR drops mobile Lighthouse below 90, fix it before merging. Run on production, not localhost.
 - [ ] OG image renders correctly when the production URL is shared on a social platform.
 - [ ] 404 page is in Justin's voice, not the default Next.js page.
 

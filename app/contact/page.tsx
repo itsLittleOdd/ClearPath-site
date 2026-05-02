@@ -48,10 +48,13 @@ export default function ContactPage() {
                 title="Book a 45-min discovery call with Justin"
               />
               {/*
-                The 45-min review call URL (SITE.reviewBookingUrl) is
-                INTERNAL ONLY per Coord 1's Sprint-3 directive — Justin
-                sends it to clients in the audit-delivery email. Do not
-                surface it on the public contact page.
+                The 45-min review call URL is INTERNAL ONLY per Coord 1's
+                Sprint-3 directive — Justin sends it to clients in the
+                audit-delivery email. Do not surface it on the public
+                contact page. The value lives in INTERNAL_LINKS.reviewBookingUrl
+                (lib/internal.ts), intentionally excluded from the public
+                SITE namespace so an autocomplete on `SITE.review...`
+                cannot land here.
               */}
             </div>
 

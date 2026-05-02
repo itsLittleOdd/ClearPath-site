@@ -4,30 +4,61 @@
  * Owned by Builder 1 (B1-W1, app shell). Pull from here in metadata, headers,
  * footers, structured data, and anywhere a string is canonical site identity.
  *
- * TBD values are placeholders for items still pending operator input or
- * downstream sprints (domain, email, booking provider, OG image, social).
- * Update in place when the operator provides finals — no schema change needed.
+ * All operator-confirmed values (domain, email, booking URLs) landed in
+ * Sprints 3-4 and are locked.
  */
+
+/**
+ * Brand color constants accessible from TypeScript.
+ *
+ * Values MUST stay in sync with `app/globals.css` (the design-system source of
+ * truth per Coord 1's token-lock). Use this object only when you need a literal
+ * brand color in a place that can't read CSS variables — e.g. Next.js metadata
+ * `themeColor`, OG image generation, structured data, third-party SDK config.
+ *
+ * Components must continue to use Tailwind class names (bg-navy-800, etc.).
+ */
+export const BRAND = {
+  navy700: "#1f4663",
+  navy800: "#16334a",
+  navy900: "#122b40",
+  navy950: "#0b1f2f",
+  sage500: "#5e9170",
+  sage600: "#4f7d5f",
+  cream50: "#faf7f1",
+  graphite500: "#62686f",
+  graphite600: "#4e555f",
+} as const;
+
+export type BrandColor = keyof typeof BRAND;
 
 export const SITE = {
   name: "ClearPath AI Audit",
   shortName: "ClearPath",
-  tagline: "Reclaim 5-10 hours every week",
+  tagline: "Reclaim 5 to 10 hours every week.",
   description:
     "Practical AI audits for small businesses in Olean and Western New York. We help owners eliminate 5-10 hours of repetitive work every week — no hype, no buzzwords, no lock-in.",
 
-  // Domain not yet confirmed. clearpathai.com is the working assumption per the brief.
-  url: "https://clearpathai.com",
+  url: "https://clearpathwv.com",
 
-  // Contact + booking — TBD until operator provides finals.
-  email: "hello@clearpathai.com", // TBD
-  calendly: "TBD", // BLOCKED — booking provider not finalized; Tally.so is primary forms vendor.
+  email: "JWhalen@ClearPathWV.com",
 
-  // OG image path — designer asset to land in /public before launch.
-  ogImage: "/og-default.png", // TBD
+  // Cal.com booking links (operator-confirmed Sprint 3). Two key names per URL —
+  // bookingUrl/reviewBookingUrl per Coord 1's B1-W3 spec (already consumed by
+  // pricing/page.tsx, Hero, CTASection); bookingDiscoveryUrl/bookingReviewUrl
+  // mirror SHARED_COPY.contact in content/copy.ts (Builder 5's B5-W3) so
+  // either consumer style resolves to the same URL.
+  bookingUrl: "https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call",
+  bookingDiscoveryUrl: "https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call",
+  reviewBookingUrl: "[REDACTED-INTERNAL-URL]",
+  bookingReviewUrl: "[REDACTED-INTERNAL-URL]",
+
+  // OG image — Next 16 file-convention asset at app/opengraph-image.tsx.
+  ogImage: "/opengraph-image",
 
   // Region targeting — used by structured data + local-SEO surfaces.
   locale: "en_US",
+  location: "Olean, NY",
   region: "Olean, NY (Western New York)",
 
   // Justin is intentionally not on social per discovery — keep TBD until that changes.

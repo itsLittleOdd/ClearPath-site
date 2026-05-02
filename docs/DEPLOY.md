@@ -1,17 +1,28 @@
 # Vercel deploy checklist — ClearPath site
 
-Target live: 2026-05-16. Owner of execution: Justin (or Coord 2 once Justin has handed off Vercel + domain credentials).
+Target live: 2026-05-16. Owner of execution: **Justin (account `justinwhalen0-2299` / `justin.whalen0@gmail.com`).** The swarm does not deploy from its own credentials; this doc is the runbook Justin (or Coord 2 with handed-off access) executes.
 
 > **Stack notes from Scout 1 (Next 16 edition):** see `docs/STACK_NOTES.md` for the full breakdown. Deploy-relevant points are folded into the checklists below.
+
+## Confirmed inputs (operator-locked 2026-05-02)
+
+| Input | Value |
+|---|---|
+| Vercel account | `justinwhalen0-2299` (`justin.whalen0@gmail.com`) |
+| Lead-intake email destination | `JWhalen@ClearPathWV.com` (the canonical ClearPath address) |
+| Production domain | `clearpathwv.com` (provisional — confirm at registrar before pointing DNS) |
+| Form pipeline | **Tally.so** (Path A from `docs/FORM_PIPELINE_PLAYBOOK.md`) — Resend is not wired in Phase 1 |
+| Booking | Cal.com inline embed via `@calcom/embed-react`. Discovery: `https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call`. Review: `[REDACTED-INTERNAL-URL]` |
+| Analytics | Vercel Analytics (operator confirmed; Plausible deferred) |
 
 ## Prerequisites
 
 - [ ] GitHub repo created and pushed (no remote exists yet — operator must confirm GitHub org/repo name).
 - [ ] Vercel account with billing on a paid plan if a custom domain is required.
 - [ ] Domain registered (TBD — Justin to name the production domain before Sprint 5).
-- [ ] Tally.so account + lead-intake form built. Embed ID copied for the contact page.
-- [ ] **Start Resend domain verification NOW** — DNS propagation can take up to 24 hours. Even though Phase 1 ships Tally.so as the primary intake, doing this in advance keeps the React Hook Form + Resend fallback "one PR away." Don't wait until the day of launch.
-- [ ] Plausible account (only if Plausible chosen over Vercel Analytics). Domain set up; site key copied.
+- [ ] Tally.so account + lead-intake form built. Embed ID copied for the contact page (see "Tally form setup" below). **Operator-locked: Tally is Phase 1's lead pipeline.**
+- [ ] Resend domain verification — DEFERRED for Phase 1 (Tally handles email via its own SMTP). Only needed if/when the Resend fallback is wired in a future sprint. If kicking that off in advance, expect 24-hour DNS propagation.
+- [ ] Plausible account — DEFERRED. Operator chose Vercel Analytics.
 
 ## One-time Vercel setup
 
@@ -28,20 +39,37 @@ Target live: 2026-05-16. Owner of execution: Justin (or Coord 2 once Justin has 
 
 Set in Vercel → Project → Settings → Environment Variables. Copy from `.env.example`. Mark each as Production / Preview / Development as appropriate.
 
-- [ ] `NEXT_PUBLIC_SITE_URL` — production domain, e.g. `https://clearpath.example.com`. Production + Preview.
-- [ ] `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — Plausible site domain, or leave unset to disable. Production only.
-- [ ] `RESEND_API_KEY` — only if the Tally fallback is wired. Mark Sensitive. Production + Preview.
-- [ ] `LEAD_EMAIL_TO` — Justin's lead-receiving inbox. Production only.
+- [ ] `NEXT_PUBLIC_SITE_URL` — production domain. Set to `https://clearpathwv.com` (or final confirmed domain). Production + Preview.
+- [ ] `NEXT_PUBLIC_TALLY_FORM_ID` — the form ID from the Tally form's share URL (e.g. `wQbX4d`). Until this is set, the contact page renders the mailto-fallback to `JWhalen@ClearPathWV.com`. Production + Preview.
+- [ ] `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — leave unset; operator chose Vercel Analytics over Plausible for Phase 1.
+- [ ] `RESEND_API_KEY` — leave unset for Phase 1 (Tally handles email notifications natively). Add later only if Tally is replaced by the Resend fallback.
+- [ ] `LEAD_EMAIL_TO` — `JWhalen@ClearPathWV.com`. Configured inside Tally's notification settings, not as a Vercel env var unless the Resend fallback is wired.
 
 After variables are set, redeploy from the Deployments tab.
 
+### Tally form setup (operator action — gate for `NEXT_PUBLIC_TALLY_FORM_ID`)
+
+- [ ] Create a Tally.so account if not already done.
+- [ ] New form → name `ClearPath Lead Intake`. Add five fields:
+  1. Short answer — `Name` (required)
+  2. Short answer — `Business name` (required)
+  3. Email — `Email` (required)
+  4. Phone — `Phone` (optional)
+  5. Long answer — `What's one repetitive task eating your time right now?` (required)
+- [ ] Type `/recaptcha` before the submit button to insert Google reCAPTCHA (no keys needed).
+- [ ] Notifications → enable "Send email on submission" → set destination to `JWhalen@ClearPathWV.com`.
+- [ ] Copy the form ID (the segment after `tally.so/forms/` in the share URL). Paste into Vercel as `NEXT_PUBLIC_TALLY_FORM_ID`.
+- [ ] Open `/contact` after redeploy and submit a test lead — confirm the email lands in the ClearPathWV inbox.
+
 ## Custom domain
 
-- [ ] In Vercel → Project → Settings → Domains, add the production domain.
+Provisional production domain: **`clearpathwv.com`** (operator confirm before pointing DNS — if the actual domain is different, swap it everywhere `clearpathwv.com` appears in this doc, in `lib/site.ts`'s `SITE.url`, and in the Vercel env vars).
+
+- [ ] In Vercel → Project → Settings → Domains, add `clearpathwv.com` (and `www.clearpathwv.com`).
 - [ ] Vercel shows the DNS records to set (A or CNAME). Copy them.
-- [ ] At the registrar (e.g. Cloudflare, Namecheap, Porkbun), add the DNS records. CNAME usually wins; A only if the domain is on apex with no CNAME flattening.
+- [ ] At the registrar, add the DNS records. CNAME usually wins; A only if the domain is on apex with no CNAME flattening.
 - [ ] Wait for propagation. Vercel auto-provisions an SSL cert; verify HTTPS works before announcing.
-- [ ] Add `www` as a redirect to apex (or vice versa, depending on Justin's preference).
+- [ ] Decide canonical: apex (`clearpathwv.com`) or www. Add the other as a redirect to the canonical.
 - [ ] Update `NEXT_PUBLIC_SITE_URL` to the final domain and redeploy.
 
 ## Preview / branch deploys
@@ -52,10 +80,11 @@ After variables are set, redeploy from the Deployments tab.
 
 ## Analytics
 
-Pick one (Coord 1 has flagged this as TBD):
+**Operator chose Vercel Analytics for Phase 1.** Plausible is deferred — revisit after the first paid campaign or once the Vercel Hobby cap (~2,500 events/month, no overage billing) starts to bite.
 
-- **Vercel Analytics** — flip the toggle in Project → Analytics. No code change required. Hobby tier pauses (does not bill overage) at ~2,500 events/month — fine for a marketing site at launch, but the cap will hit if Justin runs a paid campaign. Plan to upgrade or switch to Plausible if traffic grows.
-- **Plausible** — set `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` and add the Plausible script tag in `app/layout.tsx` (Builder owning that file does this).
+- [ ] In Vercel → Project → Analytics, flip on Web Analytics.
+- [ ] No code change is required for the page-view counter — Vercel injects the script for you. If you later want custom events, install `@vercel/analytics` and import `<Analytics />` in `app/layout.tsx` (Builder 1's file).
+- [ ] If Vercel Speed Insights is wanted, flip on the Speed Insights toggle separately and install `@vercel/speed-insights` per its docs.
 
 ## Pre-launch QA
 

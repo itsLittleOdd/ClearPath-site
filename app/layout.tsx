@@ -11,12 +11,14 @@ const fontSans = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
 });
 
 const fontDisplay = Bricolage_Grotesque({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {

@@ -6,9 +6,16 @@
 // IntersectionObserver lazy-mount used by TallyEmbed (cal.com loads a
 // script chain that hurts Lighthouse if it boots eagerly above the fold).
 // The wrapper reserves a min-height to prevent CLS while the iframe loads.
+//
+// `Cal` is loaded via `next/dynamic({ ssr:false })` and `getCalApi` via a
+// dynamic `import()` inside the post-mount effect — together they keep the
+// `@calcom/embed-react` bundle out of the route's initial JS payload until
+// IntersectionObserver fires.
 
-import Cal, { getCalApi } from "@calcom/embed-react";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
+
+const Cal = dynamic(() => import("@calcom/embed-react"), { ssr: false });
 
 type CalComEmbedProps = {
   /** The "username/event-type" segment after cal.com/. */
@@ -52,6 +59,7 @@ export function CalComEmbed({
     if (!shouldMount) return;
     let cancelled = false;
     (async () => {
+      const { getCalApi } = await import("@calcom/embed-react");
       const cal = await getCalApi();
       if (cancelled) return;
       cal("ui", {

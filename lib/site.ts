@@ -24,7 +24,7 @@ export const BRAND = {
   navy900: "#122b40",
   navy950: "#0b1f2f",
   sage500: "#5e9170",
-  sage600: "#4f7d5f",
+  sage600: "#487458",
   cream50: "#faf7f1",
   graphite500: "#62686f",
   graphite600: "#4e555f",

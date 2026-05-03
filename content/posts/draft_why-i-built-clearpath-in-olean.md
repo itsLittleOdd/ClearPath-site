@@ -12,7 +12,7 @@ Most of the AI consulting you read about online is built for companies with hund
 
 That's not what runs the businesses I grew up around.
 
-I'm Justin. I grew up in Western New York. I spent twelve-plus years on the operations side of Holiday Valley Resort in Ellicottville — back of house at Edna's, slinging drinks at the Cabana Bar, teaching ski school. Real work. Long shifts. Local people. The math of running that kind of operation isn't theoretical to me. It's what staffing the Saturday rush looks like when two people called out and there's a wedding party walking in at four.
+I'm Justin. I grew up in Western New York. I spent twelve-plus years on the operations side of Holiday Valley Resort in Ellicottville — back of house at Edna's, slinging drinks at the Cabana Bar, teaching ski school. Real work. Long shifts. Local people. The math of running that sort of operation isn't theoretical to me. It's what staffing the Saturday rush looks like when two people called out and there's a wedding party walking in at four.
 
 A few years into the ski school job, we hired a new director. Sharp guy, came up through the race world, knew skiing inside and out — but the resort had a few hundred quirks he had no way of knowing on day one. Pricing variations for half-day vs. full-day, age-bracket policies, how rentals tied into lessons, which staff member to ask about which thing. Every time he had a question, he'd ping someone, and that someone was probably mid-lesson with a customer's kid.
 
@@ -26,7 +26,7 @@ Both of those started as side projects to scratch my own itch. Both of them surf
 
 That's what ClearPath is.
 
-I sit down with a small business owner in Olean, or wider Western New York, and I walk through how a typical week runs. Where the boring repetitive work lives. Where the same email gets retyped twenty times. Where the customer follow-up keeps slipping because nobody owns it. Where someone's exporting a CSV from one system every Monday morning to paste into another. The audit is a 45-minute discovery call and a 2-3 page report. No deck. No buzzwords. No "we'll circle back on the synergies."
+I sit down with a small business owner in Olean, or wider Western New York, and I walk through how a typical week runs. Where the boring repetitive work lives. Where the same email gets retyped twenty times. Where the customer follow-up keeps slipping because nobody owns it. Where someone's exporting a CSV from one system every Monday morning to paste into another. The audit is a 45-minute discovery call and a 2-3 page report. No deck. No buzzwords. No "we'll circle back on the operational alignment."
 
 The tools I recommend are usually things you already pay for. Gmail. Outlook. Microsoft 365. Google Workspace. Calendly. The point isn't to add another vendor — it's to turn on the parts of what you have that you didn't know existed.
 

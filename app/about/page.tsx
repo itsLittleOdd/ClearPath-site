@@ -34,6 +34,17 @@ const PHOTO_HEIGHT = 1766;
 const PHOTO_ALT = "Justin Whalen with his partner Macie, in Olean, NY";
 const PHOTO_CAPTION = "Justin + Macie.";
 
+// Brand mark: prefer the optimized WebP (~13 KB); fall back to the source PNG
+// (~490 KB). Same fs.existsSync gating pattern as the portrait — silently
+// no-ops if the asset isn't on disk.
+const logoSrc = fs.existsSync(path.join(PUBLIC_DIR, "clearpath-logo.webp"))
+  ? "/clearpath-logo.webp"
+  : fs.existsSync(path.join(PUBLIC_DIR, "clearpath-logo.png"))
+    ? "/clearpath-logo.png"
+    : null;
+const LOGO_WIDTH = 784;
+const LOGO_HEIGHT = 1168;
+
 export default function AboutPage() {
   const [intro1, intro2, why, letMeShowYou] = ABOUT_COPY.bio;
 
@@ -43,6 +54,16 @@ export default function AboutPage() {
         <Container>
           <div className="grid gap-12 md:grid-cols-12 md:gap-12 lg:gap-16">
             <div className="flex flex-col gap-6 md:col-span-7">
+              {logoSrc && (
+                <Image
+                  src={logoSrc}
+                  alt=""
+                  width={LOGO_WIDTH}
+                  height={LOGO_HEIGHT}
+                  aria-hidden="true"
+                  className="h-12 w-auto"
+                />
+              )}
               <Eyebrow>{ABOUT_COPY.eyebrow}</Eyebrow>
               <Heading as="h1" level="h1">
                 {ABOUT_COPY.heading}

@@ -43,14 +43,12 @@ export const SITE = {
 
   email: "JWhalen@ClearPathWV.com",
 
-  // Public Cal.com discovery-call link. Two key names point at the same URL —
-  // bookingUrl is consumed by pricing/page.tsx, Hero, CTASection (Coord 1's
-  // B1-W3 spec); bookingDiscoveryUrl mirrors SHARED_COPY.contact in
-  // content/copy.ts (Builder 5's B5-W3). Either consumer style works.
-  //
-  // The 45-min POST-AUDIT review call URL was moved to lib/internal.ts in
-  // Sprint 5 Tier 1.4 — public components must not surface it.
-  bookingUrl: "https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call",
+  // Public Cal.com discovery-call link. Naming pairs with SHARED_COPY.contact
+  // in content/copy.ts (Builder 5) and with INTERNAL_LINKS.reviewBookingUrl
+  // in lib/internal.ts (Coord 2's Sprint 5 Tier 1.4 split). Public components
+  // typically pull the discovery URL from SHARED_COPY.contact directly; this
+  // SITE-scoped copy is here for metadata, JSON-LD, and any consumer that
+  // already imports SITE.
   bookingDiscoveryUrl: "https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call",
 
   // OG image — Next 16 file-convention asset at app/opengraph-image.tsx.

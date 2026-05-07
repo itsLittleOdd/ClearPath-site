@@ -29,15 +29,15 @@ export function HowItWorks({
           </p>
         </div>
 
-        <ol className="relative mt-12 grid gap-10 md:mt-16 md:grid-cols-3 md:gap-8">
+        <ol className="relative mt-12 grid gap-12 md:mt-16 md:grid-cols-3 md:gap-10">
           {/*
            * Connector line — horizontal on md+ across the row, sitting at the
-           * vertical center of the numeral. Uses sage-500 at 25% so it reads
-           * as a thread, not a divider.
+           * vertical center of the numbered bubble. Uses sage-500 at 25% so it
+           * reads as a thread, not a divider.
            */}
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute left-0 right-0 top-7 hidden h-px bg-sage-500/25 md:block"
+            className="pointer-events-none absolute left-8 right-8 top-7 hidden h-px bg-gradient-to-r from-transparent via-sage-500/30 to-transparent md:block"
           />
 
           {steps.map((step, idx) => (
@@ -45,10 +45,10 @@ export function HowItWorks({
               key={step.title}
               className="reveal-on-view relative flex flex-col gap-4"
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <span
                   aria-hidden="true"
-                  className="font-display text-display-md font-semibold leading-none text-sage-500"
+                  className="relative inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-sage-500/40 bg-navy-900/40 font-display text-2xl font-semibold leading-none text-sage-500 shadow-[0_0_0_4px_var(--color-navy-800)]"
                 >
                   {idx + 1}
                 </span>
@@ -65,6 +65,21 @@ export function HowItWorks({
             </li>
           ))}
         </ol>
+
+        <div className="reveal-on-view mt-14 flex flex-col items-start gap-3 border-t border-cream-50/10 pt-8 md:mt-20 md:flex-row md:items-center md:justify-between md:gap-6">
+          <p className="text-base leading-relaxed text-pretty text-cream-50/70 md:text-lg">
+            No retainer. No surprise invoice. The plan is yours either way.
+          </p>
+          <div className="flex items-center gap-2 text-sm text-sage-500">
+            <span
+              aria-hidden="true"
+              className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500"
+            />
+            <span className="font-display uppercase tracking-wider">
+              About a week, start to finish
+            </span>
+          </div>
+        </div>
       </Container>
     </Section>
   );

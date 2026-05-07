@@ -28,15 +28,30 @@ export function Examples({ className }: ExamplesProps) {
               key={example.archetype}
               surface="cream"
               interactive
-              className="reveal-on-view h-full border-l-4 border-l-sage-500/70 hover:border-l-sage-500"
+              className="reveal-on-view group h-full border-l-4 border-l-sage-500/70 hover:border-l-sage-500"
             >
-              <div className="flex h-full flex-col gap-3 p-6 md:p-8">
-                <p className="font-display text-eyebrow font-medium uppercase tracking-wider text-sage-600">
-                  {example.archetype}
-                </p>
-                <p className="font-display text-2xl font-semibold text-balance text-navy-950">
-                  {example.timeSaved}
-                </p>
+              <div className="flex h-full flex-col gap-4 p-6 md:p-8">
+                <div className="flex items-center gap-2">
+                  <span
+                    aria-hidden="true"
+                    className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500"
+                  />
+                  <p className="font-display text-eyebrow font-medium uppercase tracking-wider text-sage-600">
+                    {example.archetype}
+                  </p>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <p className="font-display text-3xl font-semibold leading-tight text-balance text-navy-950 md:text-4xl">
+                    {example.timeSaved}
+                  </p>
+                  <p className="font-display text-eyebrow font-medium uppercase tracking-wider text-graphite-500">
+                    Saved
+                  </p>
+                </div>
+                <div
+                  aria-hidden="true"
+                  className="h-px w-10 bg-navy-800/15 transition-colors group-hover:bg-sage-500/60"
+                />
                 <p className="text-base leading-relaxed text-pretty text-graphite-600">
                   {example.summary}
                 </p>

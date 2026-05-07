@@ -41,7 +41,7 @@ export function Hero({
     <Section
       background="cream"
       className={cn(
-        "relative isolate overflow-hidden pt-10 pb-14 md:pt-14 md:pb-20",
+        "relative isolate overflow-hidden pt-10 pb-10 md:pt-14 md:pb-16",
         className,
       )}
     >
@@ -98,7 +98,7 @@ export function Hero({
                   {idx > 0 ? (
                     <span
                       aria-hidden="true"
-                      className="hidden h-1 w-1 rounded-full bg-sage-500/70 sm:inline-block"
+                      className="inline-block h-1 w-1 rounded-full bg-sage-500/70"
                     />
                   ) : null}
                   <span>{item}</span>
@@ -107,7 +107,11 @@ export function Hero({
             </ul>
           </div>
 
-          <div className="md:col-span-5">
+          <div className="relative md:col-span-5">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-6 -z-10 rounded-3xl border border-sage-500/20 bg-cream-50/40 backdrop-blur-[1px] md:-inset-8"
+            />
             <HeroIllustration className="w-full" />
           </div>
         </div>

@@ -40,3 +40,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# internal-only — never publish
+docs/PRICING_DECISION_LOG.md
+docs/POST_LAUNCH_TODO.md
+docs/LAUNCH_LOG.md
+docs/LAUNCH_CHECKLIST.md
+docs/site_punch_list_*.md
+docs/improvement_contest/
+docs/routines_candidates_scout_*.md
+docs/routines_paste_ready/
+content/voice_anchors.md
+content/page_voice_audit.md
+content/posts/draft_why-i-wont-sell-you-salesforce.md
+lib/internal.ts
+.bridgememory/

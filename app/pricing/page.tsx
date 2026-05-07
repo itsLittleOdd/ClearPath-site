@@ -76,24 +76,24 @@ export default function PricingPage() {
                 <li key={path.id} className="flex">
                   <article
                     className={cn(
-                      "flex w-full flex-col gap-3 rounded-xl bg-cream-50 transition-shadow",
+                      "flex w-full flex-col items-center gap-3 rounded-xl bg-cream-50 p-8 text-center transition-shadow",
                       isFeatured
-                        ? "p-10 shadow-md ring-2 ring-sage-500 md:relative md:z-10 md:scale-[1.02]"
-                        : "border border-navy-900/10 p-8 shadow-sm",
+                        ? "shadow-md ring-2 ring-sage-500 md:relative md:z-10"
+                        : "border border-navy-900/10 shadow-sm",
                     )}
                   >
-                    {isFeatured && path.featuredEyebrow ? (
-                      <Eyebrow>{path.featuredEyebrow}</Eyebrow>
-                    ) : null}
+                    <div className="flex min-h-[1.75rem] items-center justify-center">
+                      {isFeatured && path.featuredEyebrow ? (
+                        <Eyebrow>{path.featuredEyebrow}</Eyebrow>
+                      ) : null}
+                    </div>
                     <h3 className="font-display text-2xl font-semibold text-navy-950">
                       {path.name}
                     </h3>
-                    <div className="flex items-baseline gap-1.5">
-                      {path.qualifier ? (
-                        <span className="text-sm font-medium uppercase tracking-wider text-graphite-500">
-                          {path.qualifier}
-                        </span>
-                      ) : null}
+                    <div className="min-h-[1.25rem] text-sm font-medium uppercase tracking-wider text-graphite-500">
+                      {path.qualifier ?? ""}
+                    </div>
+                    <div className="flex items-baseline justify-center gap-1.5">
                       <span className="font-display text-3xl font-semibold text-navy-950">
                         {path.priceLabel}
                       </span>

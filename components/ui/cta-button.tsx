@@ -18,6 +18,7 @@ const ctaButtonVariants = cva(
           "bg-sage-500 text-navy-950 shadow-sm shadow-navy-950/40 hover:bg-cream-50",
       },
       size: {
+        sm: "h-9 px-4 text-xs",
         md: "h-11 px-5 text-sm",
         lg: "h-12 px-6 text-base",
       },

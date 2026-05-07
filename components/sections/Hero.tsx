@@ -41,7 +41,7 @@ export function Hero({
     <Section
       background="cream"
       className={cn(
-        "relative isolate overflow-hidden pt-24 pb-20 md:pt-32 md:pb-28",
+        "relative isolate overflow-hidden pt-10 pb-14 md:pt-14 md:pb-20",
         className,
       )}
     >
@@ -55,8 +55,8 @@ export function Hero({
       />
 
       <Container>
-        <div className="grid gap-12 md:grid-cols-12 md:items-center">
-          <div className="reveal-on-view flex flex-col gap-6 md:col-span-7">
+        <div className="grid gap-8 md:grid-cols-12 md:items-center md:gap-12">
+          <div className="reveal-on-view flex flex-col gap-5 md:col-span-7">
             <div className="flex items-center gap-3">
               <span
                 aria-hidden="true"

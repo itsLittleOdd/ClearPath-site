@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { Logo } from "@/components/Logo"
+import { CtaButton } from "@/components/ui/cta-button"
 import { Separator } from "@/components/ui/separator"
 import { NAV_LINKS } from "@/lib/nav"
 import { SITE } from "@/lib/site"
@@ -67,14 +68,15 @@ export function Footer({ className }: FooterProps) {
                   {SITE.email}
                 </a>
               </li>
-              <li>
-                <span className="text-cream-50/55">Book a call: </span>
-                <Link
-                  href="/contact"
-                  className="text-cream-50/90 hover:text-sage-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500/60 rounded-sm"
+              <li className="pt-1">
+                <CtaButton
+                  href={SITE.bookingDiscoveryUrl}
+                  external
+                  variant="inverted"
+                  size="sm"
                 >
-                  /contact
-                </Link>
+                  Book a discovery call
+                </CtaButton>
               </li>
             </ul>
           </div>

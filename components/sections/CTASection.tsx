@@ -24,7 +24,7 @@ export function CTASection({
   const resolvedBookingUrl = bookingUrl ?? "/contact";
 
   return (
-    <Section background="navyDeep" className={cn(className)}>
+    <Section background="navyDeep" size="tight" className={cn(className)}>
       <Container>
         <div className="reveal-on-view flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
           <div className="flex max-w-2xl flex-col gap-3">

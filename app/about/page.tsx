@@ -13,7 +13,7 @@ import { ABOUT_COPY } from "@/content/copy";
 export const metadata: Metadata = {
   title: { absolute: "About Justin | ClearPath AI Audit" },
   description:
-    "Justin Whalen — twelve-plus years on the operations side at Holiday Valley Resort in Ellicottville, NY. ClearPath is the same idea, scaled.",
+    "Justin Whalen. Twelve-plus years on the operations side of a regional ski resort in Western New York. ClearPath is the same idea, scaled.",
 };
 
 // Prefer the optimized WebP (75 KB) when present; fall back to the source JPEG
@@ -133,7 +133,7 @@ function JustinPortrait({ hasPhoto }: JustinPortraitProps) {
   return (
     <div
       role="img"
-      aria-label="Portrait of Justin Whalen — photo coming soon"
+      aria-label="Portrait of Justin Whalen, photo coming soon"
       className="flex aspect-square w-full items-end justify-start rounded-2xl border border-navy-800/10 bg-graphite-500/20 p-5"
     >
       <span className="font-display text-sm uppercase tracking-[0.18em] text-navy-800/70">
@@ -155,7 +155,7 @@ function PullQuote({ quote, attribution }: PullQuoteProps) {
         &ldquo;{quote}&rdquo;
       </blockquote>
       <figcaption className="mt-3 font-sans text-sm text-graphite-500">
-        — {attribution}
+        {attribution}
       </figcaption>
     </figure>
   );

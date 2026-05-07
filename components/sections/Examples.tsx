@@ -14,7 +14,7 @@ export function Examples({ className }: ExamplesProps) {
   const { eyebrow, heading } = HOME_COPY.examplesSection;
 
   return (
-    <Section background="cream" className={cn(className)}>
+    <Section background="cream" size="tight" className={cn(className)}>
       <Container>
         <div className="reveal-on-view flex max-w-3xl flex-col gap-4">
           <Eyebrow>{eyebrow}</Eyebrow>

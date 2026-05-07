@@ -19,7 +19,7 @@ export const HOME_COPY = {
     // `headline` so the rendered DOM text stays byte-for-byte equal.
     headlineAccent: "5-10 hours",
     subhead:
-      "I help small businesses in our area find places where AI tools (the practical kind, not the buzzword kind) can eliminate 5-10 hours of repetitive work every week.",
+      "I find where practical AI can eliminate 5-10 hours of repetitive work every week for small businesses in Western New York.",
     primaryCta: "Book a 45-min discovery call",
     secondaryCta: "See how it works",
     // Trust strip rendered directly under the CTAs. Each item echoes claims
@@ -33,12 +33,11 @@ export const HOME_COPY = {
     ],
   },
   socialProof:
-    "Twelve-plus years on the operations side at Holiday Valley in Ellicottville taught me what running a real local business actually looks like. ClearPath is built on that.",
+    "Twelve-plus years running operations at a Western New York resort. I know what a real local business looks like — long shifts, small margins, real people. ClearPath is built on that.",
   howItWorks: {
     eyebrow: "How it works",
     heading: "Let me show you how we can set this up together",
-    intro:
-      "Three steps. About a week start to finish, depending on how busy you are.",
+    intro: "Three steps. About a week, start to finish.",
     steps: [
       {
         title: "We talk for 45 minutes.",
@@ -79,8 +78,8 @@ export const HOME_COPY = {
     },
   ],
   finalCta: {
-    heading: "Ready to see what's possible?",
-    body: "Forty-five minutes on the phone or a video call. No pitch, no obligation. If there's nothing here that fits your business, I'll say so.",
+    heading: "Ready to see what fits?",
+    body: "Forty-five minutes on the phone or a video call. No pitch. If nothing here fits your business, I'll say so.",
     cta: "Book a 45-min discovery call",
   },
 };
@@ -122,34 +121,34 @@ export const WHO_ITS_FOR_COPY = {
   eyebrow: "Who it's for",
   heading: "Built for small businesses that run lean.",
   intro:
-    "Western New York small businesses — restaurants, shops, contractors, professional offices. 5 to 50 employees. Owners who'd rather see it work than hear about it.",
+    "Two-person shop or fifty-person operation. Hospitality, trades, retail, professional services, nonprofits, solo operators — the line isn't industry, it's whether your week has work that repeats. I'm based in Olean. The audit travels.",
   tagline:
     "What they all have in common: places where simple AI can eliminate 5-10 hours of repetitive work every week without changing how you run the business.",
   audiences: [
     {
-      archetype: "Restaurants, bars, and cafes",
+      archetype: "You answer the same email thirty times a week.",
       example:
-        "A 6-person cafe in downtown Olean drowning in catering emails — every booking touches five threads before the food goes out.",
+        "Catering replies, estimate requests, \"did you get my documents?\", appointment confirmations. A 6-person cafe in downtown Olean was rewriting the same five paragraphs every morning before we templated it.",
     },
     {
-      archetype: "Retail shops",
+      archetype: "Your scheduling is a phone-tag nightmare.",
       example:
-        "A boutique that loses an hour a day to inventory paperwork that's already sitting in a spreadsheet somewhere.",
+        "Inspection reminders, follow-up calls, recurring service windows. A 4-bay shop near Bradford was losing customers to chain places because nobody had time to call them back.",
     },
     {
-      archetype: "Auto shops and service businesses",
+      archetype: "Paperwork lives in three places at once.",
       example:
-        "A 4-bay shop near Bradford chasing inspection-reminder phone calls that should send themselves.",
+        "Spreadsheet, inbox, shop-management software, sticky note on the monitor. A 5-person CPA office in Cattaraugus County was retyping the same client info four times before tax season even hit.",
     },
     {
-      archetype: "Professional offices (CPAs, lawyers, dentists)",
+      archetype: "You're the bottleneck.",
       example:
-        "A 5-person CPA office in Cattaraugus County buried in client document intake every April.",
+        "Solo operator, owner-operator, or the only person who knows how something works. If you're the constraint, the audit usually finds the boring half of your job that doesn't actually need you on it.",
     },
   ],
   notForYouIf: {
-    heading: "Probably not the right fit if…",
-    body: "You want a CRM overhaul, a custom enterprise platform, or a chatbot that replaces your front desk. I don't do those — and most small businesses around here don't need them.",
+    heading: "What this is — and what it isn't.",
+    body: "In scope: smart chatbots, automated reminders, AI-assisted email drafts, document intake, scheduling helpers, anything that reuses tools you're already paying for. Out of scope: a six-month custom platform build, or a system you set up once and never look at again. The audit is aimed at small repeating tasks that add up — not enterprise overhauls, not set-and-forget magic. I'm not trying to sell you new software you don't need.",
   },
   cta: {
     heading: "Sound like you?",
@@ -160,12 +159,12 @@ export const WHO_ITS_FOR_COPY = {
 
 export const ABOUT_COPY = {
   eyebrow: "About",
-  heading: "Hi — I'm Justin.",
+  heading: "Hi, I'm Justin.",
   bio: [
-    "I'm Justin Whalen. I grew up in Western New York and spent twelve-plus years on the operations side of Holiday Valley Resort in Ellicottville — back of house at Edna's, slinging drinks at the Cabana Bar, and teaching ski school. Real work. Long shifts. Local people.",
-    "A few years in, I built a chatbot for the ski school so a new director could ramp up without bugging instructors all day. Then I built a 'book with Justin' lesson site so guests could schedule a private with me directly instead of leaving voicemails the resort had to call back. Both started as side projects to scratch my own itch — and it turned out the small fixes that save five hours a week add up.",
-    "ClearPath is the same idea, scaled. I sit down with a small business owner in Olean or wider WNY, walk through a typical week, and find the boring repetitive work hiding in plain sight. Then I write a short, plain-English plan that names exactly which tools fix it — usually tools you already pay for.",
-    "A real client once called me 'my let-me-show-you person.' That's the job. Not consulting. Not pitching. Just showing you, on your screen, how something works — so when I'm gone, you keep running it yourself.",
+    "I'm Justin Whalen. I grew up in Western New York and spent twelve-plus years on the operations side of a regional ski resort in Ellicottville. Back of house in the kitchen, drinks at the bar, teaching ski school in winter. Real work. Long shifts. Local people.",
+    "A few years in, I built a chatbot for the ski school so a new director could ramp up without bugging instructors all day. Then I built a 'book with Justin' lesson site so guests could schedule a private with me directly instead of leaving voicemails the resort had to call back. Both started as side projects to save myself time. Turned out the small fixes that save five hours a week add up.",
+    "ClearPath is the same idea, scaled. I sit down with a small business owner in Olean or wider WNY, walk through a typical week, and find the repetitive work you stopped seeing because you do it every day. Then I write a short, plain-English plan that names exactly which tools fix it. Usually tools you already pay for.",
+    "A real client once called me 'my let-me-show-you person.' That's the job. Not consulting. Not pitching. Just showing you, on your screen, how something works, so when I'm gone, you keep running it yourself.",
   ],
   // Pull-quote rendered as a standalone block on the About page.
   // Period on the attribution is intentional — Justin-voice, not a label.
@@ -173,7 +172,7 @@ export const ABOUT_COPY = {
   pullQuoteAttribution: "A real client.",
   cta: {
     heading: "Want to talk?",
-    body: "The first call is on me. Forty-five minutes, no pitch.",
+    body: "Forty-five-minute discovery call, no pitch. The audit itself is $197 if you want one.",
     button: "Book a 45-min discovery call",
   },
 };

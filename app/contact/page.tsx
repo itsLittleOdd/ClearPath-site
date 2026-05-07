@@ -20,14 +20,29 @@ export default function ContactPage() {
 
   return (
     <main className="flex flex-1 flex-col">
-      <Section background="cream" className="pt-20 md:pt-28">
+      <Section
+        background="cream"
+        className="relative isolate overflow-hidden pt-20 pb-8 md:pt-28 md:pb-12"
+      >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-40 -right-32 -z-10 h-[26rem] w-[26rem] rounded-full bg-sage-500/15 blur-3xl"
+        />
         <Container>
           <div className="flex max-w-3xl flex-col gap-6">
-            <Eyebrow>{eyebrow}</Eyebrow>
+            <div className="flex items-center gap-3">
+              <span
+                aria-hidden="true"
+                className="inline-block h-px w-8 bg-sage-500"
+              />
+              <Eyebrow className="m-0">{eyebrow}</Eyebrow>
+            </div>
             <Heading as="h1" level="h1">
               {heading}
             </Heading>
-            <p className="text-lg leading-relaxed text-graphite-600">{intro}</p>
+            <p className="text-lg leading-relaxed text-pretty text-graphite-600 md:text-xl">
+              {intro}
+            </p>
           </div>
         </Container>
       </Section>
@@ -36,11 +51,20 @@ export default function ContactPage() {
         <Container>
           <div className="grid gap-10 md:grid-cols-2 md:gap-12">
             {/* Cal.com inline embed — booking column */}
-            <div className="flex flex-col gap-4">
-              <h2 className="font-display text-2xl font-semibold tracking-tight text-navy-950">
+            <div className="flex flex-col gap-4 rounded-2xl border border-navy-800/10 bg-cream-50 p-6 shadow-sm md:p-8">
+              <div className="flex items-center gap-2">
+                <span
+                  aria-hidden="true"
+                  className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500"
+                />
+                <span className="font-display text-eyebrow font-medium uppercase tracking-wider text-sage-600">
+                  Option 1
+                </span>
+              </div>
+              <h2 className="font-display text-2xl font-semibold tracking-tight text-balance text-navy-950">
                 {calendar.placeholderHeading}
               </h2>
-              <p className="text-base leading-relaxed text-graphite-600">
+              <p className="text-base leading-relaxed text-pretty text-graphite-600">
                 {calendar.placeholderBody}
               </p>
               <CalComEmbed
@@ -59,30 +83,51 @@ export default function ContactPage() {
             </div>
 
             {/* Tally lead-intake — note column */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 rounded-2xl border border-navy-800/10 bg-cream-50 p-6 shadow-sm md:p-8">
+              <div className="flex items-center gap-2">
+                <span
+                  aria-hidden="true"
+                  className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500"
+                />
+                <span className="font-display text-eyebrow font-medium uppercase tracking-wider text-sage-600">
+                  Option 2
+                </span>
+              </div>
               <h2
                 id="contact-form"
-                className="font-display text-2xl font-semibold tracking-tight text-navy-950"
+                className="font-display text-2xl font-semibold tracking-tight text-balance text-navy-950"
               >
                 {form.heading}
               </h2>
-              <p className="text-base leading-relaxed text-graphite-600">
+              <p className="text-base leading-relaxed text-pretty text-graphite-600">
                 {form.intro}
               </p>
               <TallyEmbed title="ClearPath Lead Intake" />
-              <p className="mt-2 text-sm leading-relaxed text-graphite-500">
+              <p className="mt-2 text-sm leading-relaxed text-pretty text-graphite-500">
                 {form.privacyNote}
               </p>
             </div>
           </div>
 
-          <div className="mt-16 border-t border-navy-800/10 pt-8">
-            <h2 className="font-display text-xl font-semibold tracking-tight text-navy-950">
-              {fallbackContact.heading}
-            </h2>
-            <p className="mt-2 max-w-xl text-base leading-relaxed text-graphite-600">
-              {fallbackContact.body}
-            </p>
+          <div className="mt-16 flex flex-col gap-3 border-t border-navy-800/10 pt-8 md:flex-row md:items-start md:justify-between md:gap-6">
+            <div className="flex flex-col gap-2 md:max-w-xl">
+              <h2 className="font-display text-xl font-semibold tracking-tight text-balance text-navy-950">
+                {fallbackContact.heading}
+              </h2>
+              <p className="text-base leading-relaxed text-pretty text-graphite-600">
+                {fallbackContact.body}
+              </p>
+            </div>
+            <a
+              href="mailto:JWhalen@ClearPathWV.com"
+              className="inline-flex w-fit items-center gap-2 self-start rounded-lg border border-sage-500/40 bg-sage-500/10 px-4 py-2 text-sm font-medium text-sage-600 transition-colors hover:bg-sage-500/20"
+            >
+              <span
+                aria-hidden="true"
+                className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500"
+              />
+              JWhalen@ClearPathWV.com
+            </a>
           </div>
         </Container>
       </Section>

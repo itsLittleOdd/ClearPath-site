@@ -50,7 +50,18 @@ export default function AboutPage() {
 
   return (
     <main id="main">
-      <Section background="cream" className="pt-20 md:pt-28">
+      <Section
+        background="cream"
+        className="relative isolate overflow-hidden pt-20 md:pt-28"
+      >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-40 -right-32 -z-10 h-[28rem] w-[28rem] rounded-full bg-sage-500/15 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-40 -left-32 -z-10 h-[24rem] w-[24rem] rounded-full bg-navy-900/[0.05] blur-3xl"
+        />
         <Container>
           <div className="grid gap-12 md:grid-cols-12 md:gap-12 lg:gap-16">
             <div className="flex flex-col gap-6 md:col-span-7">
@@ -64,20 +75,35 @@ export default function AboutPage() {
                   className="h-12 w-auto"
                 />
               )}
-              <Eyebrow>{ABOUT_COPY.eyebrow}</Eyebrow>
+              <div className="flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="inline-block h-px w-8 bg-sage-500"
+                />
+                <Eyebrow className="m-0">{ABOUT_COPY.eyebrow}</Eyebrow>
+              </div>
               <Heading as="h1" level="h1">
                 {ABOUT_COPY.heading}
               </Heading>
-              <div className="flex flex-col gap-5 text-lg leading-relaxed text-graphite-600">
+              <div className="flex flex-col gap-5 text-lg leading-relaxed text-pretty text-graphite-600">
                 <p>{intro1}</p>
                 <p>{intro2}</p>
               </div>
 
-              <div className="mt-6 flex flex-col gap-5">
+              <div className="mt-6 flex flex-col gap-5 border-t border-navy-800/10 pt-8">
+                <div className="flex items-center gap-2">
+                  <span
+                    aria-hidden="true"
+                    className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500"
+                  />
+                  <span className="font-display text-eyebrow font-medium uppercase tracking-wider text-sage-600">
+                    The why
+                  </span>
+                </div>
                 <Heading as="h2" level="h3">
                   Why I built ClearPath
                 </Heading>
-                <div className="flex flex-col gap-5 text-lg leading-relaxed text-graphite-600">
+                <div className="flex flex-col gap-5 text-lg leading-relaxed text-pretty text-graphite-600">
                   <p>{why}</p>
                   <p>{letMeShowYou}</p>
                 </div>
@@ -85,7 +111,13 @@ export default function AboutPage() {
             </div>
 
             <aside className="flex flex-col gap-6 md:col-span-5">
-              <JustinPortrait hasPhoto={photoExists} />
+              <div className="relative">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-4 -z-10 rounded-3xl border border-sage-500/20 bg-cream-50/40 md:-inset-6"
+                />
+                <JustinPortrait hasPhoto={photoExists} />
+              </div>
               <PullQuote
                 quote={ABOUT_COPY.pullQuote}
                 attribution={ABOUT_COPY.pullQuoteAttribution}

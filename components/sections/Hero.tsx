@@ -68,12 +68,8 @@ export function Hero({
             <Heading as="h1" level="h1">
               {headlineBefore}
               {accentIdx >= 0 ? (
-                <span className="relative inline-block">
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 bottom-1 h-3 bg-sage-500/40 md:bottom-2 md:h-4"
-                  />
-                  <span className="relative">{headlineAccent}</span>
+                <span className="underline decoration-sage-500 decoration-4 underline-offset-4 md:decoration-[6px] md:underline-offset-8">
+                  {headlineAccent}
                 </span>
               ) : null}
               {headlineAfter}

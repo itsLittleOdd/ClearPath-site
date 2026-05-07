@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { Logo } from "@/components/Logo"
+import { Separator } from "@/components/ui/separator"
 import { NAV_LINKS } from "@/lib/nav"
 import { SITE } from "@/lib/site"
 import { cn } from "@/lib/utils"
@@ -20,7 +21,7 @@ export function Footer({ className }: FooterProps) {
   return (
     <footer
       className={cn(
-        "w-full border-t border-navy-950/10 bg-cream-50 text-navy-800",
+        "w-full bg-navy-950 text-cream-50",
         className
       )}
     >
@@ -28,14 +29,14 @@ export function Footer({ className }: FooterProps) {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
           <div className="flex flex-col gap-3">
             <Logo />
-            <p className="font-sans text-sm text-graphite-600 max-w-xs">
+            <p className="font-sans text-sm text-cream-50/75 max-w-xs">
               {FOOTER_TAGLINE}
             </p>
-            <p className="font-sans text-sm text-graphite-500">Olean, NY</p>
+            <p className="font-sans text-sm text-cream-50/55">Olean, NY</p>
           </div>
 
           <nav aria-label="Footer site links" className="flex flex-col gap-3">
-            <h2 className="font-display text-sm font-semibold uppercase tracking-[0.12em] text-navy-950">
+            <h2 className="font-display text-sm font-semibold uppercase tracking-[0.12em] text-cream-50">
               Site
             </h2>
             <ul className="flex flex-col gap-2">
@@ -43,7 +44,7 @@ export function Footer({ className }: FooterProps) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-sans text-sm text-navy-700 hover:text-sage-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500/60 rounded-sm"
+                    className="font-sans text-sm text-cream-50/80 hover:text-sage-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500/60 rounded-sm"
                   >
                     {link.label}
                   </Link>
@@ -53,24 +54,24 @@ export function Footer({ className }: FooterProps) {
           </nav>
 
           <div className="flex flex-col gap-3">
-            <h2 className="font-display text-sm font-semibold uppercase tracking-[0.12em] text-navy-950">
+            <h2 className="font-display text-sm font-semibold uppercase tracking-[0.12em] text-cream-50">
               Contact
             </h2>
             <ul className="flex flex-col gap-2 font-sans text-sm">
               <li>
-                <span className="text-graphite-500">Email: </span>
+                <span className="text-cream-50/55">Email: </span>
                 <a
                   href={`mailto:${SITE.email}`}
-                  className="text-navy-700 hover:text-sage-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500/60 rounded-sm"
+                  className="text-cream-50/90 hover:text-sage-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500/60 rounded-sm"
                 >
                   {SITE.email}
                 </a>
               </li>
               <li>
-                <span className="text-graphite-500">Book a call: </span>
+                <span className="text-cream-50/55">Book a call: </span>
                 <Link
                   href="/contact"
-                  className="text-navy-700 hover:text-sage-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500/60 rounded-sm"
+                  className="text-cream-50/90 hover:text-sage-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500/60 rounded-sm"
                 >
                   /contact
                 </Link>
@@ -80,15 +81,15 @@ export function Footer({ className }: FooterProps) {
         </div>
       </div>
 
-      <div className="border-t border-navy-950/10">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 sm:px-6 lg:px-8 py-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-sans text-xs text-graphite-500">
-            &copy; {year} ClearPath AI Audit
-          </p>
-          <p className="font-sans text-xs text-graphite-500 sm:text-right">
-            {FOOTER_DISCLAIMER}
-          </p>
-        </div>
+      <Separator className="bg-cream-50/10" />
+
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 sm:px-6 lg:px-8 py-6 sm:flex-row sm:items-center sm:justify-between">
+        <p className="font-sans text-xs text-cream-50/55">
+          &copy; {year} ClearPath AI Audit
+        </p>
+        <p className="font-sans text-xs text-cream-50/55 sm:text-right">
+          {FOOTER_DISCLAIMER}
+        </p>
       </div>
     </footer>
   )

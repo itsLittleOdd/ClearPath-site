@@ -1,8 +1,7 @@
-import Link from "next/link";
-
 import { Container } from "@/components/Container";
 import { Heading } from "@/components/Heading";
 import { Section } from "@/components/Section";
+import { CtaButton } from "@/components/ui/cta-button";
 import { HOME_COPY } from "@/content/copy";
 import { cn } from "@/lib/utils";
 
@@ -25,23 +24,25 @@ export function CTASection({
   const resolvedBookingUrl = bookingUrl ?? "/contact";
 
   return (
-    <Section background="navy" className={cn(className)}>
+    <Section background="navyDeep" className={cn(className)}>
       <Container>
-        <div className="flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
+        <div className="reveal-on-view flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
           <div className="flex max-w-2xl flex-col gap-3">
             <Heading as="h2" level="h2" className="text-cream-50">
               {heading ?? fallback.heading}
             </Heading>
-            <p className="text-lg leading-relaxed text-cream-50/85">
+            <p className="text-lg leading-relaxed text-pretty text-cream-50/85">
               {body ?? fallback.body}
             </p>
           </div>
-          <Link
+          <CtaButton
             href={resolvedBookingUrl}
-            className="inline-flex shrink-0 items-center justify-center rounded-lg bg-sage-500 px-6 py-3 text-base font-medium text-navy-950 shadow-sm transition-colors hover:bg-sage-600 hover:text-cream-50"
+            variant="inverted"
+            size="lg"
+            className="shrink-0"
           >
             {cta ?? fallback.cta}
-          </Link>
+          </CtaButton>
         </div>
       </Container>
     </Section>

@@ -14,7 +14,7 @@ export function SocialProof({ className }: SocialProofProps) {
       className={cn("py-12 md:py-16", className)}
     >
       <Container>
-        <p className="mx-auto max-w-3xl text-center text-base leading-relaxed text-graphite-600 md:text-lg">
+        <p className="reveal-on-view mx-auto max-w-3xl text-center text-base leading-relaxed text-pretty text-graphite-600 md:text-lg">
           {HOME_COPY.socialProof}
         </p>
       </Container>

@@ -233,3 +233,59 @@
     outline-offset: 2px;
   }
 }
+
+@layer utilities {
+  /*
+   * Hero SVG draw-in. Each path sets pathLength="1" so dasharray/offset of 1
+   * spans the full stroke regardless of length. Stagger via inline
+   * --draw-delay custom property on each .draw-path element.
+   */
+  @keyframes draw-path {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .draw-path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw-path 1.2s ease-out var(--draw-delay, 0s) forwards;
+  }
+
+  /*
+   * Scroll-triggered fade-up. Pure CSS via animation-timeline: view().
+   * Supported in Chromium 115+ and Safari 26+. Browsers without support
+   * fall back to fully-visible content (no JS required).
+   */
+  @supports (animation-timeline: view()) {
+    .reveal-on-view {
+      animation: reveal-fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+
+  @keyframes reveal-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .draw-path {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+    .reveal-on-view {
+      animation: none;
+    }
+  }
+}

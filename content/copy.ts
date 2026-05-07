@@ -15,10 +15,22 @@ export const HOME_COPY = {
   hero: {
     eyebrow: "ClearPath AI Audit",
     headline: "Reclaim 5-10 hours a week.",
+    // Substring of `headline` to highlight visually. Must be a literal slice of
+    // `headline` so the rendered DOM text stays byte-for-byte equal.
+    headlineAccent: "5-10 hours",
     subhead:
       "I help small businesses in our area find places where AI tools (the practical kind, not the buzzword kind) can eliminate 5-10 hours of repetitive work every week.",
     primaryCta: "Book a 45-min discovery call",
     secondaryCta: "See how it works",
+    // Trust strip rendered directly under the CTAs. Each item echoes claims
+    // that already appear elsewhere in copy (footer location, pricing bullets,
+    // how-it-works step copy) — kept short so the rhythm reads as signal,
+    // not marketing.
+    trust: [
+      "Based in Olean, NY",
+      "No subscription, no upsell pressure",
+      "Plain English, no jargon",
+    ],
   },
   socialProof:
     "Twelve-plus years on the operations side at Holiday Valley in Ellicottville taught me what running a real local business actually looks like. ClearPath is built on that.",
@@ -290,7 +302,7 @@ export const SHARED_COPY = {
     disclaimer:
       "This is AI-assisted analysis + Justin's human review and customization.",
     locationLine: "Based in Olean, NY. Serving Western New York and beyond.",
-    rightsLine: "© ClearPath AI Audit. All rights reserved.",
+    rightsLine: "© ClearPath AI Audit, a Whalen Ventures company. All rights reserved.",
   },
   nav: {
     home: "Home",

@@ -1,0 +1,17 @@
+BEGIN:VCARD
+VERSION:3.0
+UID:justin-whalen@clearpathwv.com
+SOURCE:https://clearpathwv.com/justin
+N:Whalen;Justin;;;
+FN:Justin Whalen
+ORG:ClearPath WV
+TITLE:Founder
+ROLE:Workflow fixer for owner-operated businesses
+EMAIL;TYPE=INTERNET,PREF:JWhalen@ClearPathWV.com
+TEL;TYPE=CELL,VOICE:+17169696155
+URL;TYPE=WORK:https://clearpathwv.com
+URL;TYPE=HOME:https://clearpathwv.com/justin
+CATEGORIES:ClearPath,Workflow,WhalenVentures
+NOTE:ClearPath finds where owner-operated businesses are wasting time and fixes one workflow at a time.
+REV:2026-05-15T12:00:00Z
+END:VCARD

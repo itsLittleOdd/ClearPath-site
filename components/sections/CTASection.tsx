@@ -23,7 +23,7 @@ export function CTASection({
   const fallback = HOME_COPY.finalCta;
   const resolvedBookingUrl = bookingUrl ?? "/contact";
 
-  const trustItems = ["No pitch", "No prep needed", "45 minutes"];
+  const trustItems = ["Fixed scope", "One workflow", "$395 to start"];
 
   return (
     <Section

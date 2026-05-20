@@ -8,9 +8,9 @@ import { SITE } from "@/lib/site";
  * lib/site.ts so this stays in sync with metadata + footer + everywhere else.
  *
  * priceRange uses the symbolic "$$" rather than literal dollar amounts: the
- * after-audit paths are intentionally "from" pricing on the public site
- * (operator lock — see /pricing). The audit itself is exposed as a structured
- * Offer at $197 since that IS the firm public number.
+ * post-Workflow-Check engagements are intentionally "from" pricing on the
+ * public site (operator lock — see /pricing). The Workflow Check itself is
+ * exposed as a structured Offer at $395 since that IS the firm public number.
  */
 export function JsonLdProfessionalService() {
   const schema = {
@@ -28,28 +28,29 @@ export function JsonLdProfessionalService() {
     email: SITE.email,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Olean",
       addressRegion: "NY",
       addressCountry: "US",
     },
     areaServed: {
       "@type": "AdministrativeArea",
-      name: "Western New York",
+      name: "United States",
     },
     serviceType: [
-      "AI consulting",
-      "Workflow automation audit",
-      "Small business AI implementation",
+      "Workflow consulting",
+      "Knowledge capture systems",
+      "AI-assisted business process implementation",
+      "Internal assistant build",
+      "Approval workflow design",
     ],
     priceRange: "$$",
     image: `${SITE.url}${SITE.ogImage}`,
     logo: `${SITE.url}${SITE.ogImage}`,
     offers: {
       "@type": "Offer",
-      name: "ClearPath AI Audit",
+      name: "Workflow Check",
       description:
-        "60-minute discovery call plus a plain-English audit report sent within 5 business days.",
-      price: "197.00",
+        "Working session, written workflow map, prioritized list of fixes, and a fixed-scope quote for the next engagement.",
+      price: "395.00",
       priceCurrency: "USD",
       url: `${SITE.url}/pricing`,
       availability: "https://schema.org/InStock",

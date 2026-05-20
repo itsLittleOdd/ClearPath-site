@@ -10,9 +10,9 @@ import { PRICING_COPY } from "@/content/copy";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: { absolute: "Pricing | ClearPath AI Audit" },
+  title: { absolute: "Pricing | ClearPath" },
   description:
-    "$197 for a plain-English ClearPath AI Audit. After that, four paths — run it yourself, Co-build, Done-for-you, or ongoing support. No subscription pressure, no surprise quotes.",
+    "Fixed-scope, one workflow at a time. $395 Workflow Check is the front door; One Workflow Fix, Workflow Build, and Done-For-You System engagements are scoped from there.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -131,11 +131,6 @@ export default function PricingPage() {
                       <span className="font-display text-3xl font-semibold text-navy-950">
                         {path.priceLabel}
                       </span>
-                      {path.priceSuffix ? (
-                        <span className="text-base text-graphite-500">
-                          {path.priceSuffix}
-                        </span>
-                      ) : null}
                     </div>
                     <div
                       aria-hidden="true"

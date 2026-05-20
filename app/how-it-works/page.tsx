@@ -10,11 +10,11 @@ import { HOW_IT_WORKS_COPY } from "@/content/copy";
 export const metadata: Metadata = {
   title: "How It Works",
   description:
-    "Three steps from a 45-minute discovery call to a plain-English audit you can run yourself or build alongside me. No slide deck, no jargon, no high-pressure sale.",
+    "ClearPath maps one workflow before touching tools. Five steps — discover, map, prioritize, build, handoff — with human approval visible where judgment matters.",
 };
 
 export default function HowItWorksPage() {
-  const { eyebrow, heading, intro, steps, whatThisIsnt, cta } =
+  const { eyebrow, heading, intro, steps, humanApprovalNote, cta } =
     HOW_IT_WORKS_COPY;
 
   return (
@@ -90,14 +90,14 @@ export default function HowItWorksPage() {
                 className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500"
               />
               <span className="font-display text-eyebrow font-medium uppercase tracking-wider text-sage-600">
-                Honest scope
+                Where judgment matters
               </span>
             </div>
             <Heading as="h2" level="h3">
-              {whatThisIsnt.heading}
+              {humanApprovalNote.heading}
             </Heading>
             <p className="text-base leading-relaxed text-pretty text-graphite-600 md:text-lg">
-              {whatThisIsnt.body}
+              {humanApprovalNote.body}
             </p>
           </aside>
         </Container>

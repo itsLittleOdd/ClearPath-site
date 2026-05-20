@@ -7,7 +7,8 @@ import { NAV_LINKS } from "@/lib/nav"
 import { SITE } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
-const FOOTER_TAGLINE = "Practical AI that actually saves small businesses time."
+const FOOTER_TAGLINE =
+  "Practical workflow, knowledge capture, and AI-assisted systems for business teams."
 
 const FOOTER_DISCLAIMER =
   "This is AI-assisted analysis + Justin's human review and customization."
@@ -33,7 +34,7 @@ export function Footer({ className }: FooterProps) {
             <p className="font-sans text-sm text-cream-50/75 max-w-xs">
               {FOOTER_TAGLINE}
             </p>
-            <p className="font-sans text-sm text-cream-50/55">Olean, NY</p>
+            <p className="font-sans text-sm text-cream-50/55">Western New York</p>
           </div>
 
           <nav aria-label="Footer site links" className="flex flex-col gap-3">
@@ -75,7 +76,7 @@ export function Footer({ className }: FooterProps) {
                   variant="inverted"
                   size="sm"
                 >
-                  Book a discovery call
+                  Book a fit call
                 </CtaButton>
               </li>
             </ul>
@@ -87,7 +88,7 @@ export function Footer({ className }: FooterProps) {
 
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 sm:px-6 lg:px-8 py-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="font-sans text-xs text-cream-50/55">
-          &copy; {year} ClearPath AI Audit
+          &copy; {year} ClearPath, a Whalen Ventures company
         </p>
         <p className="font-sans text-xs text-cream-50/55 sm:text-right">
           {FOOTER_DISCLAIMER}

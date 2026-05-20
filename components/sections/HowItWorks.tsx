@@ -14,7 +14,9 @@ export function HowItWorks({
   className,
   id = "how-it-works",
 }: HowItWorksProps) {
-  const { eyebrow, heading, intro, steps } = HOME_COPY.howItWorks;
+  const { eyebrow, heading, steps } = HOME_COPY.process;
+  const intro =
+    "Five steps. One workflow at a time. ClearPath maps the work before touching tools.";
 
   return (
     <Section id={id} background="navy" className={cn(className)}>
@@ -68,7 +70,7 @@ export function HowItWorks({
 
         <div className="reveal-on-view mt-14 flex flex-col items-start gap-3 border-t border-cream-50/10 pt-8 md:mt-20 md:flex-row md:items-center md:justify-between md:gap-6">
           <p className="text-base leading-relaxed text-pretty text-cream-50/70 md:text-lg">
-            No retainer. No surprise invoice. The plan is yours either way.
+            Fixed-scope engagements. The workflow goes home with the team.
           </p>
           <div className="flex items-center gap-2 text-sm text-sage-500">
             <span
@@ -76,7 +78,7 @@ export function HowItWorks({
               className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500"
             />
             <span className="font-display uppercase tracking-wider">
-              About a week, start to finish
+              One workflow at a time
             </span>
           </div>
         </div>

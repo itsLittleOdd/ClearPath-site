@@ -39,7 +39,7 @@ export function MobileNav() {
       >
         <SheetHeader className="border-b border-navy-950/10 px-4 py-4">
           <SheetTitle render={<span className="sr-only" />}>
-            ClearPath AI Audit navigation
+            ClearPath navigation
           </SheetTitle>
           <Logo />
         </SheetHeader>

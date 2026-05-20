@@ -9,7 +9,7 @@ import { TallyEmbed } from "@/components/TallyEmbed";
 import { CONTACT_COPY } from "@/content/copy";
 
 export const metadata: Metadata = {
-  title: { absolute: "Contact | ClearPath AI Audit" },
+  title: { absolute: "Contact | ClearPath" },
   description: CONTACT_COPY.intro,
   alternates: { canonical: "/contact" },
 };
@@ -69,7 +69,7 @@ export default function ContactPage() {
               </p>
               <CalComEmbed
                 calLink="justin-whalen-xpjqtn/45-min-discovery-call"
-                title="Book a 45-min discovery call with Justin"
+                title="Book a fit call with Justin"
               />
               {/*
                 The 45-min review call URL is INTERNAL ONLY per Coord 1's

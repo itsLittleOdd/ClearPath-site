@@ -1,11 +1,11 @@
 /**
- * Site-wide constants for ClearPath AI Audit.
+ * Site-wide constants for ClearPath.
  *
- * Owned by Builder 1 (B1-W1, app shell). Pull from here in metadata, headers,
- * footers, structured data, and anywhere a string is canonical site identity.
+ * Pull from here in metadata, headers, footers, structured data, and anywhere
+ * a string is canonical site identity.
  *
- * All operator-confirmed values (domain, email, booking URLs) landed in
- * Sprints 3-4 and are locked.
+ * Public values (domain, email, booking URLs) locked in Sprints 3-4. Pricing
+ * and positioning refreshed 2026-05-19 per the rebuild sprint.
  */
 
 /**
@@ -33,22 +33,20 @@ export const BRAND = {
 export type BrandColor = keyof typeof BRAND;
 
 export const SITE = {
-  name: "ClearPath AI Audit",
+  name: "ClearPath",
   shortName: "ClearPath",
-  tagline: "Reclaim 5 to 10 hours every week.",
+  tagline: "Capture how the work actually gets done.",
   description:
-    "Practical AI audits for small businesses in Olean and Western New York. We help owners eliminate 5-10 hours of repetitive work every week — no hype, no buzzwords, no lock-in.",
+    "Practical workflow, knowledge capture, and AI-assisted systems for business teams. ClearPath helps operators document expert judgment, clean up repetitive workflows, and build AI-assisted tools the team can use.",
 
   url: "https://clearpathwv.com",
 
   email: "JWhalen@ClearPathWV.com",
 
-  // Public Cal.com discovery-call link. Naming pairs with SHARED_COPY.contact
-  // in content/copy.ts (Builder 5) and with INTERNAL_LINKS.reviewBookingUrl
-  // in lib/internal.ts (Coord 2's Sprint 5 Tier 1.4 split). Public components
-  // typically pull the discovery URL from SHARED_COPY.contact directly; this
-  // SITE-scoped copy is here for metadata, JSON-LD, and any consumer that
-  // already imports SITE.
+  // Public Cal.com fit-call link. Naming pairs with SHARED_COPY.contact
+  // in content/copy.ts. Public components typically pull from SHARED_COPY;
+  // this SITE-scoped value is here for metadata, JSON-LD, and any consumer
+  // that already imports SITE.
   bookingDiscoveryUrl: "https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call",
 
   // OG image — Next 16 file-convention asset at app/opengraph-image.tsx.
@@ -56,11 +54,14 @@ export const SITE = {
 
   // Region targeting — used by structured data + local-SEO surfaces.
   locale: "en_US",
-  location: "Olean, NY",
-  region: "Olean, NY (Western New York)",
+  location: "Western New York",
+  region: "Western New York",
 
   // Justin is intentionally not on social per discovery — keep TBD until that changes.
   twitterHandle: "TBD",
+
+  // Canonical primary CTA label used in metadata + structured data.
+  primaryCtaLabel: "Request a Workflow Check",
 } as const;
 
 export type SiteConfig = typeof SITE;

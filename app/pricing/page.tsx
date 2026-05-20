@@ -1,160 +1,146 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { Container } from "@/components/Container";
-import { Eyebrow } from "@/components/Eyebrow";
-import { Heading } from "@/components/Heading";
-import { Section } from "@/components/Section";
-import { CTASection } from "@/components/sections/CTASection";
-import { PRICING_COPY } from "@/content/copy";
-import { cn } from "@/lib/utils";
+import { CtaButton } from "@/components/ui/cta-button";
 
 export const metadata: Metadata = {
   title: { absolute: "Pricing | ClearPath" },
   description:
-    "Fixed-scope, one workflow at a time. $395 Workflow Check is the front door; One Workflow Fix, Workflow Build, and Done-For-You System engagements are scoped from there.",
+    "Start with a $395 Workflow Check. Larger ClearPath builds are scoped after one workflow is mapped and the approval points are clear.",
   alternates: { canonical: "/pricing" },
 };
 
+const included = [
+  "One working session with the operator and the team closest to the work",
+  "A written map of how the workflow runs today",
+  "Bottleneck notes ranked by what is realistic to fix first",
+  "Human approval points marked clearly",
+  "A fixed-scope quote if a build makes sense",
+];
+
+const paths = [
+  {
+    name: "Workflow Check",
+    price: "$395",
+    label: "flat, one-time",
+    best: "Best when the workflow is messy and the next step is not clear yet.",
+    desc: "A focused review of one workflow with a written packet and recommendation.",
+    featured: true,
+  },
+  {
+    name: "One Workflow Fix",
+    price: "from $4,500",
+    label: "scoped after check",
+    best: "Best for one clear bottleneck with a known owner.",
+    desc: "One specific workflow rebuilt, documented, demoed, and handed off to the team.",
+  },
+  {
+    name: "Workflow Build",
+    price: "from $6,500",
+    label: "larger operations build",
+    best: "Best when the workflow touches multiple steps, inboxes, folders, or approval owners.",
+    desc: "A larger workflow system with intake, routing, approval, testing, and staff handoff.",
+  },
+  {
+    name: "Done-For-You System",
+    price: "from $12,500",
+    label: "deeper rollout",
+    best: "Best when ClearPath owns most of the build, cleanup, testing, docs, and rollout path.",
+    desc: "A deeper operating system build around one high-value workflow or workflow family.",
+  },
+];
+
 export default function PricingPage() {
-  const { audit, pathsHeading, pathsSubhead, paths, closingNote, cta } =
-    PRICING_COPY;
-
   return (
-    <main className="flex flex-1 flex-col">
-      <Section
-        background="cream"
-        className="relative isolate overflow-hidden pt-16 pb-12 md:pt-20 md:pb-16"
-      >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-40 -right-32 -z-10 h-[28rem] w-[28rem] rounded-full bg-sage-500/15 blur-3xl"
-        />
+    <main className="overflow-hidden bg-cream-50 text-navy-950">
+      <section className="relative isolate bg-navy-950 py-16 text-cream-50 md:py-20">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-28 -top-36 -z-10 h-96 w-96 rounded-full bg-sage-500/20 blur-3xl" />
         <Container>
-          <div className="grid gap-12 md:grid-cols-[1.1fr_1fr] md:items-center md:gap-16">
-            <div className="flex flex-col gap-5">
-              <div className="flex items-center gap-3">
-                <span
-                  aria-hidden="true"
-                  className="inline-block h-px w-8 bg-sage-500"
-                />
-                <Eyebrow className="m-0">{audit.eyebrow}</Eyebrow>
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+            <div className="max-w-3xl">
+              <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.16em] text-sage-500">Pricing</p>
+              <h1 className="mt-4 font-display text-[clamp(2.6rem,6vw,4.4rem)] font-semibold leading-[0.96] tracking-[-0.045em] text-balance">Start with a $395 Workflow Check.</h1>
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-cream-50/75">
+                Before ClearPath quotes a build, we review one real workflow and give you a written packet: the current path, the bottlenecks, the approval points, and the first fix worth pricing.
+              </p>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <CtaButton href="/contact" variant="inverted" size="lg">Start a $395 Workflow Check</CtaButton>
+                <CtaButton href="#included" variant="secondary" size="lg" className="border-cream-50/20 bg-cream-50/10 text-cream-50 hover:bg-cream-50/15">See what is included</CtaButton>
               </div>
-              <Heading as="h1" level="h1">
-                {audit.name}
-              </Heading>
-              <div className="flex items-baseline gap-3">
-                <p className="font-display text-display-xl font-semibold text-navy-950">
-                  {audit.priceLabel}
-                </p>
-                <span className="font-display text-eyebrow font-medium uppercase tracking-wider text-graphite-500">
-                  flat, one-time
-                </span>
-              </div>
-              <Link
-                href="/contact"
-                className="mt-2 inline-flex w-fit items-center justify-center rounded-lg bg-sage-500 px-6 py-3 text-base font-medium text-navy-950 shadow-sm transition-colors hover:bg-sage-600 hover:text-cream-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2"
-              >
-                {audit.cta}
-              </Link>
             </div>
-            <ul className="flex flex-col gap-4 rounded-2xl border-l-4 border-sage-500 bg-cream-50 p-6 shadow-sm md:p-8">
-              {audit.bullets.map((bullet) => (
-                <li
-                  key={bullet}
-                  className="flex items-start gap-3 text-base leading-relaxed text-pretty text-graphite-600 md:text-lg"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-sage-500"
-                  />
-                  <span>{bullet}</span>
-                </li>
+            <aside className="rounded-3xl border border-sage-500/25 bg-cream-50/[0.065] p-6 shadow-2xl shadow-navy-950/30 md:p-8">
+              <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-500">Front door</p>
+              <strong className="mt-3 block font-display text-[clamp(4rem,9vw,6rem)] font-semibold leading-none tracking-[-0.06em] text-cream-50">$395</strong>
+              <p className="mt-2 font-display text-lg text-cream-50">Workflow Check</p>
+              <div className="mt-6 grid gap-3">
+                <PriceProof value="Fixed scope" />
+                <PriceProof value="One workflow" />
+                <PriceProof value="Written packet" />
+              </div>
+            </aside>
+          </div>
+        </Container>
+      </section>
+
+      <section id="included" className="bg-sage-500/10 py-14 md:py-18">
+        <Container>
+          <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div>
+              <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-600">What the check includes</p>
+              <h2 className="mt-3 font-display text-[clamp(2.2rem,5vw,3.4rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">You are buying clarity before build cost.</h2>
+              <p className="mt-4 text-lg leading-relaxed text-graphite-600">The Workflow Check is not a surprise build. It is a paid working session and decision packet.</p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {included.map((item, index) => (
+                <div key={item} className="rounded-3xl border border-navy-800/12 bg-cream-50/80 p-5 shadow-sm shadow-navy-950/5">
+                  <span className="font-display text-xs font-semibold uppercase tracking-[0.13em] text-sage-600">Included {String(index + 1).padStart(2, "0")}</span>
+                  <p className="mt-3 text-base leading-relaxed text-graphite-600">{item}</p>
+                </div>
               ))}
-            </ul>
-          </div>
-        </Container>
-      </Section>
-
-      <Section background="cream" className="!pt-0">
-        <Container>
-          <div className="flex max-w-3xl flex-col gap-3">
-            <div className="flex items-center gap-3">
-              <span
-                aria-hidden="true"
-                className="inline-block h-px w-8 bg-sage-500"
-              />
-              <Eyebrow className="m-0">After the audit</Eyebrow>
             </div>
-            <Heading as="h2" level="h2">
-              {pathsHeading}
-            </Heading>
-            <p className="text-lg leading-relaxed text-pretty text-graphite-600">
-              {pathsSubhead}
-            </p>
           </div>
-
-          <ul
-            role="list"
-            className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2 lg:grid-cols-4 lg:items-stretch"
-          >
-            {paths.map((path) => {
-              const isFeatured = path.featured === true;
-              return (
-                <li key={path.id} className="flex">
-                  <article
-                    className={cn(
-                      "relative flex w-full flex-col items-center gap-3 overflow-hidden rounded-xl bg-cream-50 p-8 text-center transition-all hover:-translate-y-0.5",
-                      isFeatured
-                        ? "shadow-md ring-2 ring-sage-500 md:relative md:z-10"
-                        : "border border-navy-900/10 shadow-sm hover:shadow-md",
-                    )}
-                  >
-                    {isFeatured ? (
-                      <span
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-sage-500"
-                      />
-                    ) : null}
-                    <div className="flex min-h-[1.75rem] items-center justify-center">
-                      {isFeatured && path.featuredEyebrow ? (
-                        <Eyebrow>{path.featuredEyebrow}</Eyebrow>
-                      ) : null}
-                    </div>
-                    <h3 className="font-display text-2xl font-semibold text-balance text-navy-950">
-                      {path.name}
-                    </h3>
-                    <div className="min-h-[1.25rem] text-sm font-medium uppercase tracking-wider text-graphite-500">
-                      {path.qualifier ?? ""}
-                    </div>
-                    <div className="flex items-baseline justify-center gap-1.5">
-                      <span className="font-display text-3xl font-semibold text-navy-950">
-                        {path.priceLabel}
-                      </span>
-                    </div>
-                    <div
-                      aria-hidden="true"
-                      className={cn(
-                        "h-px w-10",
-                        isFeatured ? "bg-sage-500/60" : "bg-navy-800/15",
-                      )}
-                    />
-                    <p className="text-base leading-relaxed text-pretty text-graphite-600">
-                      {path.description}
-                    </p>
-                  </article>
-                </li>
-              );
-            })}
-          </ul>
-
-          <p className="mt-10 max-w-3xl border-l-2 border-sage-500/40 pl-4 text-base leading-relaxed text-pretty text-graphite-500 md:mt-12 md:text-lg">
-            {closingNote}
-          </p>
         </Container>
-      </Section>
+      </section>
 
-      <CTASection heading={cta.heading} body={cta.body} cta={cta.button} />
+      <section className="bg-cream-50 py-14 md:py-20">
+        <Container>
+          <div className="max-w-3xl">
+            <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-600">After the check</p>
+            <h2 className="mt-3 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">The Workflow Check tells us which path fits.</h2>
+            <p className="mt-4 text-lg leading-relaxed text-graphite-600">You are not committing to a build when you buy the check. If the work is worth building, the next price is scoped from the packet.</p>
+          </div>
+          <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {paths.map((path) => (
+              <article key={path.name} className={`flex h-full flex-col rounded-3xl border p-6 shadow-sm shadow-navy-950/5 ${path.featured ? "border-sage-500/50 bg-sage-500/12" : "border-navy-800/12 bg-white/55"}`}>
+                <p className="font-display text-xs font-semibold uppercase tracking-[0.13em] text-sage-600">{path.label}</p>
+                <h3 className="mt-3 font-display text-2xl font-semibold tracking-[-0.03em] text-navy-950">{path.name}</h3>
+                <strong className="mt-4 block font-display text-3xl font-semibold tracking-[-0.04em] text-navy-950">{path.price}</strong>
+                <p className="mt-4 text-sm leading-relaxed text-graphite-600">{path.desc}</p>
+                <p className="mt-auto border-t border-navy-800/10 pt-4 text-sm leading-relaxed text-graphite-600"><b className="text-navy-900">Best for:</b> {path.best}</p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-navy-950 py-16 text-cream-50 md:py-20">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-500">Pricing note</p>
+            <h2 className="mt-3 font-display text-[clamp(2.1rem,5vw,3.25rem)] font-semibold leading-none tracking-[-0.04em]">We quote the build after the workflow is mapped.</h2>
+            <p className="mt-4 text-lg leading-relaxed text-cream-50/72">That protects both sides. The business gets a useful packet first, and ClearPath prices the fix based on real workflow shape instead of guessing from a sales call.</p>
+            <div className="mt-8"><CtaButton href="/contact" variant="inverted" size="lg">Request a Workflow Check</CtaButton></div>
+          </div>
+        </Container>
+      </section>
     </main>
+  );
+}
+
+function PriceProof({ value }: { value: string }) {
+  return (
+    <div className="rounded-2xl border border-cream-50/10 bg-cream-50/[0.06] px-4 py-3 text-sm text-cream-50/75">
+      <span className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500" aria-hidden="true" /> <span className="ml-2">{value}</span>
+    </div>
   );
 }

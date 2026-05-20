@@ -289,3 +289,137 @@
     }
   }
 }
+
+@layer utilities {
+  .cp-workflow-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 37.5rem;
+    border-radius: 2.125rem;
+    border: 1px solid color-mix(in oklab, var(--color-cream-50) 10%, transparent);
+    background: linear-gradient(145deg, var(--color-navy-950), var(--color-navy-800));
+    padding: 1.5rem;
+    color: var(--color-cream-50);
+    box-shadow: 0 24px 70px color-mix(in oklab, var(--color-navy-950) 18%, transparent);
+  }
+
+  .cp-workflow-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(color-mix(in oklab, var(--color-cream-50) 4.5%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--color-cream-50) 4.5%, transparent) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: radial-gradient(circle at 50% 28%, black, transparent 75%);
+  }
+
+  .cp-work-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.25rem 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 1.125rem;
+    border: 1px solid color-mix(in oklab, var(--color-cream-50) 9%, transparent);
+    background: color-mix(in oklab, var(--color-cream-50) 5.5%, transparent);
+    padding: 0.875rem;
+    opacity: 0;
+    translate: 0 0.75rem;
+    animation: cp-settle .45s ease forwards;
+  }
+
+  .cp-work-row:nth-child(2) { animation-delay: .20s; }
+  .cp-work-row:nth-child(3) { animation-delay: .48s; }
+  .cp-work-row:nth-child(4) { animation-delay: .76s; }
+  .cp-work-row:nth-child(5) { animation-delay: 1.04s; }
+
+  .cp-work-row-selected {
+    border-color: color-mix(in oklab, var(--color-sage-500) 70%, var(--color-cream-50) 10%);
+    background: color-mix(in oklab, var(--color-sage-500) 12%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-sage-500) 24%, transparent), 0 14px 26px color-mix(in oklab, var(--color-navy-950) 16%, transparent);
+  }
+
+  .cp-tag {
+    opacity: 0;
+    translate: -0.5rem 0;
+    animation: cp-tag-in .35s ease forwards;
+    animation-delay: 1.65s;
+  }
+
+  .cp-work-row-selected .cp-tag { animation-delay: 1.45s; }
+  .cp-work-row:nth-child(4) .cp-tag { animation-delay: 1.85s; }
+  .cp-work-row:nth-child(5) .cp-tag { animation-delay: 2.05s; }
+
+  .cp-diagnosis {
+    opacity: 0;
+    translate: 0 0.625rem;
+    animation: cp-diagnosis-in .45s ease forwards;
+    animation-delay: 1.22s;
+  }
+
+  .cp-route {
+    opacity: 0;
+    animation: cp-route-in .45s ease forwards;
+    animation-delay: 2.28s;
+  }
+
+  .cp-bridge {
+    opacity: 0;
+    animation: cp-route-in .45s ease forwards;
+    animation-delay: 2.48s;
+  }
+
+  .cp-packet {
+    opacity: 0;
+    translate: 0 1.625rem;
+    animation: cp-packet-in .55s ease forwards;
+    animation-delay: 2.80s;
+  }
+
+  .cp-approve-dot {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 999px;
+    background: var(--color-sage-500);
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-sage-500) 45%, transparent);
+    animation: cp-approve-pulse .7s ease 2.18s 1;
+  }
+
+  @keyframes cp-settle { to { opacity: 1; translate: 0 0; } }
+  @keyframes cp-tag-in { to { opacity: 1; translate: 0 0; } }
+  @keyframes cp-diagnosis-in { to { opacity: 1; translate: 0 0; } }
+  @keyframes cp-route-in { to { opacity: 1; } }
+  @keyframes cp-packet-in { to { opacity: 1; translate: 0 0; } }
+  @keyframes cp-approve-pulse { 70% { box-shadow: 0 0 0 1rem transparent; } }
+
+  @media (max-width: 640px) {
+    .cp-workflow-card {
+      min-height: 0;
+      border-radius: 1.625rem;
+      padding: 1rem;
+    }
+    .cp-work-row {
+      grid-template-columns: 2rem 1fr;
+    }
+    .cp-tag {
+      grid-column: 2;
+      justify-self: start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cp-work-row,
+    .cp-tag,
+    .cp-diagnosis,
+    .cp-route,
+    .cp-bridge,
+    .cp-packet {
+      animation: none;
+      opacity: 1;
+      translate: 0 0;
+    }
+    .cp-approve-dot { animation: none; }
+  }
+}

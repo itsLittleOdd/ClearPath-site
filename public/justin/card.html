@@ -415,7 +415,7 @@
   }
   .ba-cell.after .ba-label { color: var(--teal); }
 
-  /* Workflow schematic — small visual chips inside each panel so the card
+  /* Workflow schematic: small visual chips inside each panel so the card
      reads as a product snapshot rather than two text blocks. */
   .ba-vis {
     position: relative;
@@ -541,6 +541,139 @@
     outline: none;
     box-shadow: 0 0 0 3px rgba(79, 211, 176, 0.45),
                 0 0 0 1px var(--focus);
+  }
+
+  /* Visual workflow demos */
+  .demo-grid {
+    margin-top: 14px;
+    display: grid;
+    gap: 12px;
+  }
+  .demo-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(31, 58, 95, 0.22), rgba(20, 41, 70, 0.06));
+    padding: 14px;
+    overflow: hidden;
+  }
+  .demo-card h3 {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.25;
+    letter-spacing: -0.1px;
+  }
+  .demo-card p {
+    margin: 6px 0 0;
+    color: var(--text-dim);
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+  .mini-ui {
+    margin-top: 12px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.035);
+    padding: 12px;
+  }
+  .mini-ui .topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-faint);
+    font-weight: 700;
+  }
+  .mini-ui .badge {
+    color: #DAF1E8;
+    background: var(--teal-soft);
+    border: 1px solid rgba(44,167,138,0.30);
+    border-radius: 999px;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+  .mail-lines, .queue-lines, .brief-lines, .board-lines { display: grid; gap: 7px; }
+  .mail-row, .queue-row, .brief-row, .board-row {
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.045);
+    border-radius: 10px;
+    padding: 8px 9px;
+  }
+  .mail-row strong, .queue-row strong, .brief-row strong, .board-row strong {
+    display: block;
+    color: var(--text);
+    font-size: 12.5px;
+    line-height: 1.25;
+  }
+  .mail-row span, .queue-row span, .brief-row span, .board-row span {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-faint);
+    font-size: 11.5px;
+    line-height: 1.35;
+  }
+  .mail-row.clean, .queue-row.clean, .brief-row.clean, .board-row.clean {
+    border-color: rgba(44,167,138,0.32);
+    background: rgba(44,167,138,0.09);
+  }
+  .flow-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .flow-track::before {
+    content: "";
+    position: absolute;
+    left: 8%; right: 8%; top: 12px;
+    height: 1px;
+    background: rgba(44,167,138,0.35);
+  }
+  .flow-step {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 5px;
+    justify-items: center;
+    color: var(--text-dim);
+    font-size: 10.5px;
+    text-align: center;
+  }
+  .flow-step i {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    border: 1px solid rgba(44,167,138,0.45);
+    box-shadow: 0 0 0 4px rgba(44,167,138,0.07);
+  }
+  .meter {
+    display: grid;
+    gap: 7px;
+  }
+  .meter span {
+    display: block;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.10);
+    overflow: hidden;
+  }
+  .meter span::before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: var(--w, 64%);
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--teal), rgba(44,167,138,0.16));
+  }
+  .demo-note {
+    margin: 12px 2px 0;
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--text-faint);
   }
 
   /* Intake */
@@ -754,7 +887,7 @@
   }
   .has-js .nojs { display: none; }
 
-  /* Subtle entrance — runs once, on full-motion clients only */
+  /* Subtle entrance: runs once on full-motion clients only */
   @keyframes section-in {
     from { opacity: 0; transform: translateY(6px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -875,64 +1008,64 @@
     <section class="demo reveal reveal-2" aria-labelledby="demo-title">
       <div class="section-head">
         <h2 id="demo-title">A 10-second look at how this works</h2>
-        <p>Pick what's slowing your business down. I'll show you the messy version and the cleaner one.</p>
+        <p>Four quick examples. Same idea every time: take the messy handoff and turn it into one cleaner path.</p>
       </div>
 
-      <div class="chips" role="radiogroup" aria-label="What is slowing your business down">
-        <button type="button" class="chip" role="radio" aria-checked="false" data-chip="missed">
-          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Missed follow-ups
-        </button>
-        <button type="button" class="chip" role="radio" aria-checked="false" data-chip="invoices">
-          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Invoices
-        </button>
-        <button type="button" class="chip" role="radio" aria-checked="false" data-chip="scheduling">
-          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Scheduling
-        </button>
-        <button type="button" class="chip" role="radio" aria-checked="false" data-chip="messages">
-          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Customer messages
-        </button>
-        <button type="button" class="chip" role="radio" aria-checked="false" data-chip="admin">
-          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Admin overload
-        </button>
-        <button type="button" class="chip" role="radio" aria-checked="false" data-chip="sheets">
-          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Too many spreadsheets
-        </button>
-      </div>
+      <div class="demo-grid" aria-label="Workflow examples">
+        <article class="demo-card">
+          <h3>Customer email comes in half-finished.</h3>
+          <p>ClearPath can sort the request, pull the useful details, draft the reply, and keep the final send with a person.</p>
+          <div class="mini-ui" aria-hidden="true">
+            <div class="topline"><span>Outlook request</span><span class="badge">Draft ready</span></div>
+            <div class="mail-lines">
+              <div class="mail-row"><strong>New message</strong><span>"Can you quote this by Friday?"</span></div>
+              <div class="mail-row clean"><strong>Details pulled</strong><span>Name, deadline, location, missing info</span></div>
+              <div class="mail-row clean"><strong>Reply drafted</strong><span>Needs human approval before sending</span></div>
+            </div>
+          </div>
+        </article>
 
-      <div class="ba">
-        <div class="ba-row">
-          <div class="ba-cell before is-empty">
-            <div class="ba-label">Messy today</div>
-            <div class="ba-vis ba-vis--before" aria-hidden="true">
-              <span class="tok"></span>
-              <span class="tok"></span>
-              <span class="tok"></span>
-              <span class="tok"></span>
+        <article class="demo-card">
+          <h3>Invoice approval stops living in side conversations.</h3>
+          <p>Invoices land in one queue, get tagged by status, and exceptions wait for the right approver.</p>
+          <div class="mini-ui" aria-hidden="true">
+            <div class="topline"><span>Approval queue</span><span class="badge">2 need review</span></div>
+            <div class="queue-lines">
+              <div class="queue-row clean"><strong>Vendor invoice</strong><span>Matched to job folder</span></div>
+              <div class="queue-row"><strong>Price mismatch</strong><span>Held for owner approval</span></div>
+              <div class="queue-row clean"><strong>Weekly summary</strong><span>Unpaid, stuck, and approved</span></div>
             </div>
-            <p class="ba-text" id="before-text">Pick one above and I'll show you a snapshot.</p>
           </div>
-          <div class="ba-cell after is-empty">
-            <div class="ba-label">After one ClearPath fix</div>
-            <div class="ba-vis ba-vis--after" aria-hidden="true">
-              <span class="tok"></span>
-              <span class="tok"></span>
-              <span class="tok"></span>
+        </article>
+
+        <article class="demo-card">
+          <h3>Follow-ups stop depending on memory.</h3>
+          <p>Quotes, calls, and promises get a visible next action so warm leads do not quietly go cold.</p>
+          <div class="mini-ui" aria-hidden="true">
+            <div class="topline"><span>Follow-up board</span><span class="badge">Next step clear</span></div>
+            <div class="flow-track">
+              <span class="flow-step"><i></i>Lead</span>
+              <span class="flow-step"><i></i>Quote</span>
+              <span class="flow-step"><i></i>Review</span>
+              <span class="flow-step"><i></i>Follow up</span>
             </div>
-            <p class="ba-text" id="after-text">The cleaner version shows up here.</p>
           </div>
-        </div>
-        <div class="ba-footer">
-          <span class="hint">No accounts. No setup. Just the picture.</span>
-          <button type="button" class="reset-btn" id="reset-chip" hidden>Show me a different one</button>
-        </div>
-        <p class="sr-only" id="ba-announce" aria-live="polite"></p>
+        </article>
+
+        <article class="demo-card">
+          <h3>The owner gets one clean weekly readout.</h3>
+          <p>Instead of checking five places, the owner sees what is stuck, what moved, and what needs a decision.</p>
+          <div class="mini-ui" aria-hidden="true">
+            <div class="topline"><span>Owner brief</span><span class="badge">Monday view</span></div>
+            <div class="brief-lines">
+              <div class="brief-row clean"><strong>3 decisions</strong><span>Approval, follow-up, vendor issue</span></div>
+              <div class="meter"><span style="--w:78%"></span><span style="--w:46%"></span><span style="--w:62%"></span></div>
+              <div class="brief-row"><strong>One stuck item</strong><span>Needs owner call before Friday</span></div>
+            </div>
+          </div>
+        </article>
       </div>
+      <p class="demo-note">This is the picture I build from a Workflow Check. Small, practical, and tied to the way the business already runs.</p>
     </section>
 
     <!-- INTAKE -->
@@ -1050,145 +1183,7 @@
     } catch (e) { /* no-op */ }
   }());
 
-  // ----- Pain chips and before/after demo -----
-  var chipData = {
-    missed:    {
-      label: 'Missed follow-ups',
-      before: "Sticky notes, half-remembered names, an inbox you stopped scrolling. The warm ones go cold while you're closing the place down.",
-      after:  "One intake spot. One owner. One next step. A weekly review so nothing sits."
-    },
-    invoices:  {
-      label: 'Invoices',
-      before: "Invoices sit in email. Approvals are unclear. Vendors call to ask where things stand. You pay late or you over-review.",
-      after:  "Invoices land in one place, routed by clear rules, with an approval checkpoint and a weekly stuck-and-unpaid summary."
-    },
-    scheduling: {
-      label: 'Scheduling',
-      before: "Calls, texts, walk-ins, and a calendar that lives in your head. Double-bookings. Forgotten confirmations.",
-      after:  "One scheduling path, one source of truth, automatic confirmations, and a tidy view of the week."
-    },
-    messages:  {
-      label: 'Customer messages',
-      before: "Phone, email, Facebook, Instagram, web form, staff memory. Customers repeat themselves because nobody can see the thread.",
-      after:  "One inbox, one history per customer, owner and staff see the same thing, and follow-ups stop falling between people."
-    },
-    admin:     {
-      label: 'Admin overload',
-      before: "You start every week behind. Important items live in five systems. Money problems show up late.",
-      after:  "A Monday brief: unpaid invoices, open quotes, missed calls, deadlines, three decisions to make. Ten minutes, then go run the business."
-    },
-    sheets:    {
-      label: 'Too many spreadsheets',
-      before: "One sheet for jobs, one for staff, one for invoices, one that nobody remembers why it exists. Edits collide.",
-      after:  "One workflow per job-to-be-done, with the spreadsheets that earned their keep and the rest cleaned up."
-    }
-  };
-
-  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
-  var beforeEl = document.getElementById('before-text');
-  var afterEl  = document.getElementById('after-text');
-  var beforeCell = beforeEl.parentElement;
-  var afterCell  = afterEl.parentElement;
-  var resetBtn = document.getElementById('reset-chip');
-  var announce = document.getElementById('ba-announce');
-  var afterToks = afterCell.querySelectorAll('.ba-vis--after .tok');
-  var motionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  function prefersReduced() { return motionMq.matches; }
-
-  function restartAfterTokens() {
-    // Re-trigger the staggered keyframe by toggling the class twice.
-    afterCell.classList.add('is-empty');
-    // force reflow so the animation restarts on the next frame
-    void afterCell.offsetWidth;
-    afterCell.classList.remove('is-empty');
-  }
-
-  function setChip(key, opts) {
-    var fromKeyboard = !!(opts && opts.fromKeyboard);
-    chips.forEach(function (c) {
-      var on = c.dataset.chip === key;
-      c.setAttribute('aria-checked', on ? 'true' : 'false');
-      c.tabIndex = on ? 0 : -1;
-      if (on && fromKeyboard) c.focus({ preventScroll: true });
-    });
-    var d = chipData[key];
-    if (!d) return;
-
-    function paint() {
-      beforeEl.textContent = d.before;
-      afterEl.textContent  = d.after;
-      beforeCell.classList.remove('is-empty');
-      afterCell.classList.remove('is-empty');
-      if (announce) announce.textContent =
-        'Snapshot loaded for ' + d.label + '. Messy today: ' + d.before +
-        ' After one ClearPath fix: ' + d.after;
-    }
-
-    if (prefersReduced()) {
-      paint();
-    } else {
-      beforeEl.style.opacity = '0';
-      afterEl.style.opacity  = '0';
-      beforeEl.style.transform = 'translateY(4px)';
-      afterEl.style.transform  = 'translateY(4px)';
-      setTimeout(function () {
-        paint();
-        restartAfterTokens();
-        beforeEl.style.opacity = '1';
-        afterEl.style.opacity  = '1';
-        beforeEl.style.transform = 'translateY(0)';
-        afterEl.style.transform  = 'translateY(0)';
-      }, 160);
-    }
-    resetBtn.hidden = false;
-  }
-
-  function clearChip() {
-    chips.forEach(function (c, i) {
-      c.setAttribute('aria-checked', 'false');
-      c.tabIndex = i === 0 ? 0 : -1;
-    });
-    beforeEl.textContent = "Pick one above and I'll show you a snapshot.";
-    afterEl.textContent  = "The cleaner version shows up here.";
-    beforeCell.classList.add('is-empty');
-    afterCell.classList.add('is-empty');
-    if (announce) announce.textContent = '';
-    resetBtn.hidden = true;
-    // Send focus back to the first chip so keyboard users don't get stranded.
-    if (chips[0]) chips[0].focus({ preventScroll: true });
-  }
-
-  // Initialize roving tabindex so the radiogroup takes exactly one tab stop.
-  chips.forEach(function (c, i) { c.tabIndex = i === 0 ? 0 : -1; });
-
-  chips.forEach(function (c) {
-    c.addEventListener('click', function () {
-      setChip(c.dataset.chip);
-    });
-    c.addEventListener('keydown', function (e) {
-      var idx = chips.indexOf(c);
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        chips[(idx + 1) % chips.length].focus();
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        chips[(idx - 1 + chips.length) % chips.length].focus();
-      } else if (e.key === 'Home') {
-        e.preventDefault();
-        chips[0].focus();
-      } else if (e.key === 'End') {
-        e.preventDefault();
-        chips[chips.length - 1].focus();
-      } else if (e.key === ' ' || e.key === 'Enter') {
-        e.preventDefault();
-        setChip(c.dataset.chip, { fromKeyboard: true });
-      }
-    });
-  });
-  resetBtn.addEventListener('click', clearChip);
-
-  // ----- Intake (mailto / sms / clipboard only — never network) -----
+  // ----- Intake (mailto / sms / clipboard only, never network) -----
   var form = document.getElementById('intake-form');
   var problemEl = document.getElementById('i-problem');
   var nameEl = document.getElementById('i-name');

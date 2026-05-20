@@ -1,5 +1,5 @@
 /**
- * ClearPath — site copy.
+ * ClearPath site copy.
  *
  * Single source of truth for marketing copy. Page components import these
  * named blocks and render them.
@@ -31,7 +31,7 @@ export const HOME_COPY = {
     // `headline` so the rendered DOM text stays byte-for-byte equal.
     headlineAccent: "actually gets done",
     subhead:
-      "ClearPath helps business leaders document expert judgment, clean up repetitive workflows, and build AI-assisted tools the team can use — without turning the business upside down.",
+      "ClearPath helps business leaders document expert judgment, clean up repetitive workflows, and build AI-assisted tools the team can use without turning the business upside down.",
     primaryCta: "Request a Workflow Check",
     secondaryCta: "Book a fit call",
     // Trust strip rendered directly under the CTAs.
@@ -44,13 +44,13 @@ export const HOME_COPY = {
   trustPoints: {
     eyebrow: "Why operators pick ClearPath",
     heading: "Built around the workflow, not the technology.",
-    body: "Most AI projects fail because nobody mapped the work first. ClearPath starts where the work lives — invoices stuck in someone's inbox, the survey nobody has time to redo, the operator knowledge that lives in one person's head — and builds from there.",
+    body: "Most AI projects fail because nobody mapped the work first. ClearPath starts where the work lives: invoices stuck in someone's inbox, the survey nobody has time to redo, and the operator knowledge that lives in one person's head. Then we build from there.",
   },
   servicesSection: {
     eyebrow: "What ClearPath builds",
     heading: "Five things, scoped one at a time.",
     intro:
-      "Every engagement starts with one workflow. We map it, fix it, and hand it back to the team — then look at the next one.",
+      "Every engagement starts with one workflow. We map it, fix it, and hand it back to the team. Then we look at the next one.",
     cards: [
       {
         title: "Knowledge capture",
@@ -80,7 +80,7 @@ export const HOME_COPY = {
     eyebrow: "Concrete examples",
     heading: "Workflows we build first.",
     intro:
-      "The starter list — the bottlenecks operators ask about most. Each one is a fixed-scope first engagement.",
+      "The starter list: the bottlenecks operators ask about most. Each one is a fixed-scope first engagement.",
     cards: [
       {
         title: "Quote intake assistant",
@@ -96,7 +96,7 @@ export const HOME_COPY = {
       },
       {
         title: "Troubleshooting helper",
-        body: "When the field tech hits a problem, they get the answer from your internal knowledge — not a Google search that ends with a competitor's blog.",
+        body: "When the field tech hits a problem, they get the answer from your internal knowledge, not a Google search that ends with a competitor's blog.",
       },
       {
         title: "Weekly owner brief",
@@ -104,7 +104,7 @@ export const HOME_COPY = {
       },
       {
         title: "Document retrieval",
-        body: "Find the right contract, the right SOP, the right exception note — in seconds, not in the file share rabbit hole.",
+        body: "Find the right contract, the right SOP, the right exception note in seconds, not in the file share rabbit hole.",
       },
     ],
     cta: "Browse all use cases",
@@ -113,9 +113,9 @@ export const HOME_COPY = {
   sampleEngagement: {
     eyebrow: "Sample engagement",
     heading: "What this looks like in practice.",
-    body: "A multi-property operator was losing hours every week because property surveys, invoice routing, and operator knowledge all lived in one person's head. We started with one workflow — the survey backlog — mapped how it actually got done, and built a structured intake plus a routing queue. The owner kept visibility on every approval. The next two workflows used the same pattern.",
+    body: "A multi-property operator was losing hours every week because property surveys, invoice routing, and operator knowledge all lived in one person's head. We started with one workflow, the survey backlog, mapped how it actually got done, and built a structured intake plus a routing queue. The owner kept visibility on every approval. The next two workflows used the same pattern.",
     footnote:
-      "This is a sample engagement description — written from the pattern we use. Specific results depend on scope, team, and how much expert knowledge needs to be captured first.",
+      "This is a sample engagement description, written from the pattern we use. Specific results depend on scope, team, and how much expert knowledge needs to be captured first.",
   },
   process: {
     eyebrow: "Process",
@@ -123,11 +123,11 @@ export const HOME_COPY = {
     steps: [
       {
         title: "Discover",
-        body: "We sit with the team and find the bottleneck that's actually costing time. Not the one that's loudest — the one that's expensive.",
+        body: "We sit with the team and find the bottleneck that's actually costing time. Not the one that's loudest. The one that's expensive.",
       },
       {
         title: "Map",
-        body: "Walk the workflow as it really runs — including the workarounds and the tribal knowledge nobody documented.",
+        body: "Walk the workflow as it really runs, including the workarounds and the tribal knowledge nobody documented.",
       },
       {
         title: "Prioritize",
@@ -145,12 +145,12 @@ export const HOME_COPY = {
   },
   finalCta: {
     heading: "Bring one workflow.",
-    body: "One workflow that keeps slowing the team down. We'll scope a Workflow Check around it — fixed price, fixed scope, no surprises.",
+    body: "One workflow that keeps slowing the team down. We'll scope a Workflow Check around it. Fixed price, fixed scope, no surprises.",
     cta: "Request a Workflow Check",
   },
 };
 
-// Stats strip — pulled from copy.ts so the source of truth stays here, not in
+// Stats strip. Pulled from copy.ts so the source of truth stays here, not in
 // the SocialProof component. Order matters: visual hierarchy left-to-right.
 export const HOME_STATS = [
   { value: "$395", label: "fixed-scope Workflow Check" },
@@ -172,7 +172,7 @@ export const HOW_IT_WORKS_COPY = {
     {
       number: "2",
       title: "Map the current path.",
-      body: "Walk the workflow as it really runs — including the workarounds. The point isn't to design the perfect process. The point is to see the one we have, honestly, before we change anything.",
+      body: "Walk the workflow as it really runs, including the workarounds. The point isn't to design the perfect process. The point is to see the one we have, honestly, before we change anything.",
     },
     {
       number: "3",
@@ -192,7 +192,7 @@ export const HOW_IT_WORKS_COPY = {
   ],
   humanApprovalNote: {
     heading: "Human approval stays visible.",
-    body: "We don't build workflows that quietly make decisions a human should be making. Where judgment matters — pricing exceptions, customer escalations, approvals over a threshold — the owner or operator sees the call before it goes out.",
+    body: "We don't build workflows that quietly make decisions a human should be making. Where judgment matters, like pricing exceptions, customer escalations, approvals over a threshold. The owner or operator sees the call before it goes out.",
   },
   cta: {
     heading: "Ready to map one workflow?",
@@ -205,7 +205,7 @@ export const WHO_ITS_FOR_COPY = {
   eyebrow: "Who it's for",
   heading: "Built for operators who run real businesses.",
   intro:
-    "Owners, general managers, department heads, office leads. The line isn't industry — it's whether your week has repetitive work that the right person could stop doing.",
+    "Owners, general managers, department heads, office leads. The line isn't industry. It's whether your week has repetitive work that the right person could stop doing.",
   tagline:
     "ClearPath fits where one workflow is clearly costing time, the buyer has authority to scope and approve, and the team is willing to be honest about how the work actually runs.",
   audiences: [
@@ -217,7 +217,7 @@ export const WHO_ITS_FOR_COPY = {
     {
       archetype: "General managers and operators.",
       example:
-        "You run the day-to-day. You know exactly which workflow is leaking time. You need a partner who'll scope it tight, build it, and leave it documented — not pitch a platform.",
+        "You run the day-to-day. You know exactly which workflow is leaking time. You need a partner who'll scope it tight, build it, and leave it documented, not pitch a platform.",
     },
     {
       archetype: "Department heads.",
@@ -227,7 +227,7 @@ export const WHO_ITS_FOR_COPY = {
     {
       archetype: "Office managers and team leads.",
       example:
-        "You're the person everyone asks. ClearPath is built for the workflows you keep doing twice — intake, routing, scheduling, follow-up, the recurring document grind.",
+        "You're the person everyone asks. ClearPath is built for the workflows you keep doing twice: intake, routing, scheduling, follow-up, the recurring document grind.",
     },
     {
       archetype: "Healthcare and professional services leadership.",
@@ -263,7 +263,7 @@ export const SERVICES_COPY = {
     {
       title: "One Workflow Fix",
       problem:
-        "One specific bottleneck — invoice routing, intake triage, follow-up — has a clear shape and a willing owner.",
+        "One specific bottleneck, like invoice routing, intake triage, follow-up, has a clear shape and a willing owner.",
       buyerGets:
         "The workflow rebuilt end-to-end. Documented, demoed, handed off. Human approval kept visible where it matters.",
       firstStep: "Scoped on the Workflow Check. Engagements typically start from $4,500.",
@@ -303,7 +303,7 @@ export const SERVICES_COPY = {
   ],
   supportNote: {
     heading: "After the build.",
-    body: "Ongoing support is available for clients with a delivered ClearPath workflow. Scoped to fit — pricing is set on the call so it matches actual support load. Mention it if you want it included in the engagement quote.",
+    body: "Ongoing support is available for clients with a delivered ClearPath workflow. Scoped to fit. Pricing is set on the call so it matches actual support load. Mention it if you want it included in the engagement quote.",
   },
   cta: {
     heading: "Not sure which one fits?",
@@ -316,7 +316,7 @@ export const USE_CASES_COPY = {
   eyebrow: "Use cases",
   heading: "Workflows ClearPath builds first.",
   intro:
-    "The bottlenecks operators ask about most. Each one is a fixed-scope first engagement — buyer-facing language, concrete deliverable.",
+    "The bottlenecks operators ask about most. Each one is a fixed-scope first engagement with buyer-facing language, concrete deliverable.",
   cases: [
     {
       title: "Quote intake assistant",
@@ -335,7 +335,7 @@ export const USE_CASES_COPY = {
     },
     {
       title: "Troubleshooting helper",
-      body: "Field tech or support rep hits a question, gets the answer from your internal knowledge — not the open web.",
+      body: "Field tech or support rep hits a question, gets the answer from your internal knowledge, not the open web.",
       deliverable: "Grounded assistant + escalation path when the answer isn't covered.",
     },
     {
@@ -350,12 +350,12 @@ export const USE_CASES_COPY = {
     },
     {
       title: "Intake triage",
-      body: "First-touch on inbound — customer service, applications, work orders — sorted, tagged, and routed.",
+      body: "First touch on inbound, including customer service, applications, work orders, sorted, tagged, and routed.",
       deliverable: "Triage rules + routing queue + clean dashboard for the operator.",
     },
     {
       title: "Follow-up board",
-      body: "The follow-ups that quietly slip through — proposals, repairs, scheduled check-ins — surfaced before they age out.",
+      body: "The follow-ups that quietly slip through, including proposals, repairs, scheduled check-ins, surfaced before they age out.",
       deliverable: "Follow-up board + recurring nudges + owner visibility.",
     },
   ],
@@ -370,9 +370,9 @@ export const ABOUT_COPY = {
   eyebrow: "About",
   heading: "ClearPath is run by an operator.",
   intro:
-    "ClearPath was started by Justin Whalen — twelve-plus years on the operations side of a regional resort in Western New York, then a stretch building internal tools that solved real workflow problems for the team he worked with.",
+    "ClearPath was started by Justin Whalen after twelve-plus years on the operations side of a regional resort in Western New York, then a stretch building internal tools that solved real workflow problems for the team he worked with.",
   bio: [
-    "Justin spent his first decade on operations: kitchen, bar, lesson programs, scheduling, the parts of the business that run on tribal knowledge and recovery from yesterday's mistakes. He learned what an operator actually wants from a tool — and what they refuse to use even when it's well-built.",
+    "Justin spent his first decade on operations: kitchen, bar, lesson programs, scheduling, the parts of the business that run on tribal knowledge and recovery from yesterday's mistakes. He learned what an operator actually wants from a tool, and what they refuse to use even when it's well-built.",
     "The first internal tools came out of that work: a knowledge assistant so a new director could ramp without burning instructors' time, a booking surface that fixed a real bottleneck the official system couldn't, an operations dashboard built around how the team actually planned a week. None of them looked like enterprise software. All of them got used.",
     "ClearPath is the same instinct, scoped as a service. Sit with operators, capture how the work actually gets done, build AI-assisted tools the team will use, and leave the workflow documented enough that it keeps running after the engagement closes.",
   ],
@@ -407,7 +407,7 @@ export const PRICING_COPY = {
   eyebrow: "Pricing",
   heading: "Fixed-scope, one workflow at a time.",
   intro:
-    "Every engagement starts with a Workflow Check. Everything after is scoped from what we found together — not from a menu.",
+    "Every engagement starts with a Workflow Check. Everything after is scoped from what we found together, not from a menu.",
   // The Workflow Check is the only firm public number. Everything else is "from."
   audit: {
     eyebrow: "The front door",
@@ -422,7 +422,7 @@ export const PRICING_COPY = {
     ],
     cta: "Request a Workflow Check",
   },
-  // "After the Workflow Check" grid — VISUAL ORDER MATTERS.
+  // "After the Workflow Check" grid. VISUAL ORDER MATTERS.
   // One Workflow Fix is FEATURED (most operators start here).
   pathsHeading: "After the Workflow Check",
   pathsSubhead: "Sized to the workflow we mapped together.",
@@ -441,7 +441,7 @@ export const PRICING_COPY = {
       name: "Workflow Build",
       priceLabel: "$6,500",
       qualifier: "from",
-      description: "Bigger build — typically invoice routing, approval queues, or a knowledge capture system.",
+      description: "Bigger build, typically invoice routing, approval queues, or a knowledge capture system.",
     },
     {
       id: "dfy",
@@ -455,7 +455,7 @@ export const PRICING_COPY = {
       name: "Ongoing support",
       priceLabel: "Quoted",
       qualifier: null,
-      description: "Available after delivery. Sized to actual support load — ask on the call.",
+      description: "Available after delivery. Sized to actual support load. Ask on the call.",
     },
   ],
   closingNote:
@@ -475,7 +475,7 @@ export const CONTACT_COPY = {
   calendar: {
     placeholderHeading: "Or pick a time",
     placeholderBody:
-      "A short fit call — fifteen to thirty minutes. We figure out whether a Workflow Check is the right next step.",
+      "A short fit call, fifteen to thirty minutes. We figure out whether a Workflow Check is the right next step.",
   },
   form: {
     heading: "Send a note.",
@@ -489,7 +489,7 @@ export const CONTACT_COPY = {
       question: {
         label: "What's one workflow slowing the team down right now?",
         placeholder:
-          "One or two sentences is fine. The more concrete the better — e.g. 'invoice approvals stuck in three different inboxes.'",
+          "One or two sentences is fine. The more concrete the better. For example, 'invoice approvals stuck in three different inboxes.'",
       },
     },
     submit: "Send",
@@ -505,7 +505,7 @@ export const CONTACT_COPY = {
 
 /**
  * Shared strings used across pages. Footer disclaimer is required on every
- * page — content owns the canonical text; layout owns the rendering.
+ * page. Content owns the canonical text; layout owns the rendering.
  */
 export const SHARED_COPY = {
   primaryCta: "Request a Workflow Check",

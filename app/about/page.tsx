@@ -10,7 +10,7 @@ import { ABOUT_COPY } from "@/content/copy";
 export const metadata: Metadata = {
   title: { absolute: "About | ClearPath" },
   description:
-    "ClearPath is run by an operator. Founded by Justin Whalen — twelve-plus years on the operations side of a regional resort, then a stretch building internal tools that solved real workflow problems.",
+    "ClearPath is run by an operator. Founded by Justin Whalen after twelve-plus years on the operations side of a regional resort, then a stretch building internal tools that solved real workflow problems.",
 };
 
 export default function AboutPage() {

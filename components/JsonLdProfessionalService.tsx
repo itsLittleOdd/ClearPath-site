@@ -9,7 +9,7 @@ import { SITE } from "@/lib/site";
  *
  * priceRange uses the symbolic "$$" rather than literal dollar amounts: the
  * post-Workflow-Check engagements are intentionally "from" pricing on the
- * public site (operator lock — see /pricing). The Workflow Check itself is
+ * public site (operator lock - see /pricing). The Workflow Check itself is
  * exposed as a structured Offer at $395 since that IS the firm public number.
  */
 export function JsonLdProfessionalService() {

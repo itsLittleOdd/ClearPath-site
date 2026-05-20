@@ -24,8 +24,8 @@ const fontDisplay = Bricolage_Grotesque({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — ${SITE.tagline}`,
-    template: `%s — ${SITE.name}`,
+    default: `${SITE.name} | ${SITE.tagline}`,
+    template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
   applicationName: SITE.name,
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     locale: SITE.locale,
     url: SITE.url,
     siteName: SITE.name,
-    title: `${SITE.name} — ${SITE.tagline}`,
+    title: `${SITE.name} | ${SITE.tagline}`,
     description: SITE.description,
     images: [{ url: SITE.ogImage, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} — ${SITE.tagline}`,
+    title: `${SITE.name} | ${SITE.tagline}`,
     description: SITE.description,
   },
   robots: { index: true, follow: true },
@@ -69,7 +69,7 @@ export default function RootLayout({
         <main className="flex flex-1 flex-col">{children}</main>
         <Footer />
         {/*
-          Vercel Analytics — auto-enables on Vercel deploys; in local dev
+          Vercel Analytics. Auto-enables on Vercel deploys; in local dev
           and non-Vercel environments it no-ops. No env var required.
           Operator picked Vercel Analytics over Plausible for Phase 1.
         */}

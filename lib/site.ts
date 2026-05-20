@@ -13,7 +13,7 @@
  *
  * Values MUST stay in sync with `app/globals.css` (the design-system source of
  * truth per Coord 1's token-lock). Use this object only when you need a literal
- * brand color in a place that can't read CSS variables — e.g. Next.js metadata
+ * brand color in a place that can't read CSS variables - e.g. Next.js metadata
  * `themeColor`, OG image generation, structured data, third-party SDK config.
  *
  * Components must continue to use Tailwind class names (bg-navy-800, etc.).
@@ -49,15 +49,15 @@ export const SITE = {
   // that already imports SITE.
   bookingDiscoveryUrl: "https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call",
 
-  // OG image — Next 16 file-convention asset at app/opengraph-image.tsx.
+  // OG image - Next 16 file-convention asset at app/opengraph-image.tsx.
   ogImage: "/opengraph-image",
 
-  // Region targeting — used by structured data + local-SEO surfaces.
+  // Region targeting - used by structured data + local-SEO surfaces.
   locale: "en_US",
   location: "Western New York",
   region: "Western New York",
 
-  // Justin is intentionally not on social per discovery — keep TBD until that changes.
+  // Justin is intentionally not on social per discovery - keep TBD until that changes.
   twitterHandle: "TBD",
 
   // Canonical primary CTA label used in metadata + structured data.

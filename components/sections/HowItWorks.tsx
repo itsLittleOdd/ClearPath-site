@@ -33,7 +33,7 @@ export function HowItWorks({
 
         <ol className="relative mt-12 grid gap-12 md:mt-16 md:grid-cols-3 md:gap-10">
           {/*
-           * Connector line — horizontal on md+ across the row, sitting at the
+           * Connector line - horizontal on md+ across the row, sitting at the
            * vertical center of the numbered bubble. Uses sage-500 at 25% so it
            * reads as a thread, not a divider.
            */}

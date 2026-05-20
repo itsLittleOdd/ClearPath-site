@@ -8,7 +8,7 @@
 // The wrapper reserves a min-height to prevent CLS while the iframe loads.
 //
 // `Cal` is loaded via `next/dynamic({ ssr:false })` and `getCalApi` via a
-// dynamic `import()` inside the post-mount effect — together they keep the
+// dynamic `import()` inside the post-mount effect - together they keep the
 // `@calcom/embed-react` bundle out of the route's initial JS payload until
 // IntersectionObserver fires.
 
@@ -23,7 +23,7 @@ type CalComEmbedProps = {
   title?: string;
   /** Pixels of viewport pre-load before the embed mounts. */
   rootMargin?: string;
-  /** Minimum height to reserve before the embed renders — prevents CLS. */
+  /** Minimum height to reserve before the embed renders - prevents CLS. */
   minHeightClass?: string;
 };
 

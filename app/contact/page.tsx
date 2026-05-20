@@ -50,7 +50,7 @@ export default function ContactPage() {
       <Section background="cream" className="pt-0 md:pt-0">
         <Container>
           <div className="grid gap-10 md:grid-cols-2 md:gap-12">
-            {/* Cal.com inline embed — booking column */}
+            {/* Cal.com inline embed. Booking column */}
             <div className="flex flex-col gap-4 rounded-2xl border border-navy-800/10 bg-cream-50 p-6 shadow-sm md:p-8">
               <div className="flex items-center gap-2">
                 <span
@@ -73,7 +73,7 @@ export default function ContactPage() {
               />
               {/*
                 The 45-min review call URL is INTERNAL ONLY per Coord 1's
-                Sprint-3 directive — Justin sends it to clients in the
+                Sprint-3 directive. Justin sends it to clients in the
                 audit-delivery email. Do not surface it on the public
                 contact page. The value lives in INTERNAL_LINKS.reviewBookingUrl
                 (lib/internal.ts), intentionally excluded from the public
@@ -82,7 +82,7 @@ export default function ContactPage() {
               */}
             </div>
 
-            {/* Tally lead-intake — note column */}
+            {/* Tally lead-intake. Note column */}
             <div className="flex flex-col gap-4 rounded-2xl border border-navy-800/10 bg-cream-50 p-6 shadow-sm md:p-8">
               <div className="flex items-center gap-2">
                 <span

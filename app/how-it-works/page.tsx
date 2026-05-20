@@ -10,7 +10,7 @@ import { HOW_IT_WORKS_COPY } from "@/content/copy";
 export const metadata: Metadata = {
   title: "How It Works",
   description:
-    "ClearPath maps one workflow before touching tools. Five steps — discover, map, prioritize, build, handoff — with human approval visible where judgment matters.",
+    "ClearPath maps one workflow before touching tools. Five steps: discover, map, prioritize, build, and handoff. Human approval visible where judgment matters.",
 };
 
 export default function HowItWorksPage() {

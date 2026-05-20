@@ -16,7 +16,7 @@ export function Logo({ className, href = "/", tone = "default" }: LogoProps) {
   return (
     <Link
       href={href}
-      aria-label="ClearPath — home"
+      aria-label="ClearPath - home"
       className={cn(
         "inline-flex flex-col leading-none rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500/60",
         className

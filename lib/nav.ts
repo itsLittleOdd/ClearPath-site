@@ -1,5 +1,5 @@
 /**
- * Site navigation links — server-safe pure data.
+ * Site navigation links - server-safe pure data.
  *
  * Lives outside `components/Nav.tsx` because that file is a Client Component
  * (`"use client"`). Exporting NAV_LINKS from a client module and importing it

@@ -116,7 +116,7 @@ export default function WhoItsForPage() {
               >
                 Request a Workflow Check
               </Link>{" "}
-              — we&rsquo;ll figure it out together.
+              and we&rsquo;ll figure it out together.
             </p>
           </div>
         </Container>

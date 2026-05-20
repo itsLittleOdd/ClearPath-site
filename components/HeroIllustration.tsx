@@ -7,10 +7,10 @@ type HeroIllustrationProps = {
 };
 
 /*
- * A mock ClearPath audit report — the actual deliverable. Cream document
+ * A mock ClearPath audit report - the actual deliverable. Cream document
  * card on a navy gradient, navy header band with the wordmark, three
  * numbered findings with placeholder text lines and time-saved chips,
- * and a SAVED PER WEEK total at the bottom. Decorative — the wrapper is
+ * and a SAVED PER WEEK total at the bottom. Decorative - the wrapper is
  * aria-hidden and the SVG carries role="presentation".
  *
  * Hyphens are ASCII per AGENTS.md voice lock.

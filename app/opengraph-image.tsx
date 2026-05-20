@@ -3,7 +3,7 @@
 //
 // Per Next 16 file-convention metadata routes (see Scout 1's STACK_NOTES.md
 // section 6): rendered with `ImageResponse` from `next/og` (Satori under
-// the hood). `ImageResponse` does NOT compile Tailwind classes — it accepts
+// the hood). `ImageResponse` does NOT compile Tailwind classes | it accepts
 // a JSX subset styled via inline `style={{ ... }}` only. The brand palette
 // is sourced from `BRAND` in `@/lib/site` (Builder 1's canonical export for
 // non-CSS hex contexts), so values stay in sync with globals.css through a
@@ -13,15 +13,15 @@ import { ImageResponse } from "next/og";
 
 import { BRAND, SITE } from "@/lib/site";
 
-// No `runtime = "edge"` — keeping Node.js (the Next 16 default) so this image
+// No `runtime = "edge"` | keeping Node.js (the Next 16 default) so this image
 // is generated at build time per Scout 1's STACK_NOTES.md ("Static at build
 // time = best perf"). Edge runtime would force per-request generation.
 
-export const alt = `${SITE.name} — ${SITE.tagline}`;
+export const alt = `${SITE.name} | ${SITE.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// `cream50` at 70% opacity — used for footer-row text on the navy gradient.
+// `cream50` at 70% opacity | used for footer-row text on the navy gradient.
 // Computed inline because BRAND only exposes solid tokens.
 const CREAM_ON_NAVY_70 = `${BRAND.cream50}b3`; // 0xb3 = 70% alpha
 

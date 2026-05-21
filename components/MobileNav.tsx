@@ -64,6 +64,7 @@ export function MobileNav() {
           <Button
             size="lg"
             variant="default"
+            nativeButton={false}
             className="w-full"
             render={<Link href="/contact" onClick={() => setOpen(false)} />}
           >

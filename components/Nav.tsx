@@ -57,6 +57,7 @@ export function Nav({ className }: NavProps) {
           <Button
             size="lg"
             variant="default"
+            nativeButton={false}
             className="hidden md:inline-flex"
             render={<Link href="/contact" />}
           >

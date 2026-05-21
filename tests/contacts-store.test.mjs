@@ -18,12 +18,14 @@ test('manual leads are normalized and searchable by business, email, and notes',
     source: 'manual',
     pain: 'Invoice routing is slowing approvals.',
     notes: 'Asked about Workflow Check after a fit call.',
+    nextAction: 'Send Workflow Check recap.',
   });
 
   assert.equal(created.type, 'lead');
   assert.equal(created.status, 'new');
   assert.equal(created.source, 'manual');
   assert.equal(created.priority, 'normal');
+  assert.equal(created.nextAction, 'Send Workflow Check recap.');
   assert.equal(created.nextFollowUpAt, '');
   assert.match(created.id, /^contact_/);
   assert.ok(created.createdAt);
@@ -32,6 +34,7 @@ test('manual leads are normalized and searchable by business, email, and notes',
   assert.equal((await store.searchContacts({ q: 'b&b' })).items[0].id, created.id);
   assert.equal((await store.searchContacts({ q: 'KELLY@EXAMPLE.COM' })).items[0].id, created.id);
   assert.equal((await store.searchContacts({ q: 'workflow check' })).items[0].id, created.id);
+  assert.equal((await store.searchContacts({ q: 'recap' })).items[0].id, created.id);
 });
 
 test('search can filter contacts by type, status, and source', async () => {
@@ -196,12 +199,14 @@ test('contacts can be moved through status and follow-up updates without losing 
   const updated = await store.updateContact(created.id, {
     status: 'warm',
     priority: 'high',
+    nextAction: 'Send Workflow Check link.',
     nextFollowUpAt: '2026-05-28',
     notes: 'Follow up this week.',
   });
 
   assert.equal(updated.status, 'warm');
   assert.equal(updated.priority, 'high');
+  assert.equal(updated.nextAction, 'Send Workflow Check link.');
   assert.equal(updated.nextFollowUpAt, '2026-05-28');
   assert.equal(updated.notes, 'Follow up this week.');
   assert.equal(updated.createdAt, created.createdAt);
@@ -241,6 +246,7 @@ test('supabase contact creates write normalized duplicate fields without exposin
     assert.equal(row.business, 'B&B Group');
     assert.equal(row.business_normalized, 'b&b group');
     assert.equal(row.priority, 'high');
+    assert.equal(row.next_action, 'Call Andy after leadership meeting.');
     assert.equal(row.next_follow_up_at, '2026-05-28');
     assert.ok(row.created_at);
     assert.ok(row.updated_at);
@@ -260,6 +266,7 @@ test('supabase contact creates write normalized duplicate fields without exposin
     email: 'KELLY@EXAMPLE.COM',
     source: 'manual',
     priority: 'high',
+    nextAction: 'Call Andy after leadership meeting.',
     nextFollowUpAt: '2026-05-28',
   });
 
@@ -293,6 +300,7 @@ test('supabase duplicate search uses normalized exact email or business matching
           pain: '',
           notes: '',
           priority: 'normal',
+          next_action: 'Send recap.',
           next_follow_up_at: null,
           created_at: '2026-05-21T12:00:00.000Z',
           updated_at: '2026-05-21T12:00:00.000Z',
@@ -322,7 +330,7 @@ test('supabase search sends readable PostgREST filters and maps rows back to con
     assert.equal(parsed.searchParams.get('type'), 'eq.client');
     assert.equal(parsed.searchParams.get('status'), 'eq.active');
     assert.equal(parsed.searchParams.get('source'), 'eq.tally');
-    assert.equal(parsed.searchParams.get('or'), '(name.ilike.*invoice*,business.ilike.*invoice*,email.ilike.*invoice*,phone.ilike.*invoice*,pain.ilike.*invoice*,notes.ilike.*invoice*)');
+    assert.equal(parsed.searchParams.get('or'), '(name.ilike.*invoice*,business.ilike.*invoice*,email.ilike.*invoice*,phone.ilike.*invoice*,pain.ilike.*invoice*,notes.ilike.*invoice*,next_action.ilike.*invoice*)');
 
     return {
       json: [
@@ -338,6 +346,7 @@ test('supabase search sends readable PostgREST filters and maps rows back to con
           pain: 'Invoice routing',
           notes: null,
           priority: 'high',
+          next_action: 'Send Workflow Check link.',
           next_follow_up_at: '2026-05-28',
           created_at: '2026-05-21T12:00:00.000Z',
           updated_at: '2026-05-21T12:30:00.000Z',
@@ -359,6 +368,7 @@ test('supabase search sends readable PostgREST filters and maps rows back to con
   assert.equal(result.items[0].phone, '');
   assert.equal(result.items[0].notes, '');
   assert.equal(result.items[0].priority, 'high');
+  assert.equal(result.items[0].nextAction, 'Send Workflow Check link.');
   assert.equal(result.items[0].nextFollowUpAt, '2026-05-28');
 });
 

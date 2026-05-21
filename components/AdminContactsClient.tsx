@@ -16,6 +16,7 @@ type Contact = {
   pain?: string;
   notes?: string;
   priority: string;
+  nextAction?: string;
   nextFollowUpAt?: string;
   createdAt: string;
   updatedAt: string;
@@ -44,6 +45,7 @@ const emptyForm = {
   status: 'new',
   source: 'manual',
   priority: 'normal',
+  nextAction: '',
   nextFollowUpAt: '',
 };
 
@@ -250,6 +252,7 @@ export function AdminContactsClient() {
               Next follow-up
               <input className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" type="date" value={draft.nextFollowUpAt || ''} onChange={(event) => updateEditDraft(contact.id, { nextFollowUpAt: event.target.value })} />
             </label>
+            <input className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Next action" value={draft.nextAction || ''} onChange={(event) => updateEditDraft(contact.id, { nextAction: event.target.value })} />
             <textarea className="min-h-24 rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Workflow issue or pain point" value={draft.pain} onChange={(event) => updateEditDraft(contact.id, { pain: event.target.value })} />
             <textarea className="min-h-24 rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Private notes" value={draft.notes} onChange={(event) => updateEditDraft(contact.id, { notes: event.target.value })} />
           </form>
@@ -273,6 +276,7 @@ export function AdminContactsClient() {
           </div>
         </div>
         {!compact && contact.nextFollowUpAt ? <p className="mt-3 text-sm font-semibold text-navy-950">Next follow-up: {contact.nextFollowUpAt}</p> : null}
+        {!compact && contact.nextAction ? <p className="mt-2 text-sm font-semibold text-navy-950">Next action: {contact.nextAction}</p> : null}
         {contact.pain ? <p className="mt-4 text-sm leading-relaxed text-graphite-600">{contact.pain}</p> : null}
         {contact.notes ? <p className="mt-2 text-sm leading-relaxed text-graphite-500">Notes: {contact.notes}</p> : null}
         {!compact ? (
@@ -371,6 +375,7 @@ export function AdminContactsClient() {
             Next follow-up
             <input className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" type="date" value={form.nextFollowUpAt} onChange={(event) => setForm({ ...form, nextFollowUpAt: event.target.value })} />
           </label>
+          <input className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Next action" value={form.nextAction} onChange={(event) => setForm({ ...form, nextAction: event.target.value })} />
           <textarea className="min-h-24 rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Workflow issue or pain point" value={form.pain} onChange={(event) => setForm({ ...form, pain: event.target.value })} />
           <textarea className="min-h-24 rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Private notes" value={form.notes} onChange={(event) => setForm({ ...form, notes: event.target.value })} />
           {duplicateItems.length > 0 ? (

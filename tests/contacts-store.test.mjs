@@ -32,7 +32,7 @@ test('manual leads are normalized and searchable by business, email, and notes',
   assert.equal((await store.searchContacts({ q: 'workflow check' })).items[0].id, created.id);
 });
 
-test('search can filter contacts by type and status', async () => {
+test('search can filter contacts by type, status, and source', async () => {
   const store = createMemoryContactsStore();
 
   await store.createContact({
@@ -40,6 +40,12 @@ test('search can filter contacts by type and status', async () => {
     business: 'Lead Co',
     email: 'lead@example.com',
     source: 'manual',
+  });
+  await store.createContact({
+    name: 'Tally Lead',
+    business: 'Tally Co',
+    email: 'tally@example.com',
+    source: 'tally',
   });
   await store.createContact({
     name: 'Active Client',
@@ -51,9 +57,12 @@ test('search can filter contacts by type and status', async () => {
   });
 
   const activeClients = await store.searchContacts({ type: 'client', status: 'active' });
+  const tallyLeads = await store.searchContacts({ type: 'lead', source: 'tally' });
 
   assert.equal(activeClients.items.length, 1);
   assert.equal(activeClients.items[0].business, 'Client Co');
+  assert.equal(tallyLeads.items.length, 1);
+  assert.equal(tallyLeads.items[0].business, 'Tally Co');
 });
 
 test('manual lead validation requires name, business, email, and source', () => {
@@ -218,6 +227,7 @@ test('supabase search sends readable PostgREST filters and maps rows back to con
     const parsed = new URL(url);
     assert.equal(parsed.searchParams.get('type'), 'eq.client');
     assert.equal(parsed.searchParams.get('status'), 'eq.active');
+    assert.equal(parsed.searchParams.get('source'), 'eq.tally');
     assert.equal(parsed.searchParams.get('or'), '(name.ilike.*invoice*,business.ilike.*invoice*,email.ilike.*invoice*,phone.ilike.*invoice*,pain.ilike.*invoice*,notes.ilike.*invoice*)');
 
     return {
@@ -246,7 +256,7 @@ test('supabase search sends readable PostgREST filters and maps rows back to con
     fetchImpl: fetchStub,
   });
 
-  const result = await store.searchContacts({ type: 'client', status: 'active', q: 'invoice' });
+  const result = await store.searchContacts({ type: 'client', status: 'active', source: 'tally', q: 'invoice' });
 
   assert.equal(result.items.length, 1);
   assert.equal(result.items[0].id, 'contact_client');

@@ -57,6 +57,7 @@ export function AdminContactsClient() {
   const [query, setQuery] = useState('');
   const [type, setType] = useState('');
   const [status, setStatus] = useState('');
+  const [source, setSource] = useState('');
   const [items, setItems] = useState<Contact[]>([]);
   const [duplicateItems, setDuplicateItems] = useState<Contact[]>([]);
   const [allowDuplicate, setAllowDuplicate] = useState(false);
@@ -76,6 +77,7 @@ export function AdminContactsClient() {
       if (query) params.set('q', query);
       if (type) params.set('type', type);
       if (status) params.set('status', status);
+      if (source) params.set('source', source);
       const response = await fetch(`/api/admin/contacts?${params.toString()}`, {
         headers: authHeaders(token),
         cache: 'no-store',
@@ -191,7 +193,7 @@ export function AdminContactsClient() {
         </label>
         <form className="mt-5 grid gap-3" onSubmit={loadContacts}>
           <input className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Search contacts" value={query} onChange={(event) => setQuery(event.target.value)} />
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid gap-3 md:grid-cols-3">
             <select className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" value={type} onChange={(event) => setType(event.target.value)}>
               <option value="">Any type</option>
               <option value="lead">Lead</option>
@@ -203,6 +205,14 @@ export function AdminContactsClient() {
               {statusOptions.map(([value, label]) => (
                 <option key={value} value={value}>{label}</option>
               ))}
+            </select>
+            <select className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" value={source} onChange={(event) => setSource(event.target.value)}>
+              <option value="">Any source</option>
+              <option value="manual">Manual</option>
+              <option value="tally">Tally</option>
+              <option value="cal">Cal.com</option>
+              <option value="email">Email</option>
+              <option value="referral">Referral</option>
             </select>
           </div>
           <button className="rounded-lg bg-sage-500 px-4 py-2 text-sm font-semibold text-navy-950 disabled:opacity-50" disabled={busy} type="submit">

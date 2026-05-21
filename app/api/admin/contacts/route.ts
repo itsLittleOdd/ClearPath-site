@@ -12,6 +12,7 @@ export async function GET(request: Request) {
       q: searchParams.get('q') || '',
       type: searchParams.get('type') || '',
       status: searchParams.get('status') || '',
+      source: searchParams.get('source') || '',
     });
     return NextResponse.json({ ok: true, ...result });
   } catch (error) {

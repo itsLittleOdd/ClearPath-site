@@ -67,6 +67,85 @@ test('search can filter contacts by type, status, and source', async () => {
   assert.equal(tallyLeads.items[0].business, 'Tally Co');
 });
 
+test('search can filter overdue contacts before a supplied day', async () => {
+  const store = createMemoryContactsStore();
+
+  await store.createContact({
+    name: 'Overdue Lead',
+    business: 'Overdue Co',
+    email: 'overdue@example.com',
+    source: 'manual',
+    nextFollowUpAt: '2026-05-20',
+  });
+  await store.createContact({
+    name: 'Today Lead',
+    business: 'Today Co',
+    email: 'today@example.com',
+    source: 'manual',
+    nextFollowUpAt: '2026-05-21',
+  });
+  await store.createContact({
+    name: 'Future Lead',
+    business: 'Future Co',
+    email: 'future@example.com',
+    source: 'manual',
+    nextFollowUpAt: '2026-05-28',
+  });
+
+  const overdue = await store.searchContacts({ action: 'overdue', today: '2026-05-21' });
+
+  assert.deepEqual(overdue.items.map((contact) => contact.business), ['Overdue Co']);
+});
+
+test('search can filter contacts that need action', async () => {
+  const store = createMemoryContactsStore();
+
+  await store.createContact({
+    name: 'Overdue Lead',
+    business: 'Overdue Co',
+    email: 'overdue@example.com',
+    source: 'manual',
+    nextFollowUpAt: '2026-05-20',
+  });
+  await store.createContact({
+    name: 'Warm Unscheduled',
+    business: 'Warm Co',
+    email: 'warm@example.com',
+    source: 'manual',
+    status: 'warm',
+  });
+  await store.createContact({
+    name: 'High Unscheduled',
+    business: 'High Co',
+    email: 'high@example.com',
+    source: 'manual',
+    priority: 'high',
+  });
+  await store.createContact({
+    name: 'Scheduled Warm',
+    business: 'Scheduled Co',
+    email: 'scheduled@example.com',
+    source: 'manual',
+    status: 'warm',
+    nextFollowUpAt: '2026-05-28',
+  });
+  await store.createContact({
+    name: 'Closed Overdue',
+    business: 'Closed Co',
+    email: 'closed@example.com',
+    source: 'manual',
+    status: 'closed',
+    nextFollowUpAt: '2026-05-20',
+  });
+
+  const needsAction = await store.searchContacts({ action: 'needs_action', today: '2026-05-21' });
+
+  assert.deepEqual(
+    needsAction.items.map((contact) => contact.business),
+    ['High Co', 'Warm Co', 'Overdue Co'],
+  );
+});
+
 test('manual lead validation requires name, business, email, and source', () => {
   const result = validateContactInput({
     name: '',
@@ -281,4 +360,43 @@ test('supabase search sends readable PostgREST filters and maps rows back to con
   assert.equal(result.items[0].notes, '');
   assert.equal(result.items[0].priority, 'high');
   assert.equal(result.items[0].nextFollowUpAt, '2026-05-28');
+});
+
+test('supabase search can request overdue contacts before a supplied day', async () => {
+  const fetchStub = makeSupabaseFetchStub((url) => {
+    const parsed = new URL(url);
+    assert.equal(parsed.searchParams.get('next_follow_up_at'), 'lt.2026-05-21');
+    assert.equal(parsed.searchParams.get('status'), 'not.in.(closed,not_fit)');
+
+    return { json: [] };
+  });
+
+  const store = createSupabaseContactsStore({
+    url: 'https://example.supabase.co',
+    serviceRoleKey: 'service-key',
+    fetchImpl: fetchStub,
+  });
+
+  await store.searchContacts({ action: 'overdue', today: '2026-05-21' });
+});
+
+test('supabase search can request contacts that need action', async () => {
+  const fetchStub = makeSupabaseFetchStub((url) => {
+    const parsed = new URL(url);
+    assert.equal(
+      parsed.searchParams.get('or'),
+      '(next_follow_up_at.lt.2026-05-21,and(status.eq.warm,next_follow_up_at.is.null),and(priority.eq.high,next_follow_up_at.is.null))',
+    );
+    assert.equal(parsed.searchParams.get('status'), 'not.in.(closed,not_fit)');
+
+    return { json: [] };
+  });
+
+  const store = createSupabaseContactsStore({
+    url: 'https://example.supabase.co',
+    serviceRoleKey: 'service-key',
+    fetchImpl: fetchStub,
+  });
+
+  await store.searchContacts({ action: 'needs_action', today: '2026-05-21' });
 });

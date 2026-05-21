@@ -72,6 +72,7 @@ export function AdminContactsClient() {
   const [type, setType] = useState('');
   const [status, setStatus] = useState('');
   const [source, setSource] = useState('');
+  const [action, setAction] = useState('');
   const [items, setItems] = useState<Contact[]>([]);
   const [editDrafts, setEditDrafts] = useState<Record<string, ContactEditDraft>>({});
   const [duplicateItems, setDuplicateItems] = useState<Contact[]>([]);
@@ -82,9 +83,11 @@ export function AdminContactsClient() {
 
   const canSubmit = useMemo(() => token.trim().length > 0, [token]);
 
-  async function loadContacts(event?: FormEvent) {
+  async function loadContacts(event?: FormEvent, actionOverride?: string) {
     event?.preventDefault();
     if (!canSubmit) return setMessage('Admin token is required.');
+    const selectedAction = actionOverride ?? action;
+    if (actionOverride !== undefined) setAction(actionOverride);
     setBusy(true);
     setMessage('Searching contacts...');
     try {
@@ -93,6 +96,7 @@ export function AdminContactsClient() {
       if (type) params.set('type', type);
       if (status) params.set('status', status);
       if (source) params.set('source', source);
+      if (selectedAction) params.set('action', selectedAction);
       const response = await fetch(`/api/admin/contacts?${params.toString()}`, {
         headers: authHeaders(token),
         cache: 'no-store',
@@ -284,7 +288,7 @@ export function AdminContactsClient() {
     <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
       <section className="rounded-3xl border border-navy-800/12 bg-cream-50/85 p-6 shadow-xl shadow-navy-950/5">
         <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-navy-950">Search contacts</h2>
-        <p className="mt-2 text-sm leading-relaxed text-graphite-600">Search by name, business, email, phone, workflow issue, or notes.</p>
+        <p className="mt-2 text-sm leading-relaxed text-graphite-600">Search by name, business, email, phone, workflow issue, notes, or follow-up status.</p>
         <label className="mt-5 block text-sm font-medium text-navy-950">
           Admin token
           <input className="mt-2 w-full rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" type="password" value={token} onChange={(event) => setToken(event.target.value)} />
@@ -312,6 +316,16 @@ export function AdminContactsClient() {
               <option value="email">Email</option>
               <option value="referral">Referral</option>
             </select>
+          </div>
+          <div className="grid gap-3 md:grid-cols-[1fr_auto]">
+            <select className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" value={action} onChange={(event) => setAction(event.target.value)}>
+              <option value="">Any follow-up status</option>
+              <option value="needs_action">Needs action</option>
+              <option value="overdue">Overdue follow-ups</option>
+            </select>
+            <button className="rounded-lg border border-sage-500/40 bg-sage-500/10 px-4 py-2 text-sm font-semibold text-navy-950 disabled:opacity-50" disabled={busy} type="button" onClick={() => loadContacts(undefined, 'needs_action')}>
+              Needs action
+            </button>
           </div>
           <button className="rounded-lg bg-sage-500 px-4 py-2 text-sm font-semibold text-navy-950 disabled:opacity-50" disabled={busy} type="submit">
             {busy ? 'Working...' : 'Search'}

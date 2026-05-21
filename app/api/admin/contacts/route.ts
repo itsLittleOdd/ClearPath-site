@@ -13,6 +13,7 @@ export async function GET(request: Request) {
       type: searchParams.get('type') || '',
       status: searchParams.get('status') || '',
       source: searchParams.get('source') || '',
+      action: searchParams.get('action') || '',
     });
     return NextResponse.json({ ok: true, ...result });
   } catch (error) {

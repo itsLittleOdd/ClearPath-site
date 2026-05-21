@@ -82,6 +82,40 @@ test('tally webhook maps the live Me8OxM field IDs when labels are omitted', () 
   assert.equal(input.pain, 'Tally sends field IDs without labels.');
 });
 
+test('tally webhook maps the actual Me8OxM payload from Tally request logs', () => {
+  const input = extractTallyContactInput({
+    eventId: 'd00e9d45-593f-4fc0-8bc4-a4416aa0e4ce',
+    eventType: 'FORM_RESPONSE',
+    createdAt: '2026-05-21T18:02:02.677Z',
+    data: {
+      responseId: '8NKeZPr',
+      submissionId: '8NKeZPr',
+      respondentId: 'ODbZGJg',
+      formId: 'Me8OxM',
+      formName: 'ClearPath Lead Form',
+      fields: [
+        { key: 'question_De2q1j', label: 'Full Name', type: 'INPUT_TEXT', value: 'Justin W Whalen' },
+        { key: 'question_lRDaAp', label: 'Business Name\n', type: 'INPUT_TEXT', value: 'Holiday Valley' },
+        { key: 'question_RLKW4p', label: 'Email', type: 'INPUT_EMAIL', value: 'Justin.whalen0@gmail.com' },
+        { key: 'question_oO69BX', label: 'Phone', type: 'INPUT_PHONE_NUMBER', value: '17169696155' },
+        {
+          key: 'question_G0ve12',
+          label: "What's one repetitive task eating your time right now?",
+          type: 'TEXTAREA',
+          value: 'test 4',
+        },
+      ],
+    },
+  });
+
+  assert.equal(input.name, 'Justin W Whalen');
+  assert.equal(input.business, 'Holiday Valley');
+  assert.equal(input.email, 'justin.whalen0@gmail.com');
+  assert.equal(input.phone, '17169696155');
+  assert.equal(input.pain, 'test 4');
+  assert.equal(input.notes, 'Imported from Tally submission d00e9d45-593f-4fc0-8bc4-a4416aa0e4ce.');
+});
+
 test('tally webhook secret must match the configured secret', () => {
   assert.equal(verifyTallyWebhookSecret({ provided: 'secret-one', configured: 'secret-one' }).ok, true);
   assert.equal(verifyTallyWebhookSecret({ provided: 'wrong', configured: 'secret-one' }).ok, false);

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:contacts": "node --test tests/contacts-store.test.mjs tests/tally-webhook.test.mjs"
+    "test:contacts": "node --test tests/contacts-store.test.mjs tests/tally-webhook.test.mjs tests/admin-contact-edit.test.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

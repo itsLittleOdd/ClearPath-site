@@ -23,6 +23,8 @@ test('manual leads are normalized and searchable by business, email, and notes',
   assert.equal(created.type, 'lead');
   assert.equal(created.status, 'new');
   assert.equal(created.source, 'manual');
+  assert.equal(created.priority, 'normal');
+  assert.equal(created.nextFollowUpAt, '');
   assert.match(created.id, /^contact_/);
   assert.ok(created.createdAt);
   assert.equal(created.updatedAt, created.createdAt);
@@ -103,7 +105,7 @@ test('possible duplicates are found by email or business before create', async (
   assert.equal(byBusiness.items[0].id, original.id);
 });
 
-test('contacts can be moved through status updates without losing created date', async () => {
+test('contacts can be moved through status and follow-up updates without losing created date', async () => {
   const store = createMemoryContactsStore();
   const created = await store.createContact({
     name: 'Kelly Smith',
@@ -112,9 +114,16 @@ test('contacts can be moved through status updates without losing created date',
     source: 'manual',
   });
 
-  const updated = await store.updateContact(created.id, { status: 'warm', notes: 'Follow up this week.' });
+  const updated = await store.updateContact(created.id, {
+    status: 'warm',
+    priority: 'high',
+    nextFollowUpAt: '2026-05-28',
+    notes: 'Follow up this week.',
+  });
 
   assert.equal(updated.status, 'warm');
+  assert.equal(updated.priority, 'high');
+  assert.equal(updated.nextFollowUpAt, '2026-05-28');
   assert.equal(updated.notes, 'Follow up this week.');
   assert.equal(updated.createdAt, created.createdAt);
   assert.notEqual(updated.updatedAt, created.updatedAt);
@@ -152,6 +161,8 @@ test('supabase contact creates write normalized duplicate fields without exposin
     assert.equal(row.email_normalized, 'kelly@example.com');
     assert.equal(row.business, 'B&B Group');
     assert.equal(row.business_normalized, 'b&b group');
+    assert.equal(row.priority, 'high');
+    assert.equal(row.next_follow_up_at, '2026-05-28');
     assert.ok(row.created_at);
     assert.ok(row.updated_at);
 
@@ -169,6 +180,8 @@ test('supabase contact creates write normalized duplicate fields without exposin
     business: 'B&B Group',
     email: 'KELLY@EXAMPLE.COM',
     source: 'manual',
+    priority: 'high',
+    nextFollowUpAt: '2026-05-28',
   });
 
   assert.equal(contact.email, 'kelly@example.com');
@@ -200,6 +213,8 @@ test('supabase duplicate search uses normalized exact email or business matching
           phone: '',
           pain: '',
           notes: '',
+          priority: 'normal',
+          next_follow_up_at: null,
           created_at: '2026-05-21T12:00:00.000Z',
           updated_at: '2026-05-21T12:00:00.000Z',
         },
@@ -243,6 +258,8 @@ test('supabase search sends readable PostgREST filters and maps rows back to con
           phone: null,
           pain: 'Invoice routing',
           notes: null,
+          priority: 'high',
+          next_follow_up_at: '2026-05-28',
           created_at: '2026-05-21T12:00:00.000Z',
           updated_at: '2026-05-21T12:30:00.000Z',
         },
@@ -262,4 +279,6 @@ test('supabase search sends readable PostgREST filters and maps rows back to con
   assert.equal(result.items[0].id, 'contact_client');
   assert.equal(result.items[0].phone, '');
   assert.equal(result.items[0].notes, '');
+  assert.equal(result.items[0].priority, 'high');
+  assert.equal(result.items[0].nextFollowUpAt, '2026-05-28');
 });

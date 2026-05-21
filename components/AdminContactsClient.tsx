@@ -15,6 +15,8 @@ type Contact = {
   phone?: string;
   pain?: string;
   notes?: string;
+  priority: string;
+  nextFollowUpAt?: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -41,6 +43,8 @@ const emptyForm = {
   type: 'lead',
   status: 'new',
   source: 'manual',
+  priority: 'normal',
+  nextFollowUpAt: '',
 };
 
 const statusOptions = [
@@ -50,6 +54,12 @@ const statusOptions = [
   ['paused', 'Paused'],
   ['closed', 'Closed'],
   ['not_fit', 'Not fit'],
+];
+
+const priorityOptions = [
+  ['low', 'Low'],
+  ['normal', 'Normal'],
+  ['high', 'High'],
 ];
 
 function authHeaders(token: string) {
@@ -208,7 +218,7 @@ export function AdminContactsClient() {
               <input required className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Email" type="email" value={draft.email} onChange={(event) => updateEditDraft(contact.id, { email: event.target.value })} />
               <input className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Phone" value={draft.phone} onChange={(event) => updateEditDraft(contact.id, { phone: event.target.value })} />
             </div>
-            <div className="grid gap-3 md:grid-cols-3">
+            <div className="grid gap-3 md:grid-cols-4">
               <select className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" value={draft.type} onChange={(event) => updateEditDraft(contact.id, { type: event.target.value })}>
                 <option value="lead">Lead</option>
                 <option value="prospect">Prospect</option>
@@ -226,7 +236,16 @@ export function AdminContactsClient() {
                 <option value="email">Email</option>
                 <option value="referral">Referral</option>
               </select>
+              <select className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" value={draft.priority} onChange={(event) => updateEditDraft(contact.id, { priority: event.target.value })}>
+                {priorityOptions.map(([value, label]) => (
+                  <option key={value} value={value}>{label}</option>
+                ))}
+              </select>
             </div>
+            <label className="grid gap-2 text-sm font-medium text-navy-950 md:max-w-xs">
+              Next follow-up
+              <input className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" type="date" value={draft.nextFollowUpAt || ''} onChange={(event) => updateEditDraft(contact.id, { nextFollowUpAt: event.target.value })} />
+            </label>
             <textarea className="min-h-24 rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Workflow issue or pain point" value={draft.pain} onChange={(event) => updateEditDraft(contact.id, { pain: event.target.value })} />
             <textarea className="min-h-24 rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Private notes" value={draft.notes} onChange={(event) => updateEditDraft(contact.id, { notes: event.target.value })} />
           </form>
@@ -246,8 +265,10 @@ export function AdminContactsClient() {
             <span>{contact.type}</span>
             <span>{contact.status}</span>
             <span>{contact.source}</span>
+            <span>{contact.priority || 'normal'}</span>
           </div>
         </div>
+        {!compact && contact.nextFollowUpAt ? <p className="mt-3 text-sm font-semibold text-navy-950">Next follow-up: {contact.nextFollowUpAt}</p> : null}
         {contact.pain ? <p className="mt-4 text-sm leading-relaxed text-graphite-600">{contact.pain}</p> : null}
         {contact.notes ? <p className="mt-2 text-sm leading-relaxed text-graphite-500">Notes: {contact.notes}</p> : null}
         {!compact ? (
@@ -308,7 +329,7 @@ export function AdminContactsClient() {
             <input required className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Email" type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} />
             <input className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Phone" value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} />
           </div>
-          <div className="grid gap-3 md:grid-cols-3">
+          <div className="grid gap-3 md:grid-cols-4">
             <select className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" value={form.type} onChange={(event) => setForm({ ...form, type: event.target.value })}>
               <option value="lead">Lead</option>
               <option value="prospect">Prospect</option>
@@ -326,7 +347,16 @@ export function AdminContactsClient() {
               <option value="email">Email</option>
               <option value="referral">Referral</option>
             </select>
+            <select className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" value={form.priority} onChange={(event) => setForm({ ...form, priority: event.target.value })}>
+              {priorityOptions.map(([value, label]) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+            </select>
           </div>
+          <label className="grid gap-2 text-sm font-medium text-navy-950 md:max-w-xs">
+            Next follow-up
+            <input className="rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" type="date" value={form.nextFollowUpAt} onChange={(event) => setForm({ ...form, nextFollowUpAt: event.target.value })} />
+          </label>
           <textarea className="min-h-24 rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Workflow issue or pain point" value={form.pain} onChange={(event) => setForm({ ...form, pain: event.target.value })} />
           <textarea className="min-h-24 rounded-xl border border-navy-800/15 bg-cream-50 px-3 py-2 text-sm" placeholder="Private notes" value={form.notes} onChange={(event) => setForm({ ...form, notes: event.target.value })} />
           {duplicateItems.length > 0 ? (

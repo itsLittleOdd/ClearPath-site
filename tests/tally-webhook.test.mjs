@@ -60,6 +60,28 @@ test('tally webhook accepts common payload shapes and readable field titles', ()
   assert.equal(input.notes, 'Imported from Tally submission sub_456.');
 });
 
+test('tally webhook maps the live Me8OxM field IDs when labels are omitted', () => {
+  const input = extractTallyContactInput({
+    eventId: 'evt_live_shape',
+    data: {
+      formId: 'Me8OxM',
+      fields: [
+        { key: 'd01a5f57-b028-4aa6-80dd-4a883478a9ec', value: 'Live Name' },
+        { key: '92624bbd-b678-49a7-8ee7-ee56ccd26197', value: 'Live Business' },
+        { key: '42157cf4-f26f-4a9a-a745-d4650e6e05b0', value: 'LIVE@example.com' },
+        { key: '812bcd69-8197-4b45-b7d5-7e07da704c2a', value: '716-555-0101' },
+        { key: '552e517f-d233-416e-a40d-7493ddc5bd99', value: 'Tally sends field IDs without labels.' },
+      ],
+    },
+  });
+
+  assert.equal(input.name, 'Live Name');
+  assert.equal(input.business, 'Live Business');
+  assert.equal(input.email, 'live@example.com');
+  assert.equal(input.phone, '716-555-0101');
+  assert.equal(input.pain, 'Tally sends field IDs without labels.');
+});
+
 test('tally webhook secret must match the configured secret', () => {
   assert.equal(verifyTallyWebhookSecret({ provided: 'secret-one', configured: 'secret-one' }).ok, true);
   assert.equal(verifyTallyWebhookSecret({ provided: 'wrong', configured: 'secret-one' }).ok, false);

@@ -28,7 +28,7 @@ const bringItems = [
   },
 ];
 
-const workflowCheckPaymentUrl = "https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01";
+const workflowCheckPaymentUrl = "https://buy.stripe.com/8x2cN54xd1dw2m27dl6Vq00";
 
 export function LivingWorkflowCheckHome() {
   const [status, setStatus] = useState("Approval ready");

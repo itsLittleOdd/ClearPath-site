@@ -18,7 +18,7 @@ const heroItems = [
   ["Justin reviews it", "No sales queue. No mystery handoff."],
 ];
 
-const workflowCheckPaymentUrl = "https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01";
+const workflowCheckPaymentUrl = "https://buy.stripe.com/8x2cN54xd1dw2m27dl6Vq00";
 
 const nextSteps = [
   "Buy the Workflow Check or send the workflow first if you are unsure.",

@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/pricing" },
 };
 
-const workflowCheckPaymentUrl = "https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01";
-const supportPaymentUrl = "https://buy.stripe.com/8x2cN54xd1dw2m27dl6Vq00";
+const workflowCheckPaymentUrl = "https://buy.stripe.com/8x2cN54xd1dw2m27dl6Vq00";
+const supportPaymentUrl = "https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01";
 
 const included = [
   "A 45-minute walkthrough with the operator and the team closest to the work",

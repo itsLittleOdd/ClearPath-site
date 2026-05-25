@@ -28,6 +28,8 @@ const bringItems = [
   },
 ];
 
+const workflowCheckPaymentUrl = "https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01";
+
 export function LivingWorkflowCheckHome() {
   const [status, setStatus] = useState("Approval ready");
 
@@ -68,8 +70,8 @@ export function LivingWorkflowCheckHome() {
                 ClearPath reviews one messy workflow, shows where time gets stuck, and gives you a practical next step. If a build makes sense later, the team can use it to eliminate 5-10 hours of repetitive work every week.
               </p>
               <div className="mt-1 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <CtaButton href="/contact" variant="inverted" size="lg">
-                  Start a $395 Workflow Check
+                <CtaButton href={workflowCheckPaymentUrl} external variant="inverted" size="lg">
+                  Buy the $395 Workflow Check
                 </CtaButton>
                 <CtaButton href="#packet" variant="secondary" size="lg" className="border-cream-50/20 bg-cream-50/10 text-cream-50 hover:bg-cream-50/15">
                   See exactly what you get
@@ -128,7 +130,7 @@ export function LivingWorkflowCheckHome() {
 
       <section id="packet" className="bg-[color-mix(in_oklab,var(--color-cream-50)_88%,var(--color-sage-500)_12%)] py-14 md:py-18">
         <Container>
-          <SectionHeader eyebrow="What you get" title="What the $395 Workflow Check includes" body="This is a fixed-scope review of one workflow. You leave with a clear packet you can use, even if you do not build anything with ClearPath afterward." />
+          <SectionHeader eyebrow="What you get" title="What the $395 Workflow Check includes" body="This is a fixed-scope review of one workflow. You get a 45-minute walkthrough, a prepared opportunity packet, and a 60-minute review you can use even if you do not build anything with ClearPath afterward." />
           <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_1fr]">
             <article className="rounded-3xl border border-navy-800/15 bg-cream-50/80 p-6 shadow-xl shadow-navy-950/5 md:p-8" aria-label="Sample Workflow Check packet">
               <div className="mx-auto max-w-xl text-center">
@@ -155,16 +157,16 @@ export function LivingWorkflowCheckHome() {
                 How the $395 check works
               </h2>
               <p className="mt-3 text-base leading-relaxed text-graphite-600">
-                You are paying for a focused working session and a written decision packet, not a vague audit and not a surprise software build.
+                You are paying for two focused calls and a written opportunity packet, not a vague audit and not a surprise software build.
               </p>
               <div className="mt-6 grid gap-4">
-                <ProcessRow number="1" title="Pick one workflow." body="Choose one recurring problem, like customer emails, invoice routing, quote follow-up, intake, approvals, or weekly reporting." />
-                <ProcessRow number="2" title="Walk through it for 45 to 60 minutes." body="We look at how the work arrives, where details live, who reviews it, what gets repeated, and where the owner gets interrupted." />
-                <ProcessRow number="3" title="Get the Workflow Check packet." body="You receive the map, bottleneck notes, approval points, and a recommended first fix in plain English." />
-                <ProcessRow number="4" title="Decide what to do next." body="Use the packet internally, park the idea, or ask ClearPath to quote the first build. The check stands on its own." />
+                <ProcessRow number="1" title="Book a 45-minute walkthrough." body="Choose one recurring problem, like customer emails, invoice routing, quote follow-up, intake, approvals, or weekly reporting." />
+                <ProcessRow number="2" title="Show how it really runs." body="We look at how the work arrives, where details live, who reviews it, what gets repeated, and where the owner gets interrupted." />
+                <ProcessRow number="3" title="Review the opportunity packet together." body="ClearPath prepares the map, bottleneck notes, approval points, and a recommended first fix, then walks through it with you in a 60-minute review." />
+                <ProcessRow number="4" title="Decide what to do next." body="Use the packet internally, bring your team into the conversation, or ask ClearPath to quote the first build. The check stands on its own." />
               </div>
               <div className="mt-5 grid gap-3 rounded-2xl border border-sage-600/20 bg-sage-500/15 p-4 text-sm leading-relaxed text-navy-900">
-                <p className="font-semibold">Included: one workflow review, one working call, one written packet, and one clear recommendation.</p>
+                <p className="font-semibold">Included: one workflow review, a 45-minute walkthrough, a 60-minute review, one written packet, and one clear recommendation.</p>
                 <p>Not included: live automation setup, account changes, customer emails, payment actions, or a full software build.</p>
               </div>
             </article>
@@ -254,8 +256,8 @@ export function LivingWorkflowCheckHome() {
             Best if you already know the workflow slowing the team down. If you are not sure, book a fit call first and talk it through.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <CtaButton href="/contact" variant="primary" size="lg">
-              Start a $395 Workflow Check
+            <CtaButton href={workflowCheckPaymentUrl} external variant="primary" size="lg">
+              Buy the $395 Workflow Check
             </CtaButton>
             <CtaButton href="/contact" variant="secondary" size="lg">
               Talk through the right workflow

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CalComEmbed } from "@/components/CalComEmbed";
 import { Container } from "@/components/Container";
 import { TallyEmbed } from "@/components/TallyEmbed";
+import { CtaButton } from "@/components/ui/cta-button";
 
 export const metadata: Metadata = {
   title: { absolute: "Contact | ClearPath" },
@@ -17,10 +18,12 @@ const heroItems = [
   ["Justin reviews it", "No sales queue. No mystery handoff."],
 ];
 
+const workflowCheckPaymentUrl = "https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01";
+
 const nextSteps = [
-  "Justin reviews the workflow you send.",
-  "If it fits, ClearPath scopes a $395 Workflow Check.",
-  "If it does not fit, you get a plain answer instead of a pitch.",
+  "Buy the Workflow Check or send the workflow first if you are unsure.",
+  "Justin reviews the workflow and books the 45-minute walkthrough.",
+  "ClearPath prepares the opportunity packet and reviews it with you.",
 ];
 
 export default function ContactPage() {
@@ -34,8 +37,16 @@ export default function ContactPage() {
               <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.16em] text-sage-500">Contact</p>
               <h1 className="mt-4 font-display text-[clamp(2.6rem,6vw,4.4rem)] font-semibold leading-[0.96] tracking-[-0.045em] text-balance">Bring one workflow.</h1>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-cream-50/75">
-                Send the workflow that keeps slowing the team down. Justin will review it and help decide whether a $395 Workflow Check is the right next step.
+                Buy the $395 Workflow Check when you are ready to examine one workflow. If you are not sure which workflow to bring, send a note first and Justin will help you pick the right starting point.
               </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <CtaButton href={workflowCheckPaymentUrl} external variant="inverted" size="lg">
+                  Buy the $395 Workflow Check
+                </CtaButton>
+                <a href="#contact-form" className="inline-flex h-12 items-center justify-center rounded-lg border border-cream-50/20 bg-cream-50/10 px-6 font-medium text-cream-50 transition-colors hover:bg-cream-50/15">
+                  Send the workflow first
+                </a>
+              </div>
             </div>
             <div className="grid gap-3">
               {heroItems.map(([title, body]) => (
@@ -59,7 +70,7 @@ export default function ContactPage() {
               </div>
               <h2 className="font-display text-3xl font-semibold tracking-[-0.04em] text-navy-950">Talk through the workflow first.</h2>
               <p className="text-base leading-relaxed text-graphite-600">
-                Use this if you want to talk through the workflow before booking the check. A short conversation is usually enough to decide whether a Workflow Check makes sense.
+                Use this if you want to talk through the workflow before buying the check. A short conversation is usually enough to decide whether a Workflow Check makes sense.
               </p>
               <CalComEmbed calLink="justin-whalen-xpjqtn/45-min-discovery-call" title="Book a fit call with Justin" />
             </div>

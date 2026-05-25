@@ -10,11 +10,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/pricing" },
 };
 
+const workflowCheckPaymentUrl = "https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01";
+const supportPaymentUrl = "https://buy.stripe.com/8x2cN54xd1dw2m27dl6Vq00";
+
 const included = [
-  "One working session with the operator and the team closest to the work",
+  "A 45-minute walkthrough with the operator and the team closest to the work",
   "A written map of how the workflow runs today",
   "Bottleneck notes ranked by what is realistic to fix first",
-  "Human approval points marked clearly",
+  "A 60-minute opportunity review with room for questions",
   "A fixed-scope quote if a build makes sense",
 ];
 
@@ -24,8 +27,10 @@ const paths = [
     price: "$395",
     label: "flat, one-time",
     best: "Best when the workflow is messy and the next step is not clear yet.",
-    desc: "A focused review of one workflow with a written packet and recommendation.",
+    desc: "A focused review of one workflow with two calls, a written opportunity packet, and a recommendation.",
     featured: true,
+    href: workflowCheckPaymentUrl,
+    cta: "Buy the Workflow Check",
   },
   {
     name: "One Workflow Fix",
@@ -48,6 +53,15 @@ const paths = [
     best: "Best when ClearPath owns most of the build, cleanup, testing, docs, and rollout path.",
     desc: "A deeper operating system build around one high-value workflow or workflow family.",
   },
+  {
+    name: "ClearPath Support",
+    price: "$500/mo",
+    label: "monthly support",
+    best: "Best after a Workflow Check or delivered project when the team wants ongoing help.",
+    desc: "Monthly support for workflow improvements, documentation, AI use questions, and light operational guidance.",
+    href: supportPaymentUrl,
+    cta: "Start monthly support",
+  },
 ];
 
 export default function PricingPage() {
@@ -61,10 +75,10 @@ export default function PricingPage() {
               <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.16em] text-sage-500">Pricing</p>
               <h1 className="mt-4 font-display text-[clamp(2.6rem,6vw,4.4rem)] font-semibold leading-[0.96] tracking-[-0.045em] text-balance">Start with a $395 Workflow Check.</h1>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-cream-50/75">
-                Before ClearPath quotes a build, we review one real workflow and give you a written packet: the current path, the bottlenecks, the approval points, and the first fix worth pricing.
+                Before ClearPath quotes a build, we review one real workflow across two calls and give you a written packet: the current path, the bottlenecks, the approval points, and the first fix worth pricing.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <CtaButton href="/contact" variant="inverted" size="lg">Start a $395 Workflow Check</CtaButton>
+                <CtaButton href={workflowCheckPaymentUrl} external variant="inverted" size="lg">Buy the $395 Workflow Check</CtaButton>
                 <CtaButton href="#included" variant="secondary" size="lg" className="border-cream-50/20 bg-cream-50/10 text-cream-50 hover:bg-cream-50/15">See what is included</CtaButton>
               </div>
             </div>
@@ -88,7 +102,7 @@ export default function PricingPage() {
             <div>
               <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-600">What the check includes</p>
               <h2 className="mt-3 font-display text-[clamp(2.2rem,5vw,3.4rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">You are buying clarity before build cost.</h2>
-              <p className="mt-4 text-lg leading-relaxed text-graphite-600">The Workflow Check is not a surprise build. It is a paid working session and decision packet.</p>
+              <p className="mt-4 text-lg leading-relaxed text-graphite-600">The Workflow Check is not a surprise build. It is a paid walkthrough, a prepared opportunity packet, and a review call.</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {included.map((item, index) => (
@@ -117,6 +131,13 @@ export default function PricingPage() {
                 <strong className="mt-4 block font-display text-3xl font-semibold tracking-[-0.04em] text-navy-950">{path.price}</strong>
                 <p className="mt-4 text-sm leading-relaxed text-graphite-600">{path.desc}</p>
                 <p className="mt-auto border-t border-navy-800/10 pt-4 text-sm leading-relaxed text-graphite-600"><b className="text-navy-900">Best for:</b> {path.best}</p>
+                {path.href ? (
+                  <div className="mt-5">
+                    <CtaButton href={path.href} external variant={path.featured ? "primary" : "secondary"} size="sm">
+                      {path.cta}
+                    </CtaButton>
+                  </div>
+                ) : null}
               </article>
             ))}
           </div>
@@ -129,7 +150,7 @@ export default function PricingPage() {
             <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-500">Pricing note</p>
             <h2 className="mt-3 font-display text-[clamp(2.1rem,5vw,3.25rem)] font-semibold leading-none tracking-[-0.04em]">We quote the build after the workflow is mapped.</h2>
             <p className="mt-4 text-lg leading-relaxed text-cream-50/72">That protects both sides. The business gets a useful packet first, and ClearPath prices the fix based on real workflow shape instead of guessing from a sales call.</p>
-            <div className="mt-8"><CtaButton href="/contact" variant="inverted" size="lg">Request a Workflow Check</CtaButton></div>
+            <div className="mt-8"><CtaButton href={workflowCheckPaymentUrl} external variant="inverted" size="lg">Buy the Workflow Check</CtaButton></div>
           </div>
         </Container>
       </section>

@@ -35,9 +35,9 @@ export type BrandColor = keyof typeof BRAND;
 export const SITE = {
   name: "ClearPath",
   shortName: "ClearPath",
-  tagline: "Capture how the work actually gets done.",
+  tagline: "Bring us the messy work. We will find the first clean fix.",
   description:
-    "Practical workflow, knowledge capture, and AI-assisted systems for business teams. ClearPath helps operators document expert judgment, clean up repetitive workflows, and build AI-assisted tools the team can use.",
+    "Practical support for business owners dealing with stuck requests, scattered information, repetitive tasks, and messy handoffs. ClearPath helps organize the work, prepare small fixes, and build only when the next step is clear.",
 
   url: "https://clearpathwv.com",
 
@@ -61,7 +61,7 @@ export const SITE = {
   twitterHandle: "TBD",
 
   // Canonical primary CTA label used in metadata + structured data.
-  primaryCtaLabel: "Request a Workflow Check",
+  primaryCtaLabel: "Start ClearPath Support",
 } as const;
 
 export type SiteConfig = typeof SITE;

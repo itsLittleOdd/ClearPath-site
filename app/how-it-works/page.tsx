@@ -62,7 +62,7 @@ export default function HowItWorksPage() {
                 ClearPath starts with one workflow that is already slowing the team down. We map how it runs today, name the bottlenecks, mark the approval points, and give you a practical next step before any build is scoped.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <CtaButton href="/contact" variant="inverted" size="lg">Start a $395 Workflow Check</CtaButton>
+                <CtaButton href="/pricing" variant="inverted" size="lg">Start ClearPath Support</CtaButton>
                 <CtaButton href="#check" variant="secondary" size="lg" className="border-cream-50/20 bg-cream-50/10 text-cream-50 hover:bg-cream-50/15">See the process</CtaButton>
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function HowItWorksPage() {
       <section className="bg-cream-50 py-16 md:py-20">
         <Container>
           <div className="grid gap-5 md:grid-cols-2">
-            <ApprovalCard title="AI can help with" items={["Reading and summarizing messages", "Pulling out key details", "Drafting routine replies", "Preparing records for Excel, SharePoint, or folders"]} />
+            <ApprovalCard title="ClearPath can help with" items={["Reading and summarizing messages", "Pulling out key details", "Drafting routine replies", "Preparing records for Excel, SharePoint, or folders"]} />
             <ApprovalCard title="People approve" items={["Pricing exceptions", "Customer promises", "Payment or vendor decisions", "Anything that needs judgment"]} />
           </div>
         </Container>
@@ -126,9 +126,9 @@ export default function HowItWorksPage() {
 
       <section className="bg-sage-500/10 py-16 text-center md:py-20">
         <Container>
-          <h2 className="font-display text-[clamp(2.2rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">Ready to map the first workflow?</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-graphite-600">Bring the email thread, spreadsheet, SOP, or rough explanation. The Workflow Check turns it into a packet you can act on.</p>
-          <div className="mt-8 flex justify-center"><CtaButton href="/contact" variant="primary" size="lg">Start a $395 Workflow Check</CtaButton></div>
+          <h2 className="font-display text-[clamp(2.2rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">Ready to clean up the first messy process?</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-graphite-600">Bring the email thread, spreadsheet, SOP, or rough explanation. Start monthly support, or use the Workflow Check when you want it mapped first.</p>
+          <div className="mt-8 flex justify-center"><CtaButton href="/pricing" variant="primary" size="lg">See pricing options</CtaButton></div>
         </Container>
       </section>
     </main>

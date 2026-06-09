@@ -112,7 +112,7 @@ export function HeroIllustration({ className }: HeroIllustrationProps) {
             fill="var(--color-sage-500)"
             letterSpacing="2"
           >
-            AI AUDIT
+            WORK CHECK
           </text>
 
           {/* Right header label */}
@@ -139,7 +139,7 @@ export function HeroIllustration({ className }: HeroIllustrationProps) {
             fill="var(--color-sage-600)"
             letterSpacing="2"
           >
-            YOUR WEEK, AUDITED
+            YOUR WEEK, CLEARED
           </text>
 
           {/* Section 1 */}

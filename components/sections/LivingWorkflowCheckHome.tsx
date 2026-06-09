@@ -7,16 +7,16 @@ import { Container } from "@/components/Container";
 import { CtaButton } from "@/components/ui/cta-button";
 
 const statusStates = [
-  { text: "Inbox received", delay: 0 },
-  { text: "Details pulled", delay: 1100 },
-  { text: "Draft prepared", delay: 2000 },
-  { text: "Approval ready", delay: 2850 },
+  { text: "Request received", delay: 0 },
+  { text: "Details organized", delay: 1100 },
+  { text: "Next step drafted", delay: 2000 },
+  { text: "Ready for review", delay: 2850 },
 ];
 
 const bringItems = [
   {
     title: "A recurring email thread",
-    body: "The request pattern your team keeps cleaning up by hand.",
+    body: "The request pattern your team keeps sorting, answering, and filing by hand.",
   },
   {
     title: "A spreadsheet or SOP",
@@ -29,9 +29,10 @@ const bringItems = [
 ];
 
 const workflowCheckPaymentUrl = "https://buy.stripe.com/8x2cN54xd1dw2m27dl6Vq00";
+const supportPaymentUrl = "https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01";
 
 export function LivingWorkflowCheckHome() {
-  const [status, setStatus] = useState("Approval ready");
+  const [status, setStatus] = useState("Ready for review");
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -61,26 +62,26 @@ export function LivingWorkflowCheckHome() {
           <div className="grid gap-8 md:grid-cols-12 md:items-center md:gap-10">
             <div className="flex flex-col gap-4 md:col-span-7">
               <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.16em] text-sage-500">
-                One workflow. One clear next step.
+                For business owners buried in tedious work
               </p>
               <h1 className="max-w-3xl font-display text-[clamp(2.5rem,6vw,4.25rem)] font-semibold leading-[0.96] tracking-[-0.045em] text-balance text-cream-50">
-                Capture how the work actually gets done.
+                Bring us the messy work. We will find the first clean fix.
               </h1>
               <p className="max-w-2xl text-base leading-relaxed text-pretty text-cream-50/78 md:text-lg">
-                ClearPath reviews one messy workflow, shows where time gets stuck, and gives you a practical next step. If a build makes sense later, the team can use it to eliminate 5-10 hours of repetitive work every week.
+                ClearPath helps with the requests, approvals, follow-up, documents, and small fixes that keep pulling owners back into the weeds. Start with a $395 Workflow Check, or use monthly support when you already want help throughout the month.
               </p>
               <div className="mt-1 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <CtaButton href={workflowCheckPaymentUrl} external variant="inverted" size="lg">
-                  Buy the $395 Workflow Check
+                <CtaButton href={supportPaymentUrl} external variant="inverted" size="lg">
+                  Start $500/mo Support
                 </CtaButton>
-                <CtaButton href="#packet" variant="secondary" size="lg" className="border-cream-50/20 bg-cream-50/10 text-cream-50 hover:bg-cream-50/15">
-                  See exactly what you get
+                <CtaButton href={workflowCheckPaymentUrl} external variant="secondary" size="lg" className="border-cream-50/20 bg-cream-50/10 text-cream-50 hover:bg-cream-50/15">
+                  Buy the $395 Check
                 </CtaButton>
               </div>
               <div className="grid gap-3 pt-2 sm:grid-cols-3">
-                <HeroStat value="$395" label="fixed-scope Workflow Check" />
-                <HeroStat value="1" label="workflow reviewed at a time" />
-                <HeroStat value="Human" label="approval stays visible" />
+                <HeroStat value="$500/mo" label="ClearPath Support" />
+                <HeroStat value="$395" label="Workflow Check" />
+                <HeroStat value="People" label="stay in control" />
               </div>
             </div>
 
@@ -89,10 +90,10 @@ export function LivingWorkflowCheckHome() {
                 <div className="mb-4 flex items-center justify-between gap-4">
                   <div className="grid gap-1">
                     <span className="font-display text-[0.66rem] uppercase tracking-[0.14em] text-cream-50/60">
-                      ClearPath audit
+                      ClearPath support
                     </span>
                     <strong className="font-display text-base tracking-[-0.03em] text-cream-50">
-                      Your workflow, checked
+                      Tedious work, organized
                     </strong>
                   </div>
                   <div className="min-w-28 rounded-full border border-sage-500/50 bg-sage-500/10 px-3 py-2 text-center text-[0.7rem] text-cream-50">
@@ -127,10 +128,57 @@ export function LivingWorkflowCheckHome() {
           </div>
         </Container>
       </section>
+      <section id="start" className="bg-cream-50 py-12 md:py-16">
+        <Container>
+          <div className="grid gap-5 lg:grid-cols-2">
+            <article className="rounded-3xl border border-sage-500/35 bg-sage-500/12 p-6 shadow-xl shadow-navy-950/5 md:p-8">
+              <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.13em] text-sage-600">
+                Monthly support
+              </p>
+              <h2 className="mt-3 font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-navy-950">
+                ClearPath Support
+              </h2>
+              <strong className="mt-4 block font-display text-4xl font-semibold tracking-[-0.04em] text-navy-950">
+                $500/month
+              </strong>
+              <p className="mt-4 text-base leading-relaxed text-graphite-600 md:text-lg">
+                Access to ClearPath throughout the month for stuck tasks, documentation, troubleshooting, light builds, and small improvements that keep business work moving.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-graphite-600">
+                Larger custom projects are quoted separately before work begins.
+              </p>
+              <div className="mt-6">
+                <CtaButton href={supportPaymentUrl} external variant="primary" size="lg">Start monthly support</CtaButton>
+              </div>
+            </article>
+
+            <article className="rounded-3xl border border-navy-800/12 bg-white/55 p-6 shadow-xl shadow-navy-950/5 md:p-8">
+              <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.13em] text-sage-600">
+                One-time clarity
+              </p>
+              <h2 className="mt-3 font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-navy-950">
+                Workflow Check
+              </h2>
+              <strong className="mt-4 block font-display text-4xl font-semibold tracking-[-0.04em] text-navy-950">
+                $395
+              </strong>
+              <p className="mt-4 text-base leading-relaxed text-graphite-600 md:text-lg">
+                A fixed-scope review of one messy process. We map how it runs, name the bottlenecks, and give you the practical next step.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-graphite-600">
+                Useful when you want the process checked before deciding what to build.
+              </p>
+              <div className="mt-6">
+                <CtaButton href={workflowCheckPaymentUrl} external variant="secondary" size="lg">Buy the Workflow Check</CtaButton>
+              </div>
+            </article>
+          </div>
+        </Container>
+      </section>
 
       <section id="packet" className="bg-[color-mix(in_oklab,var(--color-cream-50)_88%,var(--color-sage-500)_12%)] py-14 md:py-18">
         <Container>
-          <SectionHeader eyebrow="What you get" title="What the $395 Workflow Check includes" body="This is a fixed-scope review of one workflow. You get a 45-minute walkthrough, a prepared opportunity packet, and a 60-minute review you can use even if you do not build anything with ClearPath afterward." />
+          <SectionHeader eyebrow="What you get" title="What the $395 Workflow Check includes" body="This is a fixed-scope review of one process. You get a 45-minute walkthrough, a prepared opportunity packet, and a 60-minute review you can use even if you do not build anything with ClearPath afterward." />
           <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_1fr]">
             <article className="rounded-3xl border border-navy-800/15 bg-cream-50/80 p-6 shadow-xl shadow-navy-950/5 md:p-8" aria-label="Sample Workflow Check packet">
               <div className="mx-auto max-w-xl text-center">
@@ -138,17 +186,17 @@ export function LivingWorkflowCheckHome() {
                   Sample Workflow Check packet
                 </p>
                 <h2 className="mt-3 font-display text-3xl font-semibold leading-none tracking-[-0.04em] text-navy-950 md:text-4xl">
-                  One workflow, mapped before you spend more
+                  One process, mapped before you spend more
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-graphite-600 md:text-base">
                   The packet is short on purpose. It names the problem, shows the path, and tells you what the first useful fix should be.
                 </p>
               </div>
               <div className="mx-auto mt-6 grid max-w-2xl gap-3 sm:grid-cols-2">
-                <PacketCard number="01" title="Workflow map" body="How the work comes in, who touches it, where it waits, and what happens next." />
+                <PacketCard number="01" title="Process map" body="How the work comes in, who touches it, where it waits, and what happens next." />
                 <PacketCard number="02" title="Bottleneck notes" body="The top friction points ranked by impact and how realistic they are to fix first." />
                 <PacketCard number="03" title="Approval points" body="The places where a person should still review the response, routing, or decision." />
-                <PacketCard number="04" title="Next step" body="A plain recommendation and likely build range if the workflow is worth cleaning up." />
+                <PacketCard number="04" title="Next step" body="A plain recommendation and likely build range if the process is worth cleaning up." />
               </div>
             </article>
 
@@ -166,7 +214,7 @@ export function LivingWorkflowCheckHome() {
                 <ProcessRow number="4" title="Decide what to do next." body="Use the packet internally, bring your team into the conversation, or ask ClearPath to quote the first build. The check stands on its own." />
               </div>
               <div className="mt-5 grid gap-3 rounded-2xl border border-sage-600/20 bg-sage-500/15 p-4 text-sm leading-relaxed text-navy-900">
-                <p className="font-semibold">Included: one workflow review, a 45-minute walkthrough, a 60-minute review, one written packet, and one clear recommendation.</p>
+                <p className="font-semibold">Included: one process review, a 45-minute walkthrough, a 60-minute review, one written packet, and one clear recommendation.</p>
                 <p>Not included: live automation setup, account changes, customer emails, payment actions, or a full software build.</p>
               </div>
             </article>
@@ -176,7 +224,7 @@ export function LivingWorkflowCheckHome() {
 
       <section id="example" className="bg-navy-950 py-16 text-cream-50 md:py-20">
         <Container>
-          <SectionHeader dark eyebrow="Example workflow" title="A Microsoft email comes in. The team gets a cleaner path." body="This is the type of workflow ClearPath can map during the $395 check. The build would happen later only if the scope makes sense." />
+          <SectionHeader dark eyebrow="Example tedious task" title="A customer email comes in. The team gets a cleaner path." body="This is the type of recurring work ClearPath can clean up during support or map during a $395 check. A larger build happens later only if the scope makes sense." />
           <div className="mt-9 grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
             <article className="rounded-3xl border border-cream-50/10 bg-cream-50/[0.045] p-5 md:p-6">
               <div className="mb-4 flex items-center justify-between gap-4 border-b border-cream-50/10 pb-4">
@@ -187,7 +235,7 @@ export function LivingWorkflowCheckHome() {
                 <span className="rounded-full bg-sage-500/15 px-3 py-1 text-xs text-sage-500">New request</span>
               </div>
               <div className="grid gap-3">
-                <EmailLine from="North Ridge Dental" subject="Need quote for new intake workflow" active />
+                <EmailLine from="North Ridge Dental" subject="Need quote for new intake process" active />
                 <EmailLine from="Vendor AP" subject="Invoice missing approval" />
                 <EmailLine from="Operations" subject="Weekly report follow-up" />
               </div>
@@ -201,7 +249,7 @@ export function LivingWorkflowCheckHome() {
 
             <article className="rounded-3xl border border-sage-500/20 bg-cream-50/[0.055] p-5 md:p-6">
               <div className="grid gap-3 md:grid-cols-2">
-                <DemoStep number="1" title="AI reads the email" body="Pulls out sender, request type, missing details, deadline, and likely owner." />
+                <DemoStep number="1" title="Details are pulled out" body="Sender, request type, missing details, deadline, and likely owner are organized." />
                 <DemoStep number="2" title="Draft response is prepared" body="Creates a reply for review. Nothing gets sent until a person approves it." />
                 <DemoStep number="3" title="Record is filed" body="Adds the item to Excel, a SharePoint list, or the team folder with the right labels." />
                 <DemoStep number="4" title="Approval stays visible" body="Exceptions, pricing, promises, and payment-related steps wait for human review." />
@@ -220,9 +268,9 @@ export function LivingWorkflowCheckHome() {
 
       <section id="approval" className="bg-[color-mix(in_oklab,var(--color-cream-50)_90%,var(--color-navy-800)_10%)] py-16 md:py-20">
         <Container>
-          <SectionHeader eyebrow="Where AI fits" title="AI helps with the repeatable parts. People keep the judgment." />
+          <SectionHeader eyebrow="How support helps" title="The repeatable parts get prepared. People keep the judgment." />
           <div className="mt-10 grid gap-5 md:grid-cols-2">
-            <ApprovalCard title="AI can help" items={["Read and summarize incoming messages", "Pull out key details", "Draft routine replies", "Prepare records for Excel, SharePoint, or folders"]} />
+            <ApprovalCard title="ClearPath can help" items={["Read and summarize incoming messages", "Pull out key details", "Draft routine replies", "Prepare records for Excel, SharePoint, or folders"]} />
             <ApprovalCard title="Humans approve" items={["Pricing exceptions", "Customer promises", "Vendor or payment decisions", "Anything that needs judgment"]} />
           </div>
         </Container>
@@ -250,17 +298,17 @@ export function LivingWorkflowCheckHome() {
             Start small
           </p>
           <h2 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">
-            Bring one workflow.
+            Bring one messy process.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-graphite-600">
-            Best if you already know the workflow slowing the team down. If you are not sure, book a fit call first and talk it through.
+            Best if you already know what is slowing the team down. If you want ongoing help, start ClearPath Support. If you want one process checked first, buy the Workflow Check.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <CtaButton href={workflowCheckPaymentUrl} external variant="primary" size="lg">
-              Buy the $395 Workflow Check
+            <CtaButton href={supportPaymentUrl} external variant="primary" size="lg">
+              Start ClearPath Support
             </CtaButton>
-            <CtaButton href="/contact" variant="secondary" size="lg">
-              Talk through the right workflow
+            <CtaButton href={workflowCheckPaymentUrl} external variant="secondary" size="lg">
+              Buy the Workflow Check
             </CtaButton>
           </div>
           <div className="mt-10">

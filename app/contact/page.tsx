@@ -8,22 +8,22 @@ import { CtaButton } from "@/components/ui/cta-button";
 export const metadata: Metadata = {
   title: { absolute: "Contact | ClearPath" },
   description:
-    "Bring one workflow to ClearPath. Book a fit call or send the workflow that keeps slowing the team down.",
+    "Start ClearPath Support, book a fit call, or send the messy work that keeps slowing the team down.",
   alternates: { canonical: "/contact" },
 };
 
 const heroItems = [
-  ["One workflow", "Bring the workflow slowing the team down."],
-  ["Fit call", "Talk through whether a Workflow Check makes sense."],
+  ["Monthly support", "Start with access for stuck tasks and small fixes."],
+  ["Fit call", "Talk through whether support or a Workflow Check makes sense."],
   ["Justin reviews it", "No sales queue. No mystery handoff."],
 ];
 
-const workflowCheckPaymentUrl = "https://buy.stripe.com/8x2cN54xd1dw2m27dl6Vq00";
+const supportPaymentUrl = "https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01";
 
 const nextSteps = [
-  "Buy the Workflow Check or send the workflow first if you are unsure.",
-  "Justin reviews the workflow and books the 45-minute walkthrough.",
-  "ClearPath prepares the opportunity packet and reviews it with you.",
+  "Start support, buy the Workflow Check, or send the messy work first if you are unsure.",
+  "Justin reviews the work and helps choose the right first step.",
+  "ClearPath either supports the small fixes monthly or prepares the Workflow Check packet for review.",
 ];
 
 export default function ContactPage() {
@@ -35,16 +35,16 @@ export default function ContactPage() {
           <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
             <div className="max-w-3xl">
               <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.16em] text-sage-500">Contact</p>
-              <h1 className="mt-4 font-display text-[clamp(2.6rem,6vw,4.4rem)] font-semibold leading-[0.96] tracking-[-0.045em] text-balance">Bring one workflow.</h1>
+              <h1 className="mt-4 font-display text-[clamp(2.6rem,6vw,4.4rem)] font-semibold leading-[0.96] tracking-[-0.045em] text-balance">Bring the messy work.</h1>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-cream-50/75">
-                Buy the $395 Workflow Check when you are ready to examine one workflow. If you are not sure which workflow to bring, send a note first and Justin will help you pick the right starting point.
+                Start ClearPath Support when you want monthly help with stuck tasks, small fixes, documentation, and light builds. If you want one process mapped first, the $395 Workflow Check is still available.
               </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <CtaButton href={workflowCheckPaymentUrl} external variant="inverted" size="lg">
-                  Buy the $395 Workflow Check
+                <CtaButton href={supportPaymentUrl} external variant="inverted" size="lg">
+                  Start $500/mo Support
                 </CtaButton>
                 <a href="#contact-form" className="inline-flex h-12 items-center justify-center rounded-lg border border-cream-50/20 bg-cream-50/10 px-6 font-medium text-cream-50 transition-colors hover:bg-cream-50/15">
-                  Send the workflow first
+                  Send the messy work first
                 </a>
               </div>
             </div>
@@ -68,9 +68,9 @@ export default function ContactPage() {
                 <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500" />
                 <span className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-600">Book a fit call</span>
               </div>
-              <h2 className="font-display text-3xl font-semibold tracking-[-0.04em] text-navy-950">Talk through the workflow first.</h2>
+              <h2 className="font-display text-3xl font-semibold tracking-[-0.04em] text-navy-950">Talk through the work first.</h2>
               <p className="text-base leading-relaxed text-graphite-600">
-                Use this if you want to talk through the workflow before buying the check. A short conversation is usually enough to decide whether a Workflow Check makes sense.
+                Use this if you want to talk through the work before starting support or buying the check. A short conversation is usually enough to decide the right first step.
               </p>
               <CalComEmbed calLink="justin-whalen-xpjqtn/45-min-discovery-call" title="Book a fit call with Justin" />
             </div>
@@ -78,7 +78,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-4 rounded-3xl border border-navy-800/12 bg-cream-50/85 p-6 shadow-xl shadow-navy-950/5 md:p-8">
               <div className="flex items-center gap-2">
                 <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500" />
-                <span className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-600">Send the workflow</span>
+                <span className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-600">Send the messy work</span>
               </div>
               <h2 id="contact-form" className="font-display text-3xl font-semibold tracking-[-0.04em] text-navy-950">Tell us what is getting stuck.</h2>
               <p className="text-base leading-relaxed text-graphite-600">
@@ -97,7 +97,7 @@ export default function ContactPage() {
             <div>
               <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-500">What happens next</p>
               <h2 className="mt-3 font-display text-[clamp(2.2rem,5vw,3.4rem)] font-semibold leading-none tracking-[-0.04em]">No mystery funnel.</h2>
-              <p className="mt-4 text-lg leading-relaxed text-cream-50/72">The goal is to find out whether one focused Workflow Check is useful. If it is not, we say that plainly.</p>
+              <p className="mt-4 text-lg leading-relaxed text-cream-50/72">The goal is to find the smallest useful first step. That may be monthly support, a Workflow Check, or a larger project quoted separately later.</p>
             </div>
             <ol className="grid gap-3">
               {nextSteps.map((step, index) => (
@@ -116,7 +116,7 @@ export default function ContactPage() {
           <div className="flex flex-col gap-4 rounded-3xl border border-navy-800/12 bg-sage-500/10 p-6 md:flex-row md:items-center md:justify-between md:p-8">
             <div className="md:max-w-xl">
               <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-navy-950">Prefer email?</h2>
-              <p className="mt-2 text-base leading-relaxed text-graphite-600">Send the workflow and any messy context. A screenshot, email thread, or rough explanation is enough to start.</p>
+              <p className="mt-2 text-base leading-relaxed text-graphite-600">Send the messy context. A screenshot, email thread, or rough explanation is enough to start.</p>
             </div>
             <a href="mailto:JWhalen@ClearPathWV.com" className="inline-flex w-fit items-center gap-2 rounded-lg border border-sage-500/40 bg-sage-500/10 px-4 py-2 text-sm font-medium text-sage-600 transition-colors hover:bg-sage-500/20">
               <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500" />

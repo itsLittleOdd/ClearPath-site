@@ -4,9 +4,8 @@
  * Single source of truth for marketing copy. Page components import these
  * named blocks and render them.
  *
- * Voice: operator-grade, plain, concrete. We capture how the work actually
- * gets done, clean up repetitive workflows, and build AI-assisted tools the
- * team can use.
+ * Voice: operator-grade, plain, concrete. We help business owners clear
+ * stuck requests, scattered information, repetitive tasks, and messy handoffs.
  *
  * Hard rules:
  *   - No named clients on the public site. All engagement stories framed as
@@ -14,43 +13,42 @@
  *   - No payment links, no entity/billing language.
  *   - The disclaimer below must appear byte-for-byte in the rendered footer:
  *     "This is AI-assisted analysis + Justin's human review and customization."
- *   - Public prices reflect the 2026-05-11 pricing memo:
- *     Workflow Check $395 / One Workflow Fix from $4,500 /
- *     Workflow Build from $6,500 / Done-For-You System from $12,500 /
- *     Support exists but no public price.
+ *   - Public entry prices reflect the current support pilot:
+ *     Workflow Check $395 / ClearPath Support $500 per month.
+ *     Larger builds are quoted separately after scope is clear.
  */
 
 export const SITE_POSITIONING =
-  "ClearPath helps business leaders capture how work actually gets done, clean up repetitive workflows, and build AI-assisted tools their teams can use.";
+  "ClearPath helps business owners clear stuck requests, scattered information, repetitive tasks, and messy handoffs without turning the business upside down.";
 
 export const HOME_COPY = {
   hero: {
     eyebrow: "ClearPath",
-    headline: "Capture how the work actually gets done.",
+    headline: "Bring us the messy work. We will find the first clean fix.",
     // Substring of `headline` to highlight visually. Must be a literal slice of
     // `headline` so the rendered DOM text stays byte-for-byte equal.
-    headlineAccent: "actually gets done",
+    headlineAccent: "first clean fix",
     subhead:
-      "ClearPath helps business leaders document expert judgment, clean up repetitive workflows, and build AI-assisted tools the team can use without turning the business upside down.",
-    primaryCta: "Request a Workflow Check",
-    secondaryCta: "Book a fit call",
+      "ClearPath helps business owners organize stuck requests, follow-up, approvals, documents, and small fixes without turning the business upside down.",
+    primaryCta: "Start ClearPath Support",
+    secondaryCta: "Buy the Workflow Check",
     // Trust strip rendered directly under the CTAs.
     trust: [
+      "$500/month ClearPath Support",
       "$395 fixed-scope Workflow Check",
-      "One workflow at a time, scoped before build",
-      "Human approval stays visible where it matters",
+      "People stay in control where it matters",
     ],
   },
   trustPoints: {
     eyebrow: "Why operators pick ClearPath",
-    heading: "Built around the workflow, not the technology.",
-    body: "Most AI projects fail because nobody mapped the work first. ClearPath starts where the work lives: invoices stuck in someone's inbox, the survey nobody has time to redo, and the operator knowledge that lives in one person's head. Then we build from there.",
+    heading: "Built around the tedious work, not the technology.",
+    body: "Most improvement projects stall because nobody mapped the work first. ClearPath starts where the work lives: requests stuck in someone's inbox, follow-up nobody has time to track, and operator knowledge that lives in one person's head. Then we build from there.",
   },
   servicesSection: {
     eyebrow: "What ClearPath builds",
-    heading: "Five things, scoped one at a time.",
+    heading: "Five ways we help, scoped one at a time.",
     intro:
-      "Every engagement starts with one workflow. We map it, fix it, and hand it back to the team. Then we look at the next one.",
+      "Every engagement starts with one messy process or support need. We map it, fix it, and hand it back to the team. Then we look at the next one.",
     cards: [
       {
         title: "Knowledge capture",
@@ -78,7 +76,7 @@ export const HOME_COPY = {
   },
   useCasesSection: {
     eyebrow: "Concrete examples",
-    heading: "Workflows we build first.",
+    heading: "Tedious work we clean up first.",
     intro:
       "The starter list: the bottlenecks operators ask about most. Each one is a fixed-scope first engagement.",
     cards: [
@@ -119,7 +117,7 @@ export const HOME_COPY = {
   },
   process: {
     eyebrow: "Process",
-    heading: "Five steps. One workflow at a time.",
+    heading: "Five steps. One messy process at a time.",
     steps: [
       {
         title: "Discover",
@@ -144,23 +142,23 @@ export const HOME_COPY = {
     ],
   },
   finalCta: {
-    heading: "Bring one workflow.",
-    body: "One workflow that keeps slowing the team down. We'll scope a Workflow Check around it. Fixed price, fixed scope, no surprises.",
-    cta: "Request a Workflow Check",
+    heading: "Bring one messy process.",
+    body: "One stuck task, handoff, or follow-up path that keeps slowing the team down. Start monthly support, or use a Workflow Check when you want it mapped first.",
+    cta: "Start ClearPath Support",
   },
 };
 
 // Stats strip. Pulled from copy.ts so the source of truth stays here, not in
 // the SocialProof component. Order matters: visual hierarchy left-to-right.
 export const HOME_STATS = [
-  { value: "$395", label: "fixed-scope Workflow Check" },
-  { value: "1", label: "workflow at a time" },
+  { value: "$500/mo", label: "ClearPath Support" },
+  { value: "$395", label: "Workflow Check" },
   { value: "5", label: "step process, owner-led" },
 ] as const;
 
 export const HOW_IT_WORKS_COPY = {
   eyebrow: "How it works",
-  heading: "We map one workflow before we touch the tools.",
+  heading: "We map the messy work before we touch the tools.",
   intro:
     "ClearPath engagements start with the work, not the software. Here's the path from first call to handoff.",
   steps: [
@@ -172,7 +170,7 @@ export const HOW_IT_WORKS_COPY = {
     {
       number: "2",
       title: "Map the current path.",
-      body: "Walk the workflow as it really runs, including the workarounds. The point isn't to design the perfect process. The point is to see the one we have, honestly, before we change anything.",
+      body: "Walk the process as it really runs, including the workarounds. The point is not to design the perfect process. The point is to see the one we have, honestly, before we change anything.",
     },
     {
       number: "3",
@@ -182,12 +180,12 @@ export const HOW_IT_WORKS_COPY = {
     {
       number: "4",
       title: "Build with approved tools first.",
-      body: "We build inside the tools the team already pays for whenever the workflow allows. New tools only when the use case genuinely calls for them.",
+      body: "We build inside the tools the team already pays for whenever the process allows. New tools only when the use case genuinely calls for them.",
     },
     {
       number: "5",
       title: "Handoff, train, and review.",
-      body: "Documented in plain language, demoed to the team, owned internally. ClearPath leaves with a clear note on what to watch and when the next workflow is worth touching.",
+      body: "Documented in plain language, demoed to the team, owned internally. ClearPath leaves with a clear note on what to watch and when the next process is worth touching.",
     },
   ],
   humanApprovalNote: {
@@ -195,9 +193,9 @@ export const HOW_IT_WORKS_COPY = {
     body: "We don't build workflows that quietly make decisions a human should be making. Where judgment matters, like pricing exceptions, customer escalations, approvals over a threshold. The owner or operator sees the call before it goes out.",
   },
   cta: {
-    heading: "Ready to map one workflow?",
-    body: "Start with a Workflow Check. Fixed scope, fixed price, no commitment to anything past it.",
-    button: "Request a Workflow Check",
+    heading: "Ready to clean up one messy process?",
+    body: "Start with monthly support or a Workflow Check. Bigger builds are quoted separately before work begins.",
+    button: "See pricing options",
   },
 };
 
@@ -241,8 +239,8 @@ export const WHO_ITS_FOR_COPY = {
   },
   cta: {
     heading: "Sounds like your situation?",
-    body: "Bring one workflow. We'll scope a Workflow Check around it.",
-    button: "Request a Workflow Check",
+    body: "Bring the stuck requests, follow-up, documents, or handoffs that keep slowing the team down. We will name the right first step.",
+    button: "See pricing options",
   },
 };
 
@@ -266,7 +264,7 @@ export const SERVICES_COPY = {
         "One specific bottleneck, like invoice routing, intake triage, follow-up, has a clear shape and a willing owner.",
       buyerGets:
         "The workflow rebuilt end-to-end. Documented, demoed, handed off. Human approval kept visible where it matters.",
-      firstStep: "Scoped on the Workflow Check. Engagements typically start from $4,500.",
+      firstStep: "Quoted separately after the scope is clear.",
     },
     {
       title: "Knowledge Capture System",
@@ -290,7 +288,7 @@ export const SERVICES_COPY = {
         "Things that need a human approval are stuck. Things that don't are getting one anyway.",
       buyerGets:
         "An approval queue that surfaces the calls that need judgment, automates the ones that don't, and gives the owner a visible audit trail.",
-      firstStep: "Sized as a Workflow Build. Engagements typically start from $6,500.",
+      firstStep: "Quoted separately after the scope is clear.",
     },
     {
       title: "Reporting / Owner Brief",
@@ -302,13 +300,13 @@ export const SERVICES_COPY = {
     },
   ],
   supportNote: {
-    heading: "After the build.",
-    body: "Ongoing support is available for clients with a delivered ClearPath workflow. Scoped to fit. Pricing is set on the call so it matches actual support load. Mention it if you want it included in the engagement quote.",
+    heading: "Monthly support.",
+    body: "ClearPath Support is available at $500 per month for practical business help, small fixes, documentation, light builds, and keeping work organized. Larger custom projects are quoted separately before work begins.",
   },
   cta: {
     heading: "Not sure which one fits?",
-    body: "Bring the workflow that's slowing you down. We'll name the right service on the Workflow Check.",
-    button: "Request a Workflow Check",
+    body: "Bring the tedious work that is slowing you down. Start monthly support, or use the Workflow Check when you want it mapped first.",
+    button: "See pricing options",
   },
 };
 
@@ -361,8 +359,8 @@ export const USE_CASES_COPY = {
   ],
   cta: {
     heading: "See one that fits a real bottleneck?",
-    body: "We'll scope a Workflow Check around it. Fixed price, fixed scope, no commitment past it.",
-    button: "Request a Workflow Check",
+    body: "Start monthly support, or use the Workflow Check when you want one process mapped first.",
+    button: "See pricing options",
   },
 };
 
@@ -374,12 +372,12 @@ export const ABOUT_COPY = {
   bio: [
     "Justin spent his first decade on operations: kitchen, bar, lesson programs, scheduling, the parts of the business that run on tribal knowledge and recovery from yesterday's mistakes. He learned what an operator actually wants from a tool, and what they refuse to use even when it's well-built.",
     "The first internal tools came out of that work: a knowledge assistant so a new director could ramp without burning instructors' time, a booking surface that fixed a real bottleneck the official system couldn't, an operations dashboard built around how the team actually planned a week. None of them looked like enterprise software. All of them got used.",
-    "ClearPath is the same instinct, scoped as a service. Sit with operators, capture how the work actually gets done, build AI-assisted tools the team will use, and leave the workflow documented enough that it keeps running after the engagement closes.",
+    "ClearPath is the same instinct, scoped as a service. Sit with operators, organize the tedious work, build practical tools the team will use, and leave the process documented enough that it keeps running after the engagement closes.",
   ],
   values: [
     {
-      title: "Workflow first.",
-      body: "We map the work before we touch the tools. Most AI projects fail because they skipped this part.",
+      title: "Work first.",
+      body: "We map the work before we touch the tools. Most projects fail because they skipped this part.",
     },
     {
       title: "Human approval stays visible.",
@@ -393,101 +391,100 @@ export const ABOUT_COPY = {
   facts: [
     { label: "Founded by", value: "Justin Whalen" },
     { label: "Based in", value: "Western New York" },
-    { label: "Engagement model", value: "One workflow at a time" },
-    { label: "Front door", value: "$395 Workflow Check" },
+    { label: "Engagement model", value: "One process at a time" },
+    { label: "Front door", value: "$500/mo Support or $395 Check" },
   ],
   cta: {
-    heading: "Want to bring one workflow?",
-    body: "A Workflow Check is the front door. We scope tight, name what's worth fixing first, and move from there.",
-    button: "Request a Workflow Check",
+    heading: "Want to clean up one messy process?",
+    body: "Monthly support is the easy ongoing path. A Workflow Check is available when you want one process mapped first.",
+    button: "See pricing options",
   },
 };
 
 export const PRICING_COPY = {
   eyebrow: "Pricing",
-  heading: "Fixed-scope, one workflow at a time.",
+  heading: "Monthly support or one clean first step.",
   intro:
-    "Every engagement starts with a Workflow Check. Everything after is scoped from what we found together, not from a menu.",
-  // The Workflow Check is the only firm public number. Everything else is "from."
+    "Start ClearPath Support when you want monthly help. Use a Workflow Check when you want one process mapped before deciding what to build.",
+  // Public entry prices: ClearPath Support and Workflow Check. Larger builds are quoted separately.
   audit: {
-    eyebrow: "The front door",
+    eyebrow: "One-time clarity",
     name: "Workflow Check",
     price: 395,
     priceLabel: "$395",
     bullets: [
       "Working session with the operator + team closest to the work",
-      "Written workflow map + prioritized list of fixes",
-      "Fixed-scope quote for the next engagement",
+      "Written process map + prioritized list of fixes",
+      "Clear next step if support or a build makes sense",
       "Two to three pages, plain language, yours to keep",
     ],
-    cta: "Request a Workflow Check",
+    cta: "Buy the Workflow Check",
   },
-  // "After the Workflow Check" grid. VISUAL ORDER MATTERS.
-  // One Workflow Fix is FEATURED (most operators start here).
-  pathsHeading: "After the Workflow Check",
-  pathsSubhead: "Sized to the workflow we mapped together.",
+  // Support should appear beside the Workflow Check. Larger builds have no public price.
+  pathsHeading: "Ways to work together",
+  pathsSubhead: "Start small. Quote bigger work only when the scope is clear.",
   paths: [
+    {
+      id: "support",
+      name: "ClearPath Support",
+      priceLabel: "$500/mo",
+      qualifier: null,
+      description: "Monthly help for stuck tasks, documentation, troubleshooting, light builds, and keeping work moving.",
+      featured: true,
+      featuredEyebrow: "Monthly support",
+    },
     {
       id: "fix",
       name: "One Workflow Fix",
-      priceLabel: "$4,500",
-      qualifier: "from",
-      description: "One specific workflow rebuilt end-to-end. Documented, demoed, handed off.",
-      featured: true,
-      featuredEyebrow: "Most engagements start here",
+      priceLabel: "Quoted separately",
+      qualifier: null,
+      description: "One specific process cleaned up end-to-end. Documented, demoed, handed off.",
     },
     {
       id: "build",
       name: "Workflow Build",
-      priceLabel: "$6,500",
-      qualifier: "from",
+      priceLabel: "Quoted separately",
+      qualifier: null,
       description: "Bigger build, typically invoice routing, approval queues, or a knowledge capture system.",
     },
     {
       id: "dfy",
       name: "Done-For-You System",
-      priceLabel: "$12,500",
-      qualifier: "from",
-      description: "Multi-workflow build for operators who need a system, not a single fix.",
-    },
-    {
-      id: "support",
-      name: "Ongoing support",
-      priceLabel: "Quoted",
+      priceLabel: "Quoted separately",
       qualifier: null,
-      description: "Available after delivery. Sized to actual support load. Ask on the call.",
+      description: "Multi-process build for operators who need a system, not a single fix.",
     },
   ],
   closingNote:
-    "Final price depends on workflow scope and how much knowledge needs to be captured first. We quote on the Workflow Check, not before.",
+    "Larger project pricing depends on scope and how much knowledge needs to be captured first. We quote bigger work separately before it begins.",
   cta: {
-    heading: "Bring the workflow that's slowing you down.",
-    body: "We'll scope a Workflow Check around it. Fixed price, fixed scope, no commitment past it.",
-    button: "Request a Workflow Check",
+    heading: "Bring the tedious work that is slowing you down.",
+    body: "Start monthly support, or use the Workflow Check when you want one process mapped first.",
+    button: "See pricing options",
   },
 };
 
 export const CONTACT_COPY = {
   eyebrow: "Get in touch",
-  heading: "Bring one workflow.",
+  heading: "Bring the messy work.",
   intro:
-    "Tell us about the workflow that's slowing the team down. We'll come back with a scoped Workflow Check and a time to talk.",
+    "Tell us about the messy work that's slowing the team down. We will help choose monthly support, a Workflow Check, or the next practical step.",
   calendar: {
     placeholderHeading: "Or pick a time",
     placeholderBody:
-      "A short fit call, fifteen to thirty minutes. We figure out whether a Workflow Check is the right next step.",
+      "A short fit call, fifteen to thirty minutes. We figure out whether support, a Workflow Check, or a quoted build is the right next step.",
   },
   form: {
     heading: "Send a note.",
     intro:
-      "Tell us about the team, the workflow, and what's eating time right now. We'll get back within one business day.",
+      "Tell us about the team, the messy work, and what's eating time right now. We will get back within one business day.",
     fields: {
       name: { label: "Name", placeholder: "First and last" },
       business: { label: "Business name", placeholder: "Where you work" },
       email: { label: "Email", placeholder: "you@yourbusiness.com" },
       phone: { label: "Phone (optional)", placeholder: "(555) 555-5555" },
       question: {
-        label: "What's one workflow slowing the team down right now?",
+        label: "What's one stuck task or process slowing the team down right now?",
         placeholder:
           "One or two sentences is fine. The more concrete the better. For example, 'invoice approvals stuck in three different inboxes.'",
       },
@@ -508,8 +505,8 @@ export const CONTACT_COPY = {
  * page. Content owns the canonical text; layout owns the rendering.
  */
 export const SHARED_COPY = {
-  primaryCta: "Request a Workflow Check",
-  secondaryCta: "Book a fit call",
+  primaryCta: "Start ClearPath Support",
+  secondaryCta: "Buy the Workflow Check",
   contact: {
     email: "JWhalen@ClearPathWV.com",
     bookingDiscoveryUrl:
@@ -517,7 +514,7 @@ export const SHARED_COPY = {
   },
   footer: {
     tagline:
-      "Practical workflow, knowledge capture, and AI-assisted systems for business teams.",
+      "Practical support for stuck requests, follow-up, documents, and light builds.",
     disclaimer:
       "This is AI-assisted analysis + Justin's human review and customization.",
     locationLine: "Based in Western New York. Engagements across the US.",

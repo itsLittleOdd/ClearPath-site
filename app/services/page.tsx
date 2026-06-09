@@ -11,14 +11,14 @@ export const metadata: Metadata = {
 };
 
 const stats = [
-  ["$395", "Workflow Check front door"],
-  ["1", "workflow scoped at a time"],
-  ["Human", "approval stays visible"],
+  ["$500/mo", "ClearPath Support"],
+  ["$395", "Workflow Check"],
+  ["People", "approval stays visible"],
 ];
 
 const included = [
   "One working session with the operator and the team closest to the work",
-  "A written workflow map",
+  "A written process map",
   "Bottleneck notes ranked by practical impact",
   "Approval points marked clearly",
   "A recommendation and build range if a fix makes sense",
@@ -27,15 +27,15 @@ const included = [
 const services = [
   {
     title: "Workflow Check",
-    fit: "You know one workflow is costing time, but the path is still fuzzy.",
+    fit: "You know one process is costing time, but the path is still fuzzy.",
     built: "No build yet. You get the map, bottleneck notes, approval points, and the recommended first fix.",
-    start: "Fixed price, fixed scope, one workflow. $395.",
+    start: "Fixed price, fixed scope, one process. $395.",
   },
   {
     title: "One Workflow Fix",
     fit: "The bottleneck is clear: invoice routing, intake triage, quote follow-up, approvals, or another recurring handoff.",
-    built: "One workflow rebuilt, documented, demoed, and handed back to the team.",
-    start: "Scoped from the Workflow Check. Engagements typically start from $4,500.",
+    built: "One process cleaned up, documented, demoed, and handed back to the team.",
+    start: "Quoted separately after the scope is clear.",
   },
   {
     title: "Knowledge Capture System",
@@ -50,10 +50,10 @@ const services = [
     start: "Scoped after a Workflow Check and knowledge readiness review.",
   },
   {
-    title: "Approval and Follow-up Workflow",
+    title: "Approval and Follow-up Support",
     fit: "Work that needs judgment is getting stuck while routine items wait behind it.",
     built: "An approval queue, follow-up board, or routing path that keeps routine work moving and puts exceptions in front of a person.",
-    start: "Sized as a Workflow Build. Engagements typically start from $6,500.",
+    start: "Quoted separately after the scope is clear.",
   },
   {
     title: "Owner Brief",
@@ -73,13 +73,13 @@ export default function ServicesPage() {
             <div className="max-w-3xl">
               <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.16em] text-sage-500">Services</p>
               <h1 className="mt-4 font-display text-[clamp(2.6rem,6vw,4.4rem)] font-semibold leading-[0.96] tracking-[-0.045em] text-balance">
-                Start with one workflow. Build only what the team will use.
+                Start with support. Build only what the team will use.
               </h1>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-cream-50/75">
-                ClearPath starts with a $395 Workflow Check, then scopes the smallest useful fix. You get a map, a recommendation, and a clear build path before anyone touches your systems.
+                ClearPath can start with monthly support for practical help, or a $395 Workflow Check when one process needs to be mapped first. Larger builds are quoted only after the scope is clear.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <CtaButton href="/contact" variant="inverted" size="lg">Start a $395 Workflow Check</CtaButton>
+                <CtaButton href="/pricing" variant="inverted" size="lg">Start ClearPath Support</CtaButton>
                 <CtaButton href="#front-door" variant="secondary" size="lg" className="border-cream-50/20 bg-cream-50/10 text-cream-50 hover:bg-cream-50/15">See the service path</CtaButton>
               </div>
             </div>
@@ -100,12 +100,12 @@ export default function ServicesPage() {
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
             <article className="rounded-3xl border border-navy-800/12 bg-cream-50/80 p-6 shadow-xl shadow-navy-950/5 md:p-8">
               <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-600">Front door</p>
-              <h2 className="mt-3 font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-navy-950">The first service is the Workflow Check.</h2>
+              <h2 className="mt-3 font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-navy-950">Start with support or a Workflow Check.</h2>
               <p className="mt-4 text-base leading-relaxed text-graphite-600 md:text-lg">
-                A focused review of one workflow. We map how the work actually runs, name the bottlenecks, mark where human approval needs to stay visible, and give you the practical next step.
+                Monthly support gives business owners access to ClearPath throughout the month for stuck tasks, documentation, light builds, and small improvements. A Workflow Check is the one-time mapping step when the process is still unclear.
               </p>
               <div className="mt-6">
-                <CtaButton href="/contact" variant="primary" size="lg">Request a Workflow Check</CtaButton>
+                <CtaButton href="/pricing" variant="primary" size="lg">See pricing options</CtaButton>
               </div>
             </article>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -123,9 +123,9 @@ export default function ServicesPage() {
       <section className="bg-cream-50 py-14 md:py-20">
         <Container>
           <div className="max-w-3xl">
-            <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-600">After the check</p>
-            <h2 className="mt-3 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">The service menu depends on the workflow.</h2>
-            <p className="mt-4 text-lg leading-relaxed text-graphite-600">ClearPath does not sell a giant system first. The check shows which service fits the work, the team, and the risk.</p>
+            <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-600">After the first step</p>
+            <h2 className="mt-3 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">The service menu depends on the work.</h2>
+            <p className="mt-4 text-lg leading-relaxed text-graphite-600">ClearPath does not sell a giant system first. Support and checks reveal which service fits the work, the team, and the risk.</p>
           </div>
           <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service) => (
@@ -149,7 +149,7 @@ export default function ServicesPage() {
             </div>
             <div className="rounded-3xl border border-cream-50/10 bg-cream-50/[0.055] p-6 md:p-8">
               <p className="text-lg leading-relaxed text-cream-50/75">
-                ClearPath support keeps the workflow useful after it goes live: adoption checks, small fixes, documentation updates, and a 30-day review so the team does not quietly route around the new process.
+                ClearPath support keeps the work useful after it goes live: adoption checks, small fixes, documentation updates, and monthly help so the team does not quietly route around the new process.
               </p>
             </div>
           </div>
@@ -159,8 +159,8 @@ export default function ServicesPage() {
       <section className="bg-sage-500/10 py-16 text-center md:py-20">
         <Container>
           <h2 className="font-display text-[clamp(2.2rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">Not sure which service fits?</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-graphite-600">Bring the workflow that is slowing the team down. The Workflow Check will name the right next step before you commit to a build.</p>
-          <div className="mt-8 flex justify-center"><CtaButton href="/contact" variant="primary" size="lg">Request a Workflow Check</CtaButton></div>
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-graphite-600">Bring the tedious work that is slowing the team down. Start monthly support, or use the Workflow Check when you want the process mapped first.</p>
+          <div className="mt-8 flex justify-center"><CtaButton href="/pricing" variant="primary" size="lg">See pricing options</CtaButton></div>
         </Container>
       </section>
     </main>

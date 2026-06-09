@@ -8,7 +8,7 @@ import { SITE } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 const FOOTER_TAGLINE =
-  "Practical workflow, knowledge capture, and AI-assisted systems for business teams."
+  "Practical support for stuck requests, follow-up, documents, and light builds."
 
 const FOOTER_DISCLAIMER =
   "This is AI-assisted analysis + Justin's human review and customization."

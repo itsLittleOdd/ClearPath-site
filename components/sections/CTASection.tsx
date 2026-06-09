@@ -21,9 +21,9 @@ export function CTASection({
   cta,
 }: CTASectionProps) {
   const fallback = HOME_COPY.finalCta;
-  const resolvedBookingUrl = bookingUrl ?? "/contact";
+  const resolvedBookingUrl = bookingUrl ?? "/pricing";
 
-  const trustItems = ["Fixed scope", "One workflow", "$395 to start"];
+  const trustItems = ["$500/mo Support", "$395 Check", "Larger builds quoted separately"];
 
   return (
     <Section

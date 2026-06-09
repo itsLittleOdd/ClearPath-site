@@ -111,12 +111,12 @@ export default function WhoItsForPage() {
             <p className="border-t border-navy-800/10 pt-4 text-base leading-relaxed text-pretty text-graphite-600">
               Not sure if you fit?{" "}
               <Link
-                href="/contact"
+                href="/pricing"
                 className="font-medium text-sage-600 underline-offset-4 hover:underline"
               >
-                Request a Workflow Check
+                See the support options
               </Link>{" "}
-              and we&rsquo;ll figure it out together.
+              and we&rsquo;ll figure out the right first step together.
             </p>
           </div>
         </Container>
@@ -126,6 +126,7 @@ export default function WhoItsForPage() {
         heading={cta.heading}
         body={cta.body}
         cta={cta.button}
+        bookingUrl="/pricing"
       />
     </main>
   );

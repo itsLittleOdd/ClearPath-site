@@ -12,20 +12,20 @@ export const metadata: Metadata = {
 const facts = [
   ["Founded by", "Justin Whalen"],
   ["Based in", "Western New York"],
-  ["Engagement model", "One workflow at a time"],
-  ["Front door", "$395 Workflow Check"],
+  ["Engagement model", "Support plus scoped fixes"],
+  ["Front door", "$500/mo Support or $395 Check"],
 ];
 
 const bio = [
   "Justin spent his first decade on operations: kitchen, bar, lesson programs, scheduling, and the parts of the business that run on tribal knowledge. That is where he learned what operators actually want from a tool, and what they refuse to use even when the idea is good.",
   "The first internal tools came out of that work: a knowledge assistant so a new director could ramp without burning instructors' time, a booking surface that fixed a real bottleneck the official system could not, and an operations dashboard built around how the team actually planned a week.",
-  "ClearPath is that same instinct shaped into a service. Sit with the people closest to the work, capture how the workflow really runs, mark where judgment belongs, and build only what the team can use after the handoff.",
+  "ClearPath is that same instinct shaped into a service. Sit with the people closest to the work, understand how the process really runs, mark where judgment belongs, and build only what the team can use after the handoff.",
 ];
 
 const values = [
   {
-    title: "Workflow first.",
-    body: "We map the work before we touch the tools. Most failed AI projects skipped the boring part that actually matters.",
+    title: "Work first.",
+    body: "We map the work before we touch the tools. Most failed projects skipped the boring part that actually matters.",
   },
   {
     title: "Human approval stays visible.",
@@ -39,7 +39,7 @@ const values = [
 
 const operatorNotes = [
   ["What ClearPath looks for", "Repeated questions, owner interruptions, stuck approvals, missing handoffs, and work that depends on one person's memory."],
-  ["What ClearPath avoids", "Big vague AI projects, tool-first builds, hidden automation, and workflows nobody on the team can explain."],
+  ["What ClearPath avoids", "Big vague projects, tool-first builds, hidden automation, and processes nobody on the team can explain."],
   ["Where the check starts", "One real workflow, one working call, one written packet, and one recommendation you can act on."],
 ];
 
@@ -59,7 +59,7 @@ export default function AboutPage() {
                 ClearPath was started by Justin Whalen after years inside real operations: resort teams, scheduling pressure, customer handoffs, training gaps, and the daily mess that never shows up cleanly in software.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <CtaButton href="/contact" variant="inverted" size="lg">Request a Workflow Check</CtaButton>
+                <CtaButton href="/pricing" variant="inverted" size="lg">Start ClearPath Support</CtaButton>
                 <CtaButton href="#operator" variant="secondary" size="lg" className="border-cream-50/20 bg-cream-50/10 text-cream-50 hover:bg-cream-50/15">Read the operator story</CtaButton>
               </div>
             </div>
@@ -134,9 +134,9 @@ export default function AboutPage() {
 
       <section className="bg-sage-500/10 py-16 text-center md:py-20">
         <Container>
-          <h2 className="font-display text-[clamp(2.2rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">Want to bring one workflow?</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-graphite-600">A Workflow Check is the front door. We scope tight, name what is worth fixing first, and move from there.</p>
-          <div className="mt-8 flex justify-center"><CtaButton href="/contact" variant="primary" size="lg">Request a Workflow Check</CtaButton></div>
+          <h2 className="font-display text-[clamp(2.2rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">Want to clean up one messy process?</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-graphite-600">Start monthly support, or use the Workflow Check when you want one process mapped first.</p>
+          <div className="mt-8 flex justify-center"><CtaButton href="/pricing" variant="primary" size="lg">See pricing options</CtaButton></div>
         </Container>
       </section>
     </main>

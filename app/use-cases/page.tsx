@@ -92,13 +92,13 @@ export default function UseCasesPage() {
           <div className="max-w-4xl">
             <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.16em] text-sage-500">Use cases</p>
             <h1 className="mt-4 font-display text-[clamp(2.6rem,6vw,4.4rem)] font-semibold leading-[0.96] tracking-[-0.045em] text-balance">
-              Find the workflow that keeps pulling an owner back in.
+              Find the tedious work that keeps pulling an owner back in.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-cream-50/75">
-              These are the bottlenecks ClearPath usually maps first: intake, routing, approvals, follow-up, knowledge lookup, and owner reporting. Pick the closest match, then scope one Workflow Check around it.
+              These are the bottlenecks ClearPath usually cleans up first: intake, routing, approvals, follow-up, knowledge lookup, and owner reporting. Pick the closest match, then start support or use a Workflow Check to map it first.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <CtaButton href="/contact" variant="inverted" size="lg">Request a Workflow Check</CtaButton>
+              <CtaButton href="/pricing" variant="inverted" size="lg">Start ClearPath Support</CtaButton>
               <CtaButton href="#example" variant="secondary" size="lg" className="border-cream-50/20 bg-cream-50/10 text-cream-50 hover:bg-cream-50/15">See an example</CtaButton>
             </div>
           </div>
@@ -155,9 +155,9 @@ export default function UseCasesPage() {
 
       <section className="bg-cream-50 py-16 text-center md:py-20">
         <Container>
-          <h2 className="font-display text-[clamp(2.2rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">See a workflow that sounds familiar?</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-graphite-600">Pick the closest match and bring the messy version. We will scope one Workflow Check around how the work actually runs today.</p>
-          <div className="mt-8 flex justify-center"><CtaButton href="/contact" variant="primary" size="lg">Request a Workflow Check</CtaButton></div>
+          <h2 className="font-display text-[clamp(2.2rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em] text-navy-950">See a stuck process that sounds familiar?</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-graphite-600">Pick the closest match and bring the messy version. Start monthly support, or use a Workflow Check when you want the process mapped first.</p>
+          <div className="mt-8 flex justify-center"><CtaButton href="/pricing" variant="primary" size="lg">See pricing options</CtaButton></div>
         </Container>
       </section>
     </main>

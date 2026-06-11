@@ -80,9 +80,23 @@ export default function PricingPage() {
                 <CtaButton href={workflowCheckPaymentUrl} external variant="secondary" size="lg" className="border-cream-50/20 bg-cream-50/10 text-cream-50 hover:bg-cream-50/15">Buy the $395 Check</CtaButton>
               </div>
             </div>
-            <aside className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              <PriceHeroCard eyebrow="Monthly support" value="$500/mo" title="ClearPath Support" points={["Access through the month", "Small fixes and light builds", "Bigger projects quoted separately"]} href={supportPaymentUrl} cta="Start support" />
-              <PriceHeroCard eyebrow="One-time clarity" value="$395" title="Workflow Check" points={["Fixed scope", "One process", "Written packet"]} href={workflowCheckPaymentUrl} cta="Buy check" />
+            <aside className="relative w-full max-w-xl lg:justify-self-end">
+              <div aria-hidden="true" className="absolute -inset-5 -z-10 rounded-[2.5rem] bg-sage-500/14 blur-2xl" />
+              <div className="overflow-hidden rounded-[2rem] border border-cream-50/12 bg-cream-50/[0.07] p-3 shadow-2xl shadow-navy-950/35 backdrop-blur">
+                <div className="rounded-[1.65rem] border border-cream-50/10 bg-navy-900/60 p-4 sm:p-5">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-500">Choose your start</p>
+                      <p className="mt-2 max-w-sm text-sm leading-relaxed text-cream-50/68">Support comes first when you already want practical help through the month.</p>
+                    </div>
+                    <span className="rounded-full border border-sage-500/30 bg-sage-500/14 px-3 py-1 font-display text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-sage-500">Support-first</span>
+                  </div>
+                  <div className="mt-5 grid gap-3">
+                    <PriceChoiceCard featured eyebrow="Monthly support" amount="$500" cadence="/mo" title="ClearPath Support" points={["Access through the month", "Small fixes and light builds", "Bigger projects quoted separately"]} href={supportPaymentUrl} cta="Start support" />
+                    <PriceChoiceCard eyebrow="One-time clarity" amount="$395" title="Workflow Check" points={["Fixed scope", "One process", "Written packet"]} href={workflowCheckPaymentUrl} cta="Buy check" />
+                  </div>
+                </div>
+              </div>
             </aside>
           </div>
         </Container>
@@ -150,24 +164,78 @@ export default function PricingPage() {
   );
 }
 
-function PriceHeroCard({ eyebrow, value, title, points, href, cta }: { eyebrow: string; value: string; title: string; points: string[]; href: string; cta: string }) {
+function PriceChoiceCard({
+  eyebrow,
+  amount,
+  cadence,
+  title,
+  points,
+  href,
+  cta,
+  featured = false,
+}: {
+  eyebrow: string;
+  amount: string;
+  cadence?: string;
+  title: string;
+  points: string[];
+  href: string;
+  cta: string;
+  featured?: boolean;
+}) {
   return (
-    <div className="rounded-3xl border border-sage-500/25 bg-cream-50/[0.065] p-6 shadow-2xl shadow-navy-950/30 md:p-7">
-      <p className="font-display text-eyebrow font-semibold uppercase tracking-[0.14em] text-sage-500">{eyebrow}</p>
-      <strong className="mt-3 block font-display text-[clamp(2.6rem,4vw,3.7rem)] font-semibold leading-none tracking-[-0.06em] text-cream-50">{value}</strong>
-      <p className="mt-2 font-display text-lg text-cream-50">{title}</p>
-      <div className="mt-6 grid gap-3">
-        {points.map((point) => <PriceProof key={point} value={point} />)}
+    <article
+      className={`relative overflow-hidden rounded-[1.35rem] border p-5 ${
+        featured
+          ? "border-sage-500/45 bg-cream-50 text-navy-950 shadow-xl shadow-navy-950/25"
+          : "border-cream-50/12 bg-cream-50/[0.075] text-cream-50"
+      }`}
+    >
+      {featured ? <div aria-hidden="true" className="absolute -right-10 -top-12 h-32 w-32 rounded-full bg-sage-500/20 blur-2xl" /> : null}
+      <div className="relative">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="min-w-0">
+            <p className={`font-display text-eyebrow font-semibold uppercase tracking-[0.14em] ${featured ? "text-sage-600" : "text-sage-500"}`}>{eyebrow}</p>
+            <h3 className="mt-2 font-display text-2xl font-semibold leading-tight tracking-[-0.03em]">{title}</h3>
+          </div>
+          <PriceAmount amount={amount} cadence={cadence} featured={featured} />
+        </div>
+
+        <ul className="mt-5 grid gap-2.5 text-sm leading-relaxed sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+          {points.map((point) => (
+            <li key={point} className={`flex gap-2 ${featured ? "text-graphite-600" : "text-cream-50/72"}`}>
+              <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${featured ? "bg-sage-600" : "bg-sage-500"}`} aria-hidden="true" />
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className={`mt-5 border-t pt-5 ${featured ? "border-navy-800/10" : "border-cream-50/10"}`}>
+          <CtaButton
+            href={href}
+            external
+            variant={featured ? "primary" : "secondary"}
+            size="sm"
+            className={featured ? undefined : "bg-cream-50/10 text-cream-50 ring-cream-50/20 hover:bg-cream-50/15 hover:text-cream-50 hover:ring-cream-50/30"}
+          >
+            {cta}
+          </CtaButton>
+        </div>
       </div>
-      <div className="mt-6"><CtaButton href={href} external variant="inverted" size="sm">{cta}</CtaButton></div>
-    </div>
+    </article>
   );
 }
 
-function PriceProof({ value }: { value: string }) {
+function PriceAmount({ amount, cadence, featured }: { amount: string; cadence?: string; featured: boolean }) {
+  const accessiblePrice = cadence === "/mo" ? `${amount} per month` : `${amount}${cadence ?? ""}`;
+
   return (
-    <div className="rounded-2xl border border-cream-50/10 bg-cream-50/[0.06] px-4 py-3 text-sm text-cream-50/75">
-      <span className="inline-block h-1.5 w-1.5 rounded-full bg-sage-500" aria-hidden="true" /> <span className="ml-2">{value}</span>
-    </div>
+    <p
+      aria-label={accessiblePrice}
+      className={`flex max-w-full shrink-0 items-end gap-1 font-display font-semibold leading-none tracking-[-0.055em] ${featured ? "text-navy-950" : "text-cream-50"}`}
+    >
+      <span className="block text-[clamp(2.45rem,12vw,3.9rem)] sm:text-[clamp(2.65rem,5vw,4.15rem)]">{amount}</span>
+      {cadence ? <span className={`mb-1.5 block text-[clamp(1rem,4vw,1.35rem)] tracking-[-0.03em] ${featured ? "text-sage-600" : "text-sage-500"}`}>{cadence}</span> : null}
+    </p>
   );
 }

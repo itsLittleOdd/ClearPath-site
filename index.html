@@ -179,7 +179,7 @@
 
   /* ---------- pricing ---------- */
   .pricing{border-top:1px solid var(--line)}
-  .tiers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
+  .tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
   .tier{
     background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0;
     display:flex;flex-direction:column;overflow:hidden;
@@ -363,23 +363,21 @@
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">1</span>
           <h3>We talk. <span class="price-chip free">Free</span></h3>
-          <p>A short call. You tell me what's eating your time, and I'll tell you straight
-          whether it's worth fixing and what I'd look at first. If I'm not the right fit,
-          I'll say so.</p>
+          <p>A short call. You tell me what's eating your time, what tools your team already
+          uses, and where AI or automation is already helping or getting in the way.</p>
         </div>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">2</span>
-          <h3>I map one process. <span class="price-chip">$395 &middot; one-time</span></h3>
-          <p>The Workflow Check: we walk through one messy process together, then I hand you
-          a short written plan covering where the work gets stuck, what to fix first, and what
-          a fix should cost. <strong>The plan is yours to keep</strong> whether or not we go further.</p>
+          <h3>We set up the first lane. <span class="price-chip">Setup + monthly</span></h3>
+          <p>We pick the right tier, collect approved source material, map the first workflow,
+          and build the starter system around real work your team already does.</p>
         </div>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">3</span>
-          <h3>We fix it together.</h3>
-          <p>I start with low-cost tools you already own, like your email, calendar, and
-          spreadsheets, before anything fancy. You see and approve every change before it
-          goes live, and your team gets a plain-English handoff they can actually run.</p>
+          <h3>We keep it useful.</h3>
+          <p>ClearPath helps maintain the lane, check the output, document the process, and
+          prepare owner-approved next steps. Bigger apps, integrations, or public-facing
+          changes are scoped separately before work starts.</p>
         </div>
       </div>
     </div>
@@ -431,58 +429,48 @@
       <div class="tiers" data-stagger>
         <div class="tier reveal">
           <div class="tier-top">
-            <span class="tier-kind">First call</span>
-            <div class="tier-price">Free</div>
+            <span class="tier-kind">Starter Pilot</span>
+            <div class="tier-price">$1,500<small> setup</small></div>
+            <div class="tier-price"><small>+</small> $500<small>/mo</small></div>
           </div>
           <div class="tier-body">
-            <h3>Fit call</h3>
-            <p>A short conversation about what's slowing you down. You'll know by the end
-            whether this is worth pursuing. No obligation either way.</p>
-            <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free call</a>
+            <h3>Starter Pilot</h3>
+            <p>Gets the first AI-assisted workflow lane in place: approved source material,
+            one practical use case, a simple operating process, and light monthly support.</p>
+            <a class="btn-ghost" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Talk about a pilot</a>
           </div>
         </div>
 
         <div class="tier lead reveal">
           <div class="tier-top">
-            <span class="tier-kind">One-time &middot; most popular first step</span>
-            <div class="tier-price">$395</div>
+            <span class="tier-kind">Main offer</span>
+            <div class="tier-price">$2,500<small> setup</small></div>
+            <div class="tier-price"><small>+</small> $1,500<small>/mo</small></div>
           </div>
           <div class="tier-body">
-            <h3>Workflow Check</h3>
-            <p>One process, mapped. Two working calls and a short written plan: where the work
-            gets stuck, what to fix first, and what it should cost. Yours to keep.</p>
-            <a class="btn-ghost" href="https://buy.stripe.com/8x2cN54xd1dw2m27dl6Vq00">Buy the Workflow Check</a>
+            <h3>Core Retainer</h3>
+            <p>The main ClearPath lane: source-grounded workflows, checked AI outputs,
+            documentation, small internal tools, and steady support for the work your team repeats.</p>
+            <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Talk about the core retainer</a>
           </div>
         </div>
 
         <div class="tier reveal">
           <div class="tier-top">
-            <span class="tier-kind">Ongoing &middot; month to month</span>
-            <div class="tier-price">$500<small>/mo</small></div>
+            <span class="tier-kind">Serious business tier</span>
+            <div class="tier-price">$5,000<small> setup</small></div>
+            <div class="tier-price"><small>+</small> $3,000<small>/mo</small></div>
           </div>
           <div class="tier-body">
-            <h3>ClearPath Support</h3>
-            <p>Help throughout the month: stuck tasks, small fixes, documentation, and light
-            builds that keep the work moving.</p>
-            <a class="btn-ghost" href="https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01">Start monthly support</a>
-          </div>
-        </div>
-
-        <div class="tier reveal">
-          <div class="tier-top">
-            <span class="tier-kind">Managed ops &middot; month to month</span>
-            <div class="tier-price">$1,000<small>/mo</small></div>
-          </div>
-          <div class="tier-body">
-            <h3>ClearPath Ops Desk</h3>
-            <p>For one recurring lane like intake, follow-up, job status, or internal handoffs. I help
-            keep the queue organized, use AI-assisted tools where useful, and prepare owner-approved next steps.</p>
-            <a class="btn-ghost" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Talk about Ops Desk</a>
+            <h3>Serious Business Tier</h3>
+            <p>For companies already spending real money on AI tools, staff time, or messy
+            software work and needing a stronger operating layer with review and follow-through.</p>
+            <a class="btn-ghost" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Talk about this tier</a>
           </div>
         </div>
       </div>
 
-      <p class="pricing-foot reveal">Bigger projects are always quoted in writing before any work starts. Monthly plans do not include third-party software costs, unlimited custom development, or live changes without owner approval.</p>
+      <p class="pricing-foot reveal">Setup covers the first map, source grounding, and operating lane. Monthly support is scoped support, not unlimited AI work. Custom apps, integrations, websites, portals, sensitive workflows, and third-party software costs are quoted separately before work starts.</p>
     </div>
   </section>
 

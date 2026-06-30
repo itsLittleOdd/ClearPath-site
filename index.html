@@ -179,18 +179,18 @@
 
   /* ---------- pricing ---------- */
   .pricing{border-top:1px solid var(--line)}
-  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+  .tiers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
   .tier{
     background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0;
     display:flex;flex-direction:column;overflow:hidden;
   }
   .js .tier{transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .25s ease,box-shadow .25s ease}
   .tier:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(22,36,46,.09)}
-  .tier-top{border-bottom:2px dashed var(--line);padding:22px 24px 18px}
-  .tier-kind{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
-  .tier-price{font-family:var(--mono);font-size:34px;font-weight:700;color:var(--ink);margin-top:6px}
-  .tier-price small{font-size:15px;font-weight:400;color:var(--ink-soft)}
-  .tier-body{padding:18px 24px 24px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .tier-top{border-bottom:2px dashed var(--line);padding:20px 20px 16px}
+  .tier-kind{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .tier-price{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--ink);margin-top:6px}
+  .tier-price small{font-size:14px;font-weight:400;color:var(--ink-soft)}
+  .tier-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:14px;flex:1}
   .tier-body h3{font-family:var(--serif);font-size:21px}
   .tier-body p{color:var(--ink-soft);font-size:15px;flex:1}
   .tier .btn,.tier .btn-ghost{text-align:center}
@@ -233,8 +233,11 @@
   .foot-line{margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.04em}
 
   /* ---------- responsive ---------- */
+  @media (max-width:1050px){
+    .tiers{grid-template-columns:1fr 1fr}
+  }
   @media (max-width:900px){
-    .cards3,.tiers{grid-template-columns:1fr 1fr}
+    .cards3{grid-template-columns:1fr 1fr}
     .about-grid{grid-template-columns:240px 1fr;gap:28px}
   }
   @media (max-width:680px){
@@ -464,9 +467,22 @@
             <a class="btn-ghost" href="https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01">Start monthly support</a>
           </div>
         </div>
+
+        <div class="tier reveal">
+          <div class="tier-top">
+            <span class="tier-kind">Managed AI &middot; month to month</span>
+            <div class="tier-price">$1,000<small>/mo</small></div>
+          </div>
+          <div class="tier-body">
+            <h3>AI Ops Desk</h3>
+            <p>For teams already paying for AI tools and not getting enough from them. I help
+            route the work, check the output, and turn it into usable business assets.</p>
+            <a class="btn-ghost" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Talk about AI Ops</a>
+          </div>
+        </div>
       </div>
 
-      <p class="pricing-foot reveal">Bigger projects are always quoted in writing before any work starts.</p>
+      <p class="pricing-foot reveal">Bigger projects are always quoted in writing before any work starts. Monthly plans do not include third-party software costs, unlimited custom development, or live changes without owner approval.</p>
     </div>
   </section>
 

@@ -4,13 +4,13 @@
 <script>document.documentElement.classList.add('js')</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClearPath | Workflow help for Western New York small businesses</title>
+<title>ClearPath | Office work handled for small businesses in Western New York</title>
 <meta name="description" content="ClearPath helps small businesses across Western New York clean up repetitive office work: emails, quotes, invoices, and follow-ups. Small, low-cost fixes the owner approves. Based in Ellicottville, NY.">
 <!--
   NOTES FOR JUSTIN:
   1. Photo: your photo is embedded directly in this file. No separate image file needed.
   2. Booking links: all booking buttons point to your existing cal.com event for now.
-     When your Calendly link is ready, find and replace the cal.com URL (appears 5 times).
+     When your Calendly link is ready, find and replace the cal.com URL wherever it appears.
   3. Phone: if you want calls or texts on the site, search PHONE-OPTIONAL and uncomment.
 -->
 <style>
@@ -40,14 +40,13 @@
     -webkit-font-smoothing:antialiased;
   }
   a{color:var(--pine)}
-  a:focus-visible,button:focus-visible{outline:3px solid var(--clay);outline-offset:3px;border-radius:2px}
+  a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--clay);outline-offset:3px;border-radius:2px}
   .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
 
   /* ---------- motion system ---------- */
   @keyframes riseIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   .js .rise{opacity:0;animation:riseIn .7s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--d,0s)}
-  .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
-  .js .reveal.in{opacity:1;transform:none}
+  .js .reveal{opacity:1;transform:none}
   .path-draw{
     stroke-dasharray:1700;stroke-dashoffset:1700;
     animation:draw 2.2s ease-out .55s forwards;
@@ -87,7 +86,9 @@
     transition:background .2s ease,transform .2s ease;
   }
   .btn-ghost:hover{background:var(--pine-tint);transform:translateY(-1px)}
-  .nav .btn{padding:10px 18px}
+  .nav .btn{padding:10px 18px;color:#fff}
+  .scene-tag{color:#9b5630!important}
+  .price-chip.free{color:#5f2b0f!important}
 
   /* ---------- hero ---------- */
   .hero{padding:72px 0 36px}
@@ -250,6 +251,84 @@
     .nav{gap:14px}
     .nav a:not(.btn){display:none}
   }
+
+  /* ===================================================================
+     copy-offer lane: added components (buyer-journey copy pass)
+     Reuses existing tokens/classes; no new dependencies.
+     =================================================================== */
+
+  /* ---------- hero outcome pills ---------- */
+  .hero-outcomes{
+    list-style:none;display:flex;flex-wrap:wrap;gap:10px 12px;margin:22px 0 0;padding:0;
+  }
+  .hero-outcomes li{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;color:var(--pine);
+    background:var(--pine-tint);border:1px solid var(--line);border-radius:999px;padding:6px 14px;
+  }
+
+  /* ---------- trust strip ---------- */
+  .trust{background:var(--pine-tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .trust .wrap{padding-top:30px;padding-bottom:30px}
+  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .trust-item h3{font-family:var(--serif);font-size:18px;color:var(--ink);margin-bottom:5px}
+  .trust-item p{color:var(--ink-soft);font-size:15px}
+
+  /* ---------- after-state on problem scenes ---------- */
+  .scene-after{margin-top:auto;padding-top:12px;border-top:1px dashed var(--line)}
+  .scene-after .lbl{
+    display:block;margin-bottom:4px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pine);
+  }
+  .scene-after p{color:var(--ink);font-size:15px}
+
+  /* ---------- setup artifacts ---------- */
+  .art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .art{
+    background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .js .art{transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .25s ease,box-shadow .25s ease}
+  .art:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(22,36,46,.09)}
+  .art .art-tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pine)}
+  .art h3{font-family:var(--serif);font-size:19px;line-height:1.25}
+  .art p{color:var(--ink-soft);font-size:15px}
+
+  /* ---------- sample work band (proof lane owns the content) ---------- */
+  .sample{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+  /* ---------- pricing comparison rows ---------- */
+  .tier-rows{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;flex:1}
+  .tier-row .rlbl{
+    display:block;margin-bottom:2px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--pine);
+  }
+  .tier-row p{color:var(--ink-soft);font-size:14.5px;margin:0}
+
+  /* ---------- panel accents (monthly value + fit reuse .split) ---------- */
+  .panel.is{border-left:4px solid var(--pine)}
+  .panel.isnot{border-left:4px solid var(--clay)}
+
+  /* ---------- FAQ (native details, works without JS) ---------- */
+  .faq-list{max-width:820px;border-top:1px solid var(--line)}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-item summary{
+    cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+    padding:18px 2px 18px 0;font-family:var(--serif);font-size:19px;line-height:1.35;color:var(--ink);
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{content:"\25B8";flex:none;color:var(--pine);font-size:14px}
+  .faq-item[open] summary::after{content:"\25BE"}
+  .faq-item summary:hover{color:var(--pine)}
+  .faq-a{padding:0 0 20px;color:var(--ink-soft);font-size:16px;max-width:72ch}
+  .faq-more{margin-top:22px;font-size:15px;color:var(--ink-soft)}
+
+  /* ---------- responsive (new components) ---------- */
+  @media (max-width:900px){
+    .trust-grid,.art-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .trust-grid,.art-grid{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
@@ -263,8 +342,9 @@
     <nav class="nav" aria-label="Main">
       <a href="#familiar">The work</a>
       <a href="#how">How it works</a>
+      <a href="#artifacts">What you get</a>
       <a href="#pricing">What it costs</a>
-      <a href="#about">About Justin</a>
+      <a href="#faq">Common questions</a>
       <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free call</a>
     </nav>
   </div>
@@ -275,7 +355,7 @@
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="wrap">
-      <span class="eyebrow rise" style="--d:.05s">Workflow help for small businesses</span>
+      <span class="eyebrow rise" style="--d:.05s">Practical help for local business owners</span>
       <h1 class="rise" style="--d:.18s">Bring me the messy work.</h1>
 
       <div class="hero-line rise" style="--d:.4s" aria-hidden="true">
@@ -299,21 +379,48 @@
       </div>
 
       <p class="lede rise" style="--d:.55s">
-        I help small businesses across <strong>Western New York</strong> clean up the
-        office work that eats your week: the emails, quotes, invoices, and follow-ups that
-        someone has to read, retype, and chase. <strong>Small fixes first, plain English,
-        and nothing changes without your okay.</strong>
+        You get finished office work back: requests answered, follow-ups sent, records kept
+        current, and a clear next step waiting for you. <strong>The AI does the repeating part
+        behind the scenes. A person checks anything that matters, and nothing goes out without
+        your okay.</strong>
       </p>
 
-      <div class="hero-cta rise" style="--d:.7s">
-        <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free call with Justin</a>
-        <a class="btn-ghost" href="#pricing">See what it costs</a>
+      <ul class="hero-outcomes rise" style="--d:.68s" aria-label="What changes for you">
+        <li>Fewer missed requests</li>
+        <li>Cleaner follow-up</li>
+        <li>Reliable next steps</li>
+        <li>Less riding on you</li>
+      </ul>
+
+      <div class="hero-cta rise" style="--d:.8s">
+        <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free 45-minute call</a>
+        <a class="btn-ghost" href="#sample-work">See sample work</a>
       </div>
-      <p class="hero-note rise" style="--d:.85s">
-        No charge, no pressure. You'll leave the call knowing whether this is worth fixing.
-        Prefer email? <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a>
+      <p class="hero-note rise" style="--d:.92s">
+        No charge, no pressure. In 45 minutes you'll know whether this is worth fixing and what
+        it would take. Prefer email? <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a>
         <!-- PHONE-OPTIONAL: &middot; Call or text <a href="tel:+1XXXXXXXXXX">(XXX) XXX-XXXX</a> -->
       </p>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <section class="trust" id="trust" aria-label="How ClearPath keeps you in control">
+    <div class="wrap">
+      <div class="trust-grid" data-stagger>
+        <div class="trust-item reveal">
+          <h3>Your information, your say-so</h3>
+          <p>I only use the business information you approve for the job. Nothing else goes in.</p>
+        </div>
+        <div class="trust-item reveal">
+          <h3>Ready for a person to check</h3>
+          <p>Work comes back as drafts, prepared and organized so a person can review it quickly.</p>
+        </div>
+        <div class="trust-item reveal">
+          <h3>You approve what matters</h3>
+          <p>Nothing important goes out on its own. Quotes, prices, promises, and payments wait for you.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -332,18 +439,33 @@
           <h3>Catering requests in five places</h3>
           <p>They land in Facebook messages, voicemail, and email. Somebody retypes every one
           into the calendar and hopes nothing got missed.</p>
+          <div class="scene-after">
+            <span class="lbl">After ClearPath</span>
+            <p>Every request lands in one list, already sorted, with a draft reply ready for you
+            to send. Nothing gets retyped and nothing slips.</p>
+          </div>
         </article>
         <article class="scene reveal">
           <span class="scene-tag">Auto &amp; service shops</span>
           <h3>Quotes promised, then buried</h3>
           <p>The phone rings while everyone's hands are full. Follow-up happens when someone
           remembers, and the customer who never heard back goes elsewhere.</p>
+          <div class="scene-after">
+            <span class="lbl">After ClearPath</span>
+            <p>Each quote is logged and followed up on time. The customer hears back, and you
+            can see what is still open at a glance.</p>
+          </div>
         </article>
         <article class="scene reveal">
           <span class="scene-tag">Shops &amp; offices</span>
           <h3>Approvals stuck in one inbox</h3>
           <p>Invoices and requests sit waiting on the owner. You're the only one who knows
           where anything stands, so everything routes through you.</p>
+          <div class="scene-after">
+            <span class="lbl">After ClearPath</span>
+            <p>Requests arrive sorted with the next step already drafted, so your team can see
+            where things stand and only the real decisions reach you.</p>
+          </div>
         </article>
       </div>
 
@@ -356,30 +478,122 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">How it works</span>
-        <h2>Three steps. You can stop after any of them.</h2>
+        <h2>A clear path, and you approve each step.</h2>
+        <p>No surprises and no lock-in. You see what is next before it happens, and you can
+        stop between steps.</p>
       </div>
 
       <div class="steps" data-stagger>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">1</span>
-          <h3>We talk. <span class="price-chip free">Free</span></h3>
-          <p>A short call. You tell me what's eating your time, what tools your team already
-          uses, and where AI or automation is already helping or getting in the way.</p>
+          <h3>Free call. <span class="price-chip free">Free</span></h3>
+          <p>You tell me what eats your time and what tools your team already uses. We figure
+          out together whether there is something here worth fixing.</p>
         </div>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">2</span>
-          <h3>We set up the first lane. <span class="price-chip">Setup + monthly</span></h3>
-          <p>We pick the right tier, collect approved source material, map the first workflow,
-          and build the starter system around real work your team already does.</p>
+          <h3>A written fit and price.</h3>
+          <p>I write down the first thing I would fix, what it includes, what it does not, and
+          what it costs. You decide before anything gets built.</p>
         </div>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">3</span>
-          <h3>We keep it useful.</h3>
-          <p>ClearPath helps maintain the lane, check the output, document the process, and
-          prepare owner-approved next steps. Bigger apps, integrations, or public-facing
-          changes are scoped separately before work starts.</p>
+          <h3>You approve the information.</h3>
+          <p>You share only the business information you approve for the job: your real
+          requests, your templates, and how you like things handled.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step-num" aria-hidden="true">4</span>
+          <h3>A test or shadow run.</h3>
+          <p>I set the first task up and run it quietly beside your normal work, so we can
+          compare it to how things are done today before it touches a real customer.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step-num" aria-hidden="true">5</span>
+          <h3>You accept it.</h3>
+          <p>You review the results and sign off. If something is off, we fix it. Nothing goes
+          live until you accept it.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step-num" aria-hidden="true">6</span>
+          <h3>Launch.</h3>
+          <p>The approved task goes into daily use, and your team gets a short written guide so
+          they can run and check it without me.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step-num" aria-hidden="true">7</span>
+          <h3>Monthly review. <span class="price-chip">Monthly</span></h3>
+          <p>Each month I keep it running, check the output, keep your guide current, and
+          prepare the next improvement for you to approve. Bigger apps, integrations, or
+          public-facing changes are quoted separately before work starts.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT YOU GET (SETUP ARTIFACTS) ============ -->
+  <section id="artifacts">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">What you get</span>
+        <h2>You end up with things you can hold, not just a promise.</h2>
+        <p>Setup leaves real work running plus written records you keep, whether we carry on
+        together or not.</p>
+      </div>
+
+      <div class="art-grid" data-stagger>
+        <div class="art reveal">
+          <span class="art-tag">Current-state map</span>
+          <h3>How it works today</h3>
+          <p>A simple written picture of how the chosen task runs right now, so we agree on the
+          starting point.</p>
+        </div>
+        <div class="art reveal">
+          <span class="art-tag">Approved-information register</span>
+          <h3>What I may use</h3>
+          <p>A plain list of the exact business information you approved for the job, and where
+          each piece comes from.</p>
+        </div>
+        <div class="art reveal">
+          <span class="art-tag">Approval rules</span>
+          <h3>What needs your okay</h3>
+          <p>Clear rules for what the setup can send on its own and what always waits for your
+          approval.</p>
+        </div>
+        <div class="art reveal">
+          <span class="art-tag">First working setup</span>
+          <h3>One real task, running</h3>
+          <p>One real task set up and working the way you approved, not a demo or a slideshow.</p>
+        </div>
+        <div class="art reveal">
+          <span class="art-tag">Test record</span>
+          <h3>Proof it was checked</h3>
+          <p>A written record of the test or shadow run, showing how the setup handled real
+          examples before going live.</p>
+        </div>
+        <div class="art reveal">
+          <span class="art-tag">Handoff guide</span>
+          <h3>So anyone can run it</h3>
+          <p>A short step-by-step guide so you or your team can run and check the work without
+          me.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SAMPLE WORK ============
+       NOTE: the #sample-work content is owned by the proof-ux lane. This is a
+       copy-offer stub so the CTA anchor resolves and the buyer journey has a
+       proof slot before pricing. Coordinate on merge (see LANE-REPORT.md). -->
+  <section class="sample" id="sample-work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">See it on real work</span>
+        <h2>Proof beats promises.</h2>
+        <p>This is where sample work and before-and-after examples live. Want to see something
+        close to your situation? Bring it to the call and I'll walk you through a real example.</p>
+      </div>
+      <a class="btn reveal" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free 45-minute call</a>
     </div>
   </section>
 
@@ -424,6 +638,8 @@
       <div class="sec-head reveal">
         <span class="eyebrow">What it costs</span>
         <h2>Flat prices. No surprises.</h2>
+        <p>A one-time setup fee plus a flat monthly. Every tier is compared the same way, so
+        you can see exactly what changes as you move up.</p>
       </div>
 
       <div class="tiers" data-stagger>
@@ -435,9 +651,13 @@
           </div>
           <div class="tier-body">
             <h3>Starter Pilot</h3>
-            <p>Gets the first AI-assisted workflow lane in place: approved source material,
-            one practical use case, a simple operating process, and light monthly support.</p>
-            <a class="btn-ghost" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Talk about a pilot</a>
+            <ul class="tier-rows">
+              <li class="tier-row"><span class="rlbl">Best fit</span><p>One task that eats your week, and you want to see how this works before doing more.</p></li>
+              <li class="tier-row"><span class="rlbl">Setup gives you</span><p>One task mapped, your approved information in place, approval rules written, and one working setup you signed off on.</p></li>
+              <li class="tier-row"><span class="rlbl">Monthly work</span><p>Light upkeep: I keep the one task running, check its output, and fix small issues.</p></li>
+              <li class="tier-row"><span class="rlbl">Your control</span><p>You approve the task and the rules. Nothing sends on its own unless you allowed it.</p></li>
+            </ul>
+            <a class="btn-ghost" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call" aria-label="Book a free call about the Starter Pilot">Book a free call</a>
           </div>
         </div>
 
@@ -449,9 +669,13 @@
           </div>
           <div class="tier-body">
             <h3>Core Retainer</h3>
-            <p>The main ClearPath lane: source-grounded workflows, checked AI outputs,
-            documentation, small internal tools, and steady support for the work your team repeats.</p>
-            <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Talk about the core retainer</a>
+            <ul class="tier-rows">
+              <li class="tier-row"><span class="rlbl">Best fit</span><p>Most owners start here. A few tasks repeat every week and you want finished work off your plate.</p></li>
+              <li class="tier-row"><span class="rlbl">Setup gives you</span><p>Your first working setup plus the current-state map, approved-information register, approval rules, and a handoff guide.</p></li>
+              <li class="tier-row"><span class="rlbl">Monthly work</span><p>Finished business work and upkeep: running approved tasks, checking output, keeping guides current, and preparing the next approved step.</p></li>
+              <li class="tier-row"><span class="rlbl">Your control</span><p>You approve every task, rule, and change. The important calls always wait for you.</p></li>
+            </ul>
+            <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call" aria-label="Book a free call about the Core Retainer">Book a free call</a>
           </div>
         </div>
 
@@ -463,14 +687,155 @@
           </div>
           <div class="tier-body">
             <h3>Serious Business Tier</h3>
-            <p>For companies already spending real money on AI tools, staff time, or messy
-            software work and needing a stronger operating layer with review and follow-through.</p>
-            <a class="btn-ghost" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Talk about this tier</a>
+            <ul class="tier-rows">
+              <li class="tier-row"><span class="rlbl">Best fit</span><p>You already spend real money on AI tools, staff time, or messy software work and want a stronger setup with more review.</p></li>
+              <li class="tier-row"><span class="rlbl">Setup gives you</span><p>A larger first setup across more of your repeating work, with fuller written records and tighter checking built in.</p></li>
+              <li class="tier-row"><span class="rlbl">Monthly work</span><p>More hands-on monthly work and review across the tasks we agree on, with closer follow-through.</p></li>
+              <li class="tier-row"><span class="rlbl">Your control</span><p>Same rule, more ground covered: everything important is checked and waits for your approval.</p></li>
+            </ul>
+            <a class="btn-ghost" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call" aria-label="Book a free call about the Serious Business Tier">Book a free call</a>
           </div>
         </div>
       </div>
 
-      <p class="pricing-foot reveal">Setup covers the first map, source grounding, and operating lane. Monthly support is scoped support, not unlimited AI work. Custom apps, integrations, websites, portals, sensitive workflows, and third-party software costs are quoted separately before work starts.</p>
+      <div class="split" data-stagger style="margin-top:26px">
+        <div class="panel is reveal">
+          <h3>What the monthly is</h3>
+          <ul>
+            <li>Completed business work: real tasks handled and checked</li>
+            <li>Keeping the setup running as your requests and tools change</li>
+            <li>Keeping your guide and records current</li>
+            <li>Preparing the next improvement for you to approve</li>
+          </ul>
+        </div>
+        <div class="panel isnot reveal">
+          <h3>What the monthly is not</h3>
+          <ul>
+            <li>Not another app or login for you to manage</li>
+            <li>Not unlimited AI work</li>
+            <li>Not work that goes out without your approval</li>
+            <li>What is included is written in your scope</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="pricing-foot reveal">Custom apps, integrations, websites, customer portals, sensitive work, and any third-party software fees are quoted separately, and only start after you approve a written scope.</p>
+    </div>
+  </section>
+
+  <!-- ============ GOOD FIT / NOT YET ============ -->
+  <section id="fit">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Is this for you?</span>
+        <h2>An honest fit check.</h2>
+        <p>I would rather tell you no than sell you something that will not help.</p>
+      </div>
+
+      <div class="split" data-stagger>
+        <div class="panel hold reveal">
+          <h3>A good fit if</h3>
+          <ul>
+            <li>The same requests keep piling up on you</li>
+            <li>You are the bottleneck and everything routes through you</li>
+            <li>You have a task you can describe in plain words that repeats most weeks</li>
+            <li>You are willing to approve information and review the first results</li>
+            <li>You want finished work handled, not another tool to learn</li>
+          </ul>
+        </div>
+        <div class="panel reveal">
+          <h3>Probably not yet if</h3>
+          <ul>
+            <li>The work is different every time and never really repeats</li>
+            <li>You want it fully hands-off, with no review or approval</li>
+            <li>You need a big custom app or website first (that is a separate, quoted project)</li>
+            <li>You are not ready to share any business information, even the parts you would approve</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Common questions</span>
+        <h2>Straight answers before you book.</h2>
+      </div>
+
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>Is this just another subscription?</summary>
+          <div class="faq-a"><p>No. You are paying for finished business work and for keeping it
+          running, not for a login you have to manage. What the monthly covers is written in your
+          scope.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Will my staff have to learn a complicated new system?</summary>
+          <div class="faq-a"><p>The goal is less for your team to do, not more. The AI runs behind
+          the scenes, work reaches your team as drafts to check, and anything they do touch comes
+          with a short plain-English guide.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What does the setup fee pay for?</summary>
+          <div class="faq-a"><p>The one-time setup pays for mapping the task, putting your approved
+          information in place, writing the approval rules, building the first working setup,
+          testing it, and giving you a handoff guide. You keep those results.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Why is there a monthly fee at all?</summary>
+          <div class="faq-a"><p>Because the work keeps coming. New requests arrive, tools change,
+          and output still needs checking. The monthly is finished work plus upkeep. It is not
+          unlimited AI work; what is included is in your scope.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What will you have access to?</summary>
+          <div class="faq-a"><p>Only what the agreed job needs, and only what you approve. We write
+          down what you share before work starts, and you can change it. I work inside the tools
+          you already own.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Do I own the work, and what happens if we stop?</summary>
+          <div class="faq-a"><p>The setup is built inside your own accounts and tools, so the
+          working task, your information, and the written guide stay with you. Exactly how pausing
+          or ending works is confirmed in your written scope before you start, so there are no
+          surprises.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Are third-party software costs included?</summary>
+          <div class="faq-a"><p>Those are separate. If a task needs paid third-party software, the
+          cost is yours and is listed and approved before anything starts. I will not sign you up
+          for anything without your okay.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>AI makes mistakes. How do I know I can trust the output?</summary>
+          <div class="faq-a"><p>You do not have to trust it blindly. Important output is prepared as
+          a draft for a person to check, and the approval rules decide what may go out on its own.
+          When something is uncertain, it waits for you.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How much do I actually have to approve?</summary>
+          <div class="faq-a"><p>You approve the information used, the rules, the first results, and
+          any change to what goes out. The routine drafting comes off your plate. The judgment
+          calls stay yours.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Can you handle sensitive or private work?</summary>
+          <div class="faq-a"><p>Anything sensitive is handled only under rules we agree on in
+          writing, and it waits for a person before it goes anywhere. If you would rather keep
+          certain work fully manual, we leave it out of scope.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>When do I need a custom quote?</summary>
+          <div class="faq-a"><p>Custom apps, integrations, websites, customer portals, and anything
+          unusually large or sensitive are quoted separately. You see the scope and price in
+          writing before that work starts.</p></div>
+        </details>
+      </div>
+
+      <p class="faq-more reveal">Question not here? Ask it on the call or email
+      <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a>. I answer these myself.</p>
     </div>
   </section>
 
@@ -498,11 +863,12 @@
   <!-- ============ FINAL CTA ============ -->
   <section class="cta-band">
     <div class="wrap" data-stagger>
-      <h2 class="reveal">Got one process that's driving you nuts?</h2>
-      <p class="reveal">Tell me about it. Worst case, you leave the call with a clearer picture of the
-      problem and what fixing it would take.</p>
-      <a class="btn reveal" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free call with Justin</a>
-      <p class="cta-alt reveal">Or email <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a>. I read everything myself.</p>
+      <h2 class="reveal">Got one task that's driving you nuts?</h2>
+      <p class="reveal">Tell me about it on a free 45-minute call. Worst case, you leave with a
+      clearer picture of the problem and what fixing it would take.</p>
+      <a class="btn reveal" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free 45-minute call</a>
+      <p class="cta-alt reveal">Prefer to look first? <a href="#sample-work">See sample work</a>.
+      Or email <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a> and I'll read it myself.</p>
     </div>
   </section>
 

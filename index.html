@@ -9,8 +9,7 @@
 <!--
   NOTES FOR JUSTIN:
   1. Photo: your photo is embedded directly in this file. No separate image file needed.
-  2. Booking links: all booking buttons point to your existing cal.com event for now.
-     When your Calendly link is ready, find and replace the cal.com URL wherever it appears.
+  2. Draft CTA gate: free-fit-call and AI Clarity Session buttons open email until their exact approved scheduling and payment destinations exist.
   3. Phone: if you want calls or texts on the site, search PHONE-OPTIONAL and uncomment.
 -->
 <style>
@@ -42,6 +41,7 @@
   a{color:var(--pine)}
   a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--clay);outline-offset:3px;border-radius:2px}
   .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+  .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 
   /* ---------- motion system ---------- */
   @keyframes riseIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -202,6 +202,30 @@
     font-family:var(--mono);
   }
 
+  /* ---------- one-time clarity session ---------- */
+  .clarity{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .clarity-card{
+    display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.75fr);gap:30px;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:32px;
+    box-shadow:0 10px 28px rgba(22,36,46,.07);
+  }
+  .clarity-card h2{max-width:18ch}
+  .clarity-copy>p{color:var(--ink-soft);max-width:65ch;margin-top:12px}
+  .clarity-included{list-style:none;margin:22px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:9px 20px}
+  .clarity-included li{position:relative;padding-left:24px;color:var(--ink-soft);font-size:15.5px}
+  .clarity-included li::before{content:"✓";position:absolute;left:0;color:var(--pine);font-weight:700}
+  .clarity-buy{background:var(--pine-tint);border:1px solid var(--pine);border-radius:10px;padding:24px;align-self:start}
+  .clarity-price{font-family:var(--mono);font-size:31px;font-weight:700;line-height:1.1;color:var(--ink)}
+  .clarity-price small{display:block;font-size:13px;font-weight:500;color:var(--ink-soft);margin-top:7px}
+  .clarity-buy .btn{display:block;text-align:center;margin-top:20px}
+  .clarity-support{font-size:14px;color:var(--ink-soft);margin-top:12px}
+  .clarity-scope,.clarity-trust,.clarity-legal{font-size:14.5px;color:var(--ink-soft);margin-top:18px}
+  .clarity-trust{padding-top:16px;border-top:1px dashed var(--line);color:var(--ink)}
+  .offer-path{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 0}
+  .offer-path-item{border:1px solid var(--line);border-radius:8px;padding:14px;background:var(--paper)}
+  .offer-path-item strong{display:block;font-family:var(--serif);font-size:16px;color:var(--ink)}
+  .offer-path-item span{display:block;font-size:13px;color:var(--ink-soft);margin-top:3px}
+
   /* ---------- about ---------- */
   .about{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .about-grid{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start}
@@ -223,6 +247,7 @@
   .cta-band p{color:#DCE6DA;font-size:18px;max-width:56ch;margin:10px 0 28px}
   .cta-band .btn{background:#F4F1E8;color:var(--pine);border-color:#F4F1E8}
   .cta-band .btn:hover{background:#fff}
+  .cta-band a:focus-visible{outline-color:#F4F1E8}
   .cta-alt{margin-top:16px;font-size:15px;color:#C9D6C6}
   .cta-alt a{color:#F4F1E8}
 
@@ -246,6 +271,8 @@
     .hero{padding:48px 0 24px}
     section{padding:48px 0}
     .cards3,.tiers,.split{grid-template-columns:1fr}
+    .clarity-card{grid-template-columns:1fr;padding:22px;gap:22px}
+    .clarity-included,.offer-path{grid-template-columns:1fr}
     .about-grid{grid-template-columns:1fr}
     .portrait{max-width:300px}
     .nav{gap:14px}
@@ -345,7 +372,7 @@
       <a href="#artifacts">What you get</a>
       <a href="#pricing">What it costs</a>
       <a href="#faq">Common questions</a>
-      <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free call</a>
+      <a class="btn" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call">Book a free 15-minute fit call</a>
     </nav>
   </div>
 </header>
@@ -393,12 +420,12 @@
       </ul>
 
       <div class="hero-cta rise" style="--d:.8s">
-        <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free 45-minute call</a>
+        <a class="btn" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call">Book a free 15-minute fit call</a>
         <a class="btn-ghost" href="#sample-work">See sample work</a>
       </div>
       <p class="hero-note rise" style="--d:.92s">
-        No charge, no pressure. In 45 minutes you'll know whether this is worth fixing and what
-        it would take. Prefer email? <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a>
+        A quick conversation to see whether ClearPath is the right fit. No custom plan or written deliverable is included.
+        Prefer email? <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a>
         <!-- PHONE-OPTIONAL: &middot; Call or text <a href="tel:+1XXXXXXXXXX">(XXX) XXX-XXXX</a> -->
       </p>
     </div>
@@ -406,6 +433,7 @@
 
   <!-- ============ TRUST STRIP ============ -->
   <section class="trust" id="trust" aria-label="How ClearPath keeps you in control">
+    <h2 class="sr-only">How ClearPath keeps you in control</h2>
     <div class="wrap">
       <div class="trust-grid" data-stagger>
         <div class="trust-item reveal">
@@ -492,9 +520,8 @@
         </div>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">2</span>
-          <h3>I'll put the first fix in writing.</h3>
-          <p>If it looks like a fit, I write down what I'd fix first, what's included, what's not,
-          and what it costs. You look it over and decide before we do anything.</p>
+          <h3>If you want implementation, I send a written scope.</h3>
+          <p>That scope says what I would fix first, what is included, what is not, and what it costs. You look it over and decide before any implementation begins.</p>
         </div>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">3</span>
@@ -590,7 +617,7 @@
         <p>This is where sample work and before-and-after examples live. Want to see something
         close to your situation? Bring it to the call and I'll walk you through a real example.</p>
       </div>
-      <a class="btn reveal" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free 45-minute call</a>
+      <a class="btn reveal" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call">Book a free 15-minute fit call</a>
     </div>
   </section>
 
@@ -629,6 +656,47 @@
     </div>
   </section>
 
+  <!-- ============ ONE-TIME AI CLARITY SESSION ============ -->
+  <section class="clarity" id="clarity-session">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Not ready for a setup yet?</span>
+        <h2>Start with clarity.</h2>
+        <p>Leave with a short list of what is worth trying, what is not worth paying for, and what to do next.</p>
+      </div>
+
+      <div class="clarity-card reveal">
+        <div class="clarity-copy">
+          <span class="eyebrow">ONE-TIME AI CLARITY SESSION</span>
+          <h2>Know what to try before you buy more AI.</h2>
+          <p>Bring the tools, ideas, and half-finished plans that are starting to pile up. In one focused session, we'll sort out where AI could actually help, what information needs protection, and which next steps are worth your time.</p>
+          <p>After the call, you'll receive a personalized Clarity Plan with up to three practical opportunities, the tools that fit, the risks to watch, and a simple order of operations.</p>
+          <ul class="clarity-included" aria-label="What the AI Clarity Session includes">
+            <li>30-45 minute working session</li>
+            <li>Up to three practical AI opportunities</li>
+            <li>Tool and subscription recommendations</li>
+            <li>Basic privacy and permission review</li>
+            <li>Personalized written Clarity Plan</li>
+          </ul>
+          <p class="clarity-scope"><strong>Scope:</strong> This is a planning and clarity session. Implementation, account connections, website work, automations, and ongoing support are separate.</p>
+          <p class="clarity-legal">ClearPath provides practical AI guidance, workflow support, documentation, and implementation help. ClearPath does not provide legal, tax, medical, insurance, financial, or compliance advice. The client approves important decisions before anything is sent, published, purchased, charged, filed, or changed in a live system.</p>
+        </div>
+        <aside class="clarity-buy" aria-label="AI Clarity Session price and next step">
+          <div class="clarity-price">$395 one time<small>One focused session plus your written Clarity Plan</small></div>
+          <a class="btn" data-offer="ai-clarity-session" href="mailto:JWhalen@ClearPathWV.com?subject=ClearPath%20AI%20Clarity%20Session">Book an AI Clarity Session</a>
+          <p class="clarity-support">Checkout is not live yet. This button opens an email to ClearPath while the payment and scheduling path is reviewed.</p>
+          <p class="clarity-trust"><strong>You keep the judgment.</strong> Nothing is connected, purchased, published, or changed in a live system during this session without your approval.</p>
+        </aside>
+      </div>
+
+      <ul class="offer-path reveal" aria-label="Choose the right ClearPath starting point">
+        <li class="offer-path-item"><strong>Free fit call</strong><span>A quick conversation to see whether ClearPath is relevant. No custom plan or written deliverable.</span></li>
+        <li class="offer-path-item"><strong>Paid Clarity Session</strong><span>A working session plus a personalized written Clarity Plan.</span></li>
+        <li class="offer-path-item"><strong>Starter Pilot and retainers</strong><span>Implementation and continuing support after you approve a written scope.</span></li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ============ PRICING ============ -->
   <section class="pricing" id="pricing">
     <div class="wrap">
@@ -654,7 +722,7 @@
               <li class="tier-row"><span class="rlbl">After that</span><p>I keep the task running, check what comes out, and take care of small issues as they show up.</p></li>
               <li class="tier-row"><span class="rlbl">You still call the shots</span><p>You approve the task and the rules. Nothing sends on its own unless you've said it can.</p></li>
             </ul>
-            <a class="btn-ghost" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call" aria-label="Book a free call about the Starter Pilot">Book a free call</a>
+            <a class="btn-ghost" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call" aria-label="Book a free 15-minute fit call about the Starter Pilot">Book a free 15-minute fit call</a>
           </div>
         </div>
 
@@ -672,7 +740,7 @@
               <li class="tier-row"><span class="rlbl">After that</span><p>I handle the approved tasks, check the work, keep the guides current, and show you the next improvement before I make it.</p></li>
               <li class="tier-row"><span class="rlbl">You still call the shots</span><p>You approve every task, rule, and change. The important calls always wait for you.</p></li>
             </ul>
-            <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call" aria-label="Book a free call about the Core Retainer">Book a free call</a>
+            <a class="btn" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call" aria-label="Book a free 15-minute fit call about the Core Retainer">Book a free 15-minute fit call</a>
           </div>
         </div>
 
@@ -690,7 +758,7 @@
               <li class="tier-row"><span class="rlbl">After that</span><p>I stay closer to the work, review more of what comes through, and follow up on the things we've agreed on.</p></li>
               <li class="tier-row"><span class="rlbl">You still call the shots</span><p>The same rule applies. Anything important gets checked and waits for your approval.</p></li>
             </ul>
-            <a class="btn-ghost" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call" aria-label="Book a free call about the Serious Business Tier">Book a free call</a>
+            <a class="btn-ghost" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call" aria-label="Book a free 15-minute fit call about the Serious Business Tier">Book a free 15-minute fit call</a>
           </div>
         </div>
       </div>
@@ -861,9 +929,8 @@
   <section class="cta-band">
     <div class="wrap" data-stagger>
       <h2 class="reveal">Got one task that's driving you nuts?</h2>
-      <p class="reveal">Tell me about it on a free 45-minute call. Worst case, you leave with a
-      clearer picture of the problem and what fixing it would take.</p>
-      <a class="btn reveal" href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free 45-minute call</a>
+      <p class="reveal">Start with a free 15-minute fit call. It is a quick conversation to see whether ClearPath is relevant. No custom plan or written deliverable is included.</p>
+      <a class="btn reveal" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call">Book a free 15-minute fit call</a>
       <p class="cta-alt reveal">Prefer to look first? <a href="#sample-work">See sample work</a>.
       Or email <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a> and I'll read it myself.</p>
     </div>
@@ -877,7 +944,7 @@
       <span class="foot-brand">ClearPath</span>
       <span>Ellicottville, New York &middot; serving Western New York</span>
       <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a>
-      <a href="https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call">Book a free call</a>
+      <a href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call">Book a free 15-minute fit call</a>
     </div>
     <p class="foot-line">© 2026 ClearPath, a Whalen Ventures company &middot; Every change is human-reviewed and owner-approved.</p>
   </div>

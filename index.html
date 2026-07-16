@@ -4,13 +4,20 @@
 <script>document.documentElement.classList.add('js')</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/clearpath-logo.png">
 <title>ClearPath | Office work handled for small businesses in Western New York</title>
 <meta name="description" content="ClearPath helps small businesses across Western New York clean up repetitive office work: emails, quotes, invoices, and follow-ups. Small, low-cost fixes the owner approves. Based in Ellicottville, NY.">
 <!--
   NOTES FOR JUSTIN:
   1. Photo: your photo is embedded directly in this file. No separate image file needed.
-  2. Draft CTA gate: free-fit-call and AI Clarity Session buttons open email until their exact approved scheduling and payment destinations exist.
+  2. Booking buttons use the verified free 15-minute Cal.com event.
+     Paid offer buttons use verified Stripe Payment Links for their matching products.
   3. Phone: if you want calls or texts on the site, search PHONE-OPTIONAL and uncomment.
+
+  Never reuse the retired 45-minute Cal.com event or the two old Stripe
+  payment links from Git history; they belong to retired offers. The exact
+  blocked URLs are listed in CHECKOUT-CALENDAR-WIRING.md and enforced by
+  tests/test_storefront.py.
 -->
 <style>
   :root{
@@ -191,6 +198,8 @@
   .tier-kind{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
   .tier-price{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--ink);margin-top:6px}
   .tier-price small{font-size:14px;font-weight:400;color:var(--ink-soft)}
+  .tier-charge{font-size:13.5px;color:var(--ink-soft);margin-top:10px;line-height:1.45}
+  .tier-charge strong{color:var(--ink)}
   .tier-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:14px;flex:1}
   .tier-body h3{font-family:var(--serif);font-size:21px}
   .tier-body p{color:var(--ink-soft);font-size:15px;flex:1}
@@ -331,6 +340,18 @@
   }
   .tier-row p{color:var(--ink-soft);font-size:14.5px;margin:0}
 
+  /* ---------- tier CTA stack (checkout + fit-call fallback) ---------- */
+  .tier-cta{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+  .tier-cta .btn,.tier-cta .btn-ghost{text-align:center}
+  .cta-pending-note{font-size:13.5px;color:var(--ink-soft);margin:0}
+  .tier-alt{font-size:14px;color:var(--ink-soft);text-align:center;margin:0}
+  .tier-alt a{color:var(--pine)}
+  .after-checkout{
+    margin-top:22px;padding:16px 20px;border-left:4px solid var(--pine);
+    background:var(--card);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink-soft);
+  }
+  .after-checkout strong{color:var(--ink)}
+
   /* ---------- panel accents (monthly value + fit reuse .split) ---------- */
   .panel.is{border-left:4px solid var(--pine)}
   .panel.isnot{border-left:4px solid var(--clay)}
@@ -372,7 +393,7 @@
       <a href="#artifacts">What you get</a>
       <a href="#pricing">What it costs</a>
       <a href="#faq">Common questions</a>
-      <a class="btn" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call">Book a free 15-minute fit call</a>
+      <a class="btn" data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
     </nav>
   </div>
 </header>
@@ -420,7 +441,7 @@
       </ul>
 
       <div class="hero-cta rise" style="--d:.8s">
-        <a class="btn" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call">Book a free 15-minute fit call</a>
+        <a class="btn" data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
         <a class="btn-ghost" href="#sample-work">See sample work</a>
       </div>
       <p class="hero-note rise" style="--d:.92s">
@@ -617,7 +638,7 @@
         <p>This is where sample work and before-and-after examples live. Want to see something
         close to your situation? Bring it to the call and I'll walk you through a real example.</p>
       </div>
-      <a class="btn reveal" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call">Book a free 15-minute fit call</a>
+      <a class="btn reveal" data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
     </div>
   </section>
 
@@ -683,8 +704,8 @@
         </div>
         <aside class="clarity-buy" aria-label="AI Clarity Session price and next step">
           <div class="clarity-price">$395 one time<small>One focused session plus your written Clarity Plan</small></div>
-          <a class="btn" data-offer="ai-clarity-session" href="mailto:JWhalen@ClearPathWV.com?subject=ClearPath%20AI%20Clarity%20Session">Book an AI Clarity Session</a>
-          <p class="clarity-support">Checkout is not live yet. This button opens an email to ClearPath while the payment and scheduling path is reviewed.</p>
+          <a class="btn" data-checkout-offer="ai-clarity-session" href="https://book.stripe.com/3cI14nfbRcWe4uadBJ6Vq05">Buy the AI Clarity Session</a>
+          <p class="clarity-support">After payment, you get a Stripe receipt by email and I follow up personally to schedule your session.</p>
           <p class="clarity-trust"><strong>You keep the judgment.</strong> Nothing is connected, purchased, published, or changed in a live system during this session without your approval.</p>
         </aside>
       </div>
@@ -713,6 +734,7 @@
             <span class="tier-kind">Starter Pilot</span>
             <div class="tier-price">$1,500<small> setup</small></div>
             <div class="tier-price"><small>+</small> $500<small>/mo</small></div>
+            <p class="tier-charge"><strong>Charged today: $2,000.</strong> This includes the $1,500 setup and the first month of service at $500. After that, $500 renews monthly.</p>
           </div>
           <div class="tier-body">
             <h3>Starter Pilot</h3>
@@ -722,7 +744,10 @@
               <li class="tier-row"><span class="rlbl">After that</span><p>I keep the task running, check what comes out, and take care of small issues as they show up.</p></li>
               <li class="tier-row"><span class="rlbl">You still call the shots</span><p>You approve the task and the rules. Nothing sends on its own unless you've said it can.</p></li>
             </ul>
-            <a class="btn-ghost" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call" aria-label="Book a free 15-minute fit call about the Starter Pilot">Book a free 15-minute fit call</a>
+            <div class="tier-cta">
+              <a class="btn-ghost" data-checkout-offer="starter-pilot" href="https://buy.stripe.com/fZu28rbZFaO64ua9lt6Vq06">Start the Starter Pilot</a>
+              <p class="tier-alt">Not sure yet? <a data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call" aria-label="Book a free 15-minute fit call about the Starter Pilot">Book a free 15-minute fit call</a></p>
+            </div>
           </div>
         </div>
 
@@ -731,6 +756,7 @@
             <span class="tier-kind">Main offer</span>
             <div class="tier-price">$2,500<small> setup</small></div>
             <div class="tier-price"><small>+</small> $1,500<small>/mo</small></div>
+            <p class="tier-charge"><strong>Charged today: $4,000.</strong> This includes the $2,500 setup and the first month of service at $1,500. After that, $1,500 renews monthly.</p>
           </div>
           <div class="tier-body">
             <h3>Core Retainer</h3>
@@ -740,7 +766,10 @@
               <li class="tier-row"><span class="rlbl">After that</span><p>I handle the approved tasks, check the work, keep the guides current, and show you the next improvement before I make it.</p></li>
               <li class="tier-row"><span class="rlbl">You still call the shots</span><p>You approve every task, rule, and change. The important calls always wait for you.</p></li>
             </ul>
-            <a class="btn" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call" aria-label="Book a free 15-minute fit call about the Core Retainer">Book a free 15-minute fit call</a>
+            <div class="tier-cta">
+              <a class="btn" data-checkout-offer="core-retainer" href="https://buy.stripe.com/14A4gz6FlbSa6CifJR6Vq07">Start the Core Retainer</a>
+              <p class="tier-alt">Not sure yet? <a data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call" aria-label="Book a free 15-minute fit call about the Core Retainer">Book a free 15-minute fit call</a></p>
+            </div>
           </div>
         </div>
 
@@ -749,6 +778,7 @@
             <span class="tier-kind">Serious business tier</span>
             <div class="tier-price">$5,000<small> setup</small></div>
             <div class="tier-price"><small>+</small> $3,000<small>/mo</small></div>
+            <p class="tier-charge"><strong>Charged today: $8,000.</strong> This includes the $5,000 setup and the first month of service at $3,000. After that, $3,000 renews monthly.</p>
           </div>
           <div class="tier-body">
             <h3>Serious Business Tier</h3>
@@ -758,7 +788,10 @@
               <li class="tier-row"><span class="rlbl">After that</span><p>I stay closer to the work, review more of what comes through, and follow up on the things we've agreed on.</p></li>
               <li class="tier-row"><span class="rlbl">You still call the shots</span><p>The same rule applies. Anything important gets checked and waits for your approval.</p></li>
             </ul>
-            <a class="btn-ghost" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call" aria-label="Book a free 15-minute fit call about the Serious Business Tier">Book a free 15-minute fit call</a>
+            <div class="tier-cta">
+              <a class="btn-ghost" data-checkout-offer="serious-business-tier" href="https://buy.stripe.com/9B614n3t9f4m1hY9lt6Vq08">Start the Serious Business Tier</a>
+              <p class="tier-alt">Not sure yet? <a data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call" aria-label="Book a free 15-minute fit call about the Serious Business Tier">Book a free 15-minute fit call</a></p>
+            </div>
           </div>
         </div>
       </div>
@@ -783,6 +816,10 @@
           </ul>
         </div>
       </div>
+
+      <p class="after-checkout reveal"><strong>What happens after checkout:</strong> you get a Stripe
+      receipt by email, and I follow up personally to set up your kickoff. Implementation still
+      starts the same way it always does: you approve a written scope before any work begins.</p>
 
       <p class="pricing-foot reveal">Custom apps, integrations, websites, customer portals, sensitive work, and any third-party software fees are quoted separately, and only start after you approve a written scope.</p>
     </div>
@@ -930,7 +967,7 @@
     <div class="wrap" data-stagger>
       <h2 class="reveal">Got one task that's driving you nuts?</h2>
       <p class="reveal">Start with a free 15-minute fit call. It is a quick conversation to see whether ClearPath is relevant. No custom plan or written deliverable is included.</p>
-      <a class="btn reveal" href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call">Book a free 15-minute fit call</a>
+      <a class="btn reveal" data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
       <p class="cta-alt reveal">Prefer to look first? <a href="#sample-work">See sample work</a>.
       Or email <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a> and I'll read it myself.</p>
     </div>
@@ -944,7 +981,7 @@
       <span class="foot-brand">ClearPath</span>
       <span>Ellicottville, New York &middot; serving Western New York</span>
       <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a>
-      <a href="mailto:JWhalen@ClearPathWV.com?subject=Free%2015-minute%20fit%20call">Book a free 15-minute fit call</a>
+      <a data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
     </div>
     <p class="foot-line">© 2026 ClearPath, a Whalen Ventures company &middot; Every change is human-reviewed and owner-approved.</p>
   </div>

@@ -35,7 +35,12 @@ EXPECTED_CHECKOUT_URLS = {
     "core-retainer": "https://buy.stripe.com/14A4gz6FlbSa6CifJR6Vq07",
     "serious-business-tier": "https://buy.stripe.com/9B614n3t9f4m1hY9lt6Vq08",
 }
-EXPECTED_BOOKING_CTA_COUNT = 8
+# 7, not 8: the unfinished #sample-work placeholder section was removed
+# outright rather than filled with invented proof, and it owned one of the
+# fit-call CTAs. The remaining seven are asserted exactly, and
+# TestSampleWorkPlaceholderRemoved below pins the reason for the delta so a
+# CTA cannot quietly go missing again under cover of this number.
+EXPECTED_BOOKING_CTA_COUNT = 7
 EXPECTED_BOOKING_URL = "https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call"
 
 RETIRED_CAL_ROUTE = "https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call"
@@ -234,6 +239,29 @@ class TestBookingCtas(unittest.TestCase):
         for a in BOOKING_ANCHORS:
             self.assertEqual(a.href, EXPECTED_BOOKING_URL,
                              "booking CTA is not wired to the verified 15-minute event")
+
+    def test_booking_ctas_cover_every_conversion_point(self):
+        """Pin *where* the seven fit-call CTAs live, not just how many.
+
+        A bare count would still pass if a CTA moved out of the pricing
+        cards and a duplicate appeared in the footer, so each conversion
+        surface is asserted to own at least one.
+        """
+        surfaces = {
+            "header nav": RAW[RAW.index('class="top"'):RAW.index("<main>")],
+            "hero": RAW[RAW.index('<section class="hero"'):RAW.index('id="trust"')],
+            "final cta band": RAW[RAW.index('class="cta-band"'):RAW.index("</main>")],
+            "footer": RAW[RAW.index("<footer>"):],
+        }
+        for slug in ("starter-pilot", "core-retainer", "serious-business-tier"):
+            surfaces[f"{slug} card"] = offer_card(RAW, slug)
+        for label, chunk in surfaces.items():
+            self.assertIn("data-booking-offer", chunk,
+                          f"no fit-call CTA in the {label}")
+        # 4 standalone surfaces + 3 tier cards == the expected total.
+        # The paid AI Clarity Session block deliberately owns no free-call
+        # CTA, so it is not in this list.
+        self.assertEqual(len(surfaces), EXPECTED_BOOKING_CTA_COUNT)
 
     def test_retired_routes_absent_everywhere(self):
         self.assertNotIn(RETIRED_CAL_ROUTE, RAW)

@@ -1,0 +1,8 @@
+# Keep internal notes out of the deployment.
+#
+# On 2026-07-25 four internal build docs were confirmed serving HTTP 200 in
+# production. Deleting them fixed that instance; this file stops the next one.
+# Anything matched here stays in Git but is never uploaded to Vercel.
+
+*.md
+tests/

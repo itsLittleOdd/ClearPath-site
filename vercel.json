@@ -1,5 +1,9 @@
 {
   "framework": null,
   "buildCommand": null,
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "redirects": [
+    { "source": "/justin", "destination": "/justin/card.html", "permanent": true },
+    { "source": "/justin/", "destination": "/justin/card.html", "permanent": true }
+  ]
 }

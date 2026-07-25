@@ -4,40 +4,62 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="color-scheme" content="dark" />
-<meta name="theme-color" content="#0B1422" />
+<meta name="theme-color" content="#10201A" />
 <title>Justin Whalen - ClearPath</title>
 <meta name="description" content="Justin Whalen of ClearPath WV. Save my contact or send one business bottleneck." />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="robots" content="noindex" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231F3A5F'/%3E%3Ctext x='50' y='62' font-family='-apple-system, system-ui, sans-serif' font-weight='700' font-size='38' fill='%232CA78A' text-anchor='middle'%3EJW%3C/text%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231E4434'/%3E%3Ctext x='50' y='62' font-family='-apple-system, system-ui, sans-serif' font-weight='700' font-size='38' fill='%23D2864E' text-anchor='middle'%3EJW%3C/text%3E%3C/svg%3E" />
+
+<link rel="canonical" href="https://www.clearpathwv.com/justin/card.html" />
+<meta property="og:type" content="profile" />
+<meta property="og:site_name" content="ClearPath" />
+<meta property="og:url" content="https://www.clearpathwv.com/justin/card.html" />
+<meta property="og:title" content="Justin Whalen - ClearPath" />
+<meta property="og:description" content="Justin Whalen of ClearPath WV. Save my contact or send one business bottleneck." />
+<meta property="og:image" content="https://www.clearpathwv.com/clearpath-logo.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="784" />
+<meta property="og:image:height" content="1168" />
+<meta property="og:image:alt" content="ClearPath wordmark" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Justin Whalen - ClearPath" />
+<meta name="twitter:description" content="Justin Whalen of ClearPath WV. Save my contact or send one business bottleneck." />
+<meta name="twitter:image" content="https://www.clearpathwv.com/clearpath-logo.png" />
+<meta name="twitter:image:alt" content="ClearPath wordmark" />
 
 <!--
-  Mobile Business Card V1 for clearpathwv.com/justin
-  Single static page. No external fonts, no external images, no analytics, no
-  network calls. Intake actions are mailto / sms / clipboard only.
-  Public launch number approved by Justin: (716) 969-6155.
+  Contact card for clearpathwv.com/justin. Single static page, no external
+  fonts, no analytics, no network calls. Intake actions are mailto / sms /
+  clipboard only; one small local portrait is the page's only image request.
 -->
 
 <style>
   :root {
-    --navy:        #1F3A5F;
-    --navy-deep:   #142946;
-    --teal:        #2CA78A;
-    --teal-deep:   #1F8570;
-    --teal-soft:   rgba(44, 167, 138, 0.16);
+    /* Same paper / pine / clay family as clearpathwv.com, tuned for a dark,
+       glare-resistant card that reads outdoors and at arm's length. */
+    --pine:        #1E4434;
+    --pine-deep:   #163528;
+    --clay:        #C97B45;   /* 5.1:1 on --bg */
+    --clay-deep:   #B0683C;   /* homepage clay */
+    --clay-bright: #DA9159;   /* 6.2:1 on --bg */
+    --clay-soft:   rgba(201, 123, 69, 0.16);
 
-    --bg:          #0B1422;
-    --bg-soft:     #111C2E;
+    --bg:          #10201A;
+    --bg-soft:     #172C23;
     --surface:     rgba(255, 255, 255, 0.04);
     --surface-2:   rgba(255, 255, 255, 0.07);
     --border:      rgba(255, 255, 255, 0.10);
     --border-2:    rgba(255, 255, 255, 0.16);
 
-    --text:        #ECF1F7;
-    --text-dim:    #B6C2D2;   /* 7.4:1 on --bg */
-    --text-faint:  #8997AB;   /* 5.0:1 on --bg, still passes AA for body */
+    --text:        #F5F1E8;   /* paper, 15.0:1 on --bg */
+    --text-dim:    #C9CFC4;   /* 10.6:1 on --bg */
+    --text-faint:  #9AA79B;   /* 6.7:1 on --bg, passes AA for body */
 
-    --focus:       #4FD3B0;   /* teal-bright, ≥3:1 against any background here */
+    --focus:       #E39B63;   /* 7.3:1 on --bg, ≥3:1 against any surface here */
+
+    --serif:       "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --mono:        ui-monospace,"SF Mono",SFMono-Regular,"Cascadia Mono",Consolas,Menlo,monospace;
 
     --radius:      16px;
     --radius-sm:   10px;
@@ -96,7 +118,7 @@
   .skip:focus {
     top: calc(12px + env(safe-area-inset-top, 0px));
     outline: none;
-    box-shadow: 0 0 0 3px rgba(79, 211, 176, 0.35);
+    box-shadow: 0 0 0 3px rgba(227, 155, 99, 0.35);
   }
 
   /* Background gradient and grain for depth without heavy assets */
@@ -106,8 +128,8 @@
     inset: 0;
     z-index: -2;
     background:
-      radial-gradient(60% 40% at 50% 0%, rgba(31, 58, 95, 0.55) 0%, rgba(31, 58, 95, 0) 70%),
-      radial-gradient(40% 30% at 85% 10%, rgba(44, 167, 138, 0.18) 0%, rgba(44, 167, 138, 0) 70%),
+      radial-gradient(60% 40% at 50% 0%, rgba(30, 68, 52, 0.55) 0%, rgba(30, 68, 52, 0) 70%),
+      radial-gradient(40% 30% at 85% 10%, rgba(201, 123, 69, 0.18) 0%, rgba(201, 123, 69, 0) 70%),
       var(--bg);
   }
   body::after {
@@ -119,7 +141,7 @@
     top: 88px;
     z-index: -1;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(44,167,138,0.18), rgba(44,167,138,0) 68%);
+    background: radial-gradient(circle, rgba(201, 123, 69,0.18), rgba(201, 123, 69,0) 68%);
     filter: blur(2px);
     transform: translateX(-50%);
     animation: ambient-drift 12s ease-in-out infinite alternate;
@@ -146,28 +168,29 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    font-family: var(--mono);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.4px;
     text-transform: uppercase;
-    color: var(--teal);
-    background: var(--teal-soft);
+    color: var(--clay-bright);
+    background: var(--clay-soft);
     padding: 6px 12px;
     border-radius: 999px;
-    border: 1px solid rgba(44, 167, 138, 0.25);
+    border: 1px solid rgba(201, 123, 69, 0.25);
   }
   .eyebrow .dot {
     width: 6px;
     height: 6px;
-    background: var(--teal);
+    background: var(--clay);
     border-radius: 999px;
-    box-shadow: 0 0 0 0 rgba(44, 167, 138, 0.6);
+    box-shadow: 0 0 0 0 rgba(201, 123, 69, 0.6);
     animation: pulse 2.4s ease-out infinite;
   }
   @keyframes pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(44, 167, 138, 0.6); }
-    70%  { box-shadow: 0 0 0 10px rgba(44, 167, 138, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(44, 167, 138, 0); }
+    0%   { box-shadow: 0 0 0 0 rgba(201, 123, 69, 0.6); }
+    70%  { box-shadow: 0 0 0 10px rgba(201, 123, 69, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(201, 123, 69, 0); }
   }
 
   /* Hero */
@@ -180,28 +203,25 @@
     gap: 14px;
     margin-top: 16px;
   }
-  .monogram {
-    width: 56px;
-    height: 56px;
-    flex: 0 0 56px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  .portrait {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 64px;
+    border-radius: 16px;
+    object-fit: cover;
+    display: block;
+    background: var(--pine-deep);
     border: 1px solid var(--border-2);
-    display: grid;
-    place-items: center;
-    font-weight: 700;
-    color: var(--teal);
-    font-size: 22px;
-    letter-spacing: 0.5px;
     box-shadow: var(--shadow-card);
-    animation: monogram-float 5.8s ease-in-out infinite alternate;
+    animation: portrait-float 5.8s ease-in-out infinite alternate;
   }
-  @keyframes monogram-float {
+  @keyframes portrait-float {
     from { transform: translateY(0); box-shadow: var(--shadow-card); }
-    to   { transform: translateY(-3px); box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 0 22px 54px rgba(0,0,0,0.38), 0 0 26px rgba(44,167,138,0.16); }
+    to   { transform: translateY(-3px); box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 0 22px 54px rgba(0,0,0,0.38), 0 0 26px rgba(201, 123, 69,0.16); }
   }
   .hero-id .name {
-    font-size: 24px;
+    font-family: var(--serif);
+    font-size: 25px;
     font-weight: 700;
     letter-spacing: -0.2px;
     line-height: 1.1;
@@ -219,7 +239,7 @@
   }
   .promise b { color: #fff; font-weight: 600; }
   .promise .accent {
-    background: linear-gradient(135deg, var(--teal) 0%, #6FE0C1 100%);
+    background: linear-gradient(135deg, var(--clay) 0%, #E9A870 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -232,6 +252,7 @@
     font-size: 13px;
   }
   .source-note {
+    font-family: var(--mono);
     margin-top: 12px;
     display: inline-block;
     font-size: 10.5px;
@@ -290,7 +311,7 @@
   .btn:active { transform: translateY(1px) scale(0.985); }
   .btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(79, 211, 176, 0.45),
+    box-shadow: 0 0 0 3px rgba(227, 155, 99, 0.45),
                 0 0 0 1px var(--focus);
   }
   .btn .ic { width: 18px; height: 18px; flex: 0 0 18px; }
@@ -298,11 +319,11 @@
   .btn-primary {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
+    background: linear-gradient(135deg, var(--clay-bright) 0%, var(--clay) 100%);
     border-color: rgba(255,255,255,0.18);
-    color: #062018;   /* 11.5:1 on the lighter teal-stop, exceeds AAA */
+    color: #14261E;   /* 4.8:1 on the darker clay stop, 6.2:1 on the lighter */
     box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset,
-                0 6px 18px rgba(20, 70, 56, 0.35);
+                0 6px 18px rgba(58, 32, 12, 0.35);
   }
   .btn-primary::after {
     content: "";
@@ -320,10 +341,10 @@
   }
   .btn-primary:hover {
     filter: brightness(1.04);
-    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
+    background: linear-gradient(135deg, var(--clay-bright) 0%, var(--clay) 100%);
   }
   .btn-primary:focus-visible {
-    box-shadow: 0 0 0 3px rgba(79, 211, 176, 0.55),
+    box-shadow: 0 0 0 3px rgba(227, 155, 99, 0.55),
                 0 0 0 1px var(--focus),
                 0 1px 0 rgba(255,255,255,0.18) inset;
   }
@@ -353,7 +374,8 @@
   /* Section heads */
   .section-head h2 {
     margin: 0;
-    font-size: 18px;
+    font-family: var(--serif);
+    font-size: 19px;
     font-weight: 700;
     letter-spacing: -0.2px;
   }
@@ -374,9 +396,9 @@
     border-radius: calc(var(--radius) + 4px);
     padding: 16px;
     background:
-      radial-gradient(circle at 18% 18%, rgba(44, 167, 138, 0.20), transparent 32%),
-      radial-gradient(circle at 82% 0%, rgba(111, 224, 193, 0.14), transparent 34%),
-      linear-gradient(180deg, rgba(31, 58, 95, 0.26), rgba(20, 41, 70, 0.08));
+      radial-gradient(circle at 18% 18%, rgba(201, 123, 69, 0.20), transparent 32%),
+      radial-gradient(circle at 82% 0%, rgba(233, 168, 112, 0.14), transparent 34%),
+      linear-gradient(180deg, rgba(30, 68, 52, 0.26), rgba(22, 53, 40, 0.08));
     box-shadow: var(--shadow-card);
   }
   .motion-card::before {
@@ -394,6 +416,7 @@
     82%,100% { transform: translateX(55%); opacity: 0; }
   }
   .motion-topline {
+    font-family: var(--mono);
     position: relative;
     z-index: 1;
     display: flex;
@@ -405,7 +428,7 @@
     font-weight: 700;
     color: var(--text-faint);
   }
-  .motion-topline span:last-child { color: var(--teal); }
+  .motion-topline span:last-child { color: var(--clay-bright); }
   .motion-lane {
     position: relative;
     z-index: 1;
@@ -423,7 +446,7 @@
     top: 28px;
     height: 2px;
     border-radius: 999px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.14), rgba(44,167,138,0.55), rgba(255,255,255,0.12));
+    background: linear-gradient(90deg, rgba(255,255,255,0.14), rgba(201, 123, 69,0.55), rgba(255,255,255,0.12));
   }
   .motion-packet {
     position: absolute;
@@ -433,8 +456,8 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #6FE0C1;
-    box-shadow: 0 0 0 5px rgba(44,167,138,0.14), 0 0 22px rgba(111,224,193,0.75);
+    background: #E9A870;
+    box-shadow: 0 0 0 5px rgba(201, 123, 69,0.14), 0 0 22px rgba(233, 168, 112,0.75);
     animation: packet-run 5.6s var(--easing-in-out, ease-in-out) infinite;
   }
   @keyframes packet-run {
@@ -459,25 +482,25 @@
     height: 24px;
     border-radius: 50%;
     background: var(--bg-soft);
-    border: 1px solid rgba(44,167,138,0.48);
-    box-shadow: 0 0 0 5px rgba(44,167,138,0.08);
+    border: 1px solid rgba(201, 123, 69,0.48);
+    box-shadow: 0 0 0 5px rgba(201, 123, 69,0.08);
     animation: node-breathe 5.6s ease-in-out infinite;
   }
   .motion-step:nth-child(3) i { animation-delay: 1.1s; }
   .motion-step:nth-child(4) i { animation-delay: 2.4s; }
   .motion-step:nth-child(5) i { animation-delay: 3.7s; }
   @keyframes node-breathe {
-    0%, 18%, 100% { border-color: rgba(44,167,138,0.48); box-shadow: 0 0 0 5px rgba(44,167,138,0.08); transform: scale(1); }
-    8% { border-color: rgba(111,224,193,0.92); box-shadow: 0 0 0 9px rgba(44,167,138,0.14), 0 0 18px rgba(111,224,193,0.35); transform: scale(1.04); }
+    0%, 18%, 100% { border-color: rgba(201, 123, 69,0.48); box-shadow: 0 0 0 5px rgba(201, 123, 69,0.08); transform: scale(1); }
+    8% { border-color: rgba(233, 168, 112,0.92); box-shadow: 0 0 0 9px rgba(201, 123, 69,0.14), 0 0 18px rgba(233, 168, 112,0.35); transform: scale(1.04); }
   }
   .motion-copy {
     position: relative;
     z-index: 1;
     margin-top: 16px;
     padding: 12px 13px;
-    border: 1px solid rgba(44,167,138,0.28);
+    border: 1px solid rgba(201, 123, 69,0.28);
     border-radius: 14px;
-    background: rgba(44,167,138,0.08);
+    background: rgba(201, 123, 69,0.08);
   }
   .motion-copy strong {
     display: block;
@@ -529,8 +552,8 @@
   .field textarea:focus-visible {
     outline: none;
     border-color: var(--focus);
-    background: #0E1A2B;
-    box-shadow: 0 0 0 3px rgba(79, 211, 176, 0.30);
+    background: #1B3529;
+    box-shadow: 0 0 0 3px rgba(227, 155, 99, 0.30);
   }
   .field .helper {
     margin-top: 4px;
@@ -552,8 +575,8 @@
     color: var(--text-dim);
     line-height: 1.5;
     padding: 10px 12px;
-    border: 1px solid rgba(44, 167, 138, 0.30);
-    background: rgba(44, 167, 138, 0.08);
+    border: 1px solid rgba(201, 123, 69, 0.30);
+    background: rgba(201, 123, 69, 0.08);
     border-radius: 12px;
   }
   .intake-actions {
@@ -576,9 +599,9 @@
     left: 50%;
     bottom: calc(96px + var(--safe-bottom));
     transform: translate(-50%, 20px);
-    background: rgba(20, 41, 70, 0.95);
-    border: 1px solid var(--teal);
-    color: #DAF1E8;
+    background: rgba(22, 53, 40, 0.95);
+    border: 1px solid var(--clay);
+    color: #F4E6D7;
     padding: 10px 14px;
     border-radius: 999px;
     font-size: 13px;
@@ -604,7 +627,7 @@
     font-size: 13px;
     letter-spacing: 0.6px;
     text-transform: uppercase;
-    color: var(--teal);
+    color: var(--clay);
   }
   .about ul {
     margin: 8px 0 0;
@@ -624,7 +647,7 @@
     position: absolute;
     left: 0; top: 9px;
     width: 12px; height: 2px;
-    background: var(--teal);
+    background: var(--clay);
     border-radius: 2px;
   }
 
@@ -636,6 +659,16 @@
     font-size: 11.5px;
     letter-spacing: 0.6px;
   }
+  footer .home-link {
+    color: var(--clay-bright);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  footer .home-link:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
 
   /* Sticky bottom bar */
   .bar {
@@ -644,7 +677,7 @@
     bottom: 0;
     z-index: 50;
     padding: 10px 12px calc(10px + var(--safe-bottom));
-    background: linear-gradient(180deg, rgba(11,20,34,0.0) 0%, rgba(11,20,34,0.85) 30%, rgba(11,20,34,0.95) 100%);
+    background: linear-gradient(180deg, rgba(16, 32, 26,0.0) 0%, rgba(16, 32, 26,0.85) 30%, rgba(16, 32, 26,0.95) 100%);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-top: 1px solid var(--border);
@@ -681,16 +714,16 @@
   .bar a:active { transform: translateY(1px) scale(0.98); }
   .bar a:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(79, 211, 176, 0.45),
+    box-shadow: 0 0 0 3px rgba(227, 155, 99, 0.45),
                 0 0 0 1px var(--focus);
   }
   .bar a .ic { width: 18px; height: 18px; }
   .bar a.primary {
-    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
-    color: #062018;
+    background: linear-gradient(135deg, var(--clay-bright) 0%, var(--clay) 100%);
+    color: #14261E;
     border-color: rgba(255,255,255,0.18);
     box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset,
-                0 6px 18px rgba(20, 70, 56, 0.30);
+                0 6px 18px rgba(58, 32, 12, 0.30);
   }
 
   /* JS-off message */
@@ -736,7 +769,7 @@
     }
     body::after,
     .eyebrow .dot,
-    .monogram,
+    .portrait,
     .btn-primary::after,
     .motion-card::before,
     .motion-packet,
@@ -756,8 +789,8 @@
     :root {
       --border:   rgba(255, 255, 255, 0.40);
       --border-2: rgba(255, 255, 255, 0.55);
-      --text-dim: #E1E8F1;
-      --text-faint: #BFCAD9;
+      --text-dim: #EFF1EA;
+      --text-faint: #CFD6CB;
     }
     .btn, .chip, .field input, .field textarea, .reset-btn, .bar a { border-color: #fff; }
     .privacy, .no-auto-submit { border-style: solid; border-color: #fff; }
@@ -783,7 +816,8 @@
       <span class="eyebrow"><span class="dot" aria-hidden="true"></span>ClearPath WV</span>
 
       <div class="hero-top">
-        <div class="monogram" aria-hidden="true">JW</div>
+        <img class="portrait" src="justin-portrait.webp" width="64" height="64"
+             decoding="async" fetchpriority="high" alt="" />
         <div class="hero-id">
           <h1 class="name" id="hero-name">Justin Whalen</h1>
           <div class="role">Founder, ClearPath</div>
@@ -846,7 +880,10 @@
         <p>One sentence is fine. I'll send back one practical idea.</p>
       </div>
 
-      <form id="intake-form" novalidate autocomplete="on">
+      <!-- method="post" is deliberate: with no action and no JS, a stray
+           submit still cannot put typed business detail in the URL bar or
+           browser history the way a default GET would. -->
+      <form id="intake-form" method="post" novalidate autocomplete="on">
         <div class="field">
           <label for="i-name">Your name</label>
           <input id="i-name" name="name" type="text" autocomplete="name" inputmode="text" />
@@ -878,8 +915,11 @@
 
         <p class="empty-hint" id="empty-hint" aria-live="polite"></p>
 
+        <p class="nojs">JavaScript is off, so these three buttons cannot build
+        a draft. Use Text me or Email me at the top of the card instead.</p>
+
         <div class="intake-actions">
-          <button type="button" class="btn btn-primary" id="send-email" aria-describedby="no-auto-submit">
+          <button type="submit" class="btn btn-primary" id="send-email" aria-describedby="no-auto-submit">
             <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
             Send to Justin
           </button>
@@ -905,14 +945,17 @@
         <p>No generic AI consulting. No strategy deck. Just one useful fix and a process your team can run.</p>
         <p class="closer-title">First move if we worked together</p>
         <ul>
-          <li>A short Workflow Check so we see the same picture.</li>
+          <li>A short fit call so we see the same picture.</li>
           <li>Pick the one fix worth doing first.</li>
           <li>Set up a weekly owner view so nothing hides.</li>
         </ul>
       </div>
     </section>
 
-    <footer>ClearPath WV - clearpathwv.com</footer>
+    <footer>
+      ClearPath WV -
+      <a class="home-link" href="https://www.clearpathwv.com/">clearpathwv.com</a>
+    </footer>
   </main>
 
   <!-- Sticky bottom bar -->
@@ -990,7 +1033,7 @@
     lines.push('What is slowing things down:');
     lines.push(problem);
     lines.push('');
-    lines.push('Sent from clearpathwv.com/justin.');
+    lines.push('Sent from clearpathwv.com/justin/card.html.');
     return lines.join('\n');
   }
 
@@ -1041,7 +1084,14 @@
     } catch (e) { fail(); }
   }
 
-  document.getElementById('send-email').addEventListener('click', sendByEmail);
+  // Submit is the only route to the mail draft, so the primary button AND
+  // Enter-from-a-text-input land here. preventDefault() runs first and
+  // unconditionally, so no GET is ever issued and nothing typed is written
+  // to the URL or session history.
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    sendByEmail();
+  });
   document.getElementById('send-sms').addEventListener('click', sendBySms);
   document.getElementById('send-copy').addEventListener('click', copyMessage);
 

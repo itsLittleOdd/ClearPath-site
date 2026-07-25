@@ -353,6 +353,15 @@
     background: transparent;
   }
 
+  /* The submit button ships disabled and script enables it. Without this the
+     pre-enable state would look identical to the working one. */
+  .btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    filter: saturate(0.6);
+  }
+  .btn:disabled::after { animation: none; opacity: 0; }
+
   .actions-hint {
     margin: 10px 2px 0;
     font-size: 12px;
@@ -880,26 +889,30 @@
         <p>One sentence is fine. I'll send back one practical idea.</p>
       </div>
 
-      <!-- method="post" is deliberate: with no action and no JS, a stray
-           submit still cannot put typed business detail in the URL bar or
-           browser history the way a default GET would. -->
-      <form id="intake-form" method="post" novalidate autocomplete="on">
+      <!-- Fail-closed by construction. There is no method and no action, the
+           fields carry no name attributes so native serialization would be
+           empty anyway, and the only submit button ships disabled. Script
+           enables it last, after every handler is bound. With JS off or an
+           early script failure the button stays disabled, which per the HTML
+           implicit-submission rules also makes Enter a no-op: nothing can be
+           transmitted or navigated. -->
+      <form id="intake-form" novalidate autocomplete="on">
         <div class="field">
           <label for="i-name">Your name</label>
-          <input id="i-name" name="name" type="text" autocomplete="name" inputmode="text" />
+          <input id="i-name" type="text" autocomplete="name" inputmode="text" />
         </div>
         <div class="field">
           <label for="i-business">Business name</label>
-          <input id="i-business" name="business" type="text" autocomplete="organization" inputmode="text" />
+          <input id="i-business" type="text" autocomplete="organization" inputmode="text" />
         </div>
         <div class="field">
           <label for="i-contact">Best way to reach you</label>
-          <input id="i-contact" name="contact" type="text" autocomplete="off" inputmode="text" />
+          <input id="i-contact" type="text" autocomplete="off" inputmode="text" />
           <p class="helper">Email, phone, or a handle.</p>
         </div>
         <div class="field">
           <label for="i-problem">One thing slowing your business down</label>
-          <textarea id="i-problem" name="problem" rows="3" maxlength="600"></textarea>
+          <textarea id="i-problem" rows="3" maxlength="600"></textarea>
           <p class="helper">Plain English. Short is fine.</p>
         </div>
 
@@ -919,7 +932,7 @@
         a draft. Use Text me or Email me at the top of the card instead.</p>
 
         <div class="intake-actions">
-          <button type="submit" class="btn btn-primary" id="send-email" aria-describedby="no-auto-submit">
+          <button type="submit" class="btn btn-primary" id="send-email" disabled aria-describedby="no-auto-submit">
             <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
             Send to Justin
           </button>
@@ -1099,6 +1112,13 @@
   problemEl.addEventListener('input', function () {
     if (problemEl.value.trim()) emptyHint.textContent = '';
   });
+
+  // LAST LINE ON PURPOSE. The submit button is disabled in the HTML source and
+  // is only enabled here, once every DOM reference above resolved and every
+  // handler (including the preventDefault submit guard) is bound. If anything
+  // above throws, this never runs, the button stays disabled, and the form
+  // cannot submit by click or by Enter. Do not move this earlier.
+  document.getElementById('send-email').disabled = false;
 </script>
 </body>
 </html>

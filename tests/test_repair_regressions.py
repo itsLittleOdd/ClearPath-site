@@ -342,12 +342,71 @@ class TestCardFormSemanticsAndPrivacy(unittest.TestCase):
             body.index("preventDefault()"), body.index("sendByEmail"),
             "preventDefault() must run before the mail draft is opened")
 
-    def test_form_cannot_leak_typed_text_into_the_url_even_without_js(self):
+    def test_form_has_no_native_submission_routing_at_all(self):
+        """An earlier revision used method="post" and called that privacy.
+
+        It was not. POST only keeps typed detail out of the URL; it still
+        transmits name, business, contact and problem to the host, which this
+        card promises never happens. The only safe configuration is no
+        submission routing whatsoever.
+        """
         form = next(f for f in CARD_DOM.forms if f.get("id") == "intake-form")
-        self.assertEqual(form.get("method", "").lower(), "post",
-                         "a GET form would put typed business detail in the URL")
+        self.assertNotIn("method", form,
+                         "intake form must declare no submission method")
         self.assertNotIn("action", form,
-                         "intake form must stay backendless")
+                         "intake form must declare no submission target")
+        self.assertNotIn("formaction", CARD_RAW,
+                         "a formaction attribute would reintroduce routing")
+        self.assertNotIn("formmethod", CARD_RAW,
+                         "a formmethod attribute would reintroduce routing")
+
+    def test_intake_fields_cannot_be_natively_serialized(self):
+        """Without a name attribute a control is skipped by form
+        serialization, so even a submission that somehow escaped would carry
+        no visitor data."""
+        named = re.findall(r'<(?:input|textarea|select)\b[^>]*\bname\s*=',
+                           CARD_RAW)
+        self.assertEqual(named, [],
+                         "an intake control has a name attribute, so its value "
+                         "could be serialized into a native submission")
+        for field_id in ("i-name", "i-business", "i-contact", "i-problem"):
+            self.assertIn(f'id="{field_id}"', CARD_RAW,
+                          f"intake field {field_id} disappeared")
+
+    def test_submit_button_is_disabled_in_source(self):
+        """Fail-closed: with JS off, or if the script throws before it
+        finishes wiring up, the button must stay disabled. A disabled default
+        button also makes Enter a no-op under the HTML implicit-submission
+        rules, so nothing is transmitted or navigated."""
+        button = re.search(r'<button[^>]*id="send-email"[^>]*>', CARD_RAW)
+        self.assertIsNotNone(button, "submit button not found")
+        self.assertRegex(button.group(0), r'\bdisabled\b',
+                         "submit button must ship disabled")
+
+    def test_button_is_enabled_only_after_every_handler_is_installed(self):
+        """Ordering is the whole guarantee, so assert the ordering."""
+        enable = "document.getElementById('send-email').disabled = false;"
+        self.assertIn(enable, CARD_RAW, "script never enables the submit button")
+        enable_at = CARD_RAW.index(enable)
+
+        must_precede = {
+            "submit guard": "form.addEventListener('submit'",
+            "sms handler": "document.getElementById('send-sms')",
+            "copy handler": "document.getElementById('send-copy')",
+            "form reference": "var form = document.getElementById('intake-form')",
+        }
+        for label, snippet in must_precede.items():
+            self.assertIn(snippet, CARD_RAW, f"missing {label}")
+            self.assertLess(
+                CARD_RAW.index(snippet), enable_at,
+                f"{label} is installed after the button is enabled; the button "
+                "must be enabled last so an early failure stays fail-closed")
+
+        # Nothing may run after the enable line except the closing script tag.
+        tail = CARD_RAW[enable_at + len(enable):CARD_RAW.index("</script>")]
+        self.assertEqual(tail.strip(), "",
+                         "code runs after the enable line, so a later failure "
+                         f"would leave the button live: {tail.strip()[:80]!r}")
 
     def test_no_backend_and_no_network_calls(self):
         for banned in ("fetch(", "XMLHttpRequest", "navigator.sendBeacon",

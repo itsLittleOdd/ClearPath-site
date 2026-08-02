@@ -6,13 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <title>ClearPath | Office work handled for small businesses in Western New York</title>
-<meta name="description" content="ClearPath helps small businesses across Western New York clean up repetitive office work: emails, quotes, invoices, and follow-ups. Small, low-cost fixes the owner approves. Based in Ellicottville, NY.">
+<meta name="description" content="ClearPath helps small businesses across Western New York clean up repetitive office work: emails, quotes, invoices, and follow-ups. Try working demos in your browser. Small, low-cost fixes the owner approves. Based in Ellicottville, NY.">
 <link rel="canonical" href="https://www.clearpathwv.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ClearPath">
 <meta property="og:url" content="https://www.clearpathwv.com/">
 <meta property="og:title" content="ClearPath | Office work handled for small businesses in Western New York">
-<meta property="og:description" content="ClearPath helps small businesses across Western New York clean up repetitive office work: emails, quotes, invoices, and follow-ups. Small, low-cost fixes the owner approves. Based in Ellicottville, NY.">
+<meta property="og:description" content="ClearPath helps small businesses across Western New York clean up repetitive office work: emails, quotes, invoices, and follow-ups. Try working demos in your browser. Small, low-cost fixes the owner approves. Based in Ellicottville, NY.">
 <meta property="og:image" content="https://www.clearpathwv.com/clearpath-logo.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="784">
@@ -20,7 +20,7 @@
 <meta property="og:image:alt" content="ClearPath wordmark">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ClearPath | Office work handled for small businesses in Western New York">
-<meta name="twitter:description" content="ClearPath helps small businesses across Western New York clean up repetitive office work: emails, quotes, invoices, and follow-ups. Small, low-cost fixes the owner approves. Based in Ellicottville, NY.">
+<meta name="twitter:description" content="ClearPath helps small businesses across Western New York clean up repetitive office work: emails, quotes, invoices, and follow-ups. Try working demos in your browser. Small, low-cost fixes the owner approves. Based in Ellicottville, NY.">
 <meta name="twitter:image" content="https://www.clearpathwv.com/clearpath-logo.png">
 <meta name="twitter:image:alt" content="ClearPath wordmark">
 <script type="application/ld+json">
@@ -40,363 +40,7 @@
   ]
 }
 </script>
-<style>
-  :root{
-    --paper:#FAF7F1;
-    --paper-deep:#F2EDE2;
-    --card:#FFFFFF;
-    --ink:#16242E;
-    --ink-soft:#44525B;
-    --pine:#1E4434;
-    --pine-deep:#163528;
-    --pine-tint:#E4ECE5;
-    --clay:#B0683C;
-    --line:#E3DCCD;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    --mono:ui-monospace,"SF Mono",SFMono-Regular,"Cascadia Mono",Consolas,Menlo,monospace;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:var(--sans);
-    font-size:17px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:var(--pine)}
-  a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--clay);outline-offset:3px;border-radius:2px}
-  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
-  .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
-
-  /* ---------- motion system ---------- */
-  @keyframes riseIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-  .js .rise{opacity:0;animation:riseIn .7s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--d,0s)}
-  .js .reveal{opacity:1;transform:none}
-  .path-draw{
-    stroke-dasharray:1700;stroke-dashoffset:1700;
-    animation:draw 2.2s ease-out .55s forwards;
-  }
-  @keyframes draw{to{stroke-dashoffset:0}}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto}
-    *,*::before,*::after{animation:none!important;transition:none!important}
-    .js .rise,.js .reveal{opacity:1!important;transform:none!important}
-    .path-draw{stroke-dasharray:none!important;stroke-dashoffset:0!important}
-  }
-
-  /* ---------- header ---------- */
-  .top{
-    border-bottom:1px solid var(--line);
-    background:var(--paper);
-  }
-  .top-row{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:18px 0;gap:16px;flex-wrap:wrap;
-  }
-  .brand{display:flex;flex-direction:column;text-decoration:none;color:var(--ink)}
-  .brand-name{font-family:var(--serif);font-size:24px;font-weight:700;letter-spacing:.2px}
-  .brand-sub{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-top:2px}
-  .nav{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-  .nav a{color:var(--ink-soft);text-decoration:none;font-size:15px}
-  .nav a:hover{color:var(--pine);text-decoration:underline;text-underline-offset:4px}
-  .btn{
-    display:inline-block;background:var(--pine);color:#fff;text-decoration:none;
-    padding:12px 22px;border-radius:6px;font-weight:600;font-size:15.5px;border:1px solid var(--pine);
-    transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
-  }
-  .btn:hover{background:var(--pine-deep);border-color:var(--pine-deep);transform:translateY(-1px);box-shadow:0 6px 16px rgba(22,36,46,.16)}
-  .btn-ghost{
-    display:inline-block;background:transparent;color:var(--pine);text-decoration:none;
-    padding:12px 22px;border-radius:6px;font-weight:600;font-size:15.5px;border:1px solid var(--pine);
-    transition:background .2s ease,transform .2s ease;
-  }
-  .btn-ghost:hover{background:var(--pine-tint);transform:translateY(-1px)}
-  .nav .btn{padding:10px 18px;color:#fff}
-  .scene-tag{color:#9b5630!important}
-  .price-chip.free{color:#5f2b0f!important}
-
-  /* ---------- hero ---------- */
-  .hero{padding:72px 0 36px}
-  .eyebrow{
-    font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--pine);display:inline-flex;align-items:center;gap:10px;
-  }
-  .eyebrow::before{content:"";width:26px;height:2px;background:var(--pine);display:inline-block}
-  h1{
-    font-family:var(--serif);font-weight:700;
-    font-size:clamp(40px,6.2vw,68px);line-height:1.04;letter-spacing:-.5px;
-    margin:18px 0 8px;max-width:14ch;
-  }
-  .hero-line{margin:6px 0 22px;max-width:640px}
-  .hero-line svg{width:100%;height:auto;display:block}
-  .lede{
-    font-size:19.5px;max-width:62ch;color:var(--ink-soft);
-  }
-  .lede strong{color:var(--ink)}
-  .hero-cta{display:flex;gap:14px;align-items:center;margin-top:30px;flex-wrap:wrap}
-  .hero-note{font-size:14.5px;color:var(--ink-soft);margin-top:14px}
-  .hero-note a{color:var(--ink-soft)}
-
-  /* ---------- generic section ---------- */
-  section{padding:64px 0}
-  .sec-head{max-width:680px;margin-bottom:36px}
-  h2{font-family:var(--serif);font-weight:700;font-size:clamp(28px,3.6vw,38px);line-height:1.15;margin:14px 0 12px}
-  .sec-head p{color:var(--ink-soft);font-size:18px}
-
-  /* ---------- sound familiar ---------- */
-  .familiar{border-top:1px solid var(--line)}
-  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .scene{
-    background:var(--card);border:1px solid var(--line);border-radius:10px;
-    padding:26px 24px;display:flex;flex-direction:column;gap:10px;
-  }
-  .js .scene{transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .25s ease,box-shadow .25s ease}
-  .scene:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(22,36,46,.09)}
-  .scene-tag{
-    font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);
-  }
-  .scene h3{font-family:var(--serif);font-size:21px;line-height:1.25}
-  .scene p{color:var(--ink-soft);font-size:15.5px}
-  .familiar-kicker{margin-top:26px;font-size:18px}
-  .familiar-kicker strong{font-family:var(--serif);font-size:19px}
-
-  /* ---------- how it works ---------- */
-  .how{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .steps{position:relative;max-width:760px}
-  .steps::before{
-    content:"";position:absolute;left:21px;top:14px;bottom:14px;width:2px;background:var(--pine);opacity:.35;
-  }
-  .step{position:relative;padding:0 0 38px 70px}
-  .step:last-child{padding-bottom:0}
-  .step-num{
-    position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;
-    background:var(--pine);color:#fff;font-family:var(--serif);font-size:20px;font-weight:700;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .step h3{font-family:var(--serif);font-size:23px;margin-bottom:6px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-  .price-chip{
-    font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--pine);
-    background:var(--pine-tint);border:1px solid var(--pine);border-radius:999px;padding:3px 12px;white-space:nowrap;
-  }
-  .price-chip.free{color:var(--clay);background:#F6E9DD;border-color:var(--clay)}
-  .step p{color:var(--ink-soft);max-width:58ch}
-
-  /* ---------- you stay in control ---------- */
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
-  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:28px}
-  .panel.hold{background:var(--pine);border-color:var(--pine);color:#F4F1E8}
-  .panel h3{font-family:var(--serif);font-size:22px;margin-bottom:14px}
-  .panel ul{list-style:none}
-  .panel li{
-    padding:9px 0 9px 28px;position:relative;font-size:15.5px;color:var(--ink-soft);
-    border-top:1px dashed var(--line);
-  }
-  .panel li:first-of-type{border-top:none}
-  .panel li::before{
-    content:"";position:absolute;left:0;top:1.15em;width:14px;height:2px;background:var(--pine);
-  }
-  .panel.hold li{color:#E8EFE6;border-top-color:rgba(244,241,232,.25)}
-  .panel.hold li::before{content:"✓";width:auto;height:auto;background:none;top:auto;color:#F4F1E8;font-weight:700}
-  .privacy{
-    margin-top:18px;padding:18px 22px;border-left:4px solid var(--pine);
-    background:var(--card);border-radius:0 8px 8px 0;font-size:15.5px;color:var(--ink-soft);
-  }
-  .privacy strong{color:var(--ink)}
-
-  /* ---------- pricing ---------- */
-  .pricing{border-top:1px solid var(--line)}
-  .tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
-  .tier{
-    background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0;
-    display:flex;flex-direction:column;overflow:hidden;
-  }
-  .js .tier{transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .25s ease,box-shadow .25s ease}
-  .tier:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(22,36,46,.09)}
-  .tier-top{border-bottom:2px dashed var(--line);padding:20px 20px 16px}
-  .tier-kind{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
-  .tier-price{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--ink);margin-top:6px}
-  .tier-price small{font-size:14px;font-weight:400;color:var(--ink-soft)}
-  .tier-charge{font-size:13.5px;color:var(--ink-soft);margin-top:10px;line-height:1.45}
-  .tier-charge strong{color:var(--ink)}
-  .tier-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:14px;flex:1}
-  .tier-body h3{font-family:var(--serif);font-size:21px}
-  .tier-body p{color:var(--ink-soft);font-size:15px;flex:1}
-  .tier .btn,.tier .btn-ghost{text-align:center}
-  .tier.lead{border-color:var(--pine);box-shadow:0 8px 26px rgba(30,68,52,.10)}
-  .tier.lead .tier-top{background:var(--pine-tint)}
-  .pricing-foot{
-    margin-top:22px;font-size:15px;color:var(--ink-soft);
-    font-family:var(--mono);
-  }
-
-  /* ---------- one-time clarity session ---------- */
-  .clarity{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .clarity-card{
-    display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.75fr);gap:30px;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:32px;
-    box-shadow:0 10px 28px rgba(22,36,46,.07);
-  }
-  .clarity-card h2{max-width:18ch}
-  .clarity-copy>p{color:var(--ink-soft);max-width:65ch;margin-top:12px}
-  .clarity-included{list-style:none;margin:22px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:9px 20px}
-  .clarity-included li{position:relative;padding-left:24px;color:var(--ink-soft);font-size:15.5px}
-  .clarity-included li::before{content:"✓";position:absolute;left:0;color:var(--pine);font-weight:700}
-  .clarity-buy{background:var(--pine-tint);border:1px solid var(--pine);border-radius:10px;padding:24px;align-self:start}
-  .clarity-price{font-family:var(--mono);font-size:31px;font-weight:700;line-height:1.1;color:var(--ink)}
-  .clarity-price small{display:block;font-size:13px;font-weight:500;color:var(--ink-soft);margin-top:7px}
-  .clarity-buy .btn{display:block;text-align:center;margin-top:20px}
-  .clarity-buy .tier-scope{margin-top:18px}
-  .clarity-support{font-size:14px;color:var(--ink-soft);margin-top:12px}
-  .clarity-scope,.clarity-trust,.clarity-legal{font-size:14.5px;color:var(--ink-soft);margin-top:18px}
-  .clarity-trust{padding-top:16px;border-top:1px dashed var(--line);color:var(--ink)}
-  .offer-path{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 0}
-  .offer-path-item{border:1px solid var(--line);border-radius:8px;padding:14px;background:var(--paper)}
-  .offer-path-item strong{display:block;font-family:var(--serif);font-size:16px;color:var(--ink)}
-  .offer-path-item span{display:block;font-size:13px;color:var(--ink-soft);margin-top:3px}
-
-  /* ---------- about ---------- */
-  .about{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .about-grid{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start}
-  .portrait{
-    width:100%;aspect-ratio:4/5;border-radius:10px;border:1px solid var(--line);
-    object-fit:cover;object-position:50% 30%;display:block;
-    box-shadow:0 10px 26px rgba(22,36,46,.10);
-  }
-  .about-copy h2{margin-top:6px}
-  .about-copy p{color:var(--ink-soft);margin-bottom:14px;max-width:60ch}
-  .about-meta{
-    font-family:var(--mono);font-size:13px;letter-spacing:.05em;color:var(--pine);
-    border-top:1px solid var(--line);padding-top:14px;margin-top:6px;
-  }
-
-  /* ---------- final cta ---------- */
-  .cta-band{background:var(--pine);color:#F4F1E8;padding:72px 0}
-  .cta-band h2{color:#fff;max-width:18ch}
-  .cta-band p{color:#DCE6DA;font-size:18px;max-width:56ch;margin:10px 0 28px}
-  .cta-band .btn{background:#F4F1E8;color:var(--pine);border-color:#F4F1E8}
-  .cta-band .btn:hover{background:#fff}
-  .cta-band a:focus-visible{outline-color:#F4F1E8}
-  .cta-alt{margin-top:16px;font-size:15px;color:#C9D6C6}
-  .cta-alt a{color:#F4F1E8}
-
-  /* ---------- footer ---------- */
-  footer{padding:34px 0 46px;color:var(--ink-soft);font-size:14.5px}
-  .foot-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:baseline}
-  .foot-brand{font-family:var(--serif);font-weight:700;color:var(--ink);font-size:18px}
-  .foot-row a{color:var(--ink-soft)}
-  .foot-line{margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.04em}
-
-  /* ---------- responsive ---------- */
-  @media (max-width:1050px){
-    .tiers{grid-template-columns:1fr 1fr}
-  }
-  @media (max-width:900px){
-    .cards3{grid-template-columns:1fr 1fr}
-    .about-grid{grid-template-columns:240px 1fr;gap:28px}
-  }
-  @media (max-width:680px){
-    body{font-size:16px}
-    .hero{padding:48px 0 24px}
-    section{padding:48px 0}
-    .cards3,.tiers,.split{grid-template-columns:1fr}
-    .clarity-card{grid-template-columns:1fr;padding:22px;gap:22px}
-    .clarity-included,.offer-path{grid-template-columns:1fr}
-    .about-grid{grid-template-columns:1fr}
-    .portrait{max-width:300px}
-    .nav{gap:14px}
-    .nav a:not(.btn){display:none}
-  }
-
-  /* ---------- hero outcome pills ---------- */
-  .hero-outcomes{
-    list-style:none;display:flex;flex-wrap:wrap;gap:10px 12px;margin:22px 0 0;padding:0;
-  }
-  .hero-outcomes li{
-    font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;color:var(--pine);
-    background:var(--pine-tint);border:1px solid var(--line);border-radius:999px;padding:6px 14px;
-  }
-
-  /* ---------- trust strip ---------- */
-  .trust{background:var(--pine-tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .trust .wrap{padding-top:30px;padding-bottom:30px}
-  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .trust-item h3{font-family:var(--serif);font-size:18px;color:var(--ink);margin-bottom:5px}
-  .trust-item p{color:var(--ink-soft);font-size:15px}
-
-  /* ---------- after-state on problem scenes ---------- */
-  .scene-after{margin-top:auto;padding-top:12px;border-top:1px dashed var(--line)}
-  .scene-after .lbl{
-    display:block;margin-bottom:4px;
-    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pine);
-  }
-  .scene-after p{color:var(--ink);font-size:15px}
-
-  /* ---------- setup artifacts ---------- */
-  .art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .art{
-    background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;
-    display:flex;flex-direction:column;gap:8px;
-  }
-  .js .art{transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .25s ease,box-shadow .25s ease}
-  .art:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(22,36,46,.09)}
-  .art .art-tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pine)}
-  .art h3{font-family:var(--serif);font-size:19px;line-height:1.25}
-  .art p{color:var(--ink-soft);font-size:15px}
-
-  /* ---------- pricing comparison rows ---------- */
-  .tier-rows{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;flex:1}
-  .tier-row .rlbl{
-    display:block;margin-bottom:2px;
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--pine);
-  }
-  .tier-row p{color:var(--ink-soft);font-size:14.5px;margin:0}
-
-  /* ---------- tier CTA stack (checkout + fit-call fallback) ---------- */
-  .tier-scope{
-    font-size:13.5px;line-height:1.45;color:var(--ink-soft);margin:0;
-    border-left:3px solid var(--clay);padding:2px 0 2px 12px;
-  }
-  .tier-scope strong{color:var(--ink)}
-  .tier-cta{display:flex;flex-direction:column;gap:10px;margin-top:4px}
-  .tier-cta .btn,.tier-cta .btn-ghost{text-align:center}
-  .cta-pending-note{font-size:13.5px;color:var(--ink-soft);margin:0}
-  .tier-alt{font-size:14px;color:var(--ink-soft);text-align:center;margin:0}
-  .tier-alt a{color:var(--pine)}
-  .after-checkout{
-    margin-top:22px;padding:16px 20px;border-left:4px solid var(--pine);
-    background:var(--card);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink-soft);
-  }
-  .after-checkout strong{color:var(--ink)}
-
-  /* ---------- panel accents (monthly value + fit reuse .split) ---------- */
-  .panel.is{border-left:4px solid var(--pine)}
-  .panel.isnot{border-left:4px solid var(--clay)}
-
-  /* ---------- FAQ (native details, works without JS) ---------- */
-  .faq-list{max-width:820px;border-top:1px solid var(--line)}
-  .faq-item{border-bottom:1px solid var(--line)}
-  .faq-item summary{
-    cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:16px;
-    padding:18px 2px 18px 0;font-family:var(--serif);font-size:19px;line-height:1.35;color:var(--ink);
-  }
-  .faq-item summary::-webkit-details-marker{display:none}
-  .faq-item summary::after{content:"\25B8";flex:none;color:var(--pine);font-size:14px}
-  .faq-item[open] summary::after{content:"\25BE"}
-  .faq-item summary:hover{color:var(--pine)}
-  .faq-a{padding:0 0 20px;color:var(--ink-soft);font-size:16px;max-width:72ch}
-  .faq-more{margin-top:22px;font-size:15px;color:var(--ink-soft)}
-
-  /* ---------- responsive (new components) ---------- */
-  @media (max-width:900px){
-    .trust-grid,.art-grid{grid-template-columns:1fr 1fr}
-  }
-  @media (max-width:680px){
-    .trust-grid,.art-grid{grid-template-columns:1fr}
-  }
-</style>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 
@@ -407,11 +51,11 @@
       <span class="brand-sub">Ellicottville, NY &middot; Western New York</span>
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="#familiar">The work</a>
-      <a href="#how">How it works</a>
-      <a href="#artifacts">What you get</a>
-      <a href="#pricing">What it costs</a>
-      <a href="#faq">Common questions</a>
+      <a href="#familiar" data-nav-optional>The work</a>
+      <a href="/demos/">Demos</a>
+      <a href="#how" data-nav-optional>How it starts</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq" data-nav-optional>Questions</a>
       <a class="btn" data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
     </nav>
   </div>
@@ -447,9 +91,9 @@
 
       <p class="lede rise" style="--d:.55s">
         You hand me the messy stuff, and I help get it handled. Requests get answered.
-        Follow-ups go out. Records stay current. You know what happens next. <strong>AI handles
-        the repetitive parts in the background. A person checks anything important, and nothing
-        leaves without your okay.</strong>
+        Follow-ups go out. Records stay current. <strong>AI handles the repetitive parts in
+        the background. A person checks anything important, and nothing leaves without your
+        okay.</strong> You can watch it work on this page before we ever talk.
       </p>
 
       <ul class="hero-outcomes rise" style="--d:.68s" aria-label="What changes for you">
@@ -460,34 +104,14 @@
       </ul>
 
       <div class="hero-cta rise" style="--d:.8s">
-        <a class="btn" data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
-        <a class="btn-ghost" href="#how">See how it works</a>
+        <a class="btn" href="#see-it-run">Try a working demo</a>
+        <a class="btn-ghost" data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
       </div>
       <p class="hero-note rise" style="--d:.92s">
-        A quick conversation to see whether ClearPath is the right fit. No custom plan or written deliverable is included.
+        The call is a quick conversation to see whether ClearPath is the right fit. No custom
+        plan or written deliverable is included.
         Prefer email? <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a>
       </p>
-    </div>
-  </section>
-
-  <!-- ============ TRUST STRIP ============ -->
-  <section class="trust" id="trust" aria-label="How ClearPath keeps you in control">
-    <h2 class="sr-only">How ClearPath keeps you in control</h2>
-    <div class="wrap">
-      <div class="trust-grid" data-stagger>
-        <div class="trust-item reveal">
-          <h3>Your information, your say-so</h3>
-          <p>I only use the business information you approve for the job. Nothing else goes in.</p>
-        </div>
-        <div class="trust-item reveal">
-          <h3>Ready for a person to check</h3>
-          <p>Work comes back as drafts, prepared and organized so a person can review it quickly.</p>
-        </div>
-        <div class="trust-item reveal">
-          <h3>You approve what matters</h3>
-          <p>Nothing important goes out on its own. Quotes, prices, promises, and payments wait for you.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -504,48 +128,315 @@
         <article class="scene reveal">
           <span class="scene-tag">Restaurants &amp; cafés</span>
           <h3>Catering requests in five places</h3>
-          <p>They show up in Facebook messages, texts, voicemail, and email. They're all over the
-          place. Someone has to retype every one into the calendar and hope nothing slips through.</p>
-          <div class="scene-after">
-            <span class="lbl">After ClearPath</span>
-            <p>Now the requests are all in one place. Your team can see what's still open, a
-            reply is ready when they need it, and you don't have to keep the whole thing in your
-            head.</p>
-          </div>
+          <p>They show up in Facebook messages, texts, voicemail, and email. Someone has to
+          retype every one into the calendar and hope nothing slips through.</p>
         </article>
         <article class="scene reveal">
           <span class="scene-tag">Auto &amp; service shops</span>
           <h3>Quotes promised, then buried</h3>
           <p>The phone rings while everyone's hands are full. Someone writes a note, sets it
-          down, and means to call back. By the time anyone remembers, the customer has moved on.</p>
-          <div class="scene-after">
-            <span class="lbl">After ClearPath</span>
-            <p>Now the customer gets a follow-up before the note disappears. You can see which
-            quotes still need attention without digging around or trying to remember.</p>
-          </div>
+          down, and means to call back. By the time anyone remembers, the customer has moved
+          on.</p>
         </article>
         <article class="scene reveal">
           <span class="scene-tag">Shops &amp; offices</span>
           <h3>Approvals stuck in one inbox</h3>
-          <p>Invoices and requests sit in your inbox waiting for an answer. You're the only one
-          who knows where anything stands, so the team keeps stopping to ask you.</p>
-          <div class="scene-after">
-            <span class="lbl">After ClearPath</span>
-            <p>Now your team knows what can keep moving and what really needs you. You stop being
-            the answer to every little question without giving up the decisions that matter.</p>
-          </div>
+          <p>Invoices and requests sit in your inbox waiting for an answer. You're the only
+          one who knows where anything stands, so the team keeps stopping to ask you.</p>
         </article>
       </div>
 
-      <p class="familiar-kicker reveal"><strong>If one of these sounds like your week,</strong> that's exactly the kind of work I clean up.</p>
+      <p class="familiar-kicker reveal"><strong>If one of these sounds like your week,</strong>
+      that's exactly the kind of work I clean up. Don't take my word for it. The next section
+      lets you run it yourself.</p>
     </div>
   </section>
 
-  <!-- ============ HOW IT WORKS ============ -->
+  <!-- ============ SEE IT RUN (DEMO SURFACE) ============ -->
+  <section class="demo-surface" id="see-it-run">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Try it right here</span>
+        <h2>See ClearPath run the work.</h2>
+        <p>Three small demos built around one fictional cafe. Pick a tab, press the buttons,
+        and approve things the way an owner would.</p>
+      </div>
+
+      <p class="demo-honesty"><strong>Honest demo:</strong> everything below runs in your
+      browser on made-up sample data for a fictional business. It shows the kind of workflow
+      and controls ClearPath can build, not a live client system. No AI model runs on this
+      page. Nothing is sent or saved, and no live system changes.</p>
+
+      <div class="demo-fallback" id="see-fallback">
+        <h3>The interactive demos need JavaScript.</h3>
+        <p>Each one still has its own page describing exactly what it does:</p>
+        <ul>
+          <li><a href="/demos/request-desk/">Request Desk</a>: a messy request becomes facts,
+          flagged gaps, a drafted reply, and an owner approval step.</li>
+          <li><a href="/demos/business-brain/">Business Brain</a>: questions answered only
+          from owner-approved sources, with citations, and an honest cannot-confirm.</li>
+          <li><a href="/demos/website-manager/">Website and Operations Manager</a>: edit,
+          preview, approve, then publish, all inside the demo page.</li>
+        </ul>
+        <p>Or skip ahead to <a href="#how">how an engagement starts</a>.</p>
+      </div>
+
+      <div class="demo-tabs" id="see-shell" hidden>
+        <div class="tabs-bar" role="tablist" aria-label="ClearPath demo picker">
+          <button type="button" role="tab" id="tab-rd" aria-controls="panel-rd" aria-selected="true" tabindex="0">Request Desk</button>
+          <button type="button" role="tab" id="tab-bb" aria-controls="panel-bb" aria-selected="false" tabindex="-1">Business Brain</button>
+          <button type="button" role="tab" id="tab-wm" aria-controls="panel-wm" aria-selected="false" tabindex="-1">Site Manager</button>
+        </div>
+
+        <!-- ---- Panel 1: Request Desk (compact) ---- -->
+        <div role="tabpanel" id="panel-rd" aria-labelledby="tab-rd">
+          <div data-demo="request-desk" data-variant="compact">
+            <div class="choice-row" role="group" aria-label="Sample requests">
+              <button type="button" class="choice" data-sample="catering-email" aria-pressed="false">
+                <span class="choice-kind">Email</span>
+                Catering for an office lunch
+              </button>
+              <button type="button" class="choice" data-sample="phone-note" aria-pressed="false">
+                <span class="choice-kind">Phone note</span>
+                Half-finished note from the counter
+              </button>
+              <button type="button" class="btn" data-role="run" disabled>Run the desk</button>
+            </div>
+            <div class="tool" style="margin-top:14px">
+              <div class="tool-bar">
+                <span class="tool-name">Request Desk &middot; sample data</span>
+                <span class="chip is-ready" data-role="state-chip">Ready</span>
+              </div>
+              <div class="tool-body">
+                <ol class="stage-list">
+                  <li class="stage" data-stage="request">
+                    <span class="stage-title">Incoming request</span>
+                    <div class="stage-slot" data-slot="request"></div>
+                  </li>
+                  <li class="stage" data-stage="facts">
+                    <span class="stage-title">Facts extracted</span>
+                    <div class="stage-slot" data-slot="facts"></div>
+                  </li>
+                  <li class="stage" data-stage="missing">
+                    <span class="stage-title">Missing information flagged</span>
+                    <div class="stage-slot" data-slot="missing"></div>
+                  </li>
+                  <li class="stage" data-stage="action">
+                    <span class="stage-title">Next action assigned</span>
+                    <div class="stage-slot" data-slot="action"></div>
+                  </li>
+                  <li class="stage" data-stage="draft">
+                    <span class="stage-title">Safe draft reply prepared</span>
+                    <div class="stage-slot" data-slot="draft"></div>
+                  </li>
+                  <li class="stage" data-stage="approval">
+                    <span class="stage-title">Owner approval required</span>
+                    <div class="stage-slot" data-slot="approval"></div>
+                  </li>
+                  <li class="stage" data-stage="record">
+                    <span class="stage-title">Follow-up record ready</span>
+                    <div class="stage-slot" data-slot="record"></div>
+                  </li>
+                </ol>
+                <div class="gate">
+                  <span class="gate-title">Owner approval</span>
+                  <div class="gate-actions">
+                    <button type="button" class="btn" data-role="approve" aria-describedby="rd-c-gate-note" disabled>Approve for demo</button>
+                    <span class="chip is-ready" data-role="approve-chip">Waiting for a draft</span>
+                  </div>
+                  <p class="gate-note" id="rd-c-gate-note">Approving here only changes this
+                  demo. Nothing is sent to anyone.</p>
+                </div>
+                <div class="demo-foot">
+                  <p class="demo-status" data-role="status" aria-live="polite">Pick a sample
+                  request to begin.</p>
+                  <button type="button" class="reset-btn" data-role="reset">Reset the demo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="panel-open-link">Want the phone-note and web-form samples too?
+          <a href="/demos/request-desk/">Open the full Request Desk demo</a>.</p>
+        </div>
+
+        <!-- ---- Panel 2: Business Brain (compact) ---- -->
+        <div role="tabpanel" id="panel-bb" aria-labelledby="tab-bb" hidden>
+          <div data-demo="business-brain" data-variant="compact">
+            <div class="src-grid">
+              <div class="src" id="bb-src-hours">
+                <span class="src-name">Approved source &middot; Hours sheet</span>
+                <ul>
+                  <li data-fact="hours-sunday">Sunday: 8:00 am to 2:00 pm</li>
+                  <li data-fact="hours-weekend">Friday and Saturday: 7:00 am to 8:00 pm</li>
+                </ul>
+              </div>
+              <div class="src" id="bb-src-policies">
+                <span class="src-name">Approved source &middot; House policies</span>
+                <ul>
+                  <li data-fact="policy-dogs">Dogs are welcome on the patio only. Service animals are always welcome inside.</li>
+                  <li data-fact="policy-reservations">No reservations for parties under 6. Seating is first come, first served.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="tool" style="margin-top:14px">
+              <div class="tool-bar">
+                <span class="tool-name">Business Brain &middot; sample data</span>
+                <span class="chip is-ready" data-role="state-chip">Ready</span>
+              </div>
+              <div class="tool-body">
+                <div class="choice-row" role="group" aria-label="Preset questions">
+                  <button type="button" class="choice" data-question="q-sunday" aria-pressed="false">Are you open Sunday at 9 am?</button>
+                  <button type="button" class="choice" data-question="q-dog" aria-pressed="false">Can I bring my dog?</button>
+                  <button type="button" class="choice" data-question="q-oatmilk" data-expect="cannot-confirm" aria-pressed="false">Do you have oat milk?</button>
+                </div>
+                <div data-role="answer" aria-live="polite" style="margin-top:12px"></div>
+                <div class="gate">
+                  <span class="gate-title">Owner approval</span>
+                  <div class="gate-actions">
+                    <button type="button" class="btn" data-role="approve" aria-describedby="bb-c-gate-note" disabled>Approve draft for demo</button>
+                    <span class="chip is-ready" data-role="approve-chip">Waiting for a draft</span>
+                  </div>
+                  <p class="gate-note" id="bb-c-gate-note">Approving here only changes this
+                  demo. Nothing is sent to anyone.</p>
+                </div>
+                <div class="demo-foot">
+                  <p class="demo-status" data-role="status" aria-live="polite">Pick a question
+                  or type your own to begin.</p>
+                  <button type="button" class="reset-btn" data-role="reset">Reset the demo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="panel-open-link">Want to type your own question and see the full source
+          library? <a href="/demos/business-brain/">Open the full Business Brain demo</a>.</p>
+        </div>
+
+        <!-- ---- Panel 3: Site Manager (compact) ---- -->
+        <div role="tabpanel" id="panel-wm" aria-labelledby="tab-wm" hidden>
+          <div data-demo="website-manager" data-variant="compact">
+            <div class="choice-row" role="group" aria-label="Editable items">
+              <button type="button" class="choice" data-item="hours" aria-pressed="false">
+                <span class="choice-kind">Hours</span>
+                Sunday hours
+              </button>
+              <button type="button" class="choice" data-item="event" aria-pressed="false">
+                <span class="choice-kind">Event</span>
+                This week's music night
+              </button>
+              <button type="button" class="choice" data-item="note" aria-pressed="false">
+                <span class="choice-kind">Service note</span>
+                The patio notice
+              </button>
+            </div>
+            <div class="tool" style="margin-top:14px">
+              <div class="tool-bar">
+                <span class="tool-name">Site Manager &middot; sample data</span>
+                <span class="chip is-ready" data-role="state-chip">Ready</span>
+              </div>
+              <div class="tool-body">
+                <div class="mgr-grid">
+                  <div class="mgr-col">
+                    <span class="mgr-label">Current published value</span>
+                    <div class="summary-card" data-role="published">Pick an item to load its
+                    published value.</div>
+                    <div class="field">
+                      <label for="wm-c-draft">Draft edit</label>
+                      <input id="wm-c-draft" data-role="draft-input" type="text" maxlength="80"
+                             autocomplete="off" disabled>
+                    </div>
+                    <span class="mgr-label">Change summary</span>
+                    <div class="summary-card" data-role="summary">No change yet.</div>
+                  </div>
+                  <div class="mgr-col">
+                    <span class="mgr-label">Live preview</span>
+                    <div class="mini-site">
+                      <div class="mini-site-bar">
+                        <span>thejunipertable.example</span>
+                        <span data-role="pub-badge">Preview</span>
+                      </div>
+                      <div class="mini-site-body" data-role="preview">
+                        <span class="site-name">The Juniper Table</span>
+                        <span class="site-line" data-line="hours"></span>
+                        <span class="site-line" data-line="event"></span>
+                        <span class="site-line" data-line="note"></span>
+                      </div>
+                    </div>
+                    <p class="pub-note" data-role="pub-note" hidden>Published for this demo
+                    only. This updated the preview in your browser. No real website changed.</p>
+                  </div>
+                </div>
+                <div class="gate">
+                  <span class="gate-title">Owner approval</span>
+                  <div class="gate-actions">
+                    <button type="button" class="btn-ghost" data-role="approve" aria-describedby="wm-c-gate-note" disabled>Approve change for demo</button>
+                    <button type="button" class="btn" data-role="publish" aria-describedby="wm-c-gate-note" disabled>Publish demo</button>
+                    <span class="chip is-ready" data-role="approve-chip">Waiting for a draft</span>
+                  </div>
+                  <p class="gate-note" id="wm-c-gate-note">Approving and publishing here only
+                  change this demo. No real website changed, and nothing is sent to anyone.</p>
+                </div>
+                <div class="demo-foot">
+                  <p class="demo-status" data-role="status" aria-live="polite">Pick something
+                  on the sample site to edit.</p>
+                  <button type="button" class="reset-btn" data-role="reset">Reset the demo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="panel-open-link">Want the full editor walk-through?
+          <a href="/demos/website-manager/">Open the full Website Manager demo</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CAPABILITY MAP ============ -->
+  <section id="capabilities">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">What ClearPath can take on</span>
+        <h2>Four kinds of help. One rule throughout.</h2>
+        <p>Whatever the lane, it runs the same way: you approve the information it uses, and
+        anything important waits for you.</p>
+      </div>
+      <div class="cap-grid" data-stagger>
+        <div class="cap reveal">
+          <span class="cap-tag">Requests</span>
+          <h3>Request handling and follow-up</h3>
+          <p>Incoming messages become facts, flagged gaps, drafted replies, and follow-up
+          records that wait for your okay.</p>
+          <a href="/demos/request-desk/">See the Request Desk demo</a>
+        </div>
+        <div class="cap reveal">
+          <span class="cap-tag">Answers</span>
+          <h3>Answers from your approved sources</h3>
+          <p>Customer and staff questions answered only from information you approved, with
+          the source shown every time.</p>
+          <a href="/demos/business-brain/">See the Business Brain demo</a>
+        </div>
+        <div class="cap reveal">
+          <span class="cap-tag">Web and tools</span>
+          <h3>Practical websites and tools</h3>
+          <p>Sites and small internal tools your team can actually run, where updates are
+          drafted, previewed, and owner-approved.</p>
+          <a href="/demos/website-manager/">See the Site Manager demo</a>
+        </div>
+        <div class="cap reveal">
+          <span class="cap-tag">Operations</span>
+          <h3>Recurring operations support</h3>
+          <p>The monthly side: keeping approved tasks running, checking the output, and
+          bringing you the next improvement.</p>
+          <a href="#pricing">See the starting points</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT STARTS ============ -->
   <section class="how" id="how">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">How it works</span>
+        <span class="eyebrow">How it starts</span>
         <h2>We do this one step at a time.</h2>
         <p>You stay in control the whole way. Here's how it usually goes.</p>
       </div>
@@ -554,92 +445,53 @@
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">1</span>
           <h3>Tell me what's eating up your time. <span class="price-chip free">Free</span></h3>
-          <p>We hop on a call. You tell me what's eating up your time and what your team already
-          uses. We figure out together whether there's something here worth fixing.</p>
+          <p>We hop on a call. You tell me what's eating up your time and what your team
+          already uses. We figure out together whether there's something worth fixing.</p>
         </div>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">2</span>
           <h3>If you want implementation, I send a written scope.</h3>
-          <p>That scope says what I would fix first, what is included, what is not, and what it costs. You look it over and decide before any implementation begins.</p>
+          <p>That scope says what I would fix first, what is included, what is not, and what
+          it costs. You look it over and decide before any implementation begins.</p>
         </div>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">3</span>
           <h3>You choose what I'm allowed to use.</h3>
-          <p>Once you're good with the plan, you only share the information you're comfortable
-          with me using. We write down exactly what that includes.</p>
+          <p>You only share the information you're comfortable with me using. We write down
+          exactly what that includes, and you can change it.</p>
         </div>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">4</span>
           <h3>We test it next to the way you work now.</h3>
-          <p>I set up the first task and run it quietly next to how you do things now. That lets
-          us compare the results before it touches a real customer.</p>
+          <p>I set up the first task and run it quietly beside how you do things today, so we
+          can compare results before it touches a real customer.</p>
         </div>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">5</span>
-          <h3>You look it over before anything changes.</h3>
-          <p>You review the results and give the okay. If something's off, we fix it. Nothing
-          goes into regular use until you're happy with it.</p>
+          <h3>You look it over, then it goes to work.</h3>
+          <p>You review the results and give the okay. If something's off, we fix it. Only
+          then does the task go into regular use, with a short plain-English guide so your
+          team can run it without me.</p>
         </div>
         <div class="step reveal">
           <span class="step-num" aria-hidden="true">6</span>
-          <h3>Then we put it to work.</h3>
-          <p>The approved task goes into regular use. Your team gets a short, plain-English guide
-          so they can run it without me.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step-num" aria-hidden="true">7</span>
           <h3>I stay with it after setup. <span class="price-chip">Monthly</span></h3>
-          <p>After that, we check in once a month. I keep things running, check the output, update
-          your guide when something changes, and bring you the next improvement to approve.
-          Bigger projects get quoted separately before we start.</p>
+          <p>We check in once a month. I keep things running, check the output, update your
+          guide when something changes, and bring you the next improvement to approve. Bigger
+          projects get quoted separately before we start.</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ WHAT YOU GET (SETUP ARTIFACTS) ============ -->
-  <section id="artifacts">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="eyebrow">What you get</span>
-        <h2>You end up with stuff you can actually use.</h2>
-        <p>Not a pile of promises. You get one real task working, plus the written pieces you
-        and your team need to understand it and keep using it.</p>
-      </div>
-
-      <div class="art-grid" data-stagger>
-        <div class="art reveal">
-          <span class="art-tag">First, we get it on paper</span>
-          <h3>A simple map of how the task works today</h3>
-          <p>A simple written map of how the task runs right now, so we're both starting from the
-          same page.</p>
-        </div>
-        <div class="art reveal">
-          <span class="art-tag">The information we're using</span>
-          <h3>A list of what you said I can use</h3>
-          <p>A clear list of the information you approved for the job and where it comes from.</p>
-        </div>
-        <div class="art reveal">
-          <span class="art-tag">You keep the important calls</span>
-          <h3>Rules for what always waits for you</h3>
-          <p>Written rules for what can move on its own and what always waits for your okay.</p>
-        </div>
-        <div class="art reveal">
-          <span class="art-tag">Not just a plan</span>
-          <h3>The first task actually working</h3>
-          <p>One real task working the way you signed off on. This isn't a demo or a slideshow.</p>
-        </div>
-        <div class="art reveal">
-          <span class="art-tag">What happened in testing</span>
-          <h3>Notes from the test run</h3>
-          <p>A record of how it handled real examples during testing, including anything we had
-          to fix.</p>
-        </div>
-        <div class="art reveal">
-          <span class="art-tag">Something your team can use</span>
-          <h3>A guide people can actually follow</h3>
-          <p>A short, plain-English guide so you or your team can run and check it without me.</p>
-        </div>
+      <div class="artifact-panel reveal">
+        <h3>You end up with things you can hold onto</h3>
+        <ul>
+          <li>A simple map of how the task runs today</li>
+          <li>A written list of the information you approved</li>
+          <li>Rules for what always waits for you</li>
+          <li>The first task actually working</li>
+          <li>Notes from the test run</li>
+          <li>A plain-English guide your team can follow</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -673,9 +525,10 @@
         </div>
       </div>
 
-      <p class="privacy reveal"><strong>On privacy:</strong> your customer information stays in your
-      accounts. I work inside the tools you already own. I don't move your data into mine,
-      and nothing goes out the door without a person approving it.</p>
+      <p class="privacy reveal"><strong>On privacy:</strong> your customer information stays
+      in your accounts. I work inside the tools you already own, using only the business
+      information you approve for the job. I don't move your data into mine, and nothing
+      goes out the door without a person approving it.</p>
     </div>
   </section>
 
@@ -727,8 +580,8 @@
       <div class="sec-head reveal">
         <span class="eyebrow">What it costs</span>
         <h2>Flat prices. No surprises.</h2>
-        <p>There's a one-time setup fee and a flat monthly price. Here's what each option is for
-        and what you get with it.</p>
+        <p>There's a one-time setup fee and a flat monthly price. Here's what each option is
+        for and what you get with it.</p>
       </div>
 
       <div class="tiers" data-stagger>
@@ -823,9 +676,10 @@
         </div>
       </div>
 
-      <p class="after-checkout reveal"><strong>What happens after checkout:</strong> you get a Stripe
-      receipt by email, and I follow up personally to set up your kickoff. Implementation still
-      starts the same way it always does: you approve a written scope before any work begins.</p>
+      <p class="after-checkout reveal"><strong>What happens after checkout:</strong> you get a
+      Stripe receipt by email, and I follow up personally to set up your kickoff.
+      Implementation still starts the same way it always does: you approve a written scope
+      before any work begins.</p>
 
       <p class="pricing-foot reveal">Custom apps, integrations, websites, customer portals, sensitive work, and any third-party software fees are quoted separately, and only start after you approve a written scope.</p>
     </div>
@@ -874,71 +728,69 @@
 
       <div class="faq-list reveal">
         <details class="faq-item">
-          <summary>Is this just another subscription?</summary>
-          <div class="faq-a"><p>No. You are paying for finished business work and for keeping it
-          running, not for a login you have to manage. What the monthly covers is written in your
-          scope.</p></div>
-        </details>
-        <details class="faq-item">
           <summary>Will my staff have to learn a complicated new system?</summary>
-          <div class="faq-a"><p>The goal is less for your team to do, not more. The AI runs behind
-          the scenes, work reaches your team as drafts to check, and anything they do touch comes
-          with a short plain-English guide.</p></div>
+          <div class="faq-a"><p>The goal is less for your team to do, not more. The AI runs
+          behind the scenes, work reaches your team as drafts to check, and anything they do
+          touch comes with a short plain-English guide.</p></div>
         </details>
         <details class="faq-item">
           <summary>What does the setup fee pay for?</summary>
-          <div class="faq-a"><p>The one-time setup pays for mapping the task, putting your approved
-          information in place, writing the approval rules, building the first working setup,
-          testing it, and giving you a handoff guide. You keep those results.</p></div>
+          <div class="faq-a"><p>The one-time setup pays for mapping the task, putting your
+          approved information in place, writing the approval rules, building the first
+          working setup, testing it, and giving you a handoff guide. You keep those
+          results.</p></div>
         </details>
         <details class="faq-item">
           <summary>Why is there a monthly fee at all?</summary>
-          <div class="faq-a"><p>Because the work keeps coming. New requests arrive, tools change,
-          and output still needs checking. The monthly is finished work plus upkeep. It is not
-          unlimited AI work; what is included is in your scope.</p></div>
+          <div class="faq-a"><p>Because the work keeps coming. New requests arrive, tools
+          change, and output still needs checking. The monthly is finished work plus upkeep.
+          It is not unlimited AI work; what is included is in your scope.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Are the demos on this page what I would actually get?</summary>
+          <div class="faq-a"><p>They show the shape of the work: visible steps, approved
+          sources, and owner approval before anything goes out. They run on sample data for a
+          fictional business, right in your browser. Your real setup is built inside your own
+          tools, on your real requests, to a written scope you approve.</p></div>
         </details>
         <details class="faq-item">
           <summary>What will you have access to?</summary>
-          <div class="faq-a"><p>Only what the agreed job needs, and only what you approve. We write
-          down what you share before work starts, and you can change it. I work inside the tools
-          you already own.</p></div>
+          <div class="faq-a"><p>Only what the agreed job needs, and only what you approve. We
+          write down what you share before work starts, and you can change it. I work inside
+          the tools you already own.</p></div>
         </details>
         <details class="faq-item">
           <summary>Do I own the work, and what happens if we stop?</summary>
           <div class="faq-a"><p>The setup is built inside your own accounts and tools, so the
-          working task, your information, and the written guide stay with you. Exactly how pausing
-          or ending works is confirmed in your written scope before you start, so there are no
-          surprises.</p></div>
+          working task, your information, and the written guide stay with you. Exactly how
+          pausing or ending works is confirmed in your written scope before you start, so
+          there are no surprises.</p></div>
         </details>
         <details class="faq-item">
           <summary>Are third-party software costs included?</summary>
-          <div class="faq-a"><p>Those are separate. If a task needs paid third-party software, the
-          cost is yours and is listed and approved before anything starts. I will not sign you up
-          for anything without your okay.</p></div>
+          <div class="faq-a"><p>Those are separate. If a task needs paid third-party
+          software, the cost is yours and is listed and approved before anything starts. I
+          will not sign you up for anything without your okay.</p></div>
         </details>
         <details class="faq-item">
           <summary>AI makes mistakes. How do I know I can trust the output?</summary>
-          <div class="faq-a"><p>You do not have to trust it blindly. Important output is prepared as
-          a draft for a person to check, and the approval rules decide what may go out on its own.
-          When something is uncertain, it waits for you.</p></div>
+          <div class="faq-a"><p>You do not have to trust it blindly. Important output is
+          prepared as a draft for a person to check, and the approval rules decide what may
+          go out on its own. When something is uncertain, it waits for you. The Business
+          Brain demo above shows the same idea: when the approved sources do not cover a
+          question, it says so instead of guessing.</p></div>
         </details>
         <details class="faq-item">
           <summary>How much do I actually have to approve?</summary>
-          <div class="faq-a"><p>You approve the information used, the rules, the first results, and
-          any change to what goes out. The routine drafting comes off your plate. The judgment
-          calls stay yours.</p></div>
+          <div class="faq-a"><p>You approve the information used, the rules, the first
+          results, and any change to what goes out. The routine drafting comes off your
+          plate. The judgment calls stay yours.</p></div>
         </details>
         <details class="faq-item">
           <summary>Can you handle sensitive or private work?</summary>
           <div class="faq-a"><p>Anything sensitive is handled only under rules we agree on in
-          writing, and it waits for a person before it goes anywhere. If you would rather keep
-          certain work fully manual, we leave it out of scope.</p></div>
-        </details>
-        <details class="faq-item">
-          <summary>When do I need a custom quote?</summary>
-          <div class="faq-a"><p>Custom apps, integrations, websites, customer portals, and anything
-          unusually large or sensitive are quoted separately. You see the scope and price in
-          writing before that work starts.</p></div>
+          writing, and it waits for a person before it goes anywhere. If you would rather
+          keep certain work fully manual, we leave it out of scope.</p></div>
         </details>
       </div>
 
@@ -976,7 +828,8 @@
       <h2 class="reveal">Got one task that's driving you nuts?</h2>
       <p class="reveal">Start with a free 15-minute fit call. It is a quick conversation to see whether ClearPath is relevant. No custom plan or written deliverable is included.</p>
       <a class="btn reveal" data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
-      <p class="cta-alt reveal">Prefer to look first? <a href="#how">See how it works</a>.
+      <p class="cta-alt reveal">Prefer to look first? <a href="/demos/">Try the demos</a> or
+      <a href="#how">see how it starts</a>.
       Or email <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a> and I'll read it myself.</p>
     </div>
   </section>
@@ -988,6 +841,7 @@
     <div class="foot-row">
       <span class="foot-brand">ClearPath</span>
       <span>Ellicottville, New York &middot; serving Western New York</span>
+      <a href="/demos/">Demos</a>
       <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a>
       <a data-booking-offer="free-15-minute-fit-call" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
     </div>
@@ -995,24 +849,9 @@
   </div>
 </footer>
 
-<script>
-(function(){
-  var els=document.querySelectorAll('.reveal');
-  document.querySelectorAll('[data-stagger]').forEach(function(g){
-    Array.prototype.forEach.call(g.children,function(c,i){c.style.transitionDelay=(i*90)+'ms';});
-  });
-  if(!('IntersectionObserver' in window)){
-    els.forEach(function(e){e.classList.add('in');});
-    return;
-  }
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
-    });
-  },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
-  els.forEach(function(e){io.observe(e);});
-})();
-</script>
-
+<script src="/assets/request-desk.js" defer></script>
+<script src="/assets/business-brain.js" defer></script>
+<script src="/assets/website-manager.js" defer></script>
+<script src="/assets/home.js" defer></script>
 </body>
 </html>

@@ -125,7 +125,21 @@ def offer_card(raw, slug):
 
 
 RAW, PAGE = load()
-STYLE = RAW[RAW.index("<style>"):RAW.index("</style>")]
+
+# The homepage design system lives in the shared external stylesheet since
+# the demo rebuild; any inline <style> blocks still count too.
+STYLE_PATH = ROOT / "assets" / "site.css"
+
+
+def load_style(raw):
+    style = "".join(m.group(1) for m in
+                    re.finditer(r"<style>(.*?)</style>", raw, re.S))
+    if STYLE_PATH.is_file():
+        style += STYLE_PATH.read_text(encoding="utf-8")
+    return style
+
+
+STYLE = load_style(RAW)
 CHECKOUT_ANCHORS = [a for a in PAGE.anchors if "data-checkout-offer" in a.attrs]
 BOOKING_ANCHORS = [a for a in PAGE.anchors if "data-booking-offer" in a.attrs]
 
@@ -249,7 +263,7 @@ class TestBookingCtas(unittest.TestCase):
         """
         surfaces = {
             "header nav": RAW[RAW.index('class="top"'):RAW.index("<main>")],
-            "hero": RAW[RAW.index('<section class="hero"'):RAW.index('id="trust"')],
+            "hero": RAW[RAW.index('<section class="hero"'):RAW.index('id="familiar"')],
             "final cta band": RAW[RAW.index('class="cta-band"'):RAW.index("</main>")],
             "footer": RAW[RAW.index("<footer>"):],
         }
@@ -294,17 +308,21 @@ class TestCopyAndStructure(unittest.TestCase):
         self.assertIn("animation:none", block)
 
     def test_animations_gated_for_no_js(self):
-        # Hidden-by-default animation styles must only apply when JS has
-        # added the .js class, so content renders with JavaScript disabled.
+        # Hidden-by-default animation styles must only apply when JS is
+        # actually running, so content renders with JavaScript disabled.
+        # Two gates qualify: .js (added by the inline bootstrap, safe for
+        # pure CSS animations that finish on their own) and .js-anim (added
+        # by home.js itself, required for reveals that need the script to
+        # stay alive; if home.js never runs, nothing is ever hidden).
         for hidden_rule in re.finditer(r"([^{}]+)\{[^{}]*opacity:0[;}]", STYLE):
             selector = hidden_rule.group(1).strip().splitlines()[-1].strip()
             if selector.startswith("@") or "keyframes" in selector or \
                     selector.startswith("from") or selector.startswith("to"):
                 continue
             self.assertTrue(
-                all(part.strip().startswith(".js ")
+                all(part.strip().startswith((".js ", ".js-anim "))
                     for part in selector.split(",")),
-                f"opacity:0 rule not gated behind .js class: {selector!r}")
+                f"opacity:0 rule not gated behind a JS class: {selector!r}")
 
     def test_no_javascript_hrefs(self):
         for a in PAGE.anchors:

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<title>Business Brain demo | ClearPath</title>
+<meta name="description" content="A working browser demo: ask questions about a fictional cafe and get answers that cite the approved sources they came from, or an honest cannot-confirm when the sources do not cover it. Sample data only, nothing sends.">
+<link rel="canonical" href="https://www.clearpathwv.com/demos/business-brain/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ClearPath">
+<meta property="og:url" content="https://www.clearpathwv.com/demos/business-brain/">
+<meta property="og:title" content="Business Brain demo | ClearPath">
+<meta property="og:description" content="Ask questions about a fictional cafe and get answers that cite approved sources, or an honest cannot-confirm. Sample data only, nothing sends.">
+<meta property="og:image" content="https://www.clearpathwv.com/clearpath-logo.png">
+<meta property="og:image:alt" content="ClearPath wordmark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Business Brain demo | ClearPath">
+<meta name="twitter:description" content="Ask questions about a fictional cafe and get answers that cite approved sources, or an honest cannot-confirm. Sample data only, nothing sends.">
+<meta name="twitter:image" content="https://www.clearpathwv.com/clearpath-logo.png">
+<meta name="twitter:image:alt" content="ClearPath wordmark">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="demo-page">
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="/">
+      <span class="brand-name">ClearPath</span>
+      <span class="brand-sub">Ellicottville, NY &middot; Western New York</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="/demos/">All demos</a>
+      <a href="/#pricing" data-nav-optional>Pricing</a>
+      <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero hero-demos">
+    <div class="wrap">
+      <span class="eyebrow">ClearPath demo &middot; Business Brain</span>
+      <h1>Answers that stick to approved sources.</h1>
+      <p class="lede">Staff answer the same questions all day: hours, dogs, parking, gift
+      cards. This brain answers only from a small library the owner approved, shows exactly
+      where each answer came from, and says so when it cannot confirm something.</p>
+      <p class="demo-honesty"><strong>Honest demo:</strong> this page uses made-up sample data
+      for The Juniper Table, a fictional cafe. No AI model runs on this page. Answers come
+      from simple matching rules against the sources shown below, right in your browser. It
+      is a demonstration of the workflow and controls ClearPath can build, not a live client
+      system. Nothing is sent or saved.</p>
+    </div>
+  </section>
+
+  <section class="demo-main" aria-label="Business Brain demo">
+    <div class="wrap">
+
+      <div class="demo-fallback" id="demo-fallback">
+        <h3>This interactive demo needs JavaScript.</h3>
+        <p>With JavaScript on, you can ask questions about a fictional cafe and watch every
+        answer cite the approved source it came from. When the sources do not cover a
+        question, the brain says it cannot confirm the answer instead of guessing. It is
+        sample data running in your browser; nothing sends either way.</p>
+        <p>The idea in three lines:</p>
+        <ul>
+          <li>The owner approves a small library of business facts.</li>
+          <li>Answers come only from that library, with the source shown.</li>
+          <li>Anything the library cannot answer goes to the owner, not to a guess.</li>
+        </ul>
+        <p><a href="/demos/">Back to all demos</a> &middot;
+        <a href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a></p>
+      </div>
+
+      <div class="demo-shell" id="demo-shell" hidden>
+        <div class="demo-cols" data-demo="business-brain" data-variant="full">
+          <div class="demo-side">
+            <h2>The approved library</h2>
+            <p class="side-note">Four short sources the fictional owner approved for this
+            job. The brain may use these and nothing else.</p>
+            <div class="src-grid src-stack">
+              <div class="src" id="bb-src-hours">
+                <span class="src-name">Source 1 &middot; Hours sheet</span>
+                <ul>
+                  <li data-fact="hours-weekday">Monday to Thursday: 7:00 am to 3:00 pm</li>
+                  <li data-fact="hours-weekend">Friday and Saturday: 7:00 am to 8:00 pm</li>
+                  <li data-fact="hours-sunday">Sunday: 8:00 am to 2:00 pm</li>
+                  <li data-fact="hours-holidays">Closed Thanksgiving and Christmas Day</li>
+                </ul>
+              </div>
+              <div class="src" id="bb-src-policies">
+                <span class="src-name">Source 2 &middot; House policies</span>
+                <ul>
+                  <li data-fact="policy-dogs">Dogs are welcome on the patio only. Service animals are always welcome inside.</li>
+                  <li data-fact="policy-large-parties">Parties of 6 or more should call ahead so a table is ready.</li>
+                  <li data-fact="policy-reservations">No reservations for parties under 6. Seating is first come, first served.</li>
+                </ul>
+              </div>
+              <div class="src" id="bb-src-kitchen">
+                <span class="src-name">Source 3 &middot; Kitchen notes</span>
+                <ul>
+                  <li data-fact="kitchen-glutenfree">Gluten-free bread is available on request.</li>
+                  <li data-fact="kitchen-soup">The soup changes daily. The counter board has today's soup.</li>
+                  <li data-fact="kitchen-espresso">The espresso machine is serviced the first Tuesday morning of each month. No espresso drinks before 9:00 am that day.</li>
+                </ul>
+              </div>
+              <div class="src" id="bb-src-staff">
+                <span class="src-name">Source 4 &middot; Staff quick answers</span>
+                <ul>
+                  <li data-fact="staff-giftcards">Gift cards are sold at the register in any amount. Not sold by phone.</li>
+                  <li data-fact="staff-lostfound">Lost and found is kept behind the counter for 30 days.</li>
+                  <li data-fact="staff-parking">Evening guests can park in the gravel lot behind the building after 5:00 pm.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool">
+            <div class="tool-bar">
+              <span class="tool-name">Business Brain &middot; sample data</span>
+              <span class="chip is-ready" data-role="state-chip">Ready</span>
+            </div>
+            <div class="tool-body">
+              <div class="choice-row" role="group" aria-label="Preset questions">
+                <button type="button" class="choice" data-question="q-sunday" aria-pressed="false">Are you open Sunday at 9 am?</button>
+                <button type="button" class="choice" data-question="q-dog" aria-pressed="false">Can I bring my dog to the patio?</button>
+                <button type="button" class="choice" data-question="q-party" aria-pressed="false">Do you take reservations for 8?</button>
+                <button type="button" class="choice" data-question="q-parking" aria-pressed="false">Where can I park for dinner?</button>
+                <button type="button" class="choice" data-question="q-oatmilk" data-expect="cannot-confirm" aria-pressed="false">Do you have oat milk?</button>
+              </div>
+
+              <form class="ask-form" novalidate>
+                <label class="sr-only" for="bb-ask">Or type your own question about the cafe</label>
+                <input id="bb-ask" data-role="ask-input" type="text" maxlength="120"
+                       autocomplete="off" placeholder="Or type your own, like: do you have gluten-free bread?">
+                <button type="submit" class="btn-ghost" data-role="ask">Ask the brain</button>
+              </form>
+              <p class="side-note">Runs only in this browser against the sample sources shown
+              here. Typed questions are matched by simple rules and are not stored or sent.</p>
+
+              <div data-role="answer" aria-live="polite"></div>
+
+              <div class="gate">
+                <span class="gate-title">Owner approval</span>
+                <p>In a real setup, the owner decides which answers may go out on their own
+                and which wait for a person. Here, every draft waits.</p>
+                <div class="gate-actions">
+                  <button type="button" class="btn" data-role="approve" aria-describedby="bb-gate-note" disabled>Approve draft for demo</button>
+                  <span class="chip is-ready" data-role="approve-chip">Waiting for a draft</span>
+                </div>
+                <p class="gate-note" id="bb-gate-note">Approving here only changes this demo.
+                Nothing is sent to anyone.</p>
+              </div>
+
+              <div class="demo-foot">
+                <p class="demo-status" data-role="status" aria-live="polite">Pick a question
+                or type your own to begin.</p>
+                <button type="button" class="reset-btn" data-role="reset">Reset the demo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="demo-explain" aria-label="What this demo shows">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">What you just watched</span>
+        <h2>Grounded answers beat confident guesses.</h2>
+        <p>The point is not that a machine can answer. It is that the owner controls what it
+        answers from, and unknowns go to a person instead of a guess.</p>
+      </div>
+      <div class="split">
+        <div class="panel">
+          <h3>What the brain did</h3>
+          <ul>
+            <li>Answered only from the owner-approved library</li>
+            <li>Cited the exact source line behind each answer</li>
+            <li>Said it could not confirm what the sources do not cover</li>
+            <li>Held every draft for approval</li>
+          </ul>
+        </div>
+        <div class="panel hold">
+          <h3>What it refused to do</h3>
+          <ul>
+            <li>Guess at anything outside the approved sources</li>
+            <li>Send an answer on its own</li>
+            <li>Use information the owner never approved</li>
+            <li>Pretend to be a person</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-next hub-next" aria-label="Where to go next">
+    <div class="wrap">
+      <div class="next-panel">
+        <h2>Imagine this loaded with your hours, policies, and notes.</h2>
+        <p>On the free fit call we look at the questions your team answers over and over,
+        and whether a setup like this would actually save you time.</p>
+        <div class="next-actions">
+          <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
+          <a class="btn-ghost" href="/demos/">Try another demo</a>
+          <a class="quiet-link" href="/#pricing">See the paid starting points</a>
+          <a class="quiet-link" href="/">Back to the homepage</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <span class="foot-brand">ClearPath</span>
+      <span>Ellicottville, New York &middot; serving Western New York</span>
+      <a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a>
+      <a href="/">clearpathwv.com</a>
+    </div>
+    <p class="foot-line">&copy; 2026 ClearPath, a Whalen Ventures company &middot; Demo pages use sample data only.</p>
+  </div>
+</footer>
+
+<script src="/assets/business-brain.js" defer></script>
+</body>
+</html>

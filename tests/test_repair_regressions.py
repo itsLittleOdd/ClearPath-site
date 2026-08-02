@@ -447,15 +447,19 @@ class TestSampleWorkPlaceholderRemoved(unittest.TestCase):
                                  f"{name}: dangling #sample-work link")
 
     def test_former_placeholder_links_now_target_a_truthful_section(self):
-        self.assertIn("how", INDEX_DOM.ids, "#how target section does not exist")
-        self.assertEqual(
-            INDEX_RAW.count(">See how it works<"), 2,
-            "both former sample-work CTAs should read 'See how it works'")
-        labelled = [a for a in INDEX_DOM.anchors if a.get("href") == "#how"]
-        self.assertEqual(len(labelled), 3,
-                         "expected the header nav link plus two retargeted CTAs")
+        """The placeholder's replacement is now real: the hero routes to the
+        interactive demo surface, which exists on the page, and the process
+        section it once pointed at still exists too. No stale sample-work
+        language survives (the dangling-anchor ban is asserted above)."""
         self.assertNotIn("See sample work", INDEX_RAW,
                          "the old placeholder link text survived")
+        self.assertIn("see-it-run", INDEX_DOM.ids,
+                      "#see-it-run demo surface does not exist")
+        hero = INDEX_RAW[INDEX_RAW.index('<section class="hero"'):
+                         INDEX_RAW.index('id="familiar"')]
+        self.assertIn('href="#see-it-run"', hero,
+                      "hero lost its route to the working demo surface")
+        self.assertIn("how", INDEX_DOM.ids, "#how target section does not exist")
 
     def test_no_invented_proof_language_replaced_it(self):
         lowered = INDEX_RAW.lower()

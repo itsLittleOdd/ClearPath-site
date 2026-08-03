@@ -5,6 +5,10 @@
    excluded by .vercelignore.
 
    Usage: node tests/browser_journeys.mjs http://127.0.0.1:8763
+
+   Evidence destination: screenshots and the throwaway Chrome profile land
+   in tests/ by default; set CLEARPATH_BROWSER_OUT to an absolute directory
+   to keep run evidence outside the Git worktree.
 */
 import { spawn } from 'node:child_process';
 import { mkdirSync, writeFileSync, rmSync } from 'node:fs';
@@ -13,8 +17,9 @@ import { fileURLToPath } from 'node:url';
 
 const BASE = process.argv[2] || 'http://127.0.0.1:8763';
 const HERE = dirname(fileURLToPath(import.meta.url));
-const SHOTS = join(HERE, 'screenshots');
-const PROFILE = join(HERE, '.chrome-tmp');
+const OUT = process.env.CLEARPATH_BROWSER_OUT || HERE;
+const SHOTS = join(OUT, 'screenshots');
+const PROFILE = join(OUT, '.chrome-tmp');
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 mkdirSync(SHOTS, { recursive: true });
@@ -244,6 +249,14 @@ async function main() {
   record('home: title', (await evalJs('document.title')).includes('ClearPath'));
   record('home: demo surface revealed by JS',
     await evalJs('!document.getElementById("see-shell").hidden && document.getElementById("see-fallback").hidden'));
+  record('home desktop: hero proof labeled sample and fictional',
+    await evalJs('(function(){var p=document.getElementById("hero-proof");if(!p||p.offsetParent===null)return false;var t=p.textContent;return /sample workflow/i.test(t) && /fictional/i.test(t) && /not a client result/i.test(t)}())'));
+  record('home desktop: hero clarity path names $395 and the Clarity Plan',
+    await evalJs('(function(){var a=document.querySelector(".hero-clarity a[href=\'#clarity-session\']");if(!a||a.offsetParent===null)return false;var t=document.querySelector(".hero-clarity").textContent;return t.indexOf("$395")!==-1 && t.indexOf("personalized Clarity Plan")!==-1}())'));
+  record('home desktop: hero demo lane links all three full demos',
+    await evalJs('["/demos/request-desk/","/demos/business-brain/","/demos/website-manager/"].every(function(r){return !!document.querySelector("#hero-proof a[href=\'" + r + "\']")})'));
+  await wait(1600);
+  await shot('home-desktop-hero.png', false);
   await imagesLoaded('home desktop');
   await noOverflow('home desktop 1280');
 
@@ -335,6 +348,15 @@ async function main() {
   await navigate(BASE + '/');
   record('home 390: demo surface revealed',
     await evalJs('!document.getElementById("see-shell").hidden'));
+  const beforeTop = await evalJs(
+    '(function(){var b=document.querySelector("#hero-proof .proof-before");' +
+    'return b?Math.round(b.getBoundingClientRect().top):-1}())');
+  record('home 390: before/after proof enters the first screen',
+    beforeTop >= 0 && beforeTop <= 844, `beforeTop=${beforeTop}px`);
+  record('home 390: clarity path present with $395',
+    await evalJs('(function(){var a=document.querySelector(".hero-clarity a[href=\'#clarity-session\']");if(!a||a.offsetParent===null)return false;return document.querySelector(".hero-clarity").textContent.indexOf("$395")!==-1}())'));
+  await wait(1600);
+  await shot('home-390-firstscreen.png', false);
   await noOverflow('home 390');
   record('home 390: Demos nav link visible',
     await evalJs('(function(){var a=document.querySelector(".nav a[href=\'/demos/\']");return !!a && a.offsetParent !== null}())'));
@@ -361,6 +383,8 @@ async function main() {
     rmReady.ok && rmReady.ms < 2000, `${rmReady.ms}ms`);
   record('reduced motion: revealed content fully visible',
     await evalJs('getComputedStyle(document.querySelector("#familiar .sec-head")).opacity === "1"'));
+  record('reduced motion: hero proof visible without animation delay',
+    await evalJs('getComputedStyle(document.getElementById("hero-proof")).opacity === "1"'));
   await cdp.send('Emulation.setEmulatedMedia', { features: [] }, session);
 
   /* ===== No-JS honesty ===== */
@@ -372,6 +396,12 @@ async function main() {
     await evalJs('getComputedStyle(document.querySelector("#familiar .sec-head")).opacity === "1"'));
   record('no-JS home: fallback links to all three demo pages',
     await evalJs('["/demos/request-desk/","/demos/business-brain/","/demos/website-manager/"].every(function(r){return !!document.querySelector("#see-fallback a[href=\'" + r + "\']")})'));
+  record('no-JS home: technical complaint headline absent',
+    await evalJs('document.body.textContent.indexOf("The interactive demos need JavaScript.") === -1'));
+  record('no-JS home: fallback leads with the sample transformations',
+    await evalJs('(function(){var h=document.querySelector("#see-fallback h3");return !!h && h.textContent.indexOf("Three sample transformations") === 0}())'));
+  record('no-JS home: hero proof readable without scripts',
+    await evalJs('(function(){var p=document.getElementById("hero-proof");return !!p && getComputedStyle(p).opacity === "1" && p.textContent.indexOf("owner approval") !== -1}())'));
   await shot('home-nojs.png', false);
   await navigate(BASE + '/demos/request-desk/');
   record('no-JS request desk: fallback visible, shell hidden',

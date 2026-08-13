@@ -171,6 +171,29 @@ class TestProductionExposure(unittest.TestCase):
                                  f"{name}: internal reference leaked: {phrase!r}")
 
 
+class TestAboutRouteRedirect(unittest.TestCase):
+    """Google still indexes /about, so both URL forms must reach the live About section."""
+
+    def setUp(self):
+        self.config = json.loads(VERCEL.read_text(encoding="utf-8"))
+        self.redirects = self.config.get("redirects", [])
+        self.by_source = {r.get("source"): r for r in self.redirects}
+
+    def test_both_about_forms_redirect_permanently_to_the_homepage_section(self):
+        for source in ("/about", "/about/"):
+            self.assertIn(source, self.by_source,
+                          f"no redirect configured for indexed route {source}")
+            rule = self.by_source[source]
+            self.assertEqual(rule.get("destination"), "/#about",
+                             f"{source}: wrong About destination")
+            self.assertIs(rule.get("permanent"), True,
+                          f"{source}: redirect must be permanent (308)")
+
+    def test_destination_anchor_exists_on_the_homepage(self):
+        self.assertIn("about", INDEX_DOM.ids,
+                      "redirect destination #about is missing from the homepage")
+
+
 class TestJustinRouteRedirect(unittest.TestCase):
     """/justin and /justin/ both returned 404 in www and non-www forms."""
 

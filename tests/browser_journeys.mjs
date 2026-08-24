@@ -213,6 +213,37 @@ async function click(selector) {
   await wait(120);
 }
 
+/* Real viewport pointer click for reachability-sensitive controls. */
+async function pointerClick(selector) {
+  const point = await evalJs(
+    `(async function(){var el=document.querySelector(${JSON.stringify(selector)});` +
+    'if(!el)return {missing:true};' +
+    'el.scrollIntoView({block:"center",inline:"center",behavior:"instant"});' +
+    'var previous=null,stable=0,deadline=performance.now()+2000,last=null;' +
+    'while(performance.now()<deadline){' +
+    'await new Promise(function(resolve){requestAnimationFrame(resolve)});' +
+    'var r=el.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;' +
+    'var signature=[r.left,r.top,r.width,r.height];' +
+    'var same=previous&&signature.every(function(v,i){return Math.abs(v-previous[i])<0.5});' +
+    'stable=same?stable+1:0;previous=signature;' +
+    'var hit=document.elementFromPoint(x,y);var reachable=!!hit&&(hit===el||el.contains(hit));' +
+    'last={x:x,y:y,hit:reachable,hitTag:hit&&hit.tagName,hitId:hit&&hit.id};' +
+    'if(stable>=2&&reachable&&x>=0&&x<=innerWidth&&y>=0&&y<=innerHeight){last.settled=true;return last;}' +
+    '}last=last||{hit:false};last.settled=false;return last;}())');
+  if (point && point.missing) throw new Error('no pointer target: ' + selector);
+  if (!point || !point.hit || !point.settled) {
+    throw new Error('pointer target is not reachable after settling: ' + selector +
+      ' settled=' + !!point?.settled + ' hit=' + (point?.hitTag || 'none') + '#' + (point?.hitId || ''));
+  }
+  await cdp.send('Input.dispatchMouseEvent',
+    { type: 'mouseMoved', x: point.x, y: point.y }, session);
+  await cdp.send('Input.dispatchMouseEvent',
+    { type: 'mousePressed', x: point.x, y: point.y, button: 'left', buttons: 1, clickCount: 1 }, session);
+  await cdp.send('Input.dispatchMouseEvent',
+    { type: 'mouseReleased', x: point.x, y: point.y, button: 'left', buttons: 0, clickCount: 1 }, session);
+  await wait(160);
+}
+
 /* ---------- journeys ---------- */
 
 async function main() {
@@ -247,6 +278,19 @@ async function main() {
   await setViewport(1280, 900, false);
   await navigate(BASE + '/');
   record('home: title', (await evalJs('document.title')).includes('ClearPath'));
+
+  /* Pointer helper must reject a target that never settles, even if every
+     sampled center point remains directly hit-testable. */
+  await evalJs('(function(){var b=document.createElement("button");b.id="moving-pointer-target";b.type="button";b.textContent="moving target";b.style.cssText="position:fixed;left:80px;top:120px;width:120px;height:48px;z-index:2147483647";document.body.appendChild(b);var n=0;function move(){if(!b.isConnected)return;n=(n+1)%40;b.style.transform="translateX("+(n*2)+"px)";requestAnimationFrame(move)}requestAnimationFrame(move);return true}())');
+  let movingTargetRejected = false;
+  try {
+    await pointerClick('#moving-pointer-target');
+  } catch (error) {
+    movingTargetRejected = error.message.includes('after settling');
+  }
+  await evalJs('(function(){var b=document.getElementById("moving-pointer-target");if(b)b.remove();scrollTo(0,0);return true}())');
+  record('pointer helper: continuously moving target fails closed', movingTargetRejected);
+
   record('home: demo surface revealed by JS',
     await evalJs('!document.getElementById("see-shell").hidden && document.getElementById("see-fallback").hidden'));
   record('home desktop: hero proof labeled sample and fictional',
@@ -259,6 +303,24 @@ async function main() {
   await shot('home-desktop-hero.png', false);
   await imagesLoaded('home desktop');
   await noOverflow('home desktop 1280');
+
+  /* Guided pricing picker, desktop */
+  await evalJs('document.getElementById("pricing").scrollIntoView({block:"start"})');
+  await wait(300);
+  record('pricing desktop: progressively enhanced',
+    await evalJs('document.querySelector("[data-pricing-picker]").classList.contains("pricing-ready")'));
+  record('pricing desktop: Core is the single default selection',
+    await evalJs('(function(){var tabs=Array.from(document.querySelectorAll(".pricing-choice"));return tabs.filter(function(t){return t.getAttribute("aria-selected")==="true"}).length===1&&document.getElementById("pricing-tab-core").getAttribute("aria-selected")==="true"&&!document.getElementById("pricing-panel-core").hidden&&document.getElementById("pricing-panel-starter").hidden&&document.getElementById("pricing-panel-serious").hidden}())'));
+  await pointerClick('#pricing-tab-starter');
+  record('pricing desktop: real pointer selects Starter and swaps the detail panel',
+    await evalJs('document.getElementById("pricing-tab-starter").getAttribute("aria-selected")==="true"&&!document.getElementById("pricing-panel-starter").hidden&&document.getElementById("pricing-panel-core").hidden'));
+  await key('ArrowRight', 'ArrowRight', 39);
+  record('pricing desktop: ArrowRight returns selection and focus to Core',
+    await evalJs('document.activeElement.id==="pricing-tab-core"&&document.getElementById("pricing-tab-core").getAttribute("aria-selected")==="true"&&!document.getElementById("pricing-panel-core").hidden'));
+  record('pricing desktop: selected panel keeps verified price and checkout',
+    await evalJs('(function(){var p=document.getElementById("pricing-panel-core");var a=p.querySelector("[data-checkout-offer=\'core-retainer\']");return /Charged today: \\$4,000/.test(p.textContent)&&a&&a.href==="https://buy.stripe.com/14A4gz6FlbSa6CifJR6Vq07"}())'));
+  await noOverflow('pricing desktop 1280');
+  await shot('pricing-desktop.png', false);
 
   /* Request Desk compact journey */
   await click('#panel-rd [data-sample="catering-email"]');
@@ -358,6 +420,22 @@ async function main() {
   await wait(1600);
   await shot('home-390-firstscreen.png', false);
   await noOverflow('home 390');
+
+  /* Guided pricing picker, mobile */
+  await evalJs('document.getElementById("pricing").scrollIntoView({block:"start"})');
+  await wait(300);
+  record('pricing 390: all plan choices are contained 44px targets',
+    await evalJs('(function(){return Array.from(document.querySelectorAll(".pricing-choice")).every(function(el){var r=el.getBoundingClientRect();return r.height>=44&&r.left>=0&&r.right<=innerWidth+1})}())'));
+  record('pricing 390: setup and monthly prices share one row',
+    await evalJs('(function(){var boxes=Array.from(document.querySelectorAll("#pricing-panel-core .pricing-price-box"));if(boxes.length!==2)return false;var a=boxes[0].getBoundingClientRect(),b=boxes[1].getBoundingClientRect();return Math.abs(a.top-b.top)<=1&&a.left<b.left&&b.right<=innerWidth+1}())'));
+  await pointerClick('#pricing-tab-serious');
+  record('pricing 390: real pointer selects Serious Business',
+    await evalJs('document.getElementById("pricing-tab-serious").getAttribute("aria-selected")==="true"&&!document.getElementById("pricing-panel-serious").hidden&&document.getElementById("pricing-panel-core").hidden'));
+  record('pricing 390: selected plan exposes its exact price pair',
+    await evalJs('(function(){var t=document.getElementById("pricing-panel-serious").textContent;return t.indexOf("$5,000")!==-1&&t.indexOf("$3,000/mo")!==-1}())'));
+  await noOverflow('pricing 390');
+  await shot('pricing-390.png', false);
+
   record('home 390: Demos nav link visible',
     await evalJs('(function(){var a=document.querySelector(".nav a[href=\'/demos/\']");return !!a && a.offsetParent !== null}())'));
   await click('#panel-rd [data-sample="phone-note"]');
@@ -402,6 +480,8 @@ async function main() {
     await evalJs('(function(){var h=document.querySelector("#see-fallback h3");return !!h && h.textContent.indexOf("Three sample transformations") === 0}())'));
   record('no-JS home: hero proof readable without scripts',
     await evalJs('(function(){var p=document.getElementById("hero-proof");return !!p && getComputedStyle(p).opacity === "1" && p.textContent.indexOf("owner approval") !== -1}())'));
+  record('no-JS home: all three pricing details remain readable',
+    await evalJs('(function(){var panels=Array.from(document.querySelectorAll(".pricing-panel"));return panels.length===3&&panels.every(function(p){return !p.hidden&&p.offsetParent!==null})}())'));
   await shot('home-nojs.png', false);
   await navigate(BASE + '/demos/request-desk/');
   record('no-JS request desk: fallback visible, shell hidden',
@@ -551,10 +631,24 @@ async function main() {
       const v = await evalJs(
         'document.documentElement.scrollWidth - document.documentElement.clientWidth');
       record(`sweep ${width}px ${path}: no overflow`, v <= 1, `overflowPx=${v}`);
+      if (path === '/') {
+        record(`sweep ${width}px home: pricing choices stay contained`,
+          await evalJs('(function(){return Array.from(document.querySelectorAll(".pricing-choice")).every(function(el){var r=el.getBoundingClientRect();return r.width>0&&r.height>=44&&r.left>=0&&r.right<=innerWidth+1})}())'));
+        record(`sweep ${width}px home: selected price pair stays side by side`,
+          await evalJs('(function(){var boxes=Array.from(document.querySelectorAll("#pricing-panel-core .pricing-price-box"));if(boxes.length!==2)return false;var a=boxes[0].getBoundingClientRect(),b=boxes[1].getBoundingClientRect();return a.width>0&&b.width>0&&Math.abs(a.top-b.top)<=1&&b.right<=innerWidth+1}())'));
+        const priceFit = await evalJs('(function(){var tabs=Array.from(document.querySelectorAll(".pricing-choice"));for(var t=0;t<tabs.length;t+=1){tabs[t].click();var panel=document.getElementById(tabs[t].getAttribute("aria-controls"));var boxes=Array.from(panel.querySelectorAll(".pricing-price-box"));var inks=[];for(var i=0;i<boxes.length;i+=1){var price=boxes[i].querySelector(".tier-price");var boxRect=boxes[i].getBoundingClientRect();var range=document.createRange();range.selectNodeContents(price);var inkRect=range.getBoundingClientRect();inks.push(inkRect);if(boxes[i].scrollWidth>boxes[i].clientWidth+1||inkRect.left<boxRect.left-1||inkRect.right>boxRect.right+1){return {ok:false,issue:tabs[t].id+":"+i+": price ink escapes its box"};}}if(inks.length===2&&inks[0].right>boxes[1].getBoundingClientRect().left+1){return {ok:false,issue:tabs[t].id+": setup price overlaps monthly box"};}}return {ok:true,issue:""};}())');
+        record(`sweep ${width}px home: every selected price stays inside its box`,
+          priceFit.ok, priceFit.issue);
+      }
     }
   }
   await setViewport(320, 900, true);
   await navigate(BASE + '/');
+  await pointerClick('#pricing-tab-starter');
+  await evalJs('document.querySelector("#pricing-panel-starter .pricing-price-grid").scrollIntoView({block:"center",behavior:"instant"})');
+  await wait(200);
+  await shot('pricing-320.png', false);
+  await evalJs('scrollTo(0,0)');
   await shot('home-320-top.png', false);
 
   record('no unexpected JS dialogs anywhere', dialogs.length === 0,

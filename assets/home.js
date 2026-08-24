@@ -105,6 +105,15 @@
     return true;
   }
 
+  /* ----- guided pricing picker ----- */
+  var pricingPicker = document.querySelector('[data-pricing-picker]');
+  if (pricingPicker) {
+    var pricingTabs = pricingPicker.querySelector('[data-pricing-tabs]');
+    if (pricingTabs && initTablist(pricingTabs)) {
+      pricingPicker.classList.add('pricing-ready');
+    }
+  }
+
   /* ----- fail-closed surface reveal ----- */
   var shell = document.getElementById('see-shell');
   var fallback = document.getElementById('see-fallback');

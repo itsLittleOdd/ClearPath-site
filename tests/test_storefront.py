@@ -115,7 +115,9 @@ def offer_card(raw, slug):
     marker_pos = raw.index(marker)
     card_starts = [
         match.start()
-        for match in re.finditer(r'<div class="tier(?:\s[^\"]*)?">', raw)
+        for match in re.finditer(
+            r'<div(?=[^>]*\bclass="tier(?:\s[^\"]*)?")[^>]*>', raw
+        )
     ]
     start = max(pos for pos in card_starts if pos < marker_pos)
     later_cards = [pos for pos in card_starts if pos > marker_pos]

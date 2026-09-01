@@ -1,6 +1,6 @@
-/* Homepage behavior: gated scroll reveals, demo-surface tabs, and the
-   fail-closed reveal of the compact demo surface.
-   Browser-local only: no network calls, no storage. */
+/* Homepage behavior: gated scroll reveals, demo-surface tabs, the guided
+   pricing picker, the phone menu, and the fail-closed reveal of the compact
+   demo surface. Browser-local only: no network calls, no storage. */
 (function () {
   'use strict';
 
@@ -13,6 +13,38 @@
     reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
+  /* ----- header: shadow once the page has scrolled ----- */
+  var top = document.querySelector('header.top');
+  if (top) {
+    var onScroll = function () {
+      if (window.scrollY > 4) { top.classList.add('is-scrolled'); }
+      else { top.classList.remove('is-scrolled'); }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  /* ----- phone menu: works without this script; this only closes it ----- */
+  var menu = document.querySelector('details.menu');
+  if (menu) {
+    var summary = menu.querySelector('summary');
+    function closeMenu(refocus) {
+      if (!menu.hasAttribute('open')) { return; }
+      menu.removeAttribute('open');
+      if (refocus && summary) { summary.focus(); }
+    }
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') { closeMenu(true); }
+    });
+    document.addEventListener('click', function (event) {
+      if (!menu.contains(event.target)) { closeMenu(false); }
+    });
+    var menuLinks = menu.querySelectorAll('a');
+    for (var l = 0; l < menuLinks.length; l += 1) {
+      menuLinks[l].addEventListener('click', function () { closeMenu(false); });
+    }
+  }
+
   /* ----- scroll reveals ----- */
   var reveals = document.querySelectorAll('.reveal');
   var staggers = document.querySelectorAll('[data-stagger]');
@@ -20,7 +52,7 @@
   for (i = 0; i < staggers.length; i += 1) {
     var children = staggers[i].children;
     for (var c = 0; c < children.length; c += 1) {
-      children[c].style.setProperty('--sd', (c * 90) + 'ms');
+      children[c].style.setProperty('--sd', (c * 60) + 'ms');
     }
   }
   function showAll() {
@@ -38,11 +70,11 @@
           io.unobserve(entries[e].target);
         }
       }
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
     for (i = 0; i < reveals.length; i += 1) { io.observe(reveals[i]); }
   }
 
-  /* ----- demo surface tabs ----- */
+  /* ----- tab lists (demo surface and pricing picker) ----- */
   function initTablist(tablist) {
     var tabs = tablist.querySelectorAll('[role="tab"]');
     if (!tabs.length) { return false; }
@@ -80,9 +112,11 @@
         tab.addEventListener('keydown', function (event) {
           var current = indexOfTab(tab);
           var next = -1;
-          if (event.key === 'ArrowRight') {
+          /* Left/Right for the row layout, Up/Down for the stacked phone
+             layout; both always work so the contract never depends on width. */
+          if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
             next = (current + 1) % tabs.length;
-          } else if (event.key === 'ArrowLeft') {
+          } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
             next = (current - 1 + tabs.length) % tabs.length;
           } else if (event.key === 'Home') {
             next = 0;

@@ -264,7 +264,7 @@ class TestBookingCtas(unittest.TestCase):
         surface is asserted to own at least one.
         """
         surfaces = {
-            "header nav": RAW[RAW.index('class="top"'):RAW.index("<main>")],
+            "header nav": RAW[RAW.index('class="top"'):RAW.index("<main")],
             "hero": RAW[RAW.index('<section class="hero"'):RAW.index('id="familiar"')],
             "final cta band": RAW[RAW.index('class="cta-band"'):RAW.index("</main>")],
             "footer": RAW[RAW.index("<footer>"):],

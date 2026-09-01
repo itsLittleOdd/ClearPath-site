@@ -194,7 +194,7 @@ class TestSharedStylesheet(unittest.TestCase):
                          "hub must load exactly the shared local stylesheet")
 
     def test_brand_tokens_survive_the_extraction(self):
-        for token in ("--paper:", "--pine:", "--clay:", "--ink:", "--serif:",
+        for token in ("--paper:", "--teal:", "--clay:", "--ink:", "--serif:",
                       "--mono:"):
             self.assertIn(token, CSS_RAW, f"brand token missing: {token}")
 

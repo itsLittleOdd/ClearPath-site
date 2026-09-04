@@ -1,5 +1,0 @@
-.vercel/
-evidence/
-__pycache__/
-.env*
-*.zip

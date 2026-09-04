@@ -1,3 +1,256 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="ClearPath helps owner-led businesses sort repetitive work. Try three honest browser-only workflow demos."><meta name="robots" content="index,follow"><link rel="canonical" href="https://www.clearpathwv.com/demos/website-manager/"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"><title>Website Manager | ClearPath</title><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/site.css"><script type="module" src="/assets/app.mjs"></script></head>
-<body data-page="site"><a class="skip" href="#main">Skip to content</a><header class="site-header"><a class="wordmark" href="/" aria-label="ClearPath home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25V16a9 9 0 0 1 9-9h13M18 2l9 5-9 5M12 25v-7h15"/></svg>ClearPath<span class="wordmark-dot">.</span></a><nav aria-label="Main navigation"><a href="/demos/">The demos</a><a href="/#pricing">Pricing</a><a href="/#about">Meet Justin</a></nav></header><main id="main"><div class="wrap demo-intro"><a class="back" href="/demos/">← All demos</a><p class="eyebrow">The working demos / 03</p><h1>Small change.<br>Full control.</h1><p class="lead">Update the cafe, not a support ticket. Review the exact change before it touches even this fictional preview.</p><div class="disclosure"><span class="status-dot"></span><span>Fictional Juniper Table data. Browser-only rules, not live AI. No sends, storage, or connections.</span></div></div><div class="wrap workbench"><div class="workbar"><span>Juniper Table <span class="muted">/ operator workbench</span></span><button class="quiet" id="reset">Reset demo ↺</button></div><ol class="steps" aria-label="Workflow"><li data-step="1" aria-current="step">01 <span>Input</span></li><li data-step="2">02 <span>Work</span></li><li data-step="3">03 <span>Human gate</span></li><li data-step="4">04 <span>Receipt</span></li></ol><p id="status" class="status" role="status">Start with a sample or write your own.</p><div class="site-work-grid"><section class="input-panel" aria-labelledby="site-input-title"><p class="eyebrow">01 / Change request</p><h2 id="site-input-title">Keep the front door current.</h2><button class="secondary" id="site-preset">Try a rainy-day update</button><div class="site-fields"><label for="hours">Opening hours</label><textarea id="hours" rows="2" maxlength="240"></textarea><label for="event">Event announcement</label><textarea id="event" rows="3" maxlength="240"></textarea><label for="patio">Patio notice</label><textarea id="patio" rows="3" maxlength="240"></textarea></div><p class="fine">1 to 240 characters per field. Plain text only. Switch between the draft and local published view. Edits change the draft view only; publishing still requires review and approval.</p><button id="review-site">Review changes →</button><div class="site-review" id="site-review" hidden><p class="eyebrow">02 / Before and after</p><div id="diff"></div><div class="gate"><p class="eyebrow">03 / Human gate</p><p class="fine">Approval is tied to these exact values. Any edit revokes it.</p><button id="approve-site">Approve this exact draft</button><button id="publish-site" disabled>Publish to DEMO only</button></div></div><button class="quiet" id="undo-site" disabled>Undo last local publish</button></section><section class="preview-panel" aria-labelledby="preview-title"><div class="preview-bar"><span id="preview-title">Draft preview</span><span>Not a live website</span></div><div class="preview-switch" role="group" aria-label="Cafe preview version"><button id="view-draft" aria-pressed="true">Draft preview</button><button id="view-published" aria-pressed="false">Local published</button></div><div class="cafe"><header class="cafe-header"><span class="cafe-brand">Juniper Table</span><span>A fictional neighborhood cafe</span></header><div class="cafe-hero"><div><p>Good company. A slower morning.</p><h2>There’s a<br>place for you<br>at our table.</h2></div><svg class="cup-art" viewBox="0 0 260 280" role="img" aria-label="Original illustration of a coffee cup and a juniper branch"><ellipse cx="127" cy="238" rx="100" ry="17" fill="#d1d8c5"/><path d="M53 126h134v43c0 42-26 63-67 63s-67-26-67-63z" fill="#f7f2e5" stroke="#263e34" stroke-width="3"/><path d="M187 138h10c43 0 43 54 0 54h-18" fill="none" stroke="#263e34" stroke-width="9"/><ellipse cx="120" cy="126" rx="67" ry="17" fill="#8a6445" stroke="#263e34" stroke-width="3"/><path d="M98 101c-25-25 23-32 0-57m42 57c-23-23 22-32 0-57" fill="none" stroke="#6b8067" stroke-width="3"/><path d="M222 103l-20-69m7 27l-23-17m29 36l20-27m-30-2l13-25" fill="none" stroke="#526c54" stroke-width="3"/></svg></div><div class="cafe-notice"><span>From the cafe</span><p id="live-event"></p></div><div class="cafe-menu"><div><p>Made for the morning</p><h3>Something warm.<br>Something seasonal.</h3><p>House coffee, fresh bakes, and a seat to settle into. This cafe and its menu are fictional.</p></div><ul><li>House coffee <span>Slow down a little</span></li><li>Seasonal toast <span>A good start</span></li><li>Fresh bakes <span>For the table</span></li></ul></div><div class="cafe-info"><div><h3>Come by</h3><p id="live-hours"></p></div><div><h3>Out on the patio</h3><p id="live-patio"></p></div></div><footer>Juniper Table <span>Fictional cafe · No bookings or ordering</span></footer></div></section></div><section class="receipt" id="receipt-panel" hidden aria-labelledby="receipt-title"><div><p class="eyebrow">04 / Local record</p><h2 id="receipt-title">A receipt, not a send.</h2></div><p id="receipt-summary"></p><button class="secondary" id="download">Download local receipt (.json)</button><details><summary>Inspect the receipt</summary><pre id="receipt-json"></pre></details></section></div><div class="wrap demo-end"><p>Publish means changing this page's local preview only. Reload to return to the original.</p><a href="/demos/">Back to all demos ↗</a></div></main><footer class="site-footer"><a class="wordmark" href="/">ClearPath.</a><p>Practical AI help. Human judgment stays in the loop.</p><div><a href="/demos/">Explore the demos</a><a href="/#boundaries">Demo boundaries</a><a href="mailto:JWhalen@ClearPathWV.com">Email Justin</a></div><small>Ellicottville, NY · ClearPath, a Whalen Ventures company · Fictional demo data. No live AI connections.</small></footer><noscript><div class="noscript"><strong>JavaScript is off.</strong> The website and pricing are readable. Interactive demos require local JavaScript. Nothing connects to AI or sends data. Each demo follows input, review, human approval, and a local receipt.</div></noscript></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F8F5EF">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<title>Website and Operations Manager demo | ClearPath</title>
+<meta name="description" content="A working browser demo: edit a fictional cafe's hours, event, or service note, watch the live preview and change summary, then approve and publish. The publish updates this page only. Sample data, nothing sends.">
+<link rel="canonical" href="https://www.clearpathwv.com/demos/website-manager/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ClearPath">
+<meta property="og:url" content="https://www.clearpathwv.com/demos/website-manager/">
+<meta property="og:title" content="Website and Operations Manager demo | ClearPath">
+<meta property="og:description" content="Edit a fictional cafe's hours, watch the preview and change summary, then approve and publish. The publish updates this page only. Sample data, nothing sends.">
+<meta property="og:image" content="https://www.clearpathwv.com/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ClearPath wordmark with the line: Bring me the messy work.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Website and Operations Manager demo | ClearPath">
+<meta name="twitter:description" content="Edit a fictional cafe's hours, watch the preview and change summary, then approve and publish. The publish updates this page only. Sample data, nothing sends.">
+<meta name="twitter:image" content="https://www.clearpathwv.com/og-image.png">
+<meta name="twitter:image:alt" content="ClearPath wordmark with the line: Bring me the messy work.">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="demo-page">
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="/" aria-label="ClearPath home">
+      <span class="brand-name"><span class="brand-clear">Clear</span><span class="brand-path">Path</span></span>
+      <span class="brand-sub">Ellicottville, NY &middot; Western New York</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/demos/">All demos</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/#faq">Questions</a></li>
+      </ul>
+      <details class="menu">
+        <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="menu-text">Menu</span></summary>
+        <ul class="menu-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/demos/">All demos</a></li>
+          <li><a href="/demos/request-desk/">Request Desk demo</a></li>
+          <li><a href="/demos/business-brain/">Business Brain demo</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li class="menu-sep" role="separator"></li>
+          <li><a href="mailto:JWhalen@ClearPathWV.com">Email Justin</a></li>
+        </ul>
+      </details>
+      <a class="btn nav-cta" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call"><span class="cta-long">Book a free 15-minute fit call</span><span class="cta-short">Free fit call</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero hero-demos">
+    <div class="wrap">
+      <span class="eyebrow rise" style="--d:.05s">ClearPath demo &middot; Website and Operations Manager</span>
+      <h1 class="rise" style="--d:.15s">Edit, preview, approve, then publish.</h1>
+      <p class="lede rise" style="--d:.3s">Hours change, events change, the patio closes for a week. Most owners
+      either chase whoever built the website or let it drift out of date. This manager makes
+      the update a two-minute, owner-approved routine.</p>
+      <p class="demo-honesty rise" style="--d:.45s"><strong>Honest demo:</strong> this page uses made-up sample data
+      for The Juniper Table, a fictional cafe. It runs entirely in your browser as a
+      demonstration of the workflow and controls ClearPath can build, not a live client
+      system. Publish demo updates the preview on this page only. No real website changes.
+      Nothing is sent or saved.</p>
+    </div>
+  </section>
+
+  <section class="demo-main" aria-label="Website and Operations Manager demo">
+    <div class="wrap">
+
+      <div class="demo-fallback" id="demo-fallback">
+        <h3>This interactive demo needs JavaScript.</h3>
+        <p>With JavaScript on, you can edit the Sunday hours, the weekly event, or the patio
+        note for a fictional cafe, watch a live preview and a plain change summary, and then
+        approve and publish. The publish only updates this page. No real website changed,
+        and nothing sends either way.</p>
+        <p>The idea in three lines:</p>
+        <ul>
+          <li>The owner sees the published value and the draft side by side.</li>
+          <li>A preview and a plain change summary make the edit obvious.</li>
+          <li>Nothing publishes until the owner approves it.</li>
+        </ul>
+        <p><a href="/demos/">Back to all demos</a> &middot;
+        <a href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a></p>
+      </div>
+
+      <div class="demo-shell" id="demo-shell" hidden>
+        <div class="demo-cols" data-demo="website-manager" data-variant="full">
+          <div class="demo-side">
+            <h2>Pick something to edit</h2>
+            <p class="side-note">Three small things on the fictional cafe's site that change
+            all the time in real life.</p>
+            <div class="choice-row choice-stack" role="group" aria-label="Editable items">
+              <button type="button" class="choice" data-item="hours" aria-pressed="false">
+                <span class="choice-kind">Hours</span>
+                Sunday hours
+              </button>
+              <button type="button" class="choice" data-item="event" aria-pressed="false">
+                <span class="choice-kind">Event</span>
+                This week's music night
+              </button>
+              <button type="button" class="choice" data-item="note" aria-pressed="false">
+                <span class="choice-kind">Service note</span>
+                The patio notice
+              </button>
+            </div>
+            <p class="side-note">Edit the draft, watch the preview follow, then approve and
+            publish. Reset puts everything back.</p>
+          </div>
+
+          <div class="tool">
+            <div class="tool-bar">
+              <span class="tool-name">Site Manager &middot; sample data</span>
+              <span class="chip is-ready" data-role="state-chip">Ready</span>
+            </div>
+            <div class="tool-body">
+              <div class="mgr-grid">
+                <div class="mgr-col">
+                  <span class="mgr-label">Current published value</span>
+                  <div class="summary-card" data-role="published">Pick an item to load its
+                  published value.</div>
+                  <div class="field">
+                    <label for="wm-draft">Draft edit</label>
+                    <input id="wm-draft" data-role="draft-input" type="text" maxlength="80"
+                           autocomplete="off" disabled>
+                  </div>
+                  <span class="mgr-label">Change summary</span>
+                  <div class="summary-card" data-role="summary">No change yet.</div>
+                </div>
+                <div class="mgr-col">
+                  <span class="mgr-label">Live preview</span>
+                  <div class="mini-site">
+                    <div class="mini-site-bar">
+                      <span>thejunipertable.example</span>
+                      <span data-role="pub-badge">Preview</span>
+                    </div>
+                    <div class="mini-site-body" data-role="preview">
+                      <span class="site-name">The Juniper Table</span>
+                      <span class="site-line" data-line="hours"></span>
+                      <span class="site-line" data-line="event"></span>
+                      <span class="site-line" data-line="note"></span>
+                    </div>
+                  </div>
+                  <p class="pub-note" data-role="pub-note" hidden>Published for this demo
+                  only. This updated the preview in your browser. No real website changed.</p>
+                </div>
+              </div>
+
+              <div class="gate">
+                <span class="gate-title">Owner approval</span>
+                <p>The site never changes on its own. A draft becomes published only after
+                the owner approves it, and here that whole loop stays inside this page.</p>
+                <div class="gate-actions">
+                  <button type="button" class="btn-ghost" data-role="approve" aria-describedby="wm-gate-note" disabled>Approve change for demo</button>
+                  <button type="button" class="btn" data-role="publish" aria-describedby="wm-gate-note" disabled>Publish demo</button>
+                  <span class="chip is-ready" data-role="approve-chip">Waiting for a draft</span>
+                </div>
+                <p class="gate-note" id="wm-gate-note">Approving and publishing here only
+                change this demo page. No real website changed, and nothing is sent to
+                anyone.</p>
+              </div>
+
+              <div class="demo-foot">
+                <p class="demo-status" data-role="status" aria-live="polite">Pick something
+                on the sample site to edit.</p>
+                <button type="button" class="reset-btn" data-role="reset">Reset the demo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="demo-explain" aria-label="What this demo shows">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">What you just watched</span>
+        <h2>Small updates stop being a project.</h2>
+        <p>The same loop works for hours, events, menus, closures, and the practical tools
+        behind the counter. The owner approves; the site stays current.</p>
+      </div>
+      <div class="split">
+        <div class="panel">
+          <h3>What the manager handled</h3>
+          <ul>
+            <li>Showing the published value and the draft side by side</li>
+            <li>A live preview before anything went out</li>
+            <li>A plain-language change summary</li>
+            <li>Keeping a clear draft and published status</li>
+          </ul>
+        </div>
+        <div class="panel hold">
+          <h3>What always waits for the owner</h3>
+          <ul>
+            <li>Approving the change</li>
+            <li>Publishing it</li>
+            <li>Anything about prices or promises</li>
+            <li>Undoing it, if something looks wrong</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-next hub-next" aria-label="Where to go next">
+    <div class="wrap">
+      <div class="next-panel">
+        <h2>When did your site last match reality?</h2>
+        <p>If updating your hours means texting whoever built the site, the free fit call is
+        a good place to talk about a calmer setup.</p>
+        <div class="next-actions">
+          <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
+          <a class="btn-ghost" href="/demos/">All demos</a>
+          <a class="quiet-link" href="/#pricing">See the paid starting points</a>
+          <a class="quiet-link" href="/">Back to the homepage</a>
+        </div>
+        <p class="other-demos">
+          <span class="other-label">Try another demo</span>
+          <a href="/demos/request-desk/">Request Desk</a>
+          <a href="/demos/business-brain/">Business Brain</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <span class="foot-brand">ClearPath</span>
+      <ul class="foot-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/demos/">Demos</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a></li>
+      </ul>
+    </div>
+    <p class="foot-line">Ellicottville, New York &middot; serving Western New York &middot; &copy; 2026 ClearPath, a Whalen Ventures company &middot; Demo pages use sample data only.</p>
+  </div>
+</footer>
+
+<script src="/assets/website-manager.js" defer></script>
+</body>
+</html>

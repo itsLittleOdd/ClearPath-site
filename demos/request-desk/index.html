@@ -1,3 +1,253 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="ClearPath helps owner-led businesses sort repetitive work. Try three honest browser-only workflow demos."><meta name="robots" content="index,follow"><link rel="canonical" href="https://www.clearpathwv.com/demos/request-desk/"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"><title>Request Desk | ClearPath</title><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/site.css"><script type="module" src="/assets/app.mjs"></script></head>
-<body data-page="request"><a class="skip" href="#main">Skip to content</a><header class="site-header"><a class="wordmark" href="/" aria-label="ClearPath home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25V16a9 9 0 0 1 9-9h13M18 2l9 5-9 5M12 25v-7h15"/></svg>ClearPath<span class="wordmark-dot">.</span></a><nav aria-label="Main navigation"><a href="/demos/">The demos</a><a href="/#pricing">Pricing</a><a href="/#about">Meet Justin</a></nav></header><main id="main"><div class="wrap demo-intro"><a class="back" href="/demos/">← All demos</a><p class="eyebrow">The working demos / 01</p><h1>The enquiry,<br>without the scramble.</h1><p class="lead">Turn a messy message into known facts, missing details, and a reply you can actually review.</p><div class="disclosure"><span class="status-dot"></span><span>Fictional Juniper Table data. Browser-only rules, not live AI. No sends, storage, or connections.</span></div></div><div class="wrap workbench"><div class="workbar"><span>Juniper Table <span class="muted">/ operator workbench</span></span><button class="quiet" id="reset">Reset demo ↺</button></div><ol class="steps" aria-label="Workflow"><li data-step="1" aria-current="step">01 <span>Input</span></li><li data-step="2">02 <span>Work</span></li><li data-step="3">03 <span>Human gate</span></li><li data-step="4">04 <span>Receipt</span></li></ol><p id="status" class="status" role="status">Start with a sample or write your own.</p><div class="work-grid"><section class="input-panel" aria-labelledby="request-input-title"><p class="eyebrow">01 / Incoming</p><h2 id="request-input-title">A seat at the table.</h2><div id="request-presets" class="presets" aria-label="Sample enquiries"></div><label for="request-input">Customer message <span class="muted">(fictional data only)</span></label><textarea id="request-input" rows="11" maxlength="2000" spellcheck="false" aria-describedby="request-help"></textarea><p class="fine" id="request-help">Reads labeled fields, one email address, one YYYY-MM-DD date, and one count of people or guests. The exact source appears beside each fact. Ambiguous wording stays with a person.</p><button id="analyze">Prepare the request →</button></section><section class="output-panel" aria-labelledby="request-work-title"><p class="eyebrow">02 / Structured work</p><h2 id="request-work-title">No detail invented.</h2><div id="request-empty" class="empty-state"><span class="empty-symbol" aria-hidden="true">↳</span><p>The original message stays on the left. Known facts and unanswered questions appear here.</p></div><div id="request-result" hidden><dl id="facts" class="facts"></dl><div class="attention"><strong>Needs a human</strong><p id="missing"></p><p id="risk"></p></div><label for="safe-draft">Editable reply draft</label><textarea id="safe-draft" rows="8" maxlength="3000"></textarea><p class="fine">Your edits are not fact-checked. Read the entire draft before approving. An input or draft edit revokes the previous decision.</p><div class="gate"><p class="eyebrow">03 / Your decision</p><div class="actions"><button id="approve-request">Approve draft locally</button><button class="secondary" id="changes-request">Request changes</button><button class="quiet" id="hold-request">Hold for review</button></div></div></div></section></div><section class="receipt" id="receipt-panel" hidden aria-labelledby="receipt-title"><div><p class="eyebrow">04 / Local record</p><h2 id="receipt-title">A receipt, not a send.</h2></div><p id="receipt-summary"></p><button class="secondary" id="download">Download local receipt (.json)</button><details><summary>Inspect the receipt</summary><pre id="receipt-json"></pre></details></section></div><div class="wrap demo-end"><p>Try the sensitive request. Notice that a safe reply does not promise a safe meal.</p><a href="/demos/business-brain/">Next: Business Brain ↗</a></div></main><footer class="site-footer"><a class="wordmark" href="/">ClearPath.</a><p>Practical AI help. Human judgment stays in the loop.</p><div><a href="/demos/">Explore the demos</a><a href="/#boundaries">Demo boundaries</a><a href="mailto:JWhalen@ClearPathWV.com">Email Justin</a></div><small>Ellicottville, NY · ClearPath, a Whalen Ventures company · Fictional demo data. No live AI connections.</small></footer><noscript><div class="noscript"><strong>JavaScript is off.</strong> The website and pricing are readable. Interactive demos require local JavaScript. Nothing connects to AI or sends data. Each demo follows input, review, human approval, and a local receipt.</div></noscript></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F8F5EF">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<title>Request Desk demo | ClearPath</title>
+<meta name="description" content="A working browser demo: watch a messy catering email, phone note, or web form become extracted facts, flagged gaps, a drafted reply, and an owner approval step. Sample data only, nothing sends.">
+<link rel="canonical" href="https://www.clearpathwv.com/demos/request-desk/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ClearPath">
+<meta property="og:url" content="https://www.clearpathwv.com/demos/request-desk/">
+<meta property="og:title" content="Request Desk demo | ClearPath">
+<meta property="og:description" content="Watch a messy request become extracted facts, flagged gaps, a drafted reply, and an owner approval step. Sample data only, nothing sends.">
+<meta property="og:image" content="https://www.clearpathwv.com/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ClearPath wordmark with the line: Bring me the messy work.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Request Desk demo | ClearPath">
+<meta name="twitter:description" content="Watch a messy request become extracted facts, flagged gaps, a drafted reply, and an owner approval step. Sample data only, nothing sends.">
+<meta name="twitter:image" content="https://www.clearpathwv.com/og-image.png">
+<meta name="twitter:image:alt" content="ClearPath wordmark with the line: Bring me the messy work.">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="demo-page">
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="/" aria-label="ClearPath home">
+      <span class="brand-name"><span class="brand-clear">Clear</span><span class="brand-path">Path</span></span>
+      <span class="brand-sub">Ellicottville, NY &middot; Western New York</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/demos/">All demos</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/#faq">Questions</a></li>
+      </ul>
+      <details class="menu">
+        <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="menu-text">Menu</span></summary>
+        <ul class="menu-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/demos/">All demos</a></li>
+          <li><a href="/demos/business-brain/">Business Brain demo</a></li>
+          <li><a href="/demos/website-manager/">Website Manager demo</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li class="menu-sep" role="separator"></li>
+          <li><a href="mailto:JWhalen@ClearPathWV.com">Email Justin</a></li>
+        </ul>
+      </details>
+      <a class="btn nav-cta" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call"><span class="cta-long">Book a free 15-minute fit call</span><span class="cta-short">Free fit call</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero hero-demos">
+    <div class="wrap">
+      <span class="eyebrow rise" style="--d:.05s">ClearPath demo &middot; Request Desk</span>
+      <h1 class="rise" style="--d:.15s">Watch a messy request become a clear next step.</h1>
+      <p class="lede rise" style="--d:.3s">Requests reach real businesses as half-written emails, scribbled phone
+      notes, and web forms. This desk reads one, pulls out the facts, flags what is missing,
+      drafts a reply, and then stops and waits for the owner.</p>
+      <p class="demo-honesty rise" style="--d:.45s"><strong>Honest demo:</strong> this page uses made-up sample data
+      for The Juniper Table, a fictional cafe. It runs entirely in your browser as a
+      demonstration of the workflow and controls ClearPath can build, not a live client
+      system. Nothing is sent or saved, and no live system changes.</p>
+    </div>
+  </section>
+
+  <section class="demo-main" aria-label="Request Desk demo">
+    <div class="wrap">
+
+      <div class="demo-fallback" id="demo-fallback">
+        <h3>This interactive demo needs JavaScript.</h3>
+        <p>With JavaScript on, you can pick a sample request from a fictional cafe and watch
+        the desk pull out the facts, flag missing information, assign the next action, draft
+        a reply, and wait for owner approval. Nothing sends either way; it is sample data
+        running in your browser.</p>
+        <p>You can still see the idea without it:</p>
+        <ul>
+          <li>A messy request comes in by email, web form, or phone note.</li>
+          <li>The desk turns it into facts, gaps, a next action, and a draft reply.</li>
+          <li>The reply waits for the owner. Nothing important goes out on its own.</li>
+        </ul>
+        <p><a href="/demos/">Back to all demos</a> &middot;
+        <a href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a></p>
+      </div>
+
+      <div class="demo-shell" id="demo-shell" hidden>
+        <div class="demo-cols" data-demo="request-desk" data-variant="full">
+          <div class="demo-side">
+            <h2>Pick a sample request</h2>
+            <p class="side-note">Three made-up requests sent to The Juniper Table, a
+            fictional cafe. Pick one, then run the desk.</p>
+            <div class="choice-row choice-stack" role="group" aria-label="Sample requests">
+              <button type="button" class="choice" data-sample="catering-email" aria-pressed="false">
+                <span class="choice-kind">Email</span>
+                Catering for an office lunch
+              </button>
+              <button type="button" class="choice" data-sample="phone-note" aria-pressed="false">
+                <span class="choice-kind">Phone note</span>
+                Half-finished note from the counter
+              </button>
+              <button type="button" class="choice" data-sample="web-form" aria-pressed="false">
+                <span class="choice-kind">Web form</span>
+                Gift card question with a deadline
+              </button>
+            </div>
+            <button type="button" class="btn" data-role="run" disabled>Run the desk</button>
+            <p class="side-note">The desk works one visible step at a time, so you can see
+            exactly what a person would review.</p>
+          </div>
+
+          <div class="tool">
+            <div class="tool-bar">
+              <span class="tool-name">Request Desk &middot; sample data</span>
+              <span class="chip is-ready" data-role="state-chip">Ready</span>
+            </div>
+            <div class="tool-body">
+              <ol class="stage-list">
+                <li class="stage" data-stage="request">
+                  <span class="stage-title">Incoming request</span>
+                  <div class="stage-slot" data-slot="request"></div>
+                </li>
+                <li class="stage" data-stage="facts">
+                  <span class="stage-title">Facts extracted</span>
+                  <div class="stage-slot" data-slot="facts"></div>
+                </li>
+                <li class="stage" data-stage="missing">
+                  <span class="stage-title">Missing information flagged</span>
+                  <div class="stage-slot" data-slot="missing"></div>
+                </li>
+                <li class="stage" data-stage="action">
+                  <span class="stage-title">Next action assigned</span>
+                  <div class="stage-slot" data-slot="action"></div>
+                </li>
+                <li class="stage" data-stage="draft">
+                  <span class="stage-title">Safe draft reply prepared</span>
+                  <div class="stage-slot" data-slot="draft"></div>
+                </li>
+                <li class="stage" data-stage="approval">
+                  <span class="stage-title">Owner approval required</span>
+                  <div class="stage-slot" data-slot="approval"></div>
+                </li>
+                <li class="stage" data-stage="record">
+                  <span class="stage-title">Follow-up record ready</span>
+                  <div class="stage-slot" data-slot="record"></div>
+                </li>
+              </ol>
+
+              <div class="gate">
+                <span class="gate-title">Owner approval</span>
+                <p>Nothing on this desk goes out on its own. The draft above waits here
+                until the owner says it is right.</p>
+                <div class="gate-actions">
+                  <button type="button" class="btn" data-role="approve" aria-describedby="gate-note" disabled>Approve for demo</button>
+                  <span class="chip is-ready" data-role="approve-chip">Waiting for a draft</span>
+                </div>
+                <p class="gate-note" id="gate-note">Approving here only changes this demo.
+                Nothing is sent to anyone.</p>
+              </div>
+
+              <div class="demo-foot">
+                <p class="demo-status" data-role="status" aria-live="polite">Pick a sample
+                request to begin.</p>
+                <button type="button" class="reset-btn" data-role="reset">Reset the demo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="demo-explain" aria-label="What this demo shows">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">What you just watched</span>
+        <h2>The person stays in charge. The retyping goes away.</h2>
+        <p>In a real setup this desk runs on your requests, inside your tools, under rules
+        you approve in writing.</p>
+      </div>
+      <div class="split">
+        <div class="panel">
+          <h3>What the desk handled</h3>
+          <ul>
+            <li>Reading the request, whatever shape it arrived in</li>
+            <li>Pulling out the facts someone would have retyped</li>
+            <li>Flagging what is missing instead of guessing</li>
+            <li>Drafting a reply and a follow-up record</li>
+          </ul>
+        </div>
+        <div class="panel hold">
+          <h3>What always waits for a person</h3>
+          <ul>
+            <li>Sending the reply</li>
+            <li>Prices, promises, and commitments</li>
+            <li>Anything touching money or a live account</li>
+            <li>The judgment call when something looks off</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-next hub-next" aria-label="Where to go next">
+    <div class="wrap">
+      <div class="next-panel">
+        <h2>That was one request. Yours arrive every day.</h2>
+        <p>If your week is full of messages like these, the free fit call is where we see
+        whether ClearPath can take them off your plate.</p>
+        <div class="next-actions">
+          <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
+          <a class="btn-ghost" href="/demos/">All demos</a>
+          <a class="quiet-link" href="/#pricing">See the paid starting points</a>
+          <a class="quiet-link" href="/">Back to the homepage</a>
+        </div>
+        <p class="other-demos">
+          <span class="other-label">Try another demo</span>
+          <a href="/demos/business-brain/">Business Brain</a>
+          <a href="/demos/website-manager/">Website Manager</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <span class="foot-brand">ClearPath</span>
+      <ul class="foot-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/demos/">Demos</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a></li>
+      </ul>
+    </div>
+    <p class="foot-line">Ellicottville, New York &middot; serving Western New York &middot; &copy; 2026 ClearPath, a Whalen Ventures company &middot; Demo pages use sample data only.</p>
+  </div>
+</footer>
+
+<script src="/assets/request-desk.js" defer></script>
+</body>
+</html>

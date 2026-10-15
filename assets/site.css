@@ -572,7 +572,43 @@ h1{
 .monthly-col.isnot li::before{background:var(--clay)}
 .after-checkout{margin-top:24px;padding:16px 20px;border-left:3px solid var(--teal);background:var(--card);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink-soft)}
 .after-checkout strong{color:var(--ink)}
-.pricing-foot{margin-top:20px;font-size:14px;color:var(--ink-soft);font-family:var(--mono);max-width:80ch}
+.pricing-foot{margin-top:20px;font-size:14px;color:var(--ink-soft);font-family:var(--sans);max-width:80ch}
+
+/* ---------- per-project pricing (draft 2026-10-15) ---------- */
+.draft-banner{background:var(--clay-wash);border-bottom:2px solid var(--clay);color:var(--clay-ink);font-size:14px;line-height:1.45;padding:9px 18px;text-align:center}
+.draft-banner strong{color:var(--clay-ink)}
+mark.tbc{background:#FFF1B8;color:#5A4500;border-radius:4px;padding:0 4px;font-family:var(--mono);font-size:.82em;font-weight:600;overflow-wrap:anywhere}
+.path{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 24px;border-top:1px solid var(--ink);margin-bottom:30px}
+.path li{padding:18px 0 16px;border-bottom:1px solid var(--line)}
+.path-n{font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--teal-text)}
+.path h3{font-size:20px;margin:4px 0 6px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.path p{color:var(--ink-soft);font-size:15px}
+.project-card .tier-top{padding:24px}
+.project-card .tier-top h3{margin-top:4px;font-size:30px;line-height:1.15}
+.project-card .tier-body{padding:22px 24px 24px}
+.project-card .tier-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.project-card .tier-row{padding-top:12px;border-top:1px dashed var(--line)}
+.project-card .tier-cta{max-width:560px}
+.project-card .tier-cta .btn{align-self:flex-start}
+.project-card .tier-alt{text-align:left}
+.after-h{font-size:26px;margin:44px 0 14px}
+.after-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:40px;border-top:1px solid var(--ink)}
+.after-opt{padding:16px 0 14px;border-bottom:1px solid var(--line)}
+.after-opt h4{font-family:var(--serif);font-size:21px;margin:4px 0 4px}
+.after-opt p{color:var(--ink-soft);font-size:15.5px}
+.table-wrap{overflow-x:auto;margin-top:22px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.ret-table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:640px}
+.ret-table th,.ret-table td{padding:12px 14px;text-align:left;vertical-align:top;border-top:1px dashed var(--line);color:var(--ink-soft)}
+.ret-table thead th,.ret-table thead td{border-top:0;font-family:var(--serif);font-size:18px;color:var(--ink);background:var(--paper-deep)}
+.ret-table tbody th{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-text);width:18%}
+.ret-table td.mono{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--ink)}
+.table-note{font-size:14px;color:var(--ink-soft);margin-top:10px}
+.excluded{margin-top:28px;padding:18px 20px;border-left:3px solid var(--clay);background:var(--card);border-radius:0 8px 8px 0}
+.excluded h3,.excluded .legal-h{font-family:var(--serif);font-size:19px;margin:0 0 6px}
+.excluded ul{list-style:none}
+.excluded li{padding:6px 0 6px 24px;position:relative;font-size:15px;color:var(--ink-soft)}
+.excluded li::before{content:"\00d7";position:absolute;left:2px;color:var(--clay);font-weight:700}
+.legal-draft h1{font-size:clamp(34px,5vw,52px);max-width:none}
 
 /* ---------- fit check ---------- */
 .fit{padding-top:52px}
@@ -664,6 +700,7 @@ footer{padding:36px 0 48px;color:var(--ink-soft);font-size:14.5px;border-top:1px
   .cap-list{grid-template-columns:1fr 1fr}
 }
 @media (max-width:900px){
+  .path{grid-template-columns:1fr 1fr}
   .cta-long{display:none}
   .cta-short{display:inline}
   .brand-sub{display:none}
@@ -684,6 +721,12 @@ footer{padding:36px 0 48px;color:var(--ink-soft);font-size:14.5px;border-top:1px
   .desk .btn{grid-column:2;justify-self:start}
 }
 @media (max-width:680px){
+  .path,.after-grid,.project-card .tier-rows{grid-template-columns:1fr}
+  .project-card .tier-top h3{font-size:26px}
+  .project-card .tier-top,.project-card .tier-body{padding:18px 17px}
+  .project-card .tier-cta .btn{align-self:stretch}
+  .project-card .pricing-price-grid{grid-template-columns:1fr}
+  .project-card .pricing-price-box .tier-price{font-size:22px}
   :root{--header-h:56px}
   body{font-size:16px}
   .hero{padding:34px 0 20px}

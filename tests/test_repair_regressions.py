@@ -33,9 +33,6 @@ RETIRED_OFFER_PHRASES = ("workflow check", "ops desk", "clearpath support")
 # still fails.
 VERIFIED_CHECKOUT_URLS = {
     "ai-clarity-session": "https://book.stripe.com/3cI14nfbRcWe4uadBJ6Vq05",
-    "starter-pilot": "https://buy.stripe.com/fZu28rbZFaO64ua9lt6Vq06",
-    "core-retainer": "https://buy.stripe.com/14A4gz6FlbSa6CifJR6Vq07",
-    "serious-business-tier": "https://buy.stripe.com/9B614n3t9f4m1hY9lt6Vq08",
 }
 
 INDEX_RAW = INDEX.read_text(encoding="utf-8")
@@ -541,10 +538,14 @@ class TestCheckoutScopeGuardrails(unittest.TestCase):
                          "the one-time session must not claim written "
                          "implementation scope")
 
-    def test_first_charge_disclosures_survive(self):
-        for amount in ("Charged today: $2,000.", "Charged today: $4,000.",
-                       "Charged today: $8,000."):
-            self.assertIn(amount, INDEX_RAW)
+    def test_session_terms_are_disclosed_before_checkout(self):
+        cta = next(a for a in self.ctas
+                   if a["data-checkout-offer"] == "ai-clarity-session")
+        note = re.search(
+            r'id="%s"[^>]*>(.*?)</p>' % re.escape(cta["aria-describedby"]),
+            INDEX_RAW, re.S).group(1)
+        self.assertIn("non-refundable", note)
+        self.assertIn("comes off the project price", note)
 
 
 class TestMetadataAndAssets(unittest.TestCase):
@@ -675,7 +676,7 @@ class TestPublicCopyVoice(unittest.TestCase):
         self.assertNotIn("—", VCARD_RAW)
 
     def test_public_ladder_prices_are_unchanged(self):
-        for amount in ("$395", "$1,500", "$500", "$2,500", "$5,000", "$3,000"):
+        for amount in ("$395", "$1,500", "$500", "$3,000"):
             self.assertIn(amount, INDEX_RAW, f"ladder price missing: {amount}")
 
     def test_human_approval_boundary_is_still_stated(self):

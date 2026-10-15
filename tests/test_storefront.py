@@ -150,7 +150,7 @@ BOOKING_ANCHORS = [a for a in PAGE.anchors if "data-booking-offer" in a.attrs]
 class TestOffersAndPricing(unittest.TestCase):
     def test_session_project_and_retainer_are_named(self):
         for name in ("AI Clarity Session", "Fixed-fee project",
-                     "Add a monthly retainer"):
+                     "Add a monthly option"):
             self.assertIn(name, RAW, f"offer name missing: {name}")
 
     def test_old_plan_names_and_setup_pricing_are_gone(self):
@@ -172,10 +172,12 @@ class TestOffersAndPricing(unittest.TestCase):
         self.assertNotIn("data-checkout-offer", card,
                          "projects are quoted, not sold through a checkout link")
 
-    def test_retainer_table_lists_the_three_monthly_levels(self):
+    def test_monthly_table_lists_only_the_two_public_monthly_options(self):
         table = RAW[RAW.index('<table class="ret-table"'):RAW.index("</table>")]
-        for price in ("$500/mo", "$1,500/mo", "$3,000/mo"):
-            self.assertIn(price, table, f"retainer level missing: {price}")
+        for price in ("$250/mo", "$500/mo"):
+            self.assertIn(price, table, f"monthly option missing: {price}")
+        for hidden in ("$1,500/mo", "$3,000/mo"):
+            self.assertNotIn(hidden, RAW, f"internal retainer level leaked: {hidden}")
         self.assertNotIn("setup", table.lower(),
                          "retainers carry no setup fee after a project")
 

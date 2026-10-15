@@ -676,7 +676,7 @@ class TestPublicCopyVoice(unittest.TestCase):
         self.assertNotIn("—", VCARD_RAW)
 
     def test_public_ladder_prices_are_unchanged(self):
-        for amount in ("$395", "$1,500", "$500", "$3,000"):
+        for amount in ("$395", "$1,500", "$250", "$500", "$3,000"):
             self.assertIn(amount, INDEX_RAW, f"ladder price missing: {amount}")
 
     def test_human_approval_boundary_is_still_stated(self):

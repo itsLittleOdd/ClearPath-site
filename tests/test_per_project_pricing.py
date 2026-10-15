@@ -63,6 +63,27 @@ class TestPerProjectPricing(unittest.TestCase):
             self.assertIn('href="/privacy/"', foot)
             self.assertIn('href="/terms/"', foot)
 
+    def test_internal_retainer_levels_and_client_names_never_ship(self):
+        for page in PAGES + sorted((ROOT / "terms").rglob("index.html")) + sorted((ROOT / "privacy").rglob("index.html")):
+            raw = page.read_text(encoding="utf-8")
+            for hidden in ("$1,500/mo", "$3,000/mo", "$1,500 a month", "$3,000 a month",
+                           "$1,500 per month", "$3,000 per month", "$125", "Zoho",
+                           "Route Manager", "B&amp;B", "B&B", "Hope's"):
+                self.assertNotIn(hidden, raw, f"{page}: internal or client detail in public copy: {hidden!r}")
+
+    def test_public_monthly_options_are_care_250_and_upkeep_500(self):
+        pricing = section("pricing")
+        self.assertIn("$250/mo", pricing)
+        self.assertIn("$500/mo", pricing)
+        self.assertIn("manager backend", pricing)
+        self.assertIn("Not web hosting", pricing)
+
+    def test_milestones_match_the_confirmed_splits(self):
+        pricing = section("pricing")
+        self.assertIn("Projects under $2,500 are paid in full upfront", pricing)
+        self.assertIn("50% to start and 50% before handoff", pricing)
+        self.assertIn("40% to start, 30% midway, and 30% before handoff", pricing)
+
     def test_placeholders_are_visibly_marked(self):
         marks = re.findall(r'<mark class="tbc">(.*?)</mark>', RAW, re.S)
         self.assertTrue(marks, "draft placeholders must use <mark class=\"tbc\">")

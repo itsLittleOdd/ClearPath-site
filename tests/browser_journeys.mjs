@@ -434,8 +434,8 @@ async function main() {
     await evalJs(`(function(){var m=${JSON.stringify(STRIPE)};return Object.keys(m).every(function(k){var a=document.querySelector("[data-checkout-offer=\\""+k+"\\"]");return !!a&&a.href===m[k]})&&document.querySelectorAll("[data-checkout-offer]").length===1}())`));
   record('home: five fit-call CTAs all point at the verified Cal.com route',
     await evalJs(`(function(){var as=document.querySelectorAll("[data-booking-offer]");return as.length===5&&Array.prototype.every.call(as,function(a){return a.href===${JSON.stringify(BOOKING)}})}())`));
-  record('home: session terms, project terms and retainer levels present verbatim',
-    await evalJs('(function(){var t=document.body.textContent;return ["$395 one time","non-refundable","Credited in full toward your project","No quote, no charge.","$500/mo","$1,500/mo","$3,000/mo"].every(function(s){return t.indexOf(s)!==-1})&&t.indexOf("Charged today")===-1}())'));
+  record('home: session terms, project terms and the two public monthly options present verbatim',
+    await evalJs('(function(){var t=document.body.textContent;return ["$395 one time","non-refundable","Credited in full toward your project","No quote, no charge.","$250/mo","$500/mo"].every(function(s){return t.indexOf(s)!==-1})&&t.indexOf("$1,500/mo")===-1&&t.indexOf("$3,000/mo")===-1&&t.indexOf("Charged today")===-1}())'));
 
   /* Per-project pricing, desktop */
   await evalJs('document.getElementById("pricing").scrollIntoView({block:"start",behavior:"instant"})');

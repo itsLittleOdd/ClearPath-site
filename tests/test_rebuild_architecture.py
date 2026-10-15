@@ -319,8 +319,8 @@ class TestHomepageLedgerArchitecture(unittest.TestCase):
     def test_pricing_keeps_is_and_is_not_and_the_fit_check_follows(self):
         pricing = section_of(INDEX, "pricing")
         text = text_of(pricing)
-        self.assertIn("What a retainer is", text)
-        self.assertIn("What a retainer is not", text)
+        self.assertIn("What a monthly option is", text)
+        self.assertIn("What a monthly option is not", text)
         self.assertIn("Not work that goes out without your approval", text)
         self.assertIn("No quote, no charge.", text)
         self.assertIn("Not included in any price", text)

@@ -123,10 +123,18 @@ class TestInventoryAndMetadata(unittest.TestCase):
         for p in PUBLIC_PAGES + PUBLIC_ASSETS:
             self.assertTrue((ROOT / p).is_file(), p)
 
-    def test_every_public_page_is_noindex(self):
+    UTILITY_NOINDEX = ("404.html", "thank-you/index.html", "justin/card.html")
+
+    def test_public_pages_indexable_and_utility_pages_noindex(self):
+        """Production contract: normal public pages carry an explicit
+        index, follow directive; the 404, thank-you and protected card stay
+        noindex. The review-mode noindex, nofollow may not survive anywhere."""
         for p in PUBLIC_PAGES:
             robots = PAGES[p].meta("name", "robots") or ""
-            self.assertIn("noindex", robots, p)
+            if p in self.UTILITY_NOINDEX:
+                self.assertIn("noindex", robots, p)
+            else:
+                self.assertEqual(robots, "index, follow", p)
 
     def test_unique_titles_and_descriptions(self):
         titles = [PAGES[p].title for p in AUTHORED_PAGES]
@@ -174,10 +182,10 @@ class TestInventoryAndMetadata(unittest.TestCase):
         expected = {route_for(p) for p in ROUTED_PAGES if p != "thank-you/index.html"}
         self.assertEqual(locs, expected)
 
-    def test_robots_is_review_mode(self):
+    def test_robots_is_production_exact(self):
         robots = read("robots.txt")
-        self.assertRegex(robots, r"User-agent: \*\s*\nDisallow: /\s*\n")
-        self.assertIn("Sitemap: https://www.clearpathwv.com/sitemap.xml", robots)
+        self.assertEqual(robots, "User-agent: *\nAllow: /\n\nSitemap: https://www.clearpathwv.com/sitemap.xml\n")
+        self.assertNotIn("Disallow", robots)
 
     def test_server_review_mode_headers_in_source(self):
         serve = read("tools/serve.mjs")
@@ -192,7 +200,12 @@ class TestLinksAndRoutes(unittest.TestCase):
             self.assertTrue(href.startswith("mailto:" + EMAIL), (page_name, href))
             return
         if href.startswith("http"):
-            self.assertEqual(href, FIT_CALL, (page_name, href))
+            # Production: the fit-call link, plus the hosting provider's
+            # privacy policy linked from /privacy/ only.
+            allowed = {FIT_CALL}
+            if page_name == "privacy/index.html":
+                allowed.add("https://vercel.com/legal/privacy-policy")
+            self.assertIn(href, allowed, (page_name, href))
             return
         path_part, _, frag = href.partition("#")
         path_part = path_part.split("?")[0]
@@ -463,7 +476,20 @@ class TestProtectedFiles(unittest.TestCase):
 
     def test_pinned_legacy_and_hosting_files_match_baseline_commit(self):
         for rel in PINNED_FILES:
+            if rel == ".vercelignore":
+                continue  # governed by the exact production upload policy below
             self.assertEqual((ROOT / rel).read_bytes(), self._git_bytes(rel), rel)
+
+    def test_vercelignore_is_the_exact_public_leaf_allowlist(self):
+        """Production upload policy: ignore everything, re-include directories
+        for traversal, then re-include exactly vercel.json and every public
+        leaf from tools/public-allowlist.mjs, root-anchored. No wildcards."""
+        leaves = sorted(set(PUBLIC_PAGES + PUBLIC_ASSETS + PUBLIC_MEDIA))
+        expected = ["**", "!*/", "!/vercel.json"] + ["!/" + f for f in leaves]
+        actual = [line for line in read(".vercelignore").splitlines() if line and not line.startswith("#")]
+        self.assertEqual(actual, expected)
+        for never in ("!/tools", "!/creative", "!/tests", "!/docs", "!/qa", "!/dist", "!/.build-inputs", "!/.repair-inputs", "!/assets/home.js", "!/assets/media/manifest.json", "!*.html", "!/assets/", "!/assets/**", "!/*"):
+            self.assertNotIn(never, actual, never)
 
     def test_build_inputs_untouched_by_tests(self):
         for name in ("DECISIONS.md", "BRIEF.md", "MARKETING.md", "pricing-model.json"):

@@ -27,14 +27,21 @@ test('review server routes, statuses and boundaries', async (t) => {
   const { url, close } = await startReviewServer({ port: 0 });
   t.after(() => close());
 
-  await t.test('public routes serve HTML with review headers', async () => {
-    for (const route of ['/', '/services/', '/work/', '/pricing/', '/contact/', '/thank-you/', '/privacy/', '/terms/', '/demos/', '/demos/request-desk/', '/demos/business-brain/', '/demos/website-manager/', '/justin/card.html']) {
+  await t.test('public routes serve HTML; loopback server stays review-only; page robots meta follows production mode', async () => {
+    /* The local server is review-only, so its X-Robots-Tag header stays
+       noindex. The page bytes are the production site: normal public pages
+       carry index, follow; the 404 page, thank-you page and protected card
+       stay noindex. */
+    const UTILITY_NOINDEX = new Set(['/404.html', '/thank-you/', '/justin/card.html']);
+    for (const route of ['/', '/services/', '/work/', '/pricing/', '/contact/', '/thank-you/', '/privacy/', '/terms/', '/demos/', '/demos/request-desk/', '/demos/business-brain/', '/demos/website-manager/', '/404.html', '/justin/card.html']) {
       const r = await rawRequest(url + route);
       assert.equal(r.status, 200, route);
       assert.match(r.headers['content-type'], /text\/html/, route);
       assert.equal(r.headers['cache-control'], 'no-store', route);
       assert.equal(r.headers['x-robots-tag'], 'noindex, nofollow', route);
-      assert.match(r.body, /<meta name="robots" content="noindex/, route);
+      const meta = /<meta name="robots" content="([^"]+)"/.exec(r.body);
+      assert.ok(meta, route + ' has a robots meta');
+      if (UTILITY_NOINDEX.has(route)) { assert.match(meta[1], /noindex/, route); } else { assert.equal(meta[1], 'index, follow', route); }
     }
   });
 
@@ -75,7 +82,7 @@ test('review server routes, statuses and boundaries', async (t) => {
     const webp = await rawRequest(url + '/justin-founder.webp');
     assert.equal(webp.headers['content-type'], 'image/webp');
     const robots = await rawRequest(url + '/robots.txt');
-    assert.match(robots.body, /Disallow: \//);
+    assert.equal(robots.body, 'User-agent: *\nAllow: /\n\nSitemap: https://www.clearpathwv.com/sitemap.xml\n', 'exact production robots.txt');
     const sitemap = await rawRequest(url + '/sitemap.xml');
     assert.match(sitemap.headers['content-type'], /xml/);
   });

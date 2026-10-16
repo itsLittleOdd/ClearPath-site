@@ -1,8 +1,4 @@
-# ClearPath review build, 2026-10-16.
-# Review mode: nothing on this build is approved for indexing.
-# Opening the site to crawlers is a separate release decision; at that point
-# this file changes to allow "/" and the per-page noindex meta tags are removed.
 User-agent: *
-Disallow: /
+Allow: /
 
 Sitemap: https://www.clearpathwv.com/sitemap.xml

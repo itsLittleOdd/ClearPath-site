@@ -17,30 +17,26 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 INDEX = ROOT / "index.html"
 
 BOOKING_SLUG = "free-15-minute-fit-call"
+# Per-project model (2026-10-15): the $395 AI Clarity Session is the only
+# self-serve checkout. Projects are quoted and invoiced after the session, and
+# retainers are an optional post-project upgrade, so neither has a checkout CTA.
 CHECKOUT_SLUGS = {
     "ai-clarity-session",
-    "starter-pilot",
-    "core-retainer",
-    "serious-business-tier",
 }
 EXPECTED_CTA_LABELS = {
     "ai-clarity-session": "Buy the AI Clarity Session",
-    "starter-pilot": "Start the Starter Pilot",
-    "core-retainer": "Start the Core Retainer",
-    "serious-business-tier": "Start the Serious Business Tier",
 }
 EXPECTED_CHECKOUT_URLS = {
     "ai-clarity-session": "https://book.stripe.com/3cI14nfbRcWe4uadBJ6Vq05",
-    "starter-pilot": "https://buy.stripe.com/fZu28rbZFaO64ua9lt6Vq06",
-    "core-retainer": "https://buy.stripe.com/14A4gz6FlbSa6CifJR6Vq07",
-    "serious-business-tier": "https://buy.stripe.com/9B614n3t9f4m1hY9lt6Vq08",
 }
 # 7, not 8: the unfinished #sample-work placeholder section was removed
 # outright rather than filled with invented proof, and it owned one of the
 # fit-call CTAs. The remaining seven are asserted exactly, and
 # TestSampleWorkPlaceholderRemoved below pins the reason for the delta so a
 # CTA cannot quietly go missing again under cover of this number.
-EXPECTED_BOOKING_CTA_COUNT = 7
+# 5 after the per-project change: the three plan cards (one fit-call CTA
+# each) were replaced by a single project card with one.
+EXPECTED_BOOKING_CTA_COUNT = 5
 EXPECTED_BOOKING_URL = "https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call"
 
 RETIRED_CAL_ROUTE = "https://cal.com/justin-whalen-xpjqtn/45-min-discovery-call"
@@ -49,6 +45,11 @@ RETIRED_STRIPE_LINKS = {
     "https://buy.stripe.com/8x2cN54xd1dw2m27dl6Vq00",
     # Obsolete $500/month ClearPath Support product.
     "https://buy.stripe.com/8x23cv7Jp09s3q6gNV6Vq01",
+    # Retired 2026-10-15: setup + first-month plan checkouts (Starter Pilot,
+    # Core Retainer, Serious Business Tier) from the old subscription layout.
+    "https://buy.stripe.com/fZu28rbZFaO64ua9lt6Vq06",
+    "https://buy.stripe.com/14A4gz6FlbSa6CifJR6Vq07",
+    "https://buy.stripe.com/9B614n3t9f4m1hY9lt6Vq08",
 }
 
 
@@ -147,40 +148,38 @@ BOOKING_ANCHORS = [a for a in PAGE.anchors if "data-booking-offer" in a.attrs]
 
 
 class TestOffersAndPricing(unittest.TestCase):
-    def test_all_four_offers_named(self):
-        for name in ("AI Clarity Session", "Starter Pilot", "Core Retainer",
-                     "Serious Business Tier"):
+    def test_session_project_and_retainer_are_named(self):
+        for name in ("AI Clarity Session", "Fixed-fee project",
+                     "Add a monthly option"):
             self.assertIn(name, RAW, f"offer name missing: {name}")
+
+    def test_old_plan_names_and_setup_pricing_are_gone(self):
+        for retired in ("Starter Pilot", "Core Retainer", "Serious Business Tier",
+                        "Charged today", "setup + $", "three flat-price plans",
+                        "Main offer", "Most owners start here"):
+            self.assertNotIn(retired, RAW, f"old pricing copy resurfaced: {retired!r}")
 
     def test_clarity_session_price(self):
         self.assertIn("$395 one time", RAW)
 
-    def test_tier_cards_bind_prices_charge_terms_and_checkout(self):
-        cases = [
-            ("starter-pilot", "Starter Pilot", r"\$1,500<small>\s*setup",
-             r"\$500<small>/mo", "Charged today: $2,000.",
-             "After that, $500 renews monthly."),
-            ("core-retainer", "Core Retainer", r"\$2,500<small>\s*setup",
-             r"\$1,500<small>/mo", "Charged today: $4,000.",
-             "After that, $1,500 renews monthly."),
-            ("serious-business-tier", "Serious Business Tier",
-             r"\$5,000<small>\s*setup", r"\$3,000<small>/mo",
-             "Charged today: $8,000.",
-             "After that, $3,000 renews monthly."),
-        ]
-        for slug, name, setup_re, monthly_re, first_charge, renewal in cases:
-            card = offer_card(RAW, slug)
-            self.assertIn(name, card, f"{slug}: offer name missing from its card")
-            self.assertRegex(card, setup_re,
-                             f"{slug}: setup price not bound to its card")
-            self.assertRegex(card, monthly_re,
-                             f"{slug}: monthly price not bound to its card")
-            self.assertIn(first_charge, card,
-                          f"{slug}: first-charge disclosure missing")
-            self.assertIn(renewal, card,
-                          f"{slug}: renewal cadence disclosure missing")
-            self.assertIn(EXPECTED_CHECKOUT_URLS[slug], card,
-                          f"{slug}: verified checkout not bound to its card")
+    def test_project_card_states_range_credit_and_no_quote_terms(self):
+        start = RAW.index('class="tier lead project-card')
+        card = RAW[start:RAW.index('id="after-project"', start)]
+        self.assertRegex(card, r"\$1,500<small> to </small>\$3,000")
+        self.assertIn("$395", card)
+        self.assertIn("No quote, no charge.", card)
+        self.assertIn("milestone", card)
+        self.assertNotIn("data-checkout-offer", card,
+                         "projects are quoted, not sold through a checkout link")
+
+    def test_monthly_table_lists_only_the_two_public_monthly_options(self):
+        table = RAW[RAW.index('<table class="ret-table"'):RAW.index("</table>")]
+        for price in ("$250/mo", "$500/mo"):
+            self.assertIn(price, table, f"monthly option missing: {price}")
+        for hidden in ("$1,500/mo", "$3,000/mo"):
+            self.assertNotIn(hidden, RAW, f"internal retainer level leaked: {hidden}")
+        self.assertNotIn("setup", table.lower(),
+                         "retainers carry no setup fee after a project")
 
     def test_old_offers_do_not_reappear(self):
         lowered = RAW.lower()
@@ -269,12 +268,12 @@ class TestBookingCtas(unittest.TestCase):
             "final cta band": RAW[RAW.index('class="cta-band"'):RAW.index("</main>")],
             "footer": RAW[RAW.index("<footer>"):],
         }
-        for slug in ("starter-pilot", "core-retainer", "serious-business-tier"):
-            surfaces[f"{slug} card"] = offer_card(RAW, slug)
+        start = RAW.index('class="tier lead project-card')
+        surfaces["project card"] = RAW[start:RAW.index('id="after-project"', start)]
         for label, chunk in surfaces.items():
             self.assertIn("data-booking-offer", chunk,
                           f"no fit-call CTA in the {label}")
-        # 4 standalone surfaces + 3 tier cards == the expected total.
+        # 4 standalone surfaces + the project card == the expected total.
         # The paid AI Clarity Session block deliberately owns no free-call
         # CTA, so it is not in this list.
         self.assertEqual(len(surfaces), EXPECTED_BOOKING_CTA_COUNT)

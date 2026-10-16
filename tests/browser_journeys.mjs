@@ -26,7 +26,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT = process.env.CLEARPATH_BROWSER_OUT || HERE;
 const SHOTS = join(OUT, 'screenshots');
 const PROFILE = join(OUT, '.chrome-tmp');
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const CHROME = process.env.CLEARPATH_CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 const DEMO_ROUTES = ['/demos/request-desk/', '/demos/business-brain/', '/demos/website-manager/'];
 const ALL_ROUTES = ['/', '/demos/', ...DEMO_ROUTES, '/justin/card.html'];
@@ -34,9 +34,6 @@ const WIDTHS = [320, 390, 768, 1280, 1440];
 const BOOKING = 'https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call';
 const STRIPE = {
   'ai-clarity-session': 'https://book.stripe.com/3cI14nfbRcWe4uadBJ6Vq05',
-  'starter-pilot': 'https://buy.stripe.com/fZu28rbZFaO64ua9lt6Vq06',
-  'core-retainer': 'https://buy.stripe.com/14A4gz6FlbSa6CifJR6Vq07',
-  'serious-business-tier': 'https://buy.stripe.com/9B614n3t9f4m1hY9lt6Vq08',
 };
 
 mkdirSync(SHOTS, { recursive: true });
@@ -406,8 +403,8 @@ async function main() {
     await evalJs('(function(){var p=document.getElementById("hero-proof");if(!p||p.offsetParent===null)return false;var t=p.textContent;return /sample workflow/i.test(t) && /fictional/i.test(t) && /not a client result/i.test(t)}())'));
   record('home desktop: hero clarity path names $395 and the Clarity Plan',
     await evalJs('(function(){var a=document.querySelector(".hero-clarity a[href=\'#clarity-session\']");if(!a||a.offsetParent===null)return false;var t=document.querySelector(".hero-clarity").textContent;return t.indexOf("$395")!==-1 && t.indexOf("personalized Clarity Plan")!==-1}())'));
-  record('home desktop: ways strip routes to pricing with the entry price',
-    await evalJs('(function(){var w=document.querySelector(".ways");return !!w&&!!w.querySelector("a[href=\'#pricing\']")&&w.textContent.indexOf("$1,500 setup + $500/mo")!==-1}())'));
+  record('home desktop: ways strip routes to pricing with the project range',
+    await evalJs('(function(){var w=document.querySelector(".ways");return !!w&&!!w.querySelector("a[href=\'#pricing\']")&&w.textContent.indexOf("$1,500 and $3,000")!==-1}())'));
   record('home desktop: hero demo lane links all three full demos',
     await evalJs('["/demos/request-desk/","/demos/business-brain/","/demos/website-manager/"].every(function(r){return !!document.querySelector("#hero-proof a[href=\'" + r + "\']")})'));
   record('home desktop: header shows inline links and hides the phone menu',
@@ -433,33 +430,22 @@ async function main() {
   await targetsOk('home desktop 1280');
 
   /* Exact commercial disclosures in the rendered DOM */
-  record('home: all four checkout links match the verified Stripe URLs',
-    await evalJs(`(function(){var m=${JSON.stringify(STRIPE)};return Object.keys(m).every(function(k){var a=document.querySelector("[data-checkout-offer=\\""+k+"\\"]");return !!a&&a.href===m[k]})&&document.querySelectorAll("[data-checkout-offer]").length===4}())`));
-  record('home: seven fit-call CTAs all point at the verified Cal.com route',
-    await evalJs(`(function(){var as=document.querySelectorAll("[data-booking-offer]");return as.length===7&&Array.prototype.every.call(as,function(a){return a.href===${JSON.stringify(BOOKING)}})}())`));
-  record('home: first-charge and renewal disclosures present verbatim',
-    await evalJs('(function(){var t=document.body.textContent;return ["$395 one time","Charged today: $2,000.","After that, $500 renews monthly.","Charged today: $4,000.","After that, $1,500 renews monthly.","Charged today: $8,000.","After that, $3,000 renews monthly."].every(function(s){return t.indexOf(s)!==-1})}())'));
+  record('home: the only checkout link is the verified Clarity Session URL',
+    await evalJs(`(function(){var m=${JSON.stringify(STRIPE)};return Object.keys(m).every(function(k){var a=document.querySelector("[data-checkout-offer=\\""+k+"\\"]");return !!a&&a.href===m[k]})&&document.querySelectorAll("[data-checkout-offer]").length===1}())`));
+  record('home: five fit-call CTAs all point at the verified Cal.com route',
+    await evalJs(`(function(){var as=document.querySelectorAll("[data-booking-offer]");return as.length===5&&Array.prototype.every.call(as,function(a){return a.href===${JSON.stringify(BOOKING)}})}())`));
+  record('home: session terms, project terms and the two public monthly options present verbatim',
+    await evalJs('(function(){var t=document.body.textContent;return ["$395 one time","non-refundable","Credited in full toward your project","No quote, no charge.","$250/mo","$500/mo"].every(function(s){return t.indexOf(s)!==-1})&&t.indexOf("$1,500/mo")===-1&&t.indexOf("$3,000/mo")===-1&&t.indexOf("Charged today")===-1}())'));
 
-  /* Guided pricing picker, desktop */
+  /* Per-project pricing, desktop */
   await evalJs('document.getElementById("pricing").scrollIntoView({block:"start",behavior:"instant"})');
   await wait(900);
-  record('pricing desktop: progressively enhanced',
-    await evalJs('document.querySelector("[data-pricing-picker]").classList.contains("pricing-ready")'));
-  record('pricing desktop: Core is the single default selection',
-    await evalJs('(function(){var tabs=Array.from(document.querySelectorAll(".pricing-choice"));return tabs.filter(function(t){return t.getAttribute("aria-selected")==="true"}).length===1&&document.getElementById("pricing-tab-core").getAttribute("aria-selected")==="true"&&!document.getElementById("pricing-panel-core").hidden&&document.getElementById("pricing-panel-starter").hidden&&document.getElementById("pricing-panel-serious").hidden}())'));
-  await pointerClick('#pricing-tab-starter');
-  record('pricing desktop: real pointer selects Starter and swaps the detail panel',
-    await evalJs('document.getElementById("pricing-tab-starter").getAttribute("aria-selected")==="true"&&!document.getElementById("pricing-panel-starter").hidden&&document.getElementById("pricing-panel-core").hidden'));
-  await key('ArrowRight', 'ArrowRight', 39);
-  record('pricing desktop: ArrowRight returns selection and focus to Core',
-    await evalJs('document.activeElement.id==="pricing-tab-core"&&document.getElementById("pricing-tab-core").getAttribute("aria-selected")==="true"&&!document.getElementById("pricing-panel-core").hidden'));
-  await key('ArrowDown', 'ArrowDown', 40);
-  record('pricing desktop: ArrowDown also advances (stacked layout contract)',
-    await evalJs('document.activeElement.id==="pricing-tab-serious"&&!document.getElementById("pricing-panel-serious").hidden'));
-  await key('Home', 'Home', 36);
-  await key('ArrowRight', 'ArrowRight', 39);
-  record('pricing desktop: selected panel keeps verified price and checkout',
-    await evalJs('(function(){var p=document.getElementById("pricing-panel-core");var a=p.querySelector("[data-checkout-offer=\'core-retainer\']");return /Charged today: \\$4,000/.test(p.textContent)&&a&&a.href==="https://buy.stripe.com/14A4gz6FlbSa6CifJR6Vq07"}())'));
+  record('pricing desktop: old plan picker is gone',
+    await evalJs('!document.querySelector("[data-pricing-picker]")&&!document.querySelector("#pricing [role=tablist]")'));
+  record('pricing desktop: four-step path renders in one row',
+    await evalJs('(function(){var li=Array.from(document.querySelectorAll("#pricing .path > li"));if(li.length!==4)return false;var t=li[0].getBoundingClientRect().top;return li.every(function(l){return Math.abs(l.getBoundingClientRect().top-t)<=1})}())'));
+  record('pricing desktop: project CTA routes to the Clarity Session',
+    await evalJs('!!document.querySelector(".project-card a.btn[href=\'#clarity-session\']")'));
   await noOverflow('pricing desktop 1280');
   await shot('pricing-1280.png', false);
 
@@ -620,18 +606,13 @@ async function main() {
   record('home 390: demo tabs stack vertically as full-width buttons',
     await evalJs('(function(){var bar=document.querySelector(".tabs-bar");if(getComputedStyle(bar).flexDirection!=="column")return false;return Array.from(bar.querySelectorAll("[role=tab]")).every(function(t){var r=t.getBoundingClientRect();return r.height>=44&&r.width>=bar.getBoundingClientRect().width-2})}())'));
 
-  /* Guided pricing picker, mobile */
+  /* Per-project pricing, mobile */
   await evalJs('document.getElementById("pricing").scrollIntoView({block:"start",behavior:"instant"})');
   await wait(900);
-  record('pricing 390: all plan choices are contained 44px targets',
-    await evalJs('(function(){return Array.from(document.querySelectorAll(".pricing-choice")).every(function(el){var r=el.getBoundingClientRect();return r.height>=44&&r.left>=0&&r.right<=innerWidth+1})}())'));
-  record('pricing 390: setup and monthly prices share one row',
-    await evalJs('(function(){var boxes=Array.from(document.querySelectorAll("#pricing-panel-core .pricing-price-box"));if(boxes.length!==2)return false;var a=boxes[0].getBoundingClientRect(),b=boxes[1].getBoundingClientRect();return Math.abs(a.top-b.top)<=1&&a.left<b.left&&b.right<=innerWidth+1}())'));
-  await pointerClick('#pricing-tab-serious');
-  record('pricing 390: real pointer selects Serious Business',
-    await evalJs('document.getElementById("pricing-tab-serious").getAttribute("aria-selected")==="true"&&!document.getElementById("pricing-panel-serious").hidden&&document.getElementById("pricing-panel-core").hidden'));
-  record('pricing 390: selected plan exposes its exact price pair',
-    await evalJs('(function(){var t=document.getElementById("pricing-panel-serious").textContent;return t.indexOf("$5,000")!==-1&&t.indexOf("$3,000/mo")!==-1}())'));
+  record('pricing 390: path stacks and project card fits the viewport',
+    await evalJs('(function(){var c=document.querySelector(".project-card").getBoundingClientRect();var li=document.querySelectorAll("#pricing .path > li");return c.left>=0&&c.right<=innerWidth+1&&li[1].getBoundingClientRect().top>li[0].getBoundingClientRect().top}())'));
+  record('pricing 390: retainer table scrolls inside its own frame',
+    await evalJs('(function(){var w=document.querySelector(".table-wrap");var r=w.getBoundingClientRect();return getComputedStyle(w).overflowX==="auto"&&r.right<=innerWidth+1}())'));
   await noOverflow('pricing 390');
   await shot('pricing-390.png', false);
 
@@ -681,8 +662,8 @@ async function main() {
     await evalJs('(function(){var h=document.querySelector("#see-fallback h3");return !!h && h.textContent.indexOf("Three sample transformations") === 0}())'));
   record('no-JS home: hero proof readable without scripts',
     await evalJs('(function(){var p=document.getElementById("hero-proof");return !!p && getComputedStyle(p).opacity === "1" && p.textContent.indexOf("owner approval") !== -1}())'));
-  record('no-JS home: all three pricing details remain readable',
-    await evalJs('(function(){var panels=Array.from(document.querySelectorAll(".pricing-panel"));return panels.length===3&&panels.every(function(p){return !p.hidden&&p.offsetParent!==null})}())'));
+  record('no-JS home: project card and retainer table remain readable',
+    await evalJs('(function(){var c=document.querySelector(".project-card"),t=document.querySelector(".ret-table");return !!c&&!!t&&c.offsetParent!==null&&t.offsetParent!==null}())'));
   await syncPointerClick('details.menu > summary');
   record('no-JS home 390: phone menu opens natively and shows Demos',
     await evalJs('(function(){var m=document.querySelector("details.menu");var a=m.querySelector("a[href=\'/demos/\']");return m.open&&!!a&&a.offsetParent!==null}())'));
@@ -912,12 +893,8 @@ async function main() {
       consoleClean(`sweep ${width}px ${path}`);
       networkClean(`sweep ${width}px ${path}`);
       if (path === '/') {
-        record(`sweep ${width}px home: pricing choices stay contained`,
-          await evalJs('(function(){return Array.from(document.querySelectorAll(".pricing-choice")).every(function(el){var r=el.getBoundingClientRect();return r.width>0&&r.height>=44&&r.left>=0&&r.right<=innerWidth+1})}())'));
-        record(`sweep ${width}px home: selected price pair stays side by side`,
-          await evalJs('(function(){var boxes=Array.from(document.querySelectorAll("#pricing-panel-core .pricing-price-box"));if(boxes.length!==2)return false;var a=boxes[0].getBoundingClientRect(),b=boxes[1].getBoundingClientRect();return a.width>0&&b.width>0&&Math.abs(a.top-b.top)<=1&&b.right<=innerWidth+1}())'));
-        const priceFit = await evalJs('(function(){var tabs=Array.from(document.querySelectorAll(".pricing-choice"));for(var t=0;t<tabs.length;t+=1){tabs[t].click();var panel=document.getElementById(tabs[t].getAttribute("aria-controls"));var boxes=Array.from(panel.querySelectorAll(".pricing-price-box"));var inks=[];for(var i=0;i<boxes.length;i+=1){var price=boxes[i].querySelector(".tier-price");var boxRect=boxes[i].getBoundingClientRect();var range=document.createRange();range.selectNodeContents(price);var inkRect=range.getBoundingClientRect();inks.push(inkRect);if(boxes[i].scrollWidth>boxes[i].clientWidth+1||inkRect.left<boxRect.left-1||inkRect.right>boxRect.right+1){return {ok:false,issue:tabs[t].id+":"+i+": price ink escapes its box"};}}if(inks.length===2&&inks[0].right>boxes[1].getBoundingClientRect().left+1){return {ok:false,issue:tabs[t].id+": setup price overlaps monthly box"};}}return {ok:true,issue:""};}())');
-        record(`sweep ${width}px home: every selected price stays inside its box`,
+        const priceFit = await evalJs('(function(){var boxes=Array.from(document.querySelectorAll(".project-card .pricing-price-box"));if(boxes.length!==2)return {ok:false,issue:"expected two price boxes"};for(var i=0;i<boxes.length;i+=1){var price=boxes[i].querySelector(".tier-price");var boxRect=boxes[i].getBoundingClientRect();var range=document.createRange();range.selectNodeContents(price);var ink=range.getBoundingClientRect();if(boxes[i].scrollWidth>boxes[i].clientWidth+1||ink.left<boxRect.left-1||ink.right>boxRect.right+1){return {ok:false,issue:"project price "+i+" escapes its box"};}}return {ok:true,issue:""};}())');
+        record(`sweep ${width}px home: project prices stay inside their boxes`,
           priceFit.ok, priceFit.issue);
         record(`sweep ${width}px home: header stays a single row`,
           await evalJs('document.querySelector("header.top").getBoundingClientRect().height<=72'));
@@ -934,8 +911,7 @@ async function main() {
   await pointerClick('details.menu > summary');
   await shot('home-320-menu.png', false);
   await key('Escape', 'Escape', 27);
-  await pointerClick('#pricing-tab-starter');
-  await evalJs('document.querySelector("#pricing-panel-starter .pricing-price-grid").scrollIntoView({block:"center",behavior:"instant"})');
+  await evalJs('document.querySelector(".project-card .pricing-price-grid").scrollIntoView({block:"center",behavior:"instant"})');
   await wait(200);
   await shot('pricing-320.png', false);
   await evalJs('document.getElementById("see-it-run").scrollIntoView({block:"start",behavior:"instant"});true');

@@ -276,12 +276,12 @@ class TestHomepageLedgerArchitecture(unittest.TestCase):
         hero = slice_between(INDEX, '<section class="hero"', 'id="familiar"')
         ways = slice_between(hero, '<ul class="ways"', "</ul>")
         self.assertTrue(ways, "hero ways strip missing")
-        self.assertEqual(ways.count("<li"), 2, "two ways in: clarity and implementation")
+        self.assertEqual(ways.count("<li"), 2, "two ways in: clarity and a fixed-fee project")
         self.assertIn('class="hero-clarity"', ways)
         self.assertIn('href="#pricing"', ways)
         text = text_of(ways)
-        for needed in ("$395", "AI Clarity Session", "$1,500 setup", "$500/mo",
-                       "written scope"):
+        for needed in ("$395", "AI Clarity Session", "credited", "$1,500",
+                       "$3,000", "Fixed-fee projects"):
             self.assertIn(needed, text, f"ways strip missing {needed!r}")
 
     def test_how_is_an_ordered_six_step_list_with_free_and_monthly(self):
@@ -293,7 +293,7 @@ class TestHomepageLedgerArchitecture(unittest.TestCase):
         first = steps[:steps.index("</li>")]
         last = steps[steps.rfind("<li"):]
         self.assertIn('price-chip free">Free<', first)
-        self.assertIn('price-chip">Monthly<', last)
+        self.assertIn('price-chip">Optional monthly<', last)
         self.assertNotIn('aria-hidden="true">1<', steps,
                          "numbering comes from the list, not decorative spans")
 
@@ -319,10 +319,11 @@ class TestHomepageLedgerArchitecture(unittest.TestCase):
     def test_pricing_keeps_is_and_is_not_and_the_fit_check_follows(self):
         pricing = section_of(INDEX, "pricing")
         text = text_of(pricing)
-        self.assertIn("What the monthly is", text)
-        self.assertIn("What the monthly is not", text)
+        self.assertIn("What a monthly option is", text)
+        self.assertIn("What a monthly option is not", text)
         self.assertIn("Not work that goes out without your approval", text)
-        self.assertIn("What happens after checkout", text)
+        self.assertIn("No quote, no charge.", text)
+        self.assertIn("Not included in any price", text)
         fit = section_of(INDEX, "fit")
         self.assertIn("A good fit if", text_of(fit))
         self.assertIn("Probably not yet if", text_of(fit))

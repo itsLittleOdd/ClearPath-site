@@ -109,17 +109,28 @@
       draftInput.focus({ preventScroll: true });
     }
 
-    function onDraftInput() {
-      if (!selected) { return; }
+    /* Any material change to the draft, including clearing it, withdraws the
+       previous approval and removes every "published" indicator. The stored
+       published value itself is untouched; only a fresh approval and a new
+       publish can change it. */
+    function withdrawApprovalIndicators() {
       approved = false;
       publishButton.disabled = true;
+      if (pubNote) { pubNote.hidden = true; }
+      if (pubBadge) { setText(pubBadge, 'Preview'); }
+    }
+
+    function onDraftInput() {
+      if (!selected) { return; }
+      withdrawApprovalIndicators();
       var draft = currentDraft();
       renderPreview(draftInput.value);
       if (!draft) {
         approveButton.disabled = true;
-        setText(summaryBox, 'The draft is empty. Type the new value.');
+        setText(summaryBox, 'The draft is empty. Type the new value. Published value unchanged: ' + published[selected]);
         setChip(stateChip, 'is-draft', 'Draft in progress');
-        setStatus('The draft is empty, so there is nothing to approve yet.');
+        setChip(approveChip, 'is-ready', 'Waiting for a draft');
+        setStatus('The draft is empty, so there is nothing to approve yet. The published value is unchanged.');
         return;
       }
       if (draft === published[selected]) {

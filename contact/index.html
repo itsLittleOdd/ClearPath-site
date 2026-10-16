@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F8F5EF">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<title>Contact | Tell Justin what needs to work better</title>
+<meta name="description" content="Write a short brief, review the email draft it builds, then send it from your own email app. Nothing is sent by this website. Or email JWhalen@ClearPathWV.com directly.">
+<link rel="canonical" href="https://www.clearpathwv.com/contact/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ClearPath">
+<meta property="og:url" content="https://www.clearpathwv.com/contact/">
+<meta property="og:title" content="Contact | Tell Justin what needs to work better">
+<meta property="og:description" content="Write a short brief, review the email draft it builds, then send it from your own email app. Nothing is sent by this website.">
+<meta property="og:image" content="https://www.clearpathwv.com/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ClearPath wordmark with the line: Bring me the messy work.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact | Tell Justin what needs to work better">
+<meta name="twitter:description" content="Write a short brief, review the email draft it builds, then send it from your own email app. Nothing is sent by this website.">
+<meta name="twitter:image" content="https://www.clearpathwv.com/og-image.png">
+<meta name="twitter:image:alt" content="ClearPath wordmark with the line: Bring me the messy work.">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="/" aria-label="ClearPath home">
+      <span class="wordmark"><span class="wm-clear">Clear</span><span class="wm-path">Path</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/work/">Work</a></li>
+        <li><a href="/pricing/">Pricing</a></li>
+        <li><a href="/#about">About</a></li>
+      </ul>
+      <details class="menu">
+        <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="menu-text">Menu</span></summary>
+        <ul class="menu-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/work/">Work and demos</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+          <li><a href="/#about">About Justin</a></li>
+          <li><a href="/contact/" aria-current="page">Contact</a></li>
+          <li class="menu-sep" role="separator"></li>
+          <li><a href="mailto:JWhalen@ClearPathWV.com">Email Justin</a></li>
+          <li><a href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a></li>
+        </ul>
+      </details>
+      <a class="btn nav-cta" href="/contact/" aria-current="page"><span class="cta-long">Tell me what needs to work better</span><span class="cta-short">Contact</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow rise" style="--d:.05s">Contact</span>
+      <h1 class="rise" style="--d:.15s">Tell me what needs to work better.</h1>
+      <p class="lede rise" style="--d:.3s">Four short questions. The page builds an email draft you can read and change, then your own email app sends it. Nothing is sent by this website.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:8px">
+    <div class="wrap contact-grid">
+      <div class="brief">
+        <!-- Fail-closed by construction: no action, no method, no name
+             attributes, and the only submit button ships disabled until the
+             script has bound its handlers. Nothing typed here can be
+             transmitted or written to the URL. -->
+        <form id="brief-form" novalidate autocomplete="on" aria-describedby="brief-privacy">
+          <div id="brief-panel">
+            <div class="error-summary" id="error-summary" tabindex="-1" role="alert" hidden>
+              <h2>Please check a few things</h2>
+              <ul id="error-list"></ul>
+            </div>
+
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" type="text" autocomplete="name" maxlength="80" aria-describedby="err-name">
+              <p class="error" id="err-name"></p>
+            </div>
+
+            <div class="field">
+              <label for="f-email">Email address for the reply</label>
+              <input id="f-email" type="email" autocomplete="email" inputmode="email" maxlength="120" aria-describedby="err-email">
+              <p class="error" id="err-email"></p>
+            </div>
+
+            <div class="field">
+              <label for="f-topic">Closest starting point</label>
+              <div class="select-wrap">
+                <select id="f-topic" aria-describedby="hint-topic err-topic">
+                  <option value="">Choose one</option>
+                  <option value="website">A website quote</option>
+                  <option value="tools">A tool, portal or automation</option>
+                  <option value="clarity">A Clarity Session</option>
+                  <option value="support">Ongoing support for what I already use</option>
+                  <option value="unsure">Not sure yet</option>
+                </select>
+              </div>
+              <p class="hint" id="hint-topic">"Not sure yet" is a perfectly good answer.</p>
+              <p class="error" id="err-topic"></p>
+            </div>
+
+            <div class="field">
+              <label for="f-need">What needs to work better?</label>
+              <textarea id="f-need" rows="6" maxlength="1500" autocomplete="off" aria-describedby="hint-need err-need need-count"></textarea>
+              <p class="hint" id="hint-need">Plain words. What keeps getting stuck, and what would "working" look like.</p>
+              <p class="count" id="need-count" aria-live="polite">0 / 1500</p>
+              <p class="error" id="err-need"></p>
+            </div>
+
+            <div class="field">
+              <label for="f-current">Current website or system <span class="hint">(optional)</span></label>
+              <input id="f-current" type="text" autocomplete="off" maxlength="200" aria-describedby="err-current">
+              <p class="error" id="err-current"></p>
+            </div>
+
+            <p class="sensitive" id="brief-privacy">Please don't include passwords, customer records or other sensitive information. This brief stays in your browser until you send it from your own email app.</p>
+
+            <p class="nojs-note">JavaScript is off, so this page cannot build the draft for you. Email <a href="mailto:JWhalen@ClearPathWV.com?subject=Something%20needs%20to%20work%20better">JWhalen@ClearPathWV.com</a> directly with the same four points.</p>
+
+            <div class="brief-actions">
+              <button type="submit" class="btn" id="review-draft" disabled>Review email draft</button>
+              <span class="note">Next you see the draft. Nothing is sent at this step.</span>
+            </div>
+          </div>
+
+          <div id="draft-panel" class="draft" hidden>
+            <div class="draft-head">
+              <h2>Your email draft</h2>
+              <span class="stamp">Not sent</span>
+            </div>
+            <div class="draft-meta">
+              <div><span class="k">To</span>JWhalen@ClearPathWV.com</div>
+              <div><span class="k">Subject</span><span id="draft-subject"></span></div>
+            </div>
+            <div class="draft-body" id="draft-body" role="region" tabindex="0" aria-label="Email draft text"></div>
+            <div class="draft-actions">
+              <a class="btn" id="open-mail" href="mailto:JWhalen@ClearPathWV.com">Open my email app</a>
+              <button type="button" class="btn-ghost" id="copy-draft">Copy the draft</button>
+              <button type="button" class="btn-quiet" id="edit-brief">Edit the brief</button>
+            </div>
+            <p class="note" id="copy-note" aria-live="polite"></p>
+            <p class="note">Opening your email app places this draft in a new message addressed to me. You can still change anything before you press send there. If nothing opens, copy the draft and paste it into any email to JWhalen@ClearPathWV.com.</p>
+          </div>
+
+          <div id="result-panel" class="result" hidden>
+            <h2>Your draft is ready.</h2>
+            <p>Nothing has been sent by this website. Review and send it from your email app.</p>
+            <p>If your email app did not open, use <strong>Copy the draft</strong> on the previous step and paste it into any email to JWhalen@ClearPathWV.com.</p>
+            <div class="btn-row">
+              <a class="btn-ghost" href="/thank-you/">What happens next</a>
+              <button type="button" class="btn-quiet" id="back-to-draft">Back to the draft</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <aside class="contact-side" aria-label="Other ways to reach Justin">
+        <div class="side-card">
+          <div class="who">
+            <img src="/justin-founder.webp" width="64" height="64" loading="lazy" decoding="async" alt="">
+            <div><strong>Justin Whalen</strong><span>Founder &amp; Principal Consultant, Ellicottville, NY</span></div>
+          </div>
+          <p>I read every message myself and reply from the same address with a next step, a quote, or a question.</p>
+        </div>
+        <div class="side-card">
+          <h2>Prefer to talk first?</h2>
+          <p>A free 15-minute fit call is a quick conversation to see whether ClearPath is relevant. No written plan is included with the call.</p>
+          <a class="btn-ghost" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
+        </div>
+        <div class="side-card">
+          <h2>Or just email</h2>
+          <p><a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a></p>
+          <p>Based in Ellicottville, working across Western New York, in person when it helps.</p>
+        </div>
+        <div class="side-card">
+          <h2>What happens next</h2>
+          <ol class="step-list">
+            <li>You send the draft from your email app.</li>
+            <li>I reply with a quote, a plan, or a question.</li>
+            <li>We agree scope and price in writing before any work starts.</li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo-crop"><img src="/clearpath-logo.webp" alt="ClearPath" loading="lazy" decoding="async"></div>
+        <p class="foot-tag">Websites, practical tools and ongoing support for owner-led businesses in Western New York.</p>
+      </div>
+      <div class="foot-col">
+        <h2>Pages</h2>
+        <ul>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/work/">Work and demos</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>Reach Justin</h2>
+        <ul>
+          <li><a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a></li>
+          <li><a href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Free 15-minute fit call</a></li>
+          <li><a href="/#about">About Justin</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>Fine print</h2>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms of use</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-line">Ellicottville, New York &middot; serving Western New York &middot; &copy; 2026 ClearPath, a Whalen Ventures company &middot; <span class="preview">Local review build, not indexed.</span></p>
+  </div>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+<script src="/assets/contact.js" defer></script>
+</body>
+</html>

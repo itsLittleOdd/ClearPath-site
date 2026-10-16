@@ -5,6 +5,7 @@
 <script>document.documentElement.classList.add('js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#F8F5EF">
+<meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <title>Request Desk demo | ClearPath</title>
 <meta name="description" content="A working browser demo: watch a messy catering email, phone note, or web form become extracted facts, flagged gaps, a drafted reply, and an owner approval step. Sample data only, nothing sends.">
@@ -29,18 +30,17 @@
 <body class="demo-page">
 <a class="skip" href="#main">Skip to main content</a>
 
-<header class="top">
-  <div class="wrap top-row">
+<header class="site-head">
+  <div class="wrap head-row">
     <a class="brand" href="/" aria-label="ClearPath home">
-      <span class="brand-name"><span class="brand-clear">Clear</span><span class="brand-path">Path</span></span>
-      <span class="brand-sub">Ellicottville, NY &middot; Western New York</span>
+      <span class="wordmark"><span class="wm-clear">Clear</span><span class="wm-path">Path</span></span>
     </a>
     <nav class="nav" aria-label="Main">
       <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/demos/">All demos</a></li>
-        <li><a href="/#pricing">Pricing</a></li>
-        <li><a href="/#faq">Questions</a></li>
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/work/">Work</a></li>
+        <li><a href="/pricing/">Pricing</a></li>
+        <li><a href="/#about">About</a></li>
       </ul>
       <details class="menu">
         <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="menu-text">Menu</span></summary>
@@ -49,12 +49,13 @@
           <li><a href="/demos/">All demos</a></li>
           <li><a href="/demos/business-brain/">Business Brain demo</a></li>
           <li><a href="/demos/website-manager/">Website Manager demo</a></li>
-          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+          <li><a href="/contact/">Contact</a></li>
           <li class="menu-sep" role="separator"></li>
           <li><a href="mailto:JWhalen@ClearPathWV.com">Email Justin</a></li>
         </ul>
       </details>
-      <a class="btn nav-cta" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call"><span class="cta-long">Book a free 15-minute fit call</span><span class="cta-short">Free fit call</span></a>
+      <a class="btn nav-cta" href="/contact/"><span class="cta-long">Tell me what needs to work better</span><span class="cta-short">Contact</span></a>
     </nav>
   </div>
 </header>
@@ -90,7 +91,7 @@
           <li>The reply waits for the owner. Nothing important goes out on its own.</li>
         </ul>
         <p><a href="/demos/">Back to all demos</a> &middot;
-        <a href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a></p>
+        <a href="/contact/">Tell me what needs to work better</a></p>
       </div>
 
       <div class="demo-shell" id="demo-shell" hidden>
@@ -142,7 +143,7 @@
                   <div class="stage-slot" data-slot="action"></div>
                 </li>
                 <li class="stage" data-stage="draft">
-                  <span class="stage-title">Safe draft reply prepared</span>
+                  <span class="stage-title">Draft reply prepared</span>
                   <div class="stage-slot" data-slot="draft"></div>
                 </li>
                 <li class="stage" data-stage="approval">
@@ -215,13 +216,13 @@
     <div class="wrap">
       <div class="next-panel">
         <h2>That was one request. Yours arrive every day.</h2>
-        <p>If your week is full of messages like these, the free fit call is where we see
-        whether ClearPath can take them off your plate.</p>
+        <p>If your week is full of messages like these, send a short brief and I will tell you
+        whether a tool like this is worth building, and what it would cost after discovery.</p>
         <div class="next-actions">
-          <a class="btn" href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Book a free 15-minute fit call</a>
+          <a class="btn" href="/contact/?topic=tools">Tell me what needs to work better</a>
           <a class="btn-ghost" href="/demos/">All demos</a>
-          <a class="quiet-link" href="/#pricing">See the paid starting points</a>
-          <a class="quiet-link" href="/">Back to the homepage</a>
+          <a class="quiet-link" href="/pricing/">See the price guide</a>
+          <a class="quiet-link" href="/work/">Back to the work page</a>
         </div>
         <p class="other-demos">
           <span class="other-label">Try another demo</span>
@@ -233,21 +234,43 @@
   </section>
 </main>
 
-<footer>
+<footer class="site-foot">
   <div class="wrap">
-    <div class="foot-row">
-      <span class="foot-brand">ClearPath</span>
-      <ul class="foot-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/demos/">Demos</a></li>
-        <li><a href="/#pricing">Pricing</a></li>
-        <li><a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a></li>
-      </ul>
+    <div class="foot-grid">
+      <div>
+        <div class="logo-crop"><img src="/clearpath-logo.webp" alt="ClearPath" loading="lazy" decoding="async"></div>
+        <p class="foot-tag">Websites, practical tools and ongoing support for owner-led businesses in Western New York.</p>
+      </div>
+      <div class="foot-col">
+        <h2>Pages</h2>
+        <ul>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/work/">Work and demos</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>Reach Justin</h2>
+        <ul>
+          <li><a href="mailto:JWhalen@ClearPathWV.com">JWhalen@ClearPathWV.com</a></li>
+          <li><a href="https://cal.com/justin-whalen-xpjqtn/free-15-minute-fit-call">Free 15-minute fit call</a></li>
+          <li><a href="/#about">About Justin</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>Fine print</h2>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms of use</a></li>
+        </ul>
+      </div>
     </div>
-    <p class="foot-line">Ellicottville, New York &middot; serving Western New York &middot; &copy; 2026 ClearPath, a Whalen Ventures company &middot; Demo pages use sample data only.</p>
+    <p class="foot-line">Ellicottville, New York &middot; serving Western New York &middot; &copy; 2026 ClearPath, a Whalen Ventures company &middot; Demo pages use sample data only &middot; <span class="preview">Local review build, not indexed.</span></p>
   </div>
 </footer>
 
+<script src="/assets/site.js" defer></script>
 <script src="/assets/request-desk.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<title>ClearPath request demonstration (composition source, not a public page)</title>
+<!--
+  Deterministic 20-second silent composition. Every visual state is a pure
+  function of time: tools/render-video.mjs calls window.__seek(t) for each
+  frame and screenshots the 1280 x 720 stage. No CSS animations, no timers,
+  no randomness, no network. The only external asset is the approved logo
+  raster, loaded from the candidate root by relative path.
+
+  Correction 2026-10-16: the owner review row now lives in its own card under
+  the email (left column) instead of floating over the sheet, so the
+  "Owner reviews" label and the status chip can never collide. The draft asks
+  for the missing address instead of asserting availability.
+
+  Open the file directly with ?preview=1 to scrub with the slider or press
+  space to play through in real time. That preview is for authoring only; it
+  is not the delivered video.
+-->
+<style>
+  :root{
+    --paper:#F8F5EF;--paper-deep:#EFEAE0;--card:#fff;--ink:#0C1B2E;--ink-soft:#46535F;
+    --teal:#0B7B72;--teal-text:#0A6A62;--teal-tint:#E1F0EC;--teal-line:#B9D9D1;
+    --clay:#B4683A;--clay-ink:#6B3312;--clay-wash:#F7E9DC;--line:#DDD5C6;--line-strong:#C9BFAC;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,"Cascadia Mono",Consolas,Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#555;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+  body{display:grid;place-items:start;gap:12px}
+  #stage{position:relative;width:1280px;height:720px;background:var(--paper);overflow:hidden;font-size:18px;line-height:1.5}
+  .abs{position:absolute}
+  .mono{font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;font-size:13px}
+  .topbar{left:0;right:0;top:0;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 56px;border-bottom:1px solid var(--line);background:var(--paper-deep)}
+  .topbar .clay{color:var(--clay-ink);font-weight:700}
+  .topbar .right{color:var(--ink-soft)}
+  .track{left:56px;right:56px;top:84px;height:2px;background:var(--line-strong)}
+  .track-fill{left:56px;top:84px;height:2px;background:var(--teal);width:0}
+  .dot{width:12px;height:12px;border-radius:50%;background:var(--teal);top:79px;left:50px}
+  .beats{left:56px;right:56px;top:96px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .beat{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .beat b{display:block;color:var(--ink-soft);font-weight:700;margin-bottom:2px}
+  .beat.on{color:var(--teal-text)}
+  .beat.on b{color:var(--teal-text)}
+  .msg{left:56px;top:150px;width:520px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;box-shadow:0 10px 28px rgba(14,27,43,.08)}
+  .msg .meta{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);display:block;margin-bottom:8px}
+  .msg .subj{font-weight:700;font-size:20px;margin-bottom:6px}
+  .msg q{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.4;quotes:none}
+  .msg q mark{background:transparent;color:inherit;border-bottom:3px solid transparent;padding-bottom:1px}
+  .msg q mark.hi{border-bottom-color:var(--clay)}
+  .msg .sig{margin-top:8px;color:var(--ink-soft);font-size:15px}
+  .sheet{left:616px;top:150px;width:608px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 28px rgba(14,27,43,.08);overflow:hidden}
+  .sheet-head{padding:12px 22px;background:var(--paper-deep);border-bottom:1px dashed var(--line-strong);display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .sheet-body{padding:16px 22px 18px;display:grid;gap:9px}
+  .label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-text);font-weight:700}
+  .facts{list-style:none;display:grid;gap:6px}
+  .facts li{position:relative;padding-left:26px;font-size:18px;color:var(--ink)}
+  .facts li::before{content:"";position:absolute;left:0;top:.72em;width:14px;height:2px;background:var(--teal)}
+  .gap{margin-top:2px;border-left:4px solid var(--clay);background:var(--clay-wash);border-radius:0 10px 10px 0;padding:9px 14px;color:var(--clay-ink);font-weight:600;font-size:18px;display:flex;gap:12px;align-items:center}
+  .gap .q{font-family:var(--mono);font-weight:700;width:22px;height:22px;border:2px solid var(--clay);border-radius:50%;display:inline-grid;place-items:center;font-size:13px}
+  .draft{margin-top:2px;background:var(--paper);border-left:3px solid var(--teal);border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0 10px 10px 0;padding:12px 16px;font-size:18px;line-height:1.5;min-height:92px;color:var(--ink);white-space:pre-wrap}
+  .draft .caret{display:inline-block;width:2px;height:1.05em;background:var(--teal);vertical-align:-3px;margin-left:1px}
+  .chip{display:inline-flex;align-items:center;justify-self:start;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border:2px solid var(--clay);color:var(--clay-ink);border-radius:6px;padding:4px 10px;white-space:nowrap}
+  /* owner review card: its own area under the email, never over the sheet */
+  .review{left:56px;top:430px;width:520px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 24px;box-shadow:0 10px 28px rgba(14,27,43,.08);display:grid;gap:12px}
+  .review .who{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--clay-ink);font-weight:700}
+  .review .row{display:flex;align-items:center;gap:12px}
+  .review .hint{font-size:15px;color:var(--ink-soft);margin-right:auto;max-width:22ch;line-height:1.35}
+  .button{display:inline-flex;align-items:center;justify-content:center;min-width:120px;height:48px;border-radius:10px;font-weight:600;font-size:17px;border:1px solid var(--teal);transform-origin:center;flex:none}
+  .button.ghost{color:var(--teal-text);background:transparent}
+  .button.solid{color:#fff;background:var(--teal)}
+  .cursor{width:22px;height:22px;border-radius:50%;background:var(--ink);opacity:.82;box-shadow:0 0 0 6px rgba(12,27,46,.14);top:0;left:0}
+  .stamp{left:900px;top:436px;font-family:var(--mono);font-size:16px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--teal-text);border:3px solid var(--teal);border-radius:8px;padding:10px 18px;background:rgba(255,255,255,.85);transform-origin:center}
+  .endcard{left:0;right:0;top:132px;bottom:0;background:var(--paper);display:grid;align-content:center;padding:0 56px 70px;gap:18px;visibility:hidden}
+  .endcard h1{font-family:var(--serif);font-size:56px;line-height:1.08;letter-spacing:-.6px;max-width:16ch}
+  .endcard p{font-size:24px;color:var(--ink-soft);max-width:40ch}
+  .endcard .closing{font-family:var(--serif);font-size:30px;color:var(--ink)}
+  .endcard .mark{width:140px;height:2px;background:var(--teal);position:relative;margin-top:6px}
+  .endcard .mark::after{content:"";position:absolute;right:-10px;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--teal)}
+  .status{left:56px;bottom:22px;font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);max-width:900px}
+  .logo{right:56px;bottom:14px;width:190px;aspect-ratio:3.8/1;overflow:hidden}
+  .logo img{position:absolute;width:125%;left:-12.5%;top:-317%;max-width:none;mix-blend-mode:darken}
+  #controls{display:none;width:1280px;color:#fff;font-family:var(--mono);font-size:13px;align-items:center;gap:12px;padding:0 4px}
+  #controls input{flex:1}
+  body.preview #controls{display:flex}
+</style>
+</head>
+<body>
+<div id="stage" aria-hidden="true">
+  <div class="abs topbar">
+    <span class="mono clay">Fictional demonstration. Not connected to a live client system.</span>
+    <span class="mono right">Request desk &middot; sample data</span>
+  </div>
+  <div class="abs track"></div>
+  <div class="abs track-fill" id="fill"></div>
+  <div class="abs dot" id="dot"></div>
+  <div class="abs beats">
+    <div class="beat" id="b1"><b>01</b>Request arrives</div>
+    <div class="beat" id="b2"><b>02</b>Missing detail</div>
+    <div class="beat" id="b3"><b>03</b>Draft reply</div>
+    <div class="beat" id="b4"><b>04</b>Owner reviews</div>
+    <div class="beat" id="b5"><b>05</b>Next step</div>
+  </div>
+
+  <div class="abs msg" id="msg">
+    <span class="meta">Email &middot; morgan@example.com &middot; Tuesday 9:41 am</span>
+    <div class="subj">Lunch for 30 people?</div>
+    <q>Hi, hoping to get lunch catered for our office on <mark id="m-date">Friday the 14th</mark>, around <mark id="m-count">30 people</mark>. Do you do <mark id="m-drop">drop off</mark>? Rough idea on sandwiches and salads? Thanks, Morgan</q>
+    <p class="sig">Made-up customer. Made-up cafe.</p>
+  </div>
+
+  <div class="abs review" id="review">
+    <span class="who">Owner reviews the draft</span>
+    <div class="row">
+      <span class="hint">Nothing is sent until the owner decides.</span>
+      <span class="button ghost" id="btn-edit">Edit</span>
+      <span class="button solid" id="btn-approve">Approve</span>
+    </div>
+  </div>
+
+  <div class="abs sheet" id="sheet">
+    <div class="sheet-head"><span>The Juniper Table &middot; fictional</span><span id="sheet-state">Reading</span></div>
+    <div class="sheet-body">
+      <span class="label">Facts pulled out</span>
+      <ul class="facts">
+        <li id="f1">Office lunch, catering</li>
+        <li id="f2">Friday the 14th</li>
+        <li id="f3">About 30 people</li>
+        <li id="f4">Drop off preferred</li>
+      </ul>
+      <div class="gap" id="gap"><span class="q">?</span><span>Delivery address needed</span></div>
+      <span class="label" id="draft-label">Draft reply, held for review</span>
+      <div class="draft" id="draft"><span id="draft-text"></span><span class="caret" id="caret"></span></div>
+      <span class="chip" id="chip">Held for owner review</span>
+    </div>
+  </div>
+
+  <div class="abs cursor" id="cursor"></div>
+  <div class="abs stamp" id="stamp">Approved draft</div>
+
+  <div class="abs endcard" id="end">
+    <h1 id="end-h">Approved draft. Ready for the next step.</h1>
+    <p id="end-p">Nothing was sent by this demonstration. The owner decided; the desk did the retyping.</p>
+    <div class="mark" id="end-mark"></div>
+    <p class="closing" id="end-close">A clearer next step. You stay in charge.</p>
+  </div>
+
+  <div class="abs status" id="status"></div>
+  <div class="abs logo"><img src="../../clearpath-logo.png" alt=""></div>
+</div>
+
+<div id="controls">
+  <button type="button" id="play">Play</button>
+  <input type="range" id="scrub" min="0" max="20" step="0.04" value="0">
+  <span id="time">0.00 s</span>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var DURATION = 20;
+  var POSTER_TIME = 15.2;
+  var FPS = 24;
+  var DRAFT_TEXT = 'Hi Morgan, thanks for thinking of us. What address should we deliver to? Once I have it, I will check Friday the 14th for 30 people and get right back to you.';
+  var BEATS = [0, 4, 8, 12, 16];
+  /* Approve button centre inside the review card (left column). */
+  var APPROVE_X = 56 + 520 - 24 - 60;
+  var APPROVE_Y = 430 + 16 + 30 + 12 + 24;
+
+  function $(id) { return document.getElementById(id); }
+  function clamp(x, a, b) { return x < a ? a : x > b ? b : x; }
+  function easeOut(p) { return 1 - Math.pow(1 - p, 3); }
+  function easeInOut(p) { return p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; }
+  function prog(t, start, dur, ease) {
+    var p = clamp((t - start) / dur, 0, 1);
+    return (ease || easeOut)(p);
+  }
+  function rise(el, p, dy) {
+    el.style.opacity = String(p);
+    el.style.transform = 'translateY(' + ((1 - p) * (dy == null ? 14 : dy)).toFixed(2) + 'px)';
+  }
+  function pop(el, p) {
+    el.style.opacity = String(p);
+    el.style.transform = 'scale(' + (0.6 + 0.4 * p).toFixed(3) + ') rotate(-4deg)';
+  }
+
+  var els = {
+    fill: $('fill'), dot: $('dot'), msg: $('msg'), sheet: $('sheet'), state: $('sheet-state'),
+    f: [$('f1'), $('f2'), $('f3'), $('f4')], gap: $('gap'), draftLabel: $('draft-label'),
+    draft: $('draft'), draftText: $('draft-text'), caret: $('caret'), chip: $('chip'),
+    review: $('review'), edit: $('btn-edit'), approve: $('btn-approve'), cursor: $('cursor'),
+    stamp: $('stamp'), end: $('end'), endH: $('end-h'), endP: $('end-p'), endMark: $('end-mark'),
+    endClose: $('end-close'), status: $('status'),
+    marks: [$('m-date'), $('m-count'), $('m-drop')],
+    beats: [$('b1'), $('b2'), $('b3'), $('b4'), $('b5')]
+  };
+
+  function seek(t) {
+    t = clamp(Number(t) || 0, 0, DURATION);
+
+    /* progress line and beat labels */
+    var trackW = 1280 - 112;
+    var frac = t / DURATION;
+    els.fill.style.width = (trackW * frac).toFixed(2) + 'px';
+    els.dot.style.left = (50 + trackW * frac).toFixed(2) + 'px';
+    var beatIndex = 0;
+    for (var b = 0; b < BEATS.length; b += 1) { if (t >= BEATS[b]) { beatIndex = b; } }
+    for (b = 0; b < els.beats.length; b += 1) { els.beats[b].className = 'beat' + (b === beatIndex ? ' on' : ''); }
+
+    /* beat 1: message arrives, facts appear */
+    rise(els.msg, prog(t, 0.3, 0.8), 24);
+    rise(els.sheet, prog(t, 0.7, 0.8), 24);
+    var factTimes = [1.6, 2.2, 2.8, 3.4];
+    for (var i = 0; i < 4; i += 1) { rise(els.f[i], prog(t, factTimes[i], 0.45), 8); }
+    for (i = 0; i < 3; i += 1) {
+      els.marks[i].className = (t >= factTimes[i + 1] - 0.1 && t < 4.4) ? 'hi' : '';
+    }
+
+    /* beat 2: missing detail */
+    rise(els.gap, prog(t, 4.4, 0.6), 10);
+
+    /* beat 3: draft typed out */
+    rise(els.draftLabel, prog(t, 8.3, 0.4), 6);
+    rise(els.draft, prog(t, 8.3, 0.5), 10);
+    var typed = Math.floor(DRAFT_TEXT.length * prog(t, 8.6, 2.6, function (p) { return p; }));
+    els.draftText.textContent = t < 8.3 ? '' : DRAFT_TEXT.slice(0, typed);
+    els.caret.style.opacity = (t >= 8.4 && t < 11.3) ? '1' : '0';
+    rise(els.chip, prog(t, 11.3, 0.4), 6);
+
+    /* beat 4: owner reviews in the left card, cursor moves, approve pressed, stamp lands on the sheet */
+    rise(els.review, prog(t, 12.3, 0.5), 10);
+    var cp = prog(t, 13.0, 1.2, easeInOut);
+    var cx = 300 + (APPROVE_X - 300) * cp;
+    var cy = 640 + (APPROVE_Y - 640) * cp;
+    els.cursor.style.left = (cx - 11).toFixed(2) + 'px';
+    els.cursor.style.top = (cy - 11).toFixed(2) + 'px';
+    els.cursor.style.opacity = (t >= 12.9 && t < 15.6) ? '0.82' : '0';
+    var pressed = t >= 14.4 && t < 14.75;
+    els.approve.style.transform = pressed ? 'scale(0.95)' : 'none';
+    els.approve.style.background = (t >= 14.4) ? '#085F58' : '';
+    els.approve.style.borderColor = (t >= 14.4) ? '#085F58' : '';
+    pop(els.stamp, prog(t, 14.75, 0.45));
+    if (t >= 14.75) {
+      els.chip.textContent = 'Approved by the owner';
+      els.chip.style.borderColor = '#0B7B72';
+      els.chip.style.color = '#0A6A62';
+    } else {
+      els.chip.textContent = 'Held for owner review';
+      els.chip.style.borderColor = '';
+      els.chip.style.color = '';
+    }
+
+    /* beat 5: end card */
+    var ep = prog(t, 16.2, 0.7);
+    els.end.style.opacity = String(ep);
+    els.end.style.visibility = ep > 0 ? 'visible' : 'hidden';
+    rise(els.endH, prog(t, 16.4, 0.6), 12);
+    rise(els.endP, prog(t, 16.9, 0.6), 12);
+    rise(els.endMark, prog(t, 17.3, 0.5), 0);
+    rise(els.endClose, prog(t, 17.6, 0.7), 12);
+
+    /* sheet state and status line */
+    var state = 'Reading', status = '';
+    if (t >= 1.6) { state = 'Facts pulled out'; status = 'No retyping. The facts come out of the message itself.'; }
+    if (t >= 4.4) { state = 'One detail missing'; status = 'Missing detail flagged. Nobody guesses an address.'; }
+    if (t >= 8.3) { state = 'Draft ready'; status = 'A short reply asks for the address. It does not send itself.'; }
+    if (t >= 12.3) { state = 'Waiting for the owner'; status = 'The owner can edit or approve. Nothing moves until then.'; }
+    if (t >= 14.75) { state = 'Approved draft'; status = 'Approved. Still a draft: sending is the owner\'s next step.'; }
+    if (t >= 16.2) { status = 'Fictional demonstration. Nothing was sent.'; }
+    if (t < 1.6) { status = 'A request arrives, the way requests really do.'; }
+    els.state.textContent = state;
+    els.status.textContent = status;
+  }
+
+  function seekAndSettle(t) {
+    seek(t);
+    return new Promise(function (resolve) {
+      requestAnimationFrame(function () { requestAnimationFrame(function () { resolve(t); }); });
+    });
+  }
+
+  window.__composition = {
+    name: 'clearpath-request-demo',
+    duration: DURATION,
+    fps: FPS,
+    width: 1280,
+    height: 720,
+    posterTime: POSTER_TIME,
+    beats: BEATS,
+    textEquivalent: [
+      'Request arrives: an email asks for lunch for 30 people on Friday the 14th, drop off preferred.',
+      'Missing detail: the desk pulls out the facts and flags that a delivery address is needed.',
+      'Draft: a short reply asks what address to deliver to, and says the date and headcount will be checked once the address is in. It is held for review.',
+      'Owner reviews: Edit or Approve, in a separate review card. The owner presses Approve.',
+      'End state: approved draft, ready for the next step. Nothing was sent. A clearer next step; you stay in charge.'
+    ]
+  };
+  window.__seek = seekAndSettle;
+
+  seek(0);
+
+  /* authoring preview only */
+  if (/[?&]preview=1/.test(location.search)) {
+    document.body.classList.add('preview');
+    var scrub = $('scrub'), time = $('time'), play = $('play');
+    var playing = false, startAt = 0, startT = 0;
+    function show(t) { seek(t); scrub.value = String(t); time.textContent = t.toFixed(2) + ' s'; }
+    scrub.addEventListener('input', function () { playing = false; show(Number(scrub.value)); });
+    function tick(now) {
+      if (!playing) { return; }
+      var t = startT + (now - startAt) / 1000;
+      if (t >= DURATION) { show(DURATION); playing = false; play.textContent = 'Play'; return; }
+      show(t);
+      requestAnimationFrame(tick);
+    }
+    play.addEventListener('click', function () {
+      playing = !playing;
+      play.textContent = playing ? 'Pause' : 'Play';
+      if (playing) {
+        startT = Number(scrub.value) >= DURATION ? 0 : Number(scrub.value);
+        startAt = performance.now();
+        requestAnimationFrame(tick);
+      }
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === ' ') { e.preventDefault(); play.click(); } });
+  }
+}());
+</script>
+</body>
+</html>

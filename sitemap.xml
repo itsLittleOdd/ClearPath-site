@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Public route inventory for the 2026-10-16 rebuild. Review mode: every
+     listed page carries a noindex meta tag and robots.txt disallows crawling
+     until release is approved. /justin/card.html is intentionally excluded
+     (it carries its own noindex). /404.html and /thank-you/ are not listed. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.clearpathwv.com/</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://www.clearpathwv.com/services/</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://www.clearpathwv.com/work/</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://www.clearpathwv.com/pricing/</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://www.clearpathwv.com/contact/</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://www.clearpathwv.com/privacy/</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://www.clearpathwv.com/terms/</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://www.clearpathwv.com/demos/</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://www.clearpathwv.com/demos/request-desk/</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://www.clearpathwv.com/demos/business-brain/</loc><lastmod>2026-10-16</lastmod></url>
+  <url><loc>https://www.clearpathwv.com/demos/website-manager/</loc><lastmod>2026-10-16</lastmod></url>
+</urlset>

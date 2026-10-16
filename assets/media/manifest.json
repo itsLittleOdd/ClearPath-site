@@ -1,0 +1,72 @@
+{
+  "composition": "creative/request-demo/composition.html",
+  "compositionSha256": "9afd5bb5ab79399e032340c13cda7b59256a22317f5d8475303478d9de0ee3b9",
+  "name": "clearpath-request-demo",
+  "durationSeconds": 20,
+  "fps": 24,
+  "frames": 480,
+  "posterTimeSeconds": 15.2,
+  "textEquivalent": [
+    "Request arrives: an email asks for lunch for 30 people on Friday the 14th, drop off preferred.",
+    "Missing detail: the desk pulls out the facts and flags that a delivery address is needed.",
+    "Draft: a short reply asks what address to deliver to, and says the date and headcount will be checked once the address is in. It is held for review.",
+    "Owner reviews: Edit or Approve, in a separate review card. The owner presses Approve.",
+    "End state: approved draft, ready for the next step. Nothing was sent. A clearer next step; you stay in charge."
+  ],
+  "externalRequests": 0,
+  "blockedRequests": 0,
+  "outputs": {
+    "mp4": {
+      "file": "assets/media/request-demo.mp4",
+      "bytes": 323626,
+      "sha256": "dfd1cf79873a4b22b7d0c4ee4a78d413828922ad400673df7d62158efa4b6fa1",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "r_frame_rate": "24/1",
+            "nb_frames": "480"
+          }
+        ],
+        "format": {
+          "duration": "20.000000",
+          "size": "323626"
+        }
+      }
+    },
+    "webm": {
+      "file": "assets/media/request-demo.webm",
+      "bytes": 469515,
+      "sha256": "017a24f6a8f93abfedaf8667d33f7b3f4e38073985f7cdd6ef9c5b31edc33ef1",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "width": 1280,
+            "height": 720,
+            "r_frame_rate": "24/1"
+          }
+        ],
+        "format": {
+          "duration": "20.000000",
+          "size": "469515"
+        }
+      }
+    },
+    "poster": {
+      "file": "assets/media/request-demo-poster.jpg",
+      "bytes": 56320,
+      "sha256": "e54d30996a81a5b57213029af957850c74b7b95a8a7063acb7cf356f905c4748"
+    }
+  },
+  "webm": "rendered",
+  "renderedWith": {
+    "ffmpeg": "/Users/Hermes/.local/bin/ffmpeg",
+    "node": "v22.22.3",
+    "chrome": "headless, isolated profile, non-local requests blocked"
+  }
+}

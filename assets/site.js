@@ -70,56 +70,107 @@
     for (i = 0; i < reveals.length; i += 1) { io.observe(reveals[i]); }
   }
 
-  /* ----- video figure: explicit play, honest missing-file state ----- */
+  /* ----- video figure: one clean picture, one external control, a state
+     model derived from the media element itself. States: initial, loading,
+     playing, paused, ended, unavailable. The control is never hidden or
+     moved while states change, so focus stays where the visitor put it.
+     Native controls on the video remain available at all times. ----- */
   var figures = document.querySelectorAll('[data-video-figure]');
   for (i = 0; i < figures.length; i += 1) {
     (function (figure) {
       var video = figure.querySelector('video');
-      var still = figure.querySelector('.video-still');
-      var playButton = figure.querySelector('[data-role="play"]');
+      var button = figure.querySelector('[data-role="play"]');
+      var controlsRow = figure.querySelector('.video-controls');
+      var stateLine = figure.querySelector('[data-role="video-state"]');
       var status = figure.querySelector('[data-role="video-status"]');
-      if (!video || !still || !playButton) { return; }
+      if (!video || !button) { return; }
+      var NETWORK_NO_SOURCE = 3;
+      var LABELS = { initial: 'Play video', loading: 'Loading', playing: 'Pause', paused: 'Play', ended: 'Play again', unavailable: 'Try again' };
+      /* Each accessible name starts with the exact visible label so
+         speech-input users can say what they see (label-in-name). */
+      var ARIA = {
+        initial: 'Play video: 20-second silent demonstration', loading: 'Loading the demonstration video',
+        playing: 'Pause the demonstration video', paused: 'Play: resume the demonstration video',
+        ended: 'Play again: replay the demonstration video', unavailable: 'Try again: retry loading the demonstration video'
+      };
+      var LINES = {
+        initial: '20 seconds, silent, made-up data.', loading: 'Loading the video.',
+        playing: 'Playing. Silent, made-up data.', paused: 'Paused.',
+        ended: 'Finished. Nothing was sent. Play again or read the written version below.',
+        unavailable: 'Video unavailable right now. The written version below covers every step.'
+      };
+      var unavailable = false;
+      var pendingPlay = false;
+      var sequence = 0;
 
       function say(text) {
         if (!status) { return; }
         status.textContent = text;
         status.hidden = !text;
       }
-
-      function showStill() {
-        still.classList.remove('is-hidden');
-        still.removeAttribute('aria-hidden');
+      function setState(name) {
+        figure.setAttribute('data-video-state', name);
+        button.textContent = LABELS[name];
+        button.setAttribute('aria-label', ARIA[name]);
+        if (stateLine) { stateLine.textContent = LINES[name]; }
+        /* Idle and unavailable posters stay clean: native controls are
+           suppressed only there and restored for every playback state. The
+           HTML keeps the controls attribute for script-less visitors. */
+        video.controls = !(name === 'initial' || name === 'unavailable');
+      }
+      function broken() {
+        return unavailable || !!video.error || video.networkState === NETWORK_NO_SOURCE;
+      }
+      function derive() {
+        if (unavailable) { setState('unavailable'); return; }
+        if (video.ended) { setState('ended'); return; }
+        if (video.paused) { setState(video.currentTime > 0 ? 'paused' : 'initial'); return; }
+        if (pendingPlay || video.readyState < 3) { setState('loading'); return; }
+        setState('playing');
+      }
+      function markUnavailable() {
+        unavailable = true;
+        pendingPlay = false;
+        derive();
+        say('The video file is not available right now. The written version below covers every step.');
       }
 
-      function hideStill() {
-        still.classList.add('is-hidden');
-        still.setAttribute('aria-hidden', 'true');
-      }
-
-      playButton.addEventListener('click', function () {
+      button.addEventListener('click', function () {
+        var retry = broken();
+        /* Errored media can report paused=false; a broken player must retry,
+           never fall into the ordinary pause branch. */
+        if (!retry && !video.paused && !video.ended) { video.pause(); return; }
+        var token = ++sequence;
+        unavailable = false;
         say('');
+        if (retry) { video.load(); }
+        pendingPlay = true;
+        setState('loading');
         var attempt = video.play();
         if (attempt && typeof attempt.then === 'function') {
           attempt.then(function () {
-            hideStill();
-            video.focus({ preventScroll: true });
-          }, function () {
-            showStill();
-            say('The video file is not available in this build. The written version below covers every step.');
+            if (token !== sequence) { return; }
+            pendingPlay = false;
+            derive();
+          }, function (err) {
+            if (token !== sequence) { return; }
+            pendingPlay = false;
+            /* A deliberate pause while play was still pending rejects the
+               promise with AbortError. That is a visitor choice, not a
+               missing file. Only real media failures are reported. */
+            if (err && err.name === 'AbortError') { derive(); return; }
+            markUnavailable();
           });
-        } else {
-          hideStill();
-        }
+        } else { pendingPlay = false; }
       });
-      video.addEventListener('play', hideStill);
-      video.addEventListener('ended', function () {
-        showStill();
-        playButton.textContent = 'Play it again';
-      });
-      video.addEventListener('error', function () {
-        showStill();
-        say('The video file is not available in this build. The written version below covers every step.');
-      });
+      var events = ['play', 'playing', 'pause', 'ended', 'waiting', 'canplay', 'seeked', 'emptied'];
+      for (var ev = 0; ev < events.length; ev += 1) { video.addEventListener(events[ev], derive); }
+      video.addEventListener('error', markUnavailable);
+      var sources = video.querySelectorAll('source');
+      if (sources.length) { sources[sources.length - 1].addEventListener('error', markUnavailable); }
+      derive();
+      /* Reveal the custom control only now that every handler is bound. */
+      if (controlsRow) { controlsRow.hidden = false; }
       figure.setAttribute('data-video-ready', '1');
     }(figures[i]));
   }

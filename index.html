@@ -161,28 +161,13 @@
             <source src="/assets/media/request-demo.mp4" type="video/mp4">
             Your browser cannot play this video. The written version is just below.
           </video>
-          <div class="video-still">
-            <div class="still-bar"><span class="clay">Fictional demonstration</span><span>Request desk &middot; sample data</span></div>
-            <div class="still-body">
-              <div class="still-msg">
-                <span class="meta">Email &middot; morgan@example.com</span>
-                <q>Hoping to get lunch catered for our office on Friday the 14th, around 30 people. Do you do drop off?</q>
-              </div>
-              <ul class="still-facts">
-                <li>Office lunch, Friday the 14th</li>
-                <li>About 30 people, drop off</li>
-                <li class="gap">Delivery address needed</li>
-                <li>Draft reply waits for the owner</li>
-              </ul>
-            </div>
-            <div class="still-play">
-              <button type="button" class="btn" data-role="play">Play the 20-second demonstration</button>
-              <span>Silent. Made-up data. Nothing is sent.</span>
-            </div>
-          </div>
-          <p class="video-status" data-role="video-status" hidden></p>
         </div>
-        <figcaption class="video-caption" id="video-caption"><strong>Fictional demonstration. Not connected to a live client system.</strong> The final state is an approved draft, not a sent email. Press play to watch; the text version below covers every step.</figcaption>
+        <div class="video-controls" hidden>
+          <button type="button" class="btn" data-role="play" aria-label="Play the 20-second silent demonstration video" aria-describedby="video-state">Play video</button>
+          <p class="video-state" id="video-state" data-role="video-state" aria-live="polite">20 seconds, silent, made-up data.</p>
+        </div>
+        <p class="video-status" data-role="video-status" role="status" hidden></p>
+        <figcaption class="video-caption" id="video-caption"><strong>Fictional demonstration. Not connected to a live client system.</strong> The final state is an approved draft, not a sent email.</figcaption>
         <details class="transcript">
           <summary>Read what the video shows</summary>
           <ol>

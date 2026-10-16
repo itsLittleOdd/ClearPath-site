@@ -658,6 +658,34 @@ h3{font-family:var(--serif);font-weight:700;line-height:1.25;font-size:22px}
   .artifact-body dl{grid-template-columns:1fr}
 }
 
+/* ---------- 2026-10-16 mobile player repair ----------
+   One clean 16:9 picture: the real poster/video only. The custom control,
+   its state line and any status message live in normal flow below the
+   picture, so nothing is ever layered over the poster at any width. The old
+   .video-still overlay styles above are no longer used by any page. */
+.video-frame{display:block;aspect-ratio:16/9;min-height:0}
+.video-frame video{display:block;width:100%;height:100%;object-fit:contain;background:var(--paper-deep)}
+.video-controls{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap}
+.video-controls .btn{min-height:44px;flex:0 0 auto}
+.video-state{margin:0;font-size:14.5px;color:var(--ink-soft);flex:1 1 220px;min-width:0}
+.video-status{position:static;left:auto;right:auto;bottom:auto;margin:0}
+@media (max-width:480px){
+  .video-controls .btn{width:100%}
+  .video-state{flex-basis:100%}
+}
+/* The control row ships hidden in HTML and is revealed by site.js only after
+   its handlers are bound, so a visitor without scripts never sees a dead
+   button; native video controls and the transcript serve them instead. The
+   global [hidden]{display:none!important} rule above enforces this. */
+.video-controls[hidden]{display:none}
+
+/* ---------- 2026-10-16 mobile safety: phone menu in short landscape viewports ----------
+   The open menu is absolutely positioned under a sticky header, so body
+   scrolling cannot reveal its last links on a 320 px tall viewport. The list
+   is bounded to the space below the header and scrolls internally; tap
+   targets, styling and destinations are unchanged. */
+.menu-list{max-height:calc(100vh - var(--header-h) - 12px);max-height:calc(100dvh - var(--header-h) - 12px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+
 /* ---------- 2026-10-16 correction: parked sticky bar is noninteractive ----------
    The bar slides out, then becomes invisible to keyboard and assistive tech.
    assets/site.js also sets the inert attribute and never parks while the bar

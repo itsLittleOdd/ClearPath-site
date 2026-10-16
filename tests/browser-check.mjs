@@ -295,17 +295,26 @@ async function main() {
   beginJourney('video');
   try {
     await open('/', 1280, 900, 'video');
-    const v = await chrome.evalJS(`(() => { const f = document.querySelector('[data-video-figure]'); const v = f.querySelector('video'); return { ready: f.getAttribute('data-video-ready'), controls: v.controls, preload: v.preload, autoplay: v.autoplay, muted: v.muted, sources: [...v.querySelectorAll('source')].map(s => s.getAttribute('src')), stillVisible: !f.querySelector('.video-still').classList.contains('is-hidden'), transcriptItems: f.querySelectorAll('.transcript li').length }; })()`);
-    if (v.ready !== '1' || !v.controls || v.preload !== 'none' || v.autoplay || !v.stillVisible || v.transcriptItems !== 5) { defect('video', JSON.stringify(v)); }
+    /* Mobile player repair: the picture holds only the video; the control and
+       state line sit below it; no overlay, no duplicated HTML still. The
+       detailed geometry/media-state matrix lives in tests/video-player-check.mjs. */
+    /* State-specific native-controls contract: suppressed only on the idle
+       enhanced poster, restored for playback states; HTML keeps the attribute. */
+    const v = await chrome.evalJS(`(() => { const f = document.querySelector('[data-video-figure]'); const v = f.querySelector('video'); const frame = f.querySelector('.video-frame'); const b = f.querySelector('[data-role="play"]'); const fr = frame.getBoundingClientRect(); const br = b.getBoundingClientRect(); return { ready: f.getAttribute('data-video-ready'), state: f.getAttribute('data-video-state'), idleNativeControlsHidden: v.controls === false, controlsRowVisible: getComputedStyle(f.querySelector('.video-controls')).display !== 'none', label: b.textContent.trim(), preload: v.preload, autoplay: v.autoplay, muted: v.muted, sources: [...v.querySelectorAll('source')].map(s => s.getAttribute('src')), frameChildren: [...frame.children].map(e => e.tagName), overlays: f.querySelectorAll('.video-still, .still-play, .still-msg').length, controlBelowPicture: br.top >= fr.bottom - 1, transcriptItems: f.querySelectorAll('.transcript li').length }; })()`);
+    if (v.ready !== '1' || v.state !== 'initial' || !v.idleNativeControlsHidden || !v.controlsRowVisible || v.label !== 'Play video' || v.preload !== 'none' || v.autoplay || v.overlays !== 0 || v.frameChildren.join() !== 'VIDEO' || !v.controlBelowPicture || v.transcriptItems !== 5) { defect('video', JSON.stringify(v)); }
     await chrome.evalJS(`document.querySelector('[data-video-figure]').scrollIntoView({ block: 'center', behavior: 'instant' })`);
     await settle('video');
     await chrome.evalJS(`document.querySelector('[data-video-figure] [data-role="play"]').click()`);
-    await sleep(1500);
-    const after = await chrome.evalJS(`(() => { const f = document.querySelector('[data-video-figure]'); const v = f.querySelector('video'); const s = f.querySelector('[data-role="video-status"]'); return { playing: !v.paused && !v.ended, stillHidden: f.querySelector('.video-still').classList.contains('is-hidden'), status: s.hidden ? '' : s.textContent, currentTime: v.currentTime }; })()`);
+    let after = null;
+    for (let i = 0; i < 60; i += 1) {
+      await sleep(100);
+      after = await chrome.evalJS(`(() => { const f = document.querySelector('[data-video-figure]'); const v = f.querySelector('video'); const s = f.querySelector('[data-role="video-status"]'); return { state: f.getAttribute('data-video-state'), label: f.querySelector('[data-role="play"]').textContent, playing: !v.paused && !v.ended, status: s.hidden ? '' : s.textContent, currentTime: v.currentTime }; })()`);
+      if (after.state === 'playing' || after.state === 'unavailable') { break; }
+    }
     journey.result = { ...v, after };
     const mediaPresent = !pendingMedia.includes('/assets/media/request-demo.mp4');
-    if (mediaPresent && !after.playing) { defect('video-play', 'media present but did not play: ' + JSON.stringify(after)); }
-    if (!mediaPresent && !/not available/.test(after.status)) { defect('video-play', 'missing media but no honest status: ' + JSON.stringify(after)); }
+    if (mediaPresent && (!after.playing || after.state !== 'playing' || after.label !== 'Pause')) { defect('video-play', 'media present but did not reach the playing state: ' + JSON.stringify(after)); }
+    if (!mediaPresent && (after.state !== 'unavailable' || !/not available/.test(after.status))) { defect('video-play', 'missing media but no honest unavailable state: ' + JSON.stringify(after)); }
     await shot('home-1280-video-playing');
     await chrome.evalJS(`(() => { const v = document.querySelector('video'); try { v.pause(); } catch (e) {} })()`);
   } catch (err) { defect('video', err.message); }

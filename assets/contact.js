@@ -42,6 +42,11 @@
       subject: 'Ongoing support inquiry',
       opening: 'I would like to discuss ongoing support for systems I already use.'
     },
+    exit: {
+      label: 'Exit Readiness: getting my business ready to sell or hand over',
+      subject: 'Exit Readiness call request',
+      opening: 'I would like a free 20-minute call about getting my business ready to sell or hand over.'
+    },
     unsure: {
       label: 'Not sure yet',
       subject: 'Something needs to work better',

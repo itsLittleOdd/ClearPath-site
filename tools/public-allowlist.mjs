@@ -8,6 +8,7 @@ export const PUBLIC_PAGES = [
   'services/index.html',
   'work/index.html',
   'pricing/index.html',
+  'exit-readiness/index.html',
   'contact/index.html',
   'thank-you/index.html',
   'privacy/index.html',
@@ -22,6 +23,7 @@ export const PUBLIC_PAGES = [
 
 export const PUBLIC_ASSETS = [
   'robots.txt',
+  'exit-readiness/clearpath-exit-readiness-checklist.pdf',
   'sitemap.xml',
   'favicon.png',
   'og-image.png',

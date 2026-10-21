@@ -43,10 +43,11 @@ test('normal pages are indexable; 404, thank-you and the protected card stay noi
   }
 });
 
-test('robots.txt is the exact production file and the sitemap inventory is unchanged', () => {
+test('robots.txt is the exact production file and the sitemap lists the 12 indexable routes', () => {
   assert.equal(read('robots.txt'), 'User-agent: *\nAllow: /\n\nSitemap: https://www.clearpathwv.com/sitemap.xml\n');
   const locs = [...read('sitemap.xml').matchAll(/<loc>https:\/\/www\.clearpathwv\.com([^<]*)<\/loc>/g)].map((m) => m[1]);
-  assert.equal(locs.length, 11);
+  assert.equal(locs.length, 12);
+  assert.ok(locs.includes('/exit-readiness/'));
   assert.ok(!locs.includes('/thank-you/') && !locs.includes('/404.html') && !locs.includes('/justin/card.html'));
 });
 
